@@ -4,15 +4,13 @@ author:
   - "Eric R. Scott"
   - "Kristina Riemer"
 format: 
-  revealjs:
+  uaz-revealjs:
     slide-number: true
     chalkboard: true
     link-external-icon: true
     link-external-newwindow: true
     theme: 
-      - "../_extensions/cct-datascience/uaz/theme.scss"
       - "custom.scss"
-    logo: logo.png
 execute: 
   echo: true
   cache: true

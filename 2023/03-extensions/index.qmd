@@ -1,0 +1,9 @@
+---
+title: "`ggplot2` extensions"
+format: html
+---
+
+Extensions!
+
+- [slides](slides.qmd)
+- [notes](notes.qmd)

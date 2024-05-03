@@ -5,8 +5,8 @@ authors:
   - Eric R. Scott
   - Kristina Riemer
 format: 
-  pdf: default
   html: default
+  pdf: default
 editor: visual
 execute: 
   eval: false

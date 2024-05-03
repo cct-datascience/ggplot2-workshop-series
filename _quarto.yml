@@ -1,11 +1,5 @@
 project: 
   type: website
-  # Temporary for testing before I get everythign working:
-  render: 
-    - "*.qmd"
-    - "*.md"
-    - "!2023/02-publication-quality-figs/"
-    - "!2023/03-extensions/"
   
 website:
   title: "Unlocking the next level of `ggplot2` (working title)"
@@ -25,11 +19,17 @@ website:
         contents:
           - "2023/01-foundations/index.qmd"
           - "2023/02-publication-quality-figs/index.qmd"
+          - "2023/03-extensions/index.qmd"
 
 format:
   html: default
   uaz-revealjs:
-   #for all uaz-revealjs slides, use the same logo and footer.
+   #defaults for all uaz-revealjs slides
+    code-copy: true
+    code-link: true
+    slide-number: true
+    chalkboard: true
+    mouse-wheel: false
     logo: "./logo.png"
     footer: "[CCT Data Science `ggplot2` workshop series](index.qmd)"
     

@@ -2,7 +2,7 @@
 title: "Crafting Publication Quality Data Visualizations with ggplot2"
 author: "Eric R. Scott"
 format: 
-  revealjs:
+  uaz-revealjs:
     code-link: true
     link-external-icon: true
     link-external-newwindow: true
@@ -10,7 +10,6 @@ format:
     fig-width: 7
     fig-height: 3.5
     theme: 
-      - "../_extensions/cct-datascience/uaz/theme.scss"
       - "custom.scss"
     slide-number: true
     chalkboard: true
