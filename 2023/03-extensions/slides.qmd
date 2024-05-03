@@ -9,7 +9,6 @@ format:
       - "custom.scss"
 execute: 
   echo: true
-  cache: true
 editor: visual
 ---
 
