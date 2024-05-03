@@ -1,5 +1,11 @@
 project: 
   type: website
+  # Temporary for testing before I get everythign working:
+  render: 
+    - "*.qmd"
+    - "*.md"
+    - "!2023/02-publication-quality-figs/"
+    - "!2023/03-extensions/"
   
 website:
   title: "Unlocking the next level of `ggplot2` (working title)"
@@ -9,3 +15,14 @@ website:
     contents:
       - index.qmd
       - section: "2023"
+        contents:
+          - "2023/01-foundations/index.qmd"
+
+format:
+  html: default
+  uaz-revealjs:
+    logo: "./logo.png"
+    
+execute:
+  freeze: auto
+  

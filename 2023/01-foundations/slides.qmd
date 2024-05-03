@@ -2,16 +2,13 @@
 title: "Understanding the foundations of 'ggplot2'"
 author: Jessica Guo
 format: 
-  revealjs:
+  uaz-revealjs:
     code-copy: true
     code-link: true
     df-print: kable
     slide-number: true
     chalkboard: true
     mouse-wheel: false
-    theme: 
-      - "../_extensions/cct-datascience/uaz/theme.scss"
-      - "custom.scss"
     logo: "logo.png"
 editor: visual
 execute: 
