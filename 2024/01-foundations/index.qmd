@@ -9,3 +9,7 @@ In this workshop you'll gain a better understanding of the "grammar of graphics"
 - [Slides](slides.qmd)
 - [Notes](notes.qmd)
 - Recording
+
+Or embedd slides with embedio extension:
+
+{{< revealjs slides.qmd >}}
