@@ -1,0 +1,7 @@
+---
+title: Foundations of `ggplot2`
+format: html
+---
+
+Slides here: [slides](slides.qmd)
+Notes here: [notes](notes.qmd)
