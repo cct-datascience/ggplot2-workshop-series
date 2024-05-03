@@ -9,23 +9,29 @@ project:
   
 website:
   title: "Unlocking the next level of `ggplot2` (working title)"
+  repo-url: "https://github.com/cct-datascience/ggplot2-workshop-series"
+  repo-actions: ["source", "issue"]
   sidebar: 
     style: "docked"
     search: true
+    logo: logo.png
     contents:
-      - index.qmd
+      - "index.qmd"
       - section: "2024"
+        href: "2024/index.qmd"
         contents:
           - "2024/01-foundations/index.qmd"
       - section: "2023"
         contents:
           - "2023/01-foundations/index.qmd"
+          - "2023/02-publication-quality-figs/index.qmd"
 
 format:
   html: default
   uaz-revealjs:
+   #for all uaz-revealjs slides, use the same logo and footer.
     logo: "./logo.png"
-    footer: "Go back [home](index.qmd)"
+    footer: "[CCT Data Science `ggplot2` workshop series](index.qmd)"
     
 execute:
   freeze: auto

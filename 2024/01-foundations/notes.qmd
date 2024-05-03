@@ -1,0 +1,7 @@
+---
+title: Notes for foundations of ggplot2
+author: Eric Scott
+format: html
+---
+
+Hey these are some notes

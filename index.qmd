@@ -1,3 +1,7 @@
-## Hello
+---
+format: html
+---
 
-This is a landing page for this whole thing
+## Welcome
+
+This is where we keep the curriculum related to our ggplot2 workshop series

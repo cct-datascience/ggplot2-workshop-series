@@ -1,0 +1,6 @@
+---
+title: 2024 iteration
+format: html
+---
+
+This three-part series will teach you the skills to refine & expand your current ggplot2 skills so you can generate complex, publication-quality plots efficiently and reproducibly. We will cover: 1) the latest developments in and underpinnings of ggplot2, 2) principles of effective visual design and how to implement these in ggplot2, 3) and the ever-expanding landscape of extensions to create animated, geospatial, interactive, and other varieties of plots. We will assume you have created basic plots in ggplot2, and are looking for ways to level up. These sessions are stand-alone, so feel free to attend any or all of them!
