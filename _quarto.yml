@@ -30,9 +30,15 @@ format:
     slide-number: true
     chalkboard: true
     mouse-wheel: false
+    link-external-icon: true
+    link-external-newwindow: true
     logo: "./logo.png"
     footer: "[CCT Data Science `ggplot2` workshop series](index.qmd)"
     
 execute:
   freeze: auto
+  
+editor: 
+  markdown: 
+    wrap: sentence
   

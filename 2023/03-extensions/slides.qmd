@@ -5,10 +5,6 @@ author:
   - "Kristina Riemer"
 format: 
   uaz-revealjs:
-    slide-number: true
-    chalkboard: true
-    link-external-icon: true
-    link-external-newwindow: true
     theme: 
       - "custom.scss"
 execute: 

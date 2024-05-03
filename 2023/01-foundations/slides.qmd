@@ -3,13 +3,7 @@ title: "Understanding the foundations of 'ggplot2'"
 author: Jessica Guo
 format: 
   uaz-revealjs:
-    code-copy: true
-    code-link: true
     df-print: kable
-    slide-number: true
-    chalkboard: true
-    mouse-wheel: false
-    logo: "logo.png"
 editor: visual
 execute: 
   echo: true
