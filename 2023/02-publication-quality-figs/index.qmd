@@ -3,5 +3,6 @@ title: "Crafting Publication Quality Data Visualizations with ggplot2"
 format: html
 ---
 
-- [Slides](slides.qmd)
 - [Notes](notes.qmd) 
+
+- {{< revealjs slides.html >}}

@@ -5,11 +5,6 @@ format: html
 
 In this workshop you'll gain a better understanding of the "grammar of graphics"—the theory underlying many data visualization tools, including ggplot2. Using practical examples, you'll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.
 
-
-- [Slides](slides.qmd)
 - [Notes](notes.qmd)
-- Recording
 
-Or embedd slides with embedio extension:
-
-{{< revealjs slides.qmd >}}
+- {{< revealjs slides.html >}}
