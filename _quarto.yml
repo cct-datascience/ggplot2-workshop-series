@@ -14,6 +14,9 @@ website:
     search: true
     contents:
       - index.qmd
+      - section: "2024"
+        contents:
+          - "2024/01-foundations/index.qmd"
       - section: "2023"
         contents:
           - "2023/01-foundations/index.qmd"
@@ -22,6 +25,7 @@ format:
   html: default
   uaz-revealjs:
     logo: "./logo.png"
+    footer: "Go back [home](index.qmd)"
     
 execute:
   freeze: auto
