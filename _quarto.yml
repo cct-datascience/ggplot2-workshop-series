@@ -1,5 +1,8 @@
 project: 
   type: website
+  render: 
+    - "*.qmd"
+    - "!CONTRIBUTING.md"
   
 website:
   title: "Unlocking the next level of `ggplot2` (working title)"

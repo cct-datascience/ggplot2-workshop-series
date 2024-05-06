@@ -15,7 +15,7 @@
 4.  Edit `_quarto.yml` to add your workshop page.
     If you want the title in the sidebar to be different from the title in your index.qmd, you can supply it like so:
 
-    ```{yaml}
+    ```{=yaml}
     website:
       sidebar:
         contents:
