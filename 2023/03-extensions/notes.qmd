@@ -6,7 +6,6 @@ authors:
   - Kristina Riemer
 format: 
   html: default
-  pdf: default
 editor: visual
 execute: 
   eval: false
