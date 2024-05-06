@@ -23,3 +23,5 @@
             - "a different, perhaps shorter title"
               href: "2023/my-workshop-with-a-long-title/index.qmd"
     ```
+
+5.  Run `quarto render` locally before pushing to GitHub

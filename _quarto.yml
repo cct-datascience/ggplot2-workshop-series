@@ -25,11 +25,13 @@ website:
           - "2023/03-extensions/index.qmd"
 
 format:
-  html: default
+  html: 
+  #defaults for all html
+    code-link: true
+    code-copy: true
   uaz-revealjs:
    #defaults for all uaz-revealjs slides
     code-copy: true
-    code-link: true
     slide-number: true
     chalkboard: true
     mouse-wheel: false
