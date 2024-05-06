@@ -49,7 +49,7 @@
     "href": "2023/03-extensions/notes.html#gganimate",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "gganimate",
-    "text": "gganimate\n\nlibrary(gganimate)\n\n\nAnimate plots and save as gifs\nTakes some getting used to lingo\nCan control: what changes over time with transition_*, how the view of the axes changes with view_*, how much “memory” of the change there is, with shadow_*, and how data appears and disappears with enter_* and exit_*\nUse ? with functions to figure out what label name is\nThese penguin plots don’t really make sense because the data isn’t same individuals over the years; should set group in transition_states\nMention animate() for more control\nResources:\n\nBat data slides\nPenguins code source"
+    "text": "gganimate\n\nlibrary(gganimate)\n\n\nAnimate plots and save as gifs\nTakes some getting used to lingo\nCan control: what changes over time with transition_*, how the view of the axes changes with view_*, how much “memory” of the change there is, with shadow_*, and how data appears and disappears with enter_* and exit_*\nUse ? with functions to figure out what label name is\nThese penguin plots don’t really make sense because the data isn’t same individuals over the years; should set group in transition_states\nMention animate() for more control\n\nResources:\n\nBat data slides\nPenguins code source"
   },
   {
     "objectID": "2023/03-extensions/notes.html#esquisse",
@@ -63,14 +63,14 @@
     "href": "2023/03-extensions/notes.html#plotly",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "plotly",
-    "text": "plotly\n\nlibrary(plotly)\n\n\nplotly R package is interface to a JavaScript library for making interactive data visualizations\nOnly important to know that because if you search for plotly help, sometimes you’ll get JavaScript code examples.\nplotly kind of uses the grammar of graphics, but building a plot from scratch is tricky\nplotly functions mostly take lists are arguments, which makes it very difficult to figure out what default values are or even what arguments functions can take.\nggplotly() transforms ggplot objects into interactive plotly plots. 90% of the time it gets you 90% of the way there\n\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p)\n\nBy default, you get:\n\nDrag a box to zoom, double-click to zoom out\nTooltips on hover\nAbility to hide and show points by clicking on the legend\nToolbar with tools including ability to download a PNG of the plot\n\nThis works in R Markdown or Quarto documents (i.e. there’s not a way to make these plots “stand-alone”—they’re rendered as HTML)\n\nTypes of plots\nWorks for most (all?) built-in geoms. Works for some plots made with ggplot2 extensions also. Demo a few different geoms like geom_boxplot(), geom_hisotgram(), geom_smooth()\n\n\nCustomize tooltip\nYou can customize the info displayed in the tooltip with ggplotly . Give it additional aesthetic text to include something only as a tooltip.\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  #Ignore unknown aesthetics warning\n  geom_point(aes(text = sex)) +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p, tooltip = c(\"text\", \"bill_depth_mm\", \"bill_length_mm\"))\n\n\n\nAnimations\nYou can use ggplotly() to make interactive animated plots by using the frame aesthetic\n\nlibrary(gapminder) #dataset\nhead(gapminder)\np2 &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +\n  geom_point(aes(size = pop, frame = year, ids = country)) +\n  scale_x_log10()\n\nggplotly(p2)"
+    "text": "plotly\n\nlibrary(plotly)\n\n\nplotly R package is interface to a JavaScript library for making interactive data visualizations\nOnly important to know that because if you search for plotly help, sometimes you’ll get JavaScript code examples.\nplotly kind of uses the grammar of graphics, but building a plot from scratch is tricky\nplotly functions mostly take lists are arguments, which makes it very difficult to figure out what default values are or even what arguments functions can take.\nggplotly() transforms ggplot objects into interactive plotly plots. 90% of the time it gets you 90% of the way there\n\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p)\n\nBy default, you get:\n\nDrag a box to zoom, double-click to zoom out\nTooltips on hover\nAbility to hide and show points by clicking on the legend\nToolbar with tools including ability to download a PNG of the plot\n\nThis works in R Markdown or Quarto documents (i.e. there’s not a way to make these plots “stand-alone”—they’re rendered as HTML)\nTypes of plots\nWorks for most (all?) built-in geoms. Works for some plots made with ggplot2 extensions also. Demo a few different geoms like geom_boxplot(), geom_hisotgram(), geom_smooth()\nCustomize tooltip\nYou can customize the info displayed in the tooltip with ggplotly . Give it additional aesthetic text to include something only as a tooltip.\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  #Ignore unknown aesthetics warning\n  geom_point(aes(text = sex)) +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p, tooltip = c(\"text\", \"bill_depth_mm\", \"bill_length_mm\"))\n\nAnimations\nYou can use ggplotly() to make interactive animated plots by using the frame aesthetic\n\nlibrary(gapminder) #dataset\nhead(gapminder)\np2 &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +\n  geom_point(aes(size = pop, frame = year, ids = country)) +\n  scale_x_log10()\n\nggplotly(p2)"
   },
   {
     "objectID": "2023/03-extensions/notes.html#ggrepel",
     "href": "2023/03-extensions/notes.html#ggrepel",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "ggrepel",
-    "text": "ggrepel\nThe ggrepel package is helpful for directly labeling plots, especially when labels would otherwise overlap.\n\n#make rownames into columns\ndat &lt;- mtcars |&gt; tibble::rownames_to_column(var = \"car\")\ndat\np3 &lt;- \n  ggplot(dat,\n  aes(wt, mpg, label = car, colour = factor(cyl))) +\n  geom_point()\n#without ggrepel\np3 + geom_text()\np3 + geom_label()\nlibrary(ggrepel)\np3 + geom_text_repel()\np3 + geom_label_repel()\n\n\nAdjust appearance of labels\nBy default, little segments are drawn connecting labels to points only when labels are far enough away. This can be adjusted.\n\np3 + geom_label_repel(min.segment.length = 0)\n\n\n\nOverlapping labels\nYou see a warning about labels being removed due to overlaps. Make text smaller, plot larger, adjust max.overlaps , force labels further apart, make it try harder to find positions that don’t overlap.\n\n#don't usually need to do all of these things, but they're some options\np4 &lt;- \n  p3 + \n  geom_label_repel(\n    min.segment.length = 0,\n    #smaller labels\n    size = 3, \n    label.padding = 0.15,\n    #draw labels even if overlapping with things\n    max.overlaps = 15, #default is 10, increase to get more labels drawn\n    #force labels further from point\n    force = 5,\n    #ask it to try harder\n    max.time = 2,\n    max.iter = 15000,\n    show.legend = FALSE\n  )\np4\n\n\n\nLabels are random\nLabels are positioned randomly, so they’re different every time a plot is rendered\np4\np4\n\n\n\nYou can set.seed() at the top of your script to ensure reproducibility.\nset.seed(123)\np4\nset.seed(123)\np4\n\n\n\n\n\nLabel just some points\nYou can label just select points\n\ncars &lt;- c(\"Volvo 142E\", \"Merc 230\")\nggplot(dat, aes(wt, mpg, label = ifelse(car %in% cars, car, \"\"))) +\n  geom_point(color = \"red\") +\n  geom_label_repel(min.segment.length = 0, nudge_x = 0.5, nudge_y = 3)"
+    "text": "ggrepel\nThe ggrepel package is helpful for directly labeling plots, especially when labels would otherwise overlap.\n\n#make rownames into columns\ndat &lt;- mtcars |&gt; tibble::rownames_to_column(var = \"car\")\ndat\np3 &lt;- \n  ggplot(dat,\n  aes(wt, mpg, label = car, colour = factor(cyl))) +\n  geom_point()\n#without ggrepel\np3 + geom_text()\np3 + geom_label()\nlibrary(ggrepel)\np3 + geom_text_repel()\np3 + geom_label_repel()\n\nAdjust appearance of labels\nBy default, little segments are drawn connecting labels to points only when labels are far enough away. This can be adjusted.\n\np3 + geom_label_repel(min.segment.length = 0)\n\nOverlapping labels\nYou see a warning about labels being removed due to overlaps. Make text smaller, plot larger, adjust max.overlaps , force labels further apart, make it try harder to find positions that don’t overlap.\n\n#don't usually need to do all of these things, but they're some options\np4 &lt;- \n  p3 + \n  geom_label_repel(\n    min.segment.length = 0,\n    #smaller labels\n    size = 3, \n    label.padding = 0.15,\n    #draw labels even if overlapping with things\n    max.overlaps = 15, #default is 10, increase to get more labels drawn\n    #force labels further from point\n    force = 5,\n    #ask it to try harder\n    max.time = 2,\n    max.iter = 15000,\n    show.legend = FALSE\n  )\np4\n\nLabels are random\nLabels are positioned randomly, so they’re different every time a plot is rendered\np4\np4\n\n\n\nYou can set.seed() at the top of your script to ensure reproducibility.\nset.seed(123)\np4\nset.seed(123)\np4\n\n\n\nLabel just some points\nYou can label just select points\n\ncars &lt;- c(\"Volvo 142E\", \"Merc 230\")\nggplot(dat, aes(wt, mpg, label = ifelse(car %in% cars, car, \"\"))) +\n  geom_point(color = \"red\") +\n  geom_label_repel(min.segment.length = 0, nudge_x = 0.5, nudge_y = 3)"
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#learning-objectives",
@@ -91,21 +91,21 @@
     "href": "2023/02-publication-quality-figs/slides.html#journal-requirements",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Journal Requirements",
-    "text": "Journal Requirements\nJournals often require certain modifications to your plots to make them publication-ready\n\nHigh resolution\nSpecific file types (TIFF, EPS, PDF are common)\nFigure size limits\nFont size suggestions\n\nGet audience suggestions before advancing bullets"
+    "text": "Journal Requirements\nJournals often require certain modifications to your plots to make them publication-ready\n\nHigh resolution\nSpecific file types (TIFF, EPS, PDF are common)\nFigure size limits\nFont size suggestions\n\n\nGet audience suggestions before advancing bullets"
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#not-required-but-good-practice",
     "href": "2023/02-publication-quality-figs/slides.html#not-required-but-good-practice",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Not required, but good practice",
-    "text": "Not required, but good practice\nOther modifications to the appearance of your plot are a good idea, but less often required by journals or reviewers\n\nColorblind accessible colors\nGrey scale friendly colors\nPerceptually-even colors\nScreen-reader compatible\nHigh data-ink ratio (simplify plot, within reason)\nArrangement of related plots into multi-panel figures\n\nGet audience suggestions before advancing bullets"
+    "text": "Not required, but good practice\nOther modifications to the appearance of your plot are a good idea, but less often required by journals or reviewers\n\nColorblind accessible colors\nGrey scale friendly colors\nPerceptually-even colors\nScreen-reader compatible\nHigh data-ink ratio (simplify plot, within reason)\nArrangement of related plots into multi-panel figures\n\n\nGet audience suggestions before advancing bullets"
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#example-plot-1",
     "href": "2023/02-publication-quality-figs/slides.html#example-plot-1",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Example plot 1",
-    "text": "Example plot 1\n\np1 &lt;-\n  ggplot(penguins |&gt; filter(!is.na(sex)),\n         aes(x = species, y = body_mass_g, shape = sex)) +\n  geom_point(alpha = 0.2,\n    position = position_jitterdodge(dodge.width = 0.75)) +\n  stat_summary(fun.data = mean_sdl,\n    position = position_dodge(width = 0.75))\np1\n\n\nWalk through construction of basic plots briefly. Encourage students to copy and paste code."
+    "text": "Example plot 1\n\np1 &lt;-\n  ggplot(penguins |&gt; filter(!is.na(sex)),\n         aes(x = species, y = body_mass_g, shape = sex)) +\n  geom_point(alpha = 0.2,\n    position = position_jitterdodge(dodge.width = 0.75)) +\n  stat_summary(fun.data = mean_sdl,\n    position = position_dodge(width = 0.75))\np1\n\n\n\nWalk through construction of basic plots briefly. Encourage students to copy and paste code."
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#example-plot-2",
@@ -133,14 +133,14 @@
     "href": "2023/02-publication-quality-figs/slides.html#viridis",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Viridis",
-    "text": "Viridis\nThe viridis color palettes meet most of these criteria and are built-in to ggplot2. They are available with scale_fill_viridis_*() and scale_color_viridis_*() functions.\nv &lt;- ggplot(penguins,\n            aes(x = bill_length_mm, y = bill_depth_mm, color = body_mass_g)) +\n  geom_point(size = 4)\nv #default colors\nv + scale_color_viridis_c() #viridis colors\n\n\n\n\n\nDefault color scale\n\n\n\n\n\nViridis color scale"
+    "text": "Viridis\nThe viridis color palettes meet most of these criteria and are built-in to ggplot2. They are available with scale_fill_viridis_*() and scale_color_viridis_*() functions.\nv &lt;- ggplot(penguins,\n            aes(x = bill_length_mm, y = bill_depth_mm, color = body_mass_g)) +\n  geom_point(size = 4)\nv #default colors\nv + scale_color_viridis_c() #viridis colors\n\n\n\n\n\n\nDefault color scale\n\n\n\n\n\n\n\nViridis color scale"
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#viridis-variants",
     "href": "2023/02-publication-quality-figs/slides.html#viridis-variants",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Viridis variants",
-    "text": "Viridis variants\nOther viridis palettes are available by changing option in the scale function\nCodev + scale_color_viridis_c(option = \"magma\")\nv + scale_color_viridis_c(option = \"inferno\")\nv + scale_color_viridis_c(option = \"plasma\")\nv + scale_color_viridis_c(option = \"cividis\")\nv + scale_color_viridis_c(option = \"rocket\")\nv + scale_color_viridis_c(option = \"mako\")\n\n\n\n\n\nmagma\n\n\n\n\n\ninferno\n\n\n\n\n\nplasma\n\n\n\n\n\n\n\ncividis\n\n\n\n\n\nrocket\n\n\n\n\n\nmako"
+    "text": "Viridis variants\nOther viridis palettes are available by changing option in the scale function\n\nCode\nv + scale_color_viridis_c(option = \"magma\")\nv + scale_color_viridis_c(option = \"inferno\")\nv + scale_color_viridis_c(option = \"plasma\")\nv + scale_color_viridis_c(option = \"cividis\")\nv + scale_color_viridis_c(option = \"rocket\")\nv + scale_color_viridis_c(option = \"mako\")\n\n\n\n\n\n\n\nmagma\n\n\n\n\n\n\n\ninferno\n\n\n\n\n\n\n\nplasma\n\n\n\n\n\n\n\n\n\ncividis\n\n\n\n\n\n\n\nrocket\n\n\n\n\n\n\n\nmako"
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#viridis-customization",
@@ -245,7 +245,7 @@
     "href": "2023/02-publication-quality-figs/slides.html#applying-what-we-learned-1",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Applying what we learned",
-    "text": "Applying what we learned\n\np1 &lt;- p1 +\n  scale_shape(\n    name = \"Sex\",\n    labels = c(\"male\" = \"Male\", \"female\" = \"Female\")\n  )\np1\n\n\nCode auto-complete isn’t very helpful here because the only arguments to scale_shape() are … and solid. This is a good opportunity to talk about what … do and how to learn what arguments a function with … can take by looking at what function … are passed to in the help file."
+    "text": "Applying what we learned\n\np1 &lt;- p1 +\n  scale_shape(\n    name = \"Sex\",\n    labels = c(\"male\" = \"Male\", \"female\" = \"Female\")\n  )\np1\n\n\n\nCode auto-complete isn’t very helpful here because the only arguments to scale_shape() are … and solid. This is a good opportunity to talk about what … do and how to learn what arguments a function with … can take by looking at what function … are passed to in the help file."
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#axes-1",
@@ -259,7 +259,7 @@
     "href": "2023/02-publication-quality-figs/slides.html#custom-labels",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Custom labels",
-    "text": "Custom labels\nUse what we learned before to customize the categorical x-axis labels in p1!\n\n(p1 &lt;- p1 + scale_x_discrete(name = \"Species\", labels = scinames))\n\n\nThe nice thing about ggplot2 is that it is designed around a grammar—once you learn how to do something once, you can usually apply it easily to new situations."
+    "text": "Custom labels\nUse what we learned before to customize the categorical x-axis labels in p1!\n\n(p1 &lt;- p1 + scale_x_discrete(name = \"Species\", labels = scinames))\n\n\n\nThe nice thing about ggplot2 is that it is designed around a grammar—once you learn how to do something once, you can usually apply it easily to new situations."
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#custom-labels-1",
@@ -273,7 +273,7 @@
     "href": "2023/02-publication-quality-figs/slides.html#custom-breaks",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Custom breaks",
-    "text": "Custom breaks\nChange the (approximate) number of breaks with n.breaks=\n\n(p1 &lt;- p1 + scale_y_continuous(name = \"Body Mass (g)\", n.breaks = 12))\n\n\nThis uses “pretty” breaks at whole numbers, so you don’t get exactly n.breaks"
+    "text": "Custom breaks\nChange the (approximate) number of breaks with n.breaks=\n\n(p1 &lt;- p1 + scale_y_continuous(name = \"Body Mass (g)\", n.breaks = 12))\n\n\n\nThis uses “pretty” breaks at whole numbers, so you don’t get exactly n.breaks"
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#custom-breaks-1",
@@ -287,7 +287,7 @@
     "href": "2023/02-publication-quality-figs/slides.html#complete-themes",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Complete themes",
-    "text": "Complete themes\nThere are several complete themes built-in to ggplot2, and many more available from other packages such as ggthemes.\np2 + theme_bw()\np2 + theme_minimal()\n\n\n\n\n\ntheme_bw()\n\n\n\n\n\ntheme_minimal()"
+    "text": "Complete themes\nThere are several complete themes built-in to ggplot2, and many more available from other packages such as ggthemes.\np2 + theme_bw()\np2 + theme_minimal()\n\n\n\n\n\n\ntheme_bw()\n\n\n\n\n\n\n\ntheme_minimal()"
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#fonts",
@@ -301,7 +301,7 @@
     "href": "2023/02-publication-quality-figs/slides.html#custom-themes",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Custom themes",
-    "text": "Custom themes\nCustomizing themes “manually” involves knowing the name of the theme element and it’s corresponding element_*() function.\n\np1 + theme(axis.title = element_text(face = \"bold\", colour = \"red\"))\n\n\nTheme elements are hierarchical. E.g. title affects all title elements, axis.title affects all axis titles, axis.title.x only affects x-axis titles, and axis.title.x.bottom affects only the bottom x-axis title (in the case that there is a second x-axis on the top)."
+    "text": "Custom themes\nCustomizing themes “manually” involves knowing the name of the theme element and it’s corresponding element_*() function.\n\np1 + theme(axis.title = element_text(face = \"bold\", colour = \"red\"))\n\n\n\nTheme elements are hierarchical. E.g. title affects all title elements, axis.title affects all axis titles, axis.title.x only affects x-axis titles, and axis.title.x.bottom affects only the bottom x-axis title (in the case that there is a second x-axis on the top)."
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#custom-themes-1",
@@ -343,28 +343,28 @@
     "href": "2023/02-publication-quality-figs/slides.html#control-layout",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Control layout",
-    "text": "Control layout\n\n\n\n\n\n+ wraps plots\n\n| combines plots horizontally\n\n/ combines plots vertically\n\n() can be used to nest operations\n\n\n\n\np1 / (p2 | p3)"
+    "text": "Control layout\n\n\n\n\n+ wraps plots\n| combines plots horizontally\n/ combines plots vertically\n() can be used to nest operations\n\n\n\n\np1 / (p2 | p3)"
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#multi-panel-figures-1",
     "href": "2023/02-publication-quality-figs/slides.html#multi-panel-figures-1",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Multi-panel figures",
-    "text": "Multi-panel figures\n\n\n\nplot_layout(guides = \"collect\") combines duplicate legends\n\nplot_annotation(tag_levels = \"a\") adds labels to sub-plots\n\n\n\np_combined &lt;-\n  p1 /\n  (p2 + p3 + plot_layout(guides = \"collect\")) + \n  plot_annotation(tag_levels = \"a\", tag_suffix = \")\")\np_combined"
+    "text": "Multi-panel figures\n\n\nplot_layout(guides = \"collect\") combines duplicate legends\nplot_annotation(tag_levels = \"a\") adds labels to sub-plots\n\n\n\np_combined &lt;-\n  p1 /\n  (p2 + p3 + plot_layout(guides = \"collect\")) + \n  plot_annotation(tag_levels = \"a\", tag_suffix = \")\")\np_combined"
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#saving-plots-1",
     "href": "2023/02-publication-quality-figs/slides.html#saving-plots-1",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Saving plots",
-    "text": "Saving plots\nIf you know the dimensions, it’s good to save plots early on and adjust theme to fit.\n\n\n\nggsave(\n  filename = \"penguins.png\",\n  plot = p_combined,\n  width = 7, \n  height = 5, \n  units = \"in\", \n  dpi = \"print\",\n  bg = \"white\"\n)\n\n\n\n\n\nThe file type is figured out based on the extension in filename.\nBy default, the last plot is the one saved, but it’s good practice to specify plot anyways\nDimensions can be specified in pixels, inches, mm, etc.\ndpi is resolution and only applies to raster images.\nbg sets background color. If you don’t set this, the background of your plot is often transparent, which might not be the best for adding to presentations.\nNotice how the legends and points look too large with these dimensions. It might be good to fix that."
+    "text": "Saving plots\nIf you know the dimensions, it’s good to save plots early on and adjust theme to fit.\n\n\n\nggsave(\n  filename = \"penguins.png\",\n  plot = p_combined,\n  width = 7, \n  height = 5, \n  units = \"in\", \n  dpi = \"print\",\n  bg = \"white\"\n)\n\n\n\n\n\n\nThe file type is figured out based on the extension in filename.\nBy default, the last plot is the one saved, but it’s good practice to specify plot anyways\nDimensions can be specified in pixels, inches, mm, etc.\ndpi is resolution and only applies to raster images.\nbg sets background color. If you don’t set this, the background of your plot is often transparent, which might not be the best for adding to presentations.\nNotice how the legends and points look too large with these dimensions. It might be good to fix that."
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#raster-vs.-vector",
     "href": "2023/02-publication-quality-figs/slides.html#raster-vs.-vector",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Raster vs. Vector",
-    "text": "Raster vs. Vector\n\n\nRaster images (e.g. .jpg, .png, .tiff) are made of pixels and the resolution can vary.\nVector images (e.g. .svg, .eps) are not made of pixels and don’t have a resolution.\nVector formats should be used whenever possible\n\n\n\n\n\n\n\nRaster (72 dpi .png file)\n\n\n\n\n\nVector (.svg file)\n\n\n\n\nOpen images in a new tab and zoom in on browser to demo the difference.\nVector formats are not only resolution-less, they are more compatible with screen readers and therefore more accessible."
+    "text": "Raster vs. Vector\n\n\nRaster images (e.g. .jpg, .png, .tiff) are made of pixels and the resolution can vary.\nVector images (e.g. .svg, .eps) are not made of pixels and don’t have a resolution.\nVector formats should be used whenever possible\n\n\n\n\n\n\n\n\nRaster (72 dpi .png file)\n\n\n\n\n\n\n\nVector (.svg file)\n\n\n\n\n\n\nOpen images in a new tab and zoom in on browser to demo the difference.\nVector formats are not only resolution-less, they are more compatible with screen readers and therefore more accessible."
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#finished-product",
@@ -435,21 +435,21 @@
     "href": "2023/01-foundations/slides.html#layered-grammar-of-graphics",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Layered grammar of graphics",
-    "text": "Layered grammar of graphics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 builds complex plots iteratively, one layer at a time.\n\n\nWhat are the necessary components of a plot?\nWhat are necessary components of a layer?"
+    "text": "Layered grammar of graphics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 builds complex plots iteratively, one layer at a time.\n\n\nWhat are the necessary components of a plot?\nWhat are necessary components of a layer?"
   },
   {
     "objectID": "2023/01-foundations/slides.html#components-of-a-plot",
     "href": "2023/01-foundations/slides.html#components-of-a-plot",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Components of a plot",
-    "text": "Components of a plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA plot contains:\n\n\nData and aesthetic mapping\nLayer(s) containing geometric object(s) and statistical transformation(s)\nScales\nCoordinate system\n(Optional) facets or themes"
+    "text": "Components of a plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA plot contains:\n\n\nData and aesthetic mapping\nLayer(s) containing geometric object(s) and statistical transformation(s)\nScales\nCoordinate system\n(Optional) facets or themes"
   },
   {
     "objectID": "2023/01-foundations/slides.html#components-of-a-layer",
     "href": "2023/01-foundations/slides.html#components-of-a-layer",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Components of a layer",
-    "text": "Components of a layer\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA layer contains:\n\n\nData with aesthetic mapping\nA statistical transformation, or stat\nA geometric object, or geom\nA position adjustment"
+    "text": "Components of a layer\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA layer contains:\n\n\nData with aesthetic mapping\nA statistical transformation, or stat\nA geometric object, or geom\nA position adjustment"
   },
   {
     "objectID": "2023/01-foundations/slides.html#what-data-inputs-are-needed",
@@ -463,14 +463,14 @@
     "href": "2023/01-foundations/slides.html#example-dataset---raw",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Example dataset - raw",
-    "text": "Example dataset - raw\n\n\n\n\n\nspecies\nbill_length_mm\nbill_depth_mm\nbody_mass_g\n\n\n\nAdelie\n39.1\n18.7\n3750\n\n\nAdelie\n39.5\n17.4\n3800\n\n\nGentoo\n46.7\n15.3\n5200\n\n\nGentoo\n43.3\n13.4\n4400\n\n\nChinstrap\n46.1\n18.2\n3250\n\n\nChinstrap\n51.3\n18.2\n3750"
+    "text": "Example dataset - raw\n\n\n\n\n\n\nspecies\nbill_length_mm\nbill_depth_mm\nbody_mass_g\n\n\n\n\nAdelie\n39.1\n18.7\n3750\n\n\nAdelie\n39.5\n17.4\n3800\n\n\nGentoo\n46.7\n15.3\n5200\n\n\nGentoo\n43.3\n13.4\n4400\n\n\nChinstrap\n46.1\n18.2\n3250\n\n\nChinstrap\n51.3\n18.2\n3750"
   },
   {
     "objectID": "2023/01-foundations/slides.html#example-dataset---mapped",
     "href": "2023/01-foundations/slides.html#example-dataset---mapped",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Example dataset - mapped",
-    "text": "Example dataset - mapped\n\n\n\n\n\n\n\n\n\n\n\naes(x = bill_length_mm,\n    y = bill_depth_mm,\n    size = body_mass_g,\n    color = species)\n\n\nVariables mapped to aesthetic:\n\n\n\n\n\nColor\nx\ny\nSize\n\n\n\nAdelie\n39.1\n18.7\n3750\n\n\nAdelie\n39.5\n17.4\n3800\n\n\nGentoo\n46.7\n15.3\n5200\n\n\nGentoo\n43.3\n13.4\n4400\n\n\nChinstrap\n46.1\n18.2\n3250\n\n\nChinstrap\n51.3\n18.2\n3750"
+    "text": "Example dataset - mapped\n\n\n\n\n\n\n\n\n\n\n\n\naes(x = bill_length_mm,\n    y = bill_depth_mm,\n    size = body_mass_g,\n    color = species)\n\n\nVariables mapped to aesthetic:\n\n\n\n\n\n\nColor\nx\ny\nSize\n\n\n\n\nAdelie\n39.1\n18.7\n3750\n\n\nAdelie\n39.5\n17.4\n3800\n\n\nGentoo\n46.7\n15.3\n5200\n\n\nGentoo\n43.3\n13.4\n4400\n\n\nChinstrap\n46.1\n18.2\n3250\n\n\nChinstrap\n51.3\n18.2\n3750"
   },
   {
     "objectID": "2023/01-foundations/slides.html#where-to-specify-aesthetics",
@@ -498,7 +498,7 @@
     "href": "2023/01-foundations/slides.html#inheritance-of-aesthetics-by-layers-1",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Inheritance of aesthetics by layers",
-    "text": "Inheritance of aesthetics by layers\n\n\n\nggplot(penguins, aes(x = body_mass_g, \n                     y = flipper_length_mm, \n                     color = species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) \n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = body_mass_g, \n                     y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  geom_smooth(method = \"lm\", \n              se = FALSE)"
+    "text": "Inheritance of aesthetics by layers\n\n\n\nggplot(penguins, aes(x = body_mass_g, \n                     y = flipper_length_mm, \n                     color = species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) \n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = body_mass_g, \n                     y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  geom_smooth(method = \"lm\", \n              se = FALSE)"
   },
   {
     "objectID": "2023/01-foundations/slides.html#mapping-aesthetics-to-constants",
@@ -511,8 +511,8 @@
     "objectID": "2023/01-foundations/slides.html#under-the-hood-with-layer",
     "href": "2023/01-foundations/slides.html#under-the-hood-with-layer",
     "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Under the hood with layer()\n",
-    "text": "Under the hood with layer()\n\n\n\nA layer contains:\n\nData with aesthetic mapping\nA statistical transformation, or stat\nA geometric object, or geom\nA position adjustment\n\n\n\nggplot() +\n  geom_point()\n\n\nggplot() +\n  layer(mapping = NULL,\n        data = NULL,\n        geom = \"point\",\n        stat = \"identity\",\n        position = \"identity\")\n\n\n\n\n\n\n\n\n\nNote\n\n\nAll geom_*() or stat_*() calls are customized shortcuts for the layer() function."
+    "section": "Under the hood with layer()",
+    "text": "Under the hood with layer()\n\n\nA layer contains:\n\nData with aesthetic mapping\nA statistical transformation, or stat\nA geometric object, or geom\nA position adjustment\n\n\n\nggplot() +\n  geom_point()\n\n\nggplot() +\n  layer(mapping = NULL,\n        data = NULL,\n        geom = \"point\",\n        stat = \"identity\",\n        position = \"identity\")\n\n\n\n\n\n\n\n\n\nNote\n\n\nAll geom_*() or stat_*() calls are customized shortcuts for the layer() function."
   },
   {
     "objectID": "2023/01-foundations/slides.html#the-expediency-of-defaults",
@@ -539,29 +539,29 @@
     "objectID": "2023/01-foundations/slides.html#stat_-vs.-geom_",
     "href": "2023/01-foundations/slides.html#stat_-vs.-geom_",
     "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "\nstat_* vs. geom_*\n",
-    "text": "stat_* vs. geom_*\n\n“Every geom has a default statistic, and every statistic has a default geom.” - Wickham (2010)\n\n\n\nstat_* transforms the data\n\nBy computing or summarizing from original input dataset\nReturns a new dataset that can be mapped to aesthetics\n\n\n\ngeom_* control the type of plot rendered\n\n\n\n\n\n\n\n\nTip\n\n\nWhen in doubt, check the documentation"
+    "section": "stat_* vs. geom_*",
+    "text": "stat_* vs. geom_*\n“Every geom has a default statistic, and every statistic has a default geom.” - Wickham (2010)\n\n\nstat_* transforms the data\n\nBy computing or summarizing from original input dataset\nReturns a new dataset that can be mapped to aesthetics\n\ngeom_* control the type of plot rendered\n\n\n\n\n\n\n\n\nTip\n\n\nWhen in doubt, check the documentation"
   },
   {
     "objectID": "2023/01-foundations/slides.html#two-ways-to-plot-counts-categorical",
     "href": "2023/01-foundations/slides.html#two-ways-to-plot-counts-categorical",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Two ways to plot counts (categorical)",
-    "text": "Two ways to plot counts (categorical)\nstat_count() and geom_bar() are equivalent\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, \n                     fill = sex)) +\n  stat_count()\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, \n                     fill = sex)) +\n  geom_bar()"
+    "text": "Two ways to plot counts (categorical)\nstat_count() and geom_bar() are equivalent\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, \n                     fill = sex)) +\n  stat_count()\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, \n                     fill = sex)) +\n  geom_bar()"
   },
   {
     "objectID": "2023/01-foundations/slides.html#two-ways-to-plot-density-continuous",
     "href": "2023/01-foundations/slides.html#two-ways-to-plot-density-continuous",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Two ways to plot density (continuous)",
-    "text": "Two ways to plot density (continuous)\nstat_density() and geom_density() are not equivalent\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = body_mass_g, \n                     fill = species)) +\n  stat_density(alpha = 0.5)\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = body_mass_g, \n                     fill = species)) +\n  geom_density(alpha = 0.5)"
+    "text": "Two ways to plot density (continuous)\nstat_density() and geom_density() are not equivalent\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = body_mass_g, \n                     fill = species)) +\n  stat_density(alpha = 0.5)\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = body_mass_g, \n                     fill = species)) +\n  geom_density(alpha = 0.5)"
   },
   {
     "objectID": "2023/01-foundations/slides.html#when-to-use-which",
     "href": "2023/01-foundations/slides.html#when-to-use-which",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "When to use which?",
-    "text": "When to use which?\nIn general, use geom_*() unless you are trying to:\n\n\nOverride\nCustomize\nSummarize\n\n\n\n\n\n\npenguins %&gt;%\n  count(species) %&gt;%\n  ggplot(aes(x = species, y = n)) +\n  geom_bar(stat = \"identity\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = species, \n                     y = after_stat(prop),\n                     group = 1)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins) +\n  stat_summary(aes(x = species,\n                   y = body_mass_g),\n               fun.min = min,\n               fun.max = max,\n               fun = mean)"
+    "text": "When to use which?\nIn general, use geom_*() unless you are trying to:\n\nOverrideCustomizeSummarize\n\n\n\n\n\npenguins %&gt;%\n  count(species) %&gt;%\n  ggplot(aes(x = species, y = n)) +\n  geom_bar(stat = \"identity\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = species, \n                     y = after_stat(prop),\n                     group = 1)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins) +\n  stat_summary(aes(x = species,\n                   y = body_mass_g),\n               fun.min = min,\n               fun.max = max,\n               fun = mean)"
   },
   {
     "objectID": "2023/01-foundations/slides.html#a-panopoly-of-layer-options",
@@ -575,14 +575,14 @@
     "href": "2023/01-foundations/slides.html#position-adjustment-options",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Position adjustment options",
-    "text": "Position adjustment options\n\n\nstack\nfill\ndodge\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, fill = sex)) +\n  geom_bar(position = \"stack\")\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, fill = sex)) +\n  geom_bar(position = \"fill\")\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, \n                     fill = sex)) +\n  geom_bar(position = \"dodge\")"
+    "text": "Position adjustment options\n\nstackfilldodge\n\n\n\nggplot(data = penguins, mapping = aes(x = species, fill = sex)) +\n  geom_bar(position = \"stack\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, fill = sex)) +\n  geom_bar(position = \"fill\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, \n                     fill = sex)) +\n  geom_bar(position = \"dodge\")"
   },
   {
     "objectID": "2023/01-foundations/slides.html#position-adjustment-options-1",
     "href": "2023/01-foundations/slides.html#position-adjustment-options-1",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Position adjustment options",
-    "text": "Position adjustment options\n\n\nidentity\njitter\njitterdodge\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = \"identity\")\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = \"jitter\")\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = position_jitterdodge())"
+    "text": "Position adjustment options\n\nidentityjitterjitterdodge\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = \"identity\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = \"jitter\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = position_jitterdodge())"
   },
   {
     "objectID": "2023/01-foundations/slides.html#position-adjustments-limitations",
@@ -659,7 +659,7 @@
     "href": "2023/01-foundations/slides.html#complete-themes",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Complete themes",
-    "text": "Complete themes\n\n\ntheme_bw()\ntheme_minimal()\ntheme_classic()\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_classic()"
+    "text": "Complete themes\n\ntheme_bw()theme_minimal()theme_classic()\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_classic()"
   },
   {
     "objectID": "2023/01-foundations/slides.html#further-resources",
@@ -768,7 +768,7 @@
     "href": "2023/03-extensions/slides.html#learning-objectives",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nUnderstand where to find packages that extend ggplot2\n\nMake animated plots with gganimate\n\nInteractively create plots with esquisse\n\nConvert ggplot2 plots to interactive plotly plots\nLabel data with ggrepel"
+    "text": "Learning Objectives\n\nUnderstand where to find packages that extend ggplot2\nMake animated plots with gganimate\nInteractively create plots with esquisse\nConvert ggplot2 plots to interactive plotly plots\nLabel data with ggrepel"
   },
   {
     "objectID": "2023/03-extensions/slides.html#packages",
@@ -781,22 +781,22 @@
     "objectID": "2023/03-extensions/slides.html#extensions-to-ggplot2",
     "href": "2023/03-extensions/slides.html#extensions-to-ggplot2",
     "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Extensions to ggplot2\n",
-    "text": "Extensions to ggplot2\n\nThere are many kinds of extensions to ggplot2, but many of them can be put into one of two “bins”\n\nPackages that add new layers\nPackages that wrap multiple layers for convenience"
+    "section": "Extensions to ggplot2",
+    "text": "Extensions to ggplot2\nThere are many kinds of extensions to ggplot2, but many of them can be put into one of two “bins”\n\nPackages that add new layers\nPackages that wrap multiple layers for convenience"
   },
   {
     "objectID": "2023/03-extensions/slides.html#packages-that-extend-ggplot2",
     "href": "2023/03-extensions/slides.html#packages-that-extend-ggplot2",
     "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Packages that extend ggplot2\n",
-    "text": "Packages that extend ggplot2\n\nSome packages add new layers or themes that can be combined with standard ggplot2 functions.\n\nlibrary(ggbeeswarm)\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot() +\n  geom_beeswarm()\n\n\ngeom_beeswarm() can easily be added to other geom_s"
+    "section": "Packages that extend ggplot2",
+    "text": "Packages that extend ggplot2\nSome packages add new layers or themes that can be combined with standard ggplot2 functions.\n\nlibrary(ggbeeswarm)\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot() +\n  geom_beeswarm()\n\n\n\ngeom_beeswarm() can easily be added to other geom_s"
   },
   {
     "objectID": "2023/03-extensions/slides.html#packages-that-wrap-ggplot2",
     "href": "2023/03-extensions/slides.html#packages-that-wrap-ggplot2",
     "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Packages that wrap ggplot2\n",
-    "text": "Packages that wrap ggplot2\n\nOther packages provide convenience “all-in-one” functions that combine multiple layers for you.\n\nlibrary(ggpubr)\nggstripchart(penguins, x = \"species\", y = \"body_mass_g\",\n             add = \"boxplot\") +\n  scale_y_continuous(\"Body Mass (g)\", n.breaks = 10)\n\n\nNotice that ggstripchart() totally replaces ggplot(aes(…)) . However, it still makes a ggplot object that you can add layers to."
+    "section": "Packages that wrap ggplot2",
+    "text": "Packages that wrap ggplot2\nOther packages provide convenience “all-in-one” functions that combine multiple layers for you.\n\nlibrary(ggpubr)\nggstripchart(penguins, x = \"species\", y = \"body_mass_g\",\n             add = \"boxplot\") +\n  scale_y_continuous(\"Body Mass (g)\", n.breaks = 10)\n\n\n\nNotice that ggstripchart() totally replaces ggplot(aes(…)) . However, it still makes a ggplot object that you can add layers to."
   },
   {
     "objectID": "2023/03-extensions/slides.html#finding-extensions",
@@ -830,8 +830,8 @@
     "objectID": "2023/03-extensions/slides.html#basic-interactive-plot-with-plotly",
     "href": "2023/03-extensions/slides.html#basic-interactive-plot-with-plotly",
     "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Basic interactive plot with plotly\n",
-    "text": "Basic interactive plot with plotly\n\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p)"
+    "section": "Basic interactive plot with plotly",
+    "text": "Basic interactive plot with plotly\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p)"
   },
   {
     "objectID": "2023/03-extensions/slides.html#customize-tooltip",
@@ -844,8 +844,8 @@
     "objectID": "2023/03-extensions/slides.html#animate-plots-with-plotly",
     "href": "2023/03-extensions/slides.html#animate-plots-with-plotly",
     "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Animate plots with plotly\n",
-    "text": "Animate plots with plotly\n\nYou can use ggplotly() to make interactive animated plots by using the frame aesthetic\n\nlibrary(gapminder) #dataset\np3 &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +\n  geom_point(aes(size = pop, frame = year, ids = country)) +\n  scale_x_log10()\n\nggplotly(p3)\n\n\n\n\n\n\n\nWarning\n\n\nOutput not shown because currently plotly does not play nicely with Quarto revealjs slides (how this slide deck was made)"
+    "section": "Animate plots with plotly",
+    "text": "Animate plots with plotly\nYou can use ggplotly() to make interactive animated plots by using the frame aesthetic\n\nlibrary(gapminder) #dataset\np3 &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +\n  geom_point(aes(size = pop, frame = year, ids = country)) +\n  scale_x_log10()\n\nggplotly(p3)\n\n\n\n\n\n\n\nWarning\n\n\nOutput not shown because currently plotly does not play nicely with Quarto revealjs slides (how this slide deck was made)"
   },
   {
     "objectID": "2023/03-extensions/slides.html#esquisse",
@@ -859,7 +859,7 @@
     "href": "2023/03-extensions/slides.html#ggrepel",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "ggrepel",
-    "text": "ggrepel\nThe ggrepel package is helpful for directly labeling plots, especially when labels would otherwise overlap.\n\n\n\n\n\ngeom_text()\n\n\n\n\n\ngeom_text_repel()"
+    "text": "ggrepel\nThe ggrepel package is helpful for directly labeling plots, especially when labels would otherwise overlap.\n\n\n\n\n\n\ngeom_text()\n\n\n\n\n\n\n\ngeom_text_repel()"
   },
   {
     "objectID": "2023/03-extensions/slides.html#getting-help",

@@ -7,17 +7,17 @@
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
-<meta name="author" content="Jessica Guo">
-<title>Unlocking the next level of ggplot2 (working title) - Understanding the foundations of ‘ggplot2’</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-<style>
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.554">
+
+  <meta name="author" content="Jessica Guo">
+  <title>Unlocking the next level of ggplot2 (working title) - Understanding the foundations of ‘ggplot2’</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -95,14 +95,14 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
-<link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-<style type="text/css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -300,7 +300,7 @@
   }
 
   </style>
-<style type="text/css">
+  <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -392,7 +392,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center"><h1 class="title">Understanding the foundations of ‘ggplot2’</h1>
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Understanding the foundations of ‘ggplot2’</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -402,7 +403,9 @@ Jessica Guo
 </div>
 </div>
 
-</section><section id="cct-data-science-ggplot2-series" class="slide level2"><h2>CCT Data Science <code>ggplot2</code> series</h2>
+</section>
+<section id="cct-data-science-ggplot2-series" class="slide level2">
+<h2>CCT Data Science <code>ggplot2</code> series</h2>
 <div>
 <p>In Part 1 of this series, we will:</p>
 <ul>
@@ -414,9 +417,14 @@ Jessica Guo
 <li class="fragment"><p>Introduce function and syntax of visual elements</p></li>
 </ul>
 </div>
-</section><section><section id="the-grammar-of-graphics" class="title-slide slide level1 center"><h1>The grammar of graphics</h1>
+</section>
+<section>
+<section id="the-grammar-of-graphics" class="title-slide slide level1 center">
+<h1>The grammar of graphics</h1>
 
-</section><section id="what-is-a-grammar" class="slide level2"><h2>What is a grammar?</h2>
+</section>
+<section id="what-is-a-grammar" class="slide level2">
+<h2>What is a grammar?</h2>
 <p>“The fundamental principles or rules of an art or science” - Oxford English Dictionary</p>
 <div>
 <ul>
@@ -438,19 +446,23 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="layered-grammar-of-graphics" class="slide level2"><h2>Layered grammar of graphics</h2>
+</section>
+<section id="layered-grammar-of-graphics" class="slide level2">
+<h2>Layered grammar of graphics</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-1-1.png" width="384"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-1-1.png" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="img/penguins.png" class="quarto-figure quarto-figure-center" alt="Cartoon image of three Chinstrap, Gentoo, and Adelie penguins." width="350"></p>
+<figure>
+<p><img data-src="img/penguins.png" class="quarto-figure quarto-figure-center" alt="Cartoon image of three Chinstrap, Gentoo, and Adelie penguins." width="350"></p>
 </figure>
 </div>
 </div><div class="column" style="width:60%;">
@@ -463,19 +475,23 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="components-of-a-plot" class="slide level2"><h2>Components of a plot</h2>
+</section>
+<section id="components-of-a-plot" class="slide level2">
+<h2>Components of a plot</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-2-1.png" width="384"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-2-1.png" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="img/penguins.png" class="quarto-figure quarto-figure-center" alt="Cartoon image of three Chinstrap, Gentoo, and Adelie penguins." width="350"></p>
+<figure>
+<p><img data-src="img/penguins.png" class="quarto-figure quarto-figure-center" alt="Cartoon image of three Chinstrap, Gentoo, and Adelie penguins." width="350"></p>
 </figure>
 </div>
 </div><div class="column" style="width:60%;">
@@ -491,19 +507,23 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="components-of-a-layer" class="slide level2"><h2>Components of a layer</h2>
+</section>
+<section id="components-of-a-layer" class="slide level2">
+<h2>Components of a layer</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" width="384"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" width="384"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="img/penguins.png" class="quarto-figure quarto-figure-center" alt="Cartoon image of three Chinstrap, Gentoo, and Adelie penguins." width="350"></p>
+<figure>
+<p><img data-src="img/penguins.png" class="quarto-figure quarto-figure-center" alt="Cartoon image of three Chinstrap, Gentoo, and Adelie penguins." width="350"></p>
 </figure>
 </div>
 </div><div class="column" style="width:60%;">
@@ -518,9 +538,14 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section></section><section><section id="mapping-data-to-aesthetics" class="title-slide slide level1 center"><h1>Mapping data to aesthetics</h1>
+</section></section>
+<section>
+<section id="mapping-data-to-aesthetics" class="title-slide slide level1 center">
+<h1>Mapping data to aesthetics</h1>
 
-</section><section id="what-data-inputs-are-needed" class="slide level2"><h2>What data inputs are needed?</h2>
+</section>
+<section id="what-data-inputs-are-needed" class="slide level2">
+<h2>What data inputs are needed?</h2>
 <p>Data can be added to either the entire ggplot object or a particular layer.</p>
 <p>Input data must be a dataframe in ‘tidy’ format:</p>
 <div>
@@ -543,17 +568,21 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="example-dataset---raw" class="slide level2"><h2>Example dataset - raw</h2>
+</section>
+<section id="example-dataset---raw" class="slide level2">
+<h2>Example dataset - raw</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: left;">species</th>
 <th style="text-align: right;">bill_length_mm</th>
 <th style="text-align: right;">bill_depth_mm</th>
 <th style="text-align: right;">body_mass_g</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Adelie</td>
@@ -596,13 +625,16 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="example-dataset---mapped" class="slide level2"><h2>Example dataset - mapped</h2>
+</section>
+<section id="example-dataset---mapped" class="slide level2">
+<h2>Example dataset - mapped</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" width="384"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" width="384"></p>
 </figure>
 </div>
 </div>
@@ -619,12 +651,14 @@ Jessica Guo
 <div class="cell-output-display">
 <div class="kable-table">
 <table>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: left;">Color</th>
 <th style="text-align: right;">x</th>
 <th style="text-align: right;">y</th>
 <th style="text-align: right;">Size</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Adelie</td>
@@ -669,14 +703,18 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="where-to-specify-aesthetics" class="slide level2"><h2>Where to specify aesthetics?</h2>
+</section>
+<section id="where-to-specify-aesthetics" class="slide level2">
+<h2>Where to specify aesthetics?</h2>
 <div>
 <ul>
 <li class="fragment"><p>Can be supplied to initial <code>ggplot()</code> call, in individual layers, or a combo</p></li>
 <li class="fragment"><p><code>ggplot()</code> data and aesthetics are inherited, but can be overridden</p></li>
 </ul>
 </div>
-</section><section id="where-to-specify-aesthetics-1" class="slide level2"><h2>Where to specify aesthetics?</h2>
+</section>
+<section id="where-to-specify-aesthetics-1" class="slide level2">
+<h2>Where to specify aesthetics?</h2>
 <ul>
 <li><p>Can be supplied to initial <code>ggplot()</code> call, in individual layers, or a combo</p></li>
 <li><p><code>ggplot()</code> data and aesthetics are inherited, but can be overridden</p></li>
@@ -695,7 +733,9 @@ Jessica Guo
 <span id="cb4-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> penguins,</span>
 <span id="cb4-3"><a></a>             <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">color =</span> species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="inheritance-of-aesthetics-by-layers" class="slide level2 smaller"><h2>Inheritance of aesthetics by layers</h2>
+</section>
+<section id="inheritance-of-aesthetics-by-layers" class="slide level2 smaller">
+<h2>Inheritance of aesthetics by layers</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
@@ -706,7 +746,8 @@ Jessica Guo
 <span id="cb5-5"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -715,7 +756,9 @@ Jessica Guo
 
 </div>
 </div>
-</section><section id="inheritance-of-aesthetics-by-layers-1" class="slide level2 smaller"><h2>Inheritance of aesthetics by layers</h2>
+</section>
+<section id="inheritance-of-aesthetics-by-layers-1" class="slide level2 smaller">
+<h2>Inheritance of aesthetics by layers</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
@@ -726,7 +769,8 @@ Jessica Guo
 <span id="cb6-5"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -740,14 +784,17 @@ Jessica Guo
 <span id="cb7-5"><a></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="mapping-aesthetics-to-constants" class="slide level2"><h2>Mapping aesthetics to constants</h2>
+</section>
+<section id="mapping-aesthetics-to-constants" class="slide level2">
+<h2>Mapping aesthetics to constants</h2>
 <p>Specifying a constant inside <code>aes()</code> with quotes creates a legend on the fly</p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -766,17 +813,22 @@ Jessica Guo
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section></section><section><section id="customizing-layers" class="title-slide slide level1 center"><h1>Customizing layers</h1>
+</section></section>
+<section>
+<section id="customizing-layers" class="title-slide slide level1 center">
+<h1>Customizing layers</h1>
 
-</section><section id="under-the-hood-with-layer" class="slide level2"><h2>Under the hood with <code>layer()</code>
-</h2>
+</section>
+<section id="under-the-hood-with-layer" class="slide level2">
+<h2>Under the hood with <code>layer()</code></h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <p>A layer contains:</p>
@@ -814,7 +866,9 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="the-expediency-of-defaults" class="slide level2"><h2>The expediency of defaults</h2>
+</section>
+<section id="the-expediency-of-defaults" class="slide level2">
+<h2>The expediency of defaults</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div>
@@ -828,14 +882,17 @@ Jessica Guo
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="the-short-way-and-the-long-way" class="slide level2"><h2>The short way and the long way</h2>
+</section>
+<section id="the-short-way-and-the-long-way" class="slide level2">
+<h2>The short way and the long way</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
@@ -848,14 +905,17 @@ Jessica Guo
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="the-short-way-and-the-long-way-1" class="slide level2"><h2>The short way and the long way</h2>
+</section>
+<section id="the-short-way-and-the-long-way-1" class="slide level2">
+<h2>The short way and the long way</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
@@ -881,28 +941,26 @@ Jessica Guo
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="stat_-vs.-geom_" class="slide level2"><h2>
-<code>stat_*</code> vs.&nbsp;<code>geom_*</code>
-</h2>
+</section>
+<section id="stat_-vs.-geom_" class="slide level2">
+<h2><code>stat_*</code> vs.&nbsp;<code>geom_*</code></h2>
 <p>“Every geom has a default statistic, and every statistic has a default geom.” - Wickham (2010)</p>
 <div>
 <ul>
-<li class="fragment">
-<code>stat_*</code> transforms the data
+<li class="fragment"><code>stat_*</code> transforms the data
 <ul>
 <li class="fragment">By computing or summarizing from original input dataset</li>
 <li class="fragment">Returns a new dataset that can be mapped to aesthetics</li>
-</ul>
-</li>
-<li class="fragment">
-<code>geom_*</code> control the type of plot rendered</li>
+</ul></li>
+<li class="fragment"><code>geom_*</code> control the type of plot rendered</li>
 </ul>
 </div>
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -918,7 +976,9 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="two-ways-to-plot-counts-categorical" class="slide level2"><h2>Two ways to plot counts (categorical)</h2>
+</section>
+<section id="two-ways-to-plot-counts-categorical" class="slide level2">
+<h2>Two ways to plot counts (categorical)</h2>
 <p><code>stat_count()</code> and <code>geom_bar()</code> are equivalent</p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -929,7 +989,8 @@ Jessica Guo
 <span id="cb14-4"><a></a>  <span class="fu">stat_count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -942,14 +1003,17 @@ Jessica Guo
 <span id="cb15-4"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="two-ways-to-plot-density-continuous" class="slide level2"><h2>Two ways to plot density (continuous)</h2>
+</section>
+<section id="two-ways-to-plot-density-continuous" class="slide level2">
+<h2>Two ways to plot density (continuous)</h2>
 <p><code>stat_density()</code> and <code>geom_density()</code> are not equivalent</p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -960,7 +1024,8 @@ Jessica Guo
 <span id="cb16-4"><a></a>  <span class="fu">stat_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -973,21 +1038,20 @@ Jessica Guo
 <span id="cb17-4"><a></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="when-to-use-which" class="slide level2 smaller"><h2>When to use which?</h2>
+</section>
+<section id="when-to-use-which" class="slide level2 smaller">
+<h2>When to use which?</h2>
 <p>In general, use <code>geom_*()</code> unless you are trying to:</p>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-1-1">Override</a></li>
-<li><a href="#tabset-1-2">Customize</a></li>
-<li><a href="#tabset-1-3">Summarize</a></li>
-</ul>
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Override</a></li><li><a href="#tabset-1-2">Customize</a></li><li><a href="#tabset-1-3">Summarize</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="columns">
@@ -1002,7 +1066,8 @@ Jessica Guo
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-32-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-32-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1023,7 +1088,8 @@ Jessica Guo
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1046,7 +1112,8 @@ Jessica Guo
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1056,7 +1123,9 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="a-panopoly-of-layer-options" class="slide level2"><h2>A panopoly of layer options!</h2>
+</section>
+<section id="a-panopoly-of-layer-options" class="slide level2">
+<h2>A panopoly of layer options!</h2>
 <p>Track all <a href="https://ggplot2-book.org/layers.html#sec-geom">geom</a> and <a href="https://ggplot2-book.org/layers.html#sec-stat">stat</a> options</p>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -1078,13 +1147,11 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="position-adjustment-options" class="slide level2"><h2>Position adjustment options</h2>
+</section>
+<section id="position-adjustment-options" class="slide level2">
+<h2>Position adjustment options</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-2-1">stack</a></li>
-<li><a href="#tabset-2-2">fill</a></li>
-<li><a href="#tabset-2-3">dodge</a></li>
-</ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">stack</a></li><li><a href="#tabset-2-2">fill</a></li><li><a href="#tabset-2-3">dodge</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell" data-layout-align="center">
@@ -1092,7 +1159,8 @@ Jessica Guo
 <span id="cb21-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1104,7 +1172,8 @@ Jessica Guo
 <span id="cb22-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-38-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-38-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1117,7 +1186,8 @@ Jessica Guo
 <span id="cb23-3"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-39-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-39-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1125,13 +1195,11 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="position-adjustment-options-1" class="slide level2"><h2>Position adjustment options</h2>
+</section>
+<section id="position-adjustment-options-1" class="slide level2">
+<h2>Position adjustment options</h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-3-1">identity</a></li>
-<li><a href="#tabset-3-2">jitter</a></li>
-<li><a href="#tabset-3-3">jitterdodge</a></li>
-</ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">identity</a></li><li><a href="#tabset-3-2">jitter</a></li><li><a href="#tabset-3-3">jitterdodge</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
 <div class="cell" data-layout-align="center">
@@ -1139,7 +1207,8 @@ Jessica Guo
 <span id="cb24-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-40-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-40-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1151,7 +1220,8 @@ Jessica Guo
 <span id="cb25-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-41-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-41-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1163,7 +1233,8 @@ Jessica Guo
 <span id="cb26-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitterdodge</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1171,7 +1242,9 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="position-adjustments-limitations" class="slide level2"><h2>Position adjustments limitations</h2>
+</section>
+<section id="position-adjustments-limitations" class="slide level2">
+<h2>Position adjustments limitations</h2>
 <p>For example, boxplots and errorbars can’t be stacked.</p>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -1189,9 +1262,14 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section></section><section><section id="code-along-exercise" class="title-slide slide level1 center"><h1>Code-along exercise</h1>
+</section></section>
+<section>
+<section id="code-along-exercise" class="title-slide slide level1 center">
+<h1>Code-along exercise</h1>
 
-</section><section id="recreating-a-layered-plot" class="slide level2"><h2>Recreating a layered plot</h2>
+</section>
+<section id="recreating-a-layered-plot" class="slide level2">
+<h2>Recreating a layered plot</h2>
 
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-43-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"><div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -1206,22 +1284,31 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section></section><section><section id="adjusting-visual-elements" class="title-slide slide level1 center"><h1>Adjusting visual elements</h1>
+</section></section>
+<section>
+<section id="adjusting-visual-elements" class="title-slide slide level1 center">
+<h1>Adjusting visual elements</h1>
 
-</section><section id="scales-and-guides" class="slide level2"><h2>Scales and guides</h2>
+</section>
+<section id="scales-and-guides" class="slide level2">
+<h2>Scales and guides</h2>
 <div>
 <ul>
 <li class="fragment"><p>Each scale is a function that translate data space (in data units) into aesthetic space (e.g., pixels)</p></li>
 <li class="fragment"><p>A guide (axis or legend) is the inverse function, that converts visual properties back to data</p></li>
 </ul>
 </div>
-</section><section id="scales-and-guides-1" class="slide level2"><h2>Scales and guides</h2>
+</section>
+<section id="scales-and-guides-1" class="slide level2">
+<h2>Scales and guides</h2>
 <ul>
 <li><p>Each scale is a function that translate data space (in data units) into aesthetic space (e.g., pixels)</p></li>
 <li><p>A guide (axis or legend) is the inverse function, that converts visual properties back to data</p></li>
 </ul>
 
-<img data-src="img/scale-guides.png" alt="Labeled ggplot figure indicating similarity between axes and legends" width="700" class="r-stretch quarto-figure-center"><p class="caption">Are axes and legends equivalent?</p></section><section id="scale-specification" class="slide level2"><h2>Scale specification</h2>
+<img data-src="img/scale-guides.png" alt="Labeled ggplot figure indicating similarity between axes and legends" width="700" class="r-stretch quarto-figure-center"><p class="caption">Are axes and legends equivalent?</p></section>
+<section id="scale-specification" class="slide level2">
+<h2>Scale specification</h2>
 <p>Every aesthetic in a plot is associated with exactly one scale.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1251,7 +1338,9 @@ Jessica Guo
 <li class="fragment"><p>the name of the scale (<code>discrete</code>, <code>continuous</code>, <code>brewer</code>)</p></li>
 </ol>
 </div>
-</section><section id="what-does-a-coordinate-system-do" class="slide level2"><h2>What does a coordinate system do?</h2>
+</section>
+<section id="what-does-a-coordinate-system-do" class="slide level2">
+<h2>What does a coordinate system do?</h2>
 <p>Coordinate systems have 2 primary roles:</p>
 <div>
 <ol type="1">
@@ -1259,7 +1348,9 @@ Jessica Guo
 <li class="fragment"><p>In coordination with faceting (optional), draw axes and panel backgrounds</p></li>
 </ol>
 </div>
-</section><section id="types-of-coordinate-systems" class="slide level2 smaller"><h2>Types of coordinate systems</h2>
+</section>
+<section id="types-of-coordinate-systems" class="slide level2 smaller">
+<h2>Types of coordinate systems</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <p>Linear:</p>
@@ -1281,7 +1372,9 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="faceting" class="slide level2"><h2>Faceting</h2>
+</section>
+<section id="faceting" class="slide level2">
+<h2>Faceting</h2>
 <p>Creates small multiples to show different subsets:</p>
 <ul>
 <li><p><code>facet_null()</code>: default</p></li>
@@ -1289,7 +1382,9 @@ Jessica Guo
 <li><p><code>facet_grid()</code>: 2d grid of panels defined by row and column</p></li>
 </ul>
 
-<img data-src="img/position-facets.png" class="quarto-figure quarto-figure-center r-stretch" alt="Comparison of facet_wrap and facet_grid organization " width="500"></section><section id="keeping-points-of-reference" class="slide level2"><h2>Keeping points of reference</h2>
+<img data-src="img/position-facets.png" class="quarto-figure quarto-figure-center r-stretch" alt="Comparison of facet_wrap and facet_grid organization " width="500"></section>
+<section id="keeping-points-of-reference" class="slide level2">
+<h2>Keeping points of reference</h2>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1304,7 +1399,9 @@ Jessica Guo
 </div>
 </div>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-46-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section><section id="theming" class="slide level2"><h2>Theming</h2>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-46-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theming" class="slide level2">
+<h2>Theming</h2>
 <p>Controls non-data elements of plots (e.g., to match a style guide).</p>
 <div>
 <ol type="1">
@@ -1313,13 +1410,11 @@ Jessica Guo
 <li class="fragment"><p>The <code>theme()</code> function allows overriding of the default theme: <code>theme(legend.title = element_blank())</code></p></li>
 </ol>
 </div>
-</section><section id="complete-themes" class="slide level2"><h2>Complete themes</h2>
+</section>
+<section id="complete-themes" class="slide level2">
+<h2>Complete themes</h2>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-4-1">theme_bw()</a></li>
-<li><a href="#tabset-4-2">theme_minimal()</a></li>
-<li><a href="#tabset-4-3">theme_classic()</a></li>
-</ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">theme_bw()</a></li><li><a href="#tabset-4-2">theme_minimal()</a></li><li><a href="#tabset-4-3">theme_classic()</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="columns">
@@ -1335,7 +1430,8 @@ Jessica Guo
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-48-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-48-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1357,7 +1453,8 @@ Jessica Guo
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-50-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-50-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1379,7 +1476,8 @@ Jessica Guo
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="slides_files/figure-revealjs/unnamed-chunk-52-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-52-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -1389,7 +1487,9 @@ Jessica Guo
 </div>
 </div>
 </div>
-</section><section id="further-resources" class="slide level2"><h2>Further resources</h2>
+</section>
+<section id="further-resources" class="slide level2">
+<h2>Further resources</h2>
 <div>
 <ul>
 <li class="fragment"><p>Penguin artwork by <span class="citation" data-cites="allison_horst">@allison_horst</span></p></li>
@@ -1407,10 +1507,27 @@ Jessica Guo
 </div>
 </div>
 </section></section>
-</div>
+    </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script><script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../../site_libs/revealjs/plugin/search/search.js"></script><script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1601,7 +1718,9 @@ Jessica Guo
           RevealZoom
         ]
       });
-    </script><script>
+    </script>
+    
+    <script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -1636,7 +1755,9 @@ Jessica Guo
         }
 
       })();
-    </script><script id="quarto-html-after-body" type="application/javascript">
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1819,6 +1940,6 @@ Jessica Guo
       }
     });
     </script>
-
+    
 
 </body></html>
