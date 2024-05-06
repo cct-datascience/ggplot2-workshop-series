@@ -1,8 +1,0 @@
----
-title: Slides!
-author: Eric Scott
-format: uaz-revealjs
----
-
-## Hello
-these are slides

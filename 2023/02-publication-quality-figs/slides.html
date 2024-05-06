@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.554">
 <meta name="author" content="Eric R. Scott">
 <title>Unlocking the next level of ggplot2 (working title) - Crafting Publication Quality Data Visualizations with ggplot2</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -529,7 +529,7 @@ Eric R. Scott
 <span id="cb5-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>)</span>
 <span id="cb5-4"><a></a>v <span class="co">#default colors</span></span>
 <span id="cb5-5"><a></a>v <span class="sc">+</span> <span class="fu">scale_color_viridis_c</span>() <span class="co">#viridis colors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
+<div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -553,7 +553,7 @@ Eric R. Scott
 <span id="cb6-4"><a></a>v <span class="sc">+</span> <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"cividis"</span>)</span>
 <span id="cb6-5"><a></a>v <span class="sc">+</span> <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"rocket"</span>)</span>
 <span id="cb6-6"><a></a>v <span class="sc">+</span> <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"mako"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell quarto-layout-panel" data-layout-ncol="3" data-layout-align="center">
+</details><div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -599,7 +599,7 @@ Eric R. Scott
 <p>The upper end of viridis palettes tends to be very bright yellow. You can limit the range of colors used with the <code>begin</code> and <code>end</code> arguments</p>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>v <span class="sc">+</span> <span class="fu">scale_color_viridis_c</span>()</span>
 <span id="cb7-2"><a></a>v <span class="sc">+</span> <span class="fu">scale_color_viridis_c</span>(<span class="at">begin =</span> <span class="fl">0.1</span>, <span class="at">end =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
+<div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -684,7 +684,7 @@ Eric R. Scott
 <span id="cb11-6"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_cols, <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"fill"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
+<div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -841,7 +841,7 @@ Eric R. Scott
 <p>If you only want to change the axis title, you can also do that in <code>labs()</code></p>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>(p2 <span class="ot">&lt;-</span> p2 <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>, <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>))</span>
 <span id="cb20-2"><a></a>(p3 <span class="ot">&lt;-</span> p3 <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>, <span class="at">y =</span> <span class="st">"Bill Depth (mm)"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
+<div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -886,7 +886,7 @@ Eric R. Scott
 <p>There are several complete themes built-in to <code>ggplot2</code>, and many more available from other packages such as <code>ggthemes</code>.</p>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>p2 <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
 <span id="cb27-2"><a></a>p2 <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
+<div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1545,7 +1545,7 @@ Eric R. Scott
       });
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
+          var filterRegex = new RegExp("https:\/\/cct-datascience\.github\.io\/ggplot2-workshop-series\/");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }

@@ -1,0 +1,1 @@
+Sitemap: https://cct-datascience.github.io/ggplot2-workshop-series/sitemap.xml
