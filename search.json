@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Unlocking the next level of `ggplot2` (working title)",
+    "title": "Intermediate ggplot2 workshop series",
     "section": "",
     "text": "This is where we keep the curriculum related to our ggplot2 workshop series",
     "crumbs": [
@@ -12,11 +12,22 @@
   {
     "objectID": "index.html#welcome",
     "href": "index.html#welcome",
-    "title": "Unlocking the next level of `ggplot2` (working title)",
+    "title": "Intermediate ggplot2 workshop series",
     "section": "",
     "text": "This is where we keep the curriculum related to our ggplot2 workshop series",
     "crumbs": [
       "Welcome"
+    ]
+  },
+  {
+    "objectID": "2024/03-extensions/index.html",
+    "href": "2024/03-extensions/index.html",
+    "title": "Exploring The Wide World of ggplot2 Extensions",
+    "section": "",
+    "text": "Date & time: Thursday June 20, 2024, 11am - 1pm AZ\nInstructor: Eric Scott, Renata Diaz, Kristina Riemer\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying many data visualization tools, including ggplot2. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
+    "crumbs": [
+      "Upcoming series",
+      "Exploring The Wide World of `ggplot2` Extensions"
     ]
   },
   {
@@ -31,9 +42,9 @@
     "href": "2024/01-foundations/index.html",
     "title": "Foundations of ggplot2",
     "section": "",
-    "text": "In this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying many data visualization tools, including ggplot2. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\n\nNotes\n    View slides in full screen",
+    "text": "Date & time: Thursday June 6, 2024, 11am - 1pm AZ\nInstructor: Eric Scott\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying many data visualization tools, including ggplot2. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
     "crumbs": [
-      "2024",
+      "Upcoming series",
       "Foundations of `ggplot2`"
     ]
   },
@@ -876,13 +887,24 @@
     "text": "Hey these are some notes"
   },
   {
+    "objectID": "2024/02-design/index.html",
+    "href": "2024/02-design/index.html",
+    "title": "Crafting Professional Quality Data Visualizations With ggplot2",
+    "section": "",
+    "text": "Date & time: Thursday June 13, 2024, 11am - 1pm AZ\nInstructor: Renata Diaz\nIn this session, we will introduce principles of effective data communication and learn how to use ggplot2 customizations to create professional-quality visualizations. We will include customized color schemes, annotations and legends, and exporting figures to publication-quality formats.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
+    "crumbs": [
+      "Upcoming series",
+      "Crafting Professional Quality Data Visualizations With `ggplot2`"
+    ]
+  },
+  {
     "objectID": "2024/index.html",
     "href": "2024/index.html",
-    "title": "2024 iteration",
+    "title": "Leveling up your data visualization skills with ggplot2",
     "section": "",
-    "text": "This three-part series will teach you the skills to refine & expand your current ggplot2 skills so you can generate complex, publication-quality plots efficiently and reproducibly. We will cover: 1) the latest developments in and underpinnings of ggplot2, 2) principles of effective visual design and how to implement these in ggplot2, 3) and the ever-expanding landscape of extensions to create animated, geospatial, interactive, and other varieties of plots. We will assume you have created basic plots in ggplot2, and are looking for ways to level up. These sessions are stand-alone, so feel free to attend any or all of them!",
+    "text": "Have you created some basic plots using the R package ggplot2? Do you want to advance your understanding of how ggplot2 works, or improve your skills with visualization details? Then this workshop series may be for you!\n\nWho: Anyone who has used ggplot2 and would like to learn more!\nWhat: 3 stand-alone workshops on next-level ggplot2 topics\nWhere: Zoom\nWhen: 11am - 1pm AZ on June 6, 13, and 20\nWhy: To improve and understand use of ggplot2 R package\n\nThis three-part series will teach you the skills to refine & expand your current ggplot2 skills so you can generate complex, publication-quality plots efficiently and reproducibly. We will cover: 1) the latest developments in and underpinnings of ggplot2, 2) principles of effective visual design and how to implement these in ggplot2, 3) and the ever-expanding landscape of extensions to create animated, geospatial, interactive, and other varieties of plots. These sessions are stand-alone, so feel free to attend any or all of them!\nSee more details and register for each session on their page:\n\nFoundations of ggplot2\nCrafting Professional Quality Data Visualizations With ggplot2\nExploring The Wide World of ggplot2 Extensions",
     "crumbs": [
-      "2024"
+      "Upcoming series"
     ]
   }
 ]
