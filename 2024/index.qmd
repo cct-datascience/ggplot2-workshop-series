@@ -1,6 +1,8 @@
 ---
 title: Leveling up your data visualization skills with ggplot2
 format: html
+aliases: 
+  - ../index.html
 ---
 
 Have you created some basic plots using the R package ggplot2?

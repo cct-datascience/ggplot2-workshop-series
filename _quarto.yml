@@ -13,7 +13,6 @@ website:
     search: true
     logo: logo.png
     contents:
-      - "index.qmd"
       - section: "Upcoming series"
         href: "2024/index.qmd"
         contents:
