@@ -5,7 +5,7 @@ project:
     - "!CONTRIBUTING.md"
   
 website:
-  title: "Unlocking the next level of `ggplot2` (working title)"
+  title: "Intermediate ggplot2 workshop series"
   repo-url: "https://github.com/cct-datascience/ggplot2-workshop-series"
   repo-actions: ["source", "issue"]
   sidebar: 
@@ -14,10 +14,12 @@ website:
     logo: logo.png
     contents:
       - "index.qmd"
-      - section: "2024"
+      - section: "Upcoming series"
         href: "2024/index.qmd"
         contents:
           - "2024/01-foundations/index.qmd"
+          - "2024/02-design/index.qmd"
+          - "2024/03-extensions/index.qmd"
       - section: "2023"
         contents:
           - "2023/01-foundations/index.qmd"
