@@ -1,6 +1,28 @@
 ---
-title: 2024 iteration
+title: Leveling up your data visualization skills with ggplot2
 format: html
 ---
 
-This three-part series will teach you the skills to refine & expand your current ggplot2 skills so you can generate complex, publication-quality plots efficiently and reproducibly. We will cover: 1) the latest developments in and underpinnings of ggplot2, 2) principles of effective visual design and how to implement these in ggplot2, 3) and the ever-expanding landscape of extensions to create animated, geospatial, interactive, and other varieties of plots. We will assume you have created basic plots in ggplot2, and are looking for ways to level up. These sessions are stand-alone, so feel free to attend any or all of them!
+Have you created some basic plots using the R package ggplot2?
+Do you want to **advance your understanding** of how ggplot2 works, or **improve your skills** with visualization details?
+Then this workshop series may be for you!
+
+-   **Who:** Anyone who has used ggplot2 and would like to learn more!
+
+-   **What:** 3 stand-alone workshops on next-level ggplot2 topics
+
+-   **Where:** Zoom
+
+-   **When:** 11am - 1pm AZ on June 6, 13, and 20
+
+-   **Why:** To improve and understand use of ggplot2 R package
+
+This three-part series will teach you the skills to refine & expand your current ggplot2 skills so you can generate complex, publication-quality plots efficiently and reproducibly.
+We will cover: 1) the latest developments in and underpinnings of ggplot2, 2) principles of effective visual design and how to implement these in ggplot2, 3) and the ever-expanding landscape of extensions to create animated, geospatial, interactive, and other varieties of plots.
+These sessions are stand-alone, so feel free to attend any or all of them!
+
+See more details and register for each session on their page:
+
+1.  [Foundations of `ggplot2`](01-foundations/index.qmd)
+2.  [Crafting Professional Quality Data Visualizations With `ggplot2`](02-design/index.qmd)
+3.  [Exploring The Wide World of `ggplot2` Extensions](03-extensions/index.qmd)

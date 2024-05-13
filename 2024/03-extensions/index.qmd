@@ -1,11 +1,11 @@
 ---
-title: Foundations of `ggplot2`
+title: Exploring The Wide World of `ggplot2` Extensions
 format: html
 ---
 
-**Date & time:** Thursday June 6, 2024, 11am - 1pm AZ
+**Date & time:** Thursday June 20, 2024, 11am - 1pm AZ
 
-**Instructor:** Eric Scott
+**Instructor:** Eric Scott, Renata Diaz, Kristina Riemer
 
 In this workshop you'll gain a better understanding of the "grammar of graphics"—the theory underlying many data visualization tools, including ggplot2.
 Using practical examples, you'll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.
