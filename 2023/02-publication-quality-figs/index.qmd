@@ -3,6 +3,12 @@ title: "Crafting Publication Quality Data Visualizations with ggplot2"
 format: html
 ---
 
-- [Notes](notes.qmd) 
+**Date & time:** 11 a.m. to 1 p.m., June 12, 2023
 
+**Instructor**: Eric Scott
+
+If you know how to make basic plots with `ggplot2`, but struggle to add on finishing touches like specifying colors, customizing axes, adding text to plots, and creating multi-panel figures, then this workshop is for you!
+
+- [Recording](https://youtu.be/huLeM4EL1aQ)
+- [Notes](notes.qmd) 
 - {{< revealjs slides.html >}}

@@ -1,10 +1,14 @@
 ---
-title: "`ggplot2` extensions"
+title: "Exploring the wide world of `ggplot2` extensions"
 format: html
 ---
 
-Extensions!
+**Date & time:**  11 a.m. to 1 p.m., June 26, 2023
 
+**Instructors:** Kristina Riemer & Eric Scott
+
+There are over 100 packages that extend the functionality of ggplot2 to allow you to make just about any data visualization you can think of! In this workshop we’ll cover a few of our favorite extensions and show you how to find the ggplot2 extension that meets your data visualization needs.
+
+- [Recording](https://youtu.be/BfYu_Xb_Bfw)
 - [Notes](notes.qmd)
-
 - {{< revealjs slides.html >}}
