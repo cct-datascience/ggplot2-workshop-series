@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Intermediate ggplot2 workshop series</title>
+<title>Intermediate ggplot2 workshop series - Understanding the foundations of ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,6 +66,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+ 
+  <style>
+  .slide-deck {
+      border: 3px solid #dee2e6;
+      width: 100%;
+  }
+  </style>
+  
 
 
 </head>
@@ -79,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../2023/01-foundations/index.html">2023</a></li><li class="breadcrumb-item"><a href="../../2023/01-foundations/index.html">Understanding the foundations of <code>ggplot2</code></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../2023/01-foundations/index.html">2023</a></li><li class="breadcrumb-item"><a href="../../2023/01-foundations/index.html">Session 1 - Foundations</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -148,19 +156,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../2023/01-foundations/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Understanding the foundations of <code>ggplot2</code></span></a>
+ <span class="menu-text">Session 1 - Foundations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../2023/02-publication-quality-figs/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Crafting Publication Quality Data Visualizations with ggplot2</span></a>
+ <span class="menu-text">Session 2 - Design</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../2023/03-extensions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><code>ggplot2</code> extensions</span></a>
+ <span class="menu-text">Session 3 - Extensions</span></a>
   </div>
 </li>
       </ul>
@@ -174,22 +182,40 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../2023/01-foundations/index.html">2023</a></li><li class="breadcrumb-item"><a href="../../2023/01-foundations/index.html">Session 1 - Foundations</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Understanding the foundations of <code>ggplot2</code></h1>
+</div>
 
 
 
-<section id="understanding-the-foundations-of-ggplot2" class="level1">
-<h1>Understanding the foundations of <code>ggplot2</code></h1>
-<section id="part-1-of-a-3-part-series-by-cct-data-science" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-of-a-3-part-series-by-cct-data-science">Part 1 of a 3 part series by CCT Data Science</h3>
-<p>Instructor: Jessica Guo</p>
-<p>Date/time: Monday, June 5, 2023</p>
-<p>Links: <a href="https://viz.datascience.arizona.edu/foundations-ggplot2-slides/">slides</a>, <a href="https://youtu.be/ke9R4C0E-k0">recording</a></p>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Date &amp; time:</strong> Monday, June 5, 2023</p>
+<p><strong>Instructor</strong>: Jessica Guo</p>
 <p>In this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying the <code>ggplot2</code> package. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.</p>
-<p>Source code for the slides can be found at <code>20230605-foundations-ggplot2/slides.qmd</code>. Solutions for the code-along exercises are available at <code>20230605-foundations-ggplot2/plot_layers.R</code> and <code>20230605-foundations-ggplot2/plot_facets.R</code>.</p>
+<ul>
+<li><a href="https://youtu.be/ke9R4C0E-k0">Recording</a></li>
+<li><a href="https://raw.githubusercontent.com/cct-datascience/ggplot2-workshop-series/main/2023/01-foundations/plot_layers.R">plot_layers.R</a></li>
+<li><a href="https://raw.githubusercontent.com/cct-datascience/ggplot2-workshop-series/main/2023/01-foundations/plot_facets.R">plot_facets.R</a></li>
+<li>    <p><a href="slides.html" target="_blank">View slides in full screen</a></p>
+       <div>
+      <iframe class="slide-deck" src="slides.html" height="475px"></iframe>
+    </div>
+  </li>
+</ul>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

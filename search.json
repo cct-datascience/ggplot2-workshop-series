@@ -135,12 +135,12 @@
   {
     "objectID": "2023/03-extensions/index.html",
     "href": "2023/03-extensions/index.html",
-    "title": "ggplot2 extensions",
+    "title": "Exploring the wide world of ggplot2 extensions",
     "section": "",
-    "text": "Extensions!\n\nNotes\n    View slides in full screen",
+    "text": "Date & time: 11 a.m. to 1 p.m., June 26, 2023\nInstructors: Kristina Riemer & Eric Scott\nThere are over 100 packages that extend the functionality of ggplot2 to allow you to make just about any data visualization you can think of! In this workshop we’ll cover a few of our favorite extensions and show you how to find the ggplot2 extension that meets your data visualization needs.\n\nRecording\nNotes\n    View slides in full screen",
     "crumbs": [
       "2023",
-      "`ggplot2` extensions"
+      "Session 3 - Extensions"
     ]
   },
   {
@@ -484,10 +484,10 @@
     "href": "2023/01-foundations/index.html",
     "title": "Understanding the foundations of ggplot2",
     "section": "",
-    "text": "Understanding the foundations of ggplot2\n\nPart 1 of a 3 part series by CCT Data Science\nInstructor: Jessica Guo\nDate/time: Monday, June 5, 2023\nLinks: slides, recording\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying the ggplot2 package. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\nSource code for the slides can be found at 20230605-foundations-ggplot2/slides.qmd. Solutions for the code-along exercises are available at 20230605-foundations-ggplot2/plot_layers.R and 20230605-foundations-ggplot2/plot_facets.R.",
+    "text": "Date & time: Monday, June 5, 2023\nInstructor: Jessica Guo\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying the ggplot2 package. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\n\nRecording\nplot_layers.R\nplot_facets.R\n    View slides in full screen",
     "crumbs": [
       "2023",
-      "Understanding the foundations of `ggplot2`"
+      "Session 1 - Foundations"
     ]
   },
   {
@@ -495,10 +495,10 @@
     "href": "2023/02-publication-quality-figs/index.html",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "",
-    "text": "Notes\n    View slides in full screen",
+    "text": "Date & time: 11 a.m. to 1 p.m., June 12, 2023\nInstructor: Eric Scott\nIf you know how to make basic plots with ggplot2, but struggle to add on finishing touches like specifying colors, customizing axes, adding text to plots, and creating multi-panel figures, then this workshop is for you!\n\nRecording\nNotes\n    View slides in full screen",
     "crumbs": [
       "2023",
-      "Crafting Publication Quality Data Visualizations with ggplot2"
+      "Session 2 - Design"
     ]
   },
   {
