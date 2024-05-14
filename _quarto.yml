@@ -12,14 +12,17 @@ website:
     style: "docked"
     search: true
     logo: logo.png
+    title: "Data Science Team"
     contents:
-      - "index.qmd"
       - section: "Upcoming series"
         href: "2024/index.qmd"
         contents:
-          - "2024/01-foundations/index.qmd"
-          - "2024/02-design/index.qmd"
-          - "2024/03-extensions/index.qmd"
+          - text: "Session 1 - Foundations"
+            href: "2024/01-foundations/index.qmd"
+          - text: "Session 2 - Design"
+            href: "2024/02-design/index.qmd"
+          - text: "Session 3 - Extensions"
+            href: "2024/03-extensions/index.qmd"
       - section: "2023"
         contents:
           - "2023/01-foundations/index.qmd"
@@ -40,7 +43,7 @@ format:
     link-external-icon: true
     link-external-newwindow: true
     logo: "./logo.png"
-    footer: "[CCT Data Science ggplot2 workshop series](index.qmd)"
+    footer: "[Intermediate ggplot2 workshop series](index.qmd)"
     
 execute:
   freeze: auto

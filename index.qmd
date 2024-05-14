@@ -1,7 +1,0 @@
----
-format: html
----
-
-## Welcome
-
-This is where we keep the curriculum related to our ggplot2 workshop series
