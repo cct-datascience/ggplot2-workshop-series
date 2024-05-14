@@ -25,9 +25,12 @@ website:
             href: "2024/03-extensions/index.qmd"
       - section: "2023"
         contents:
-          - "2023/01-foundations/index.qmd"
-          - "2023/02-publication-quality-figs/index.qmd"
-          - "2023/03-extensions/index.qmd"
+          - text: "Session 1 - Foundations"
+            href: "2023/01-foundations/index.qmd"
+          - text: "Session 2 - Design"
+            href: "2023/02-publication-quality-figs/index.qmd"
+          - text: "Session 3 - Extensions"
+            href: "2023/03-extensions/index.qmd"
 
 format:
   html: 
