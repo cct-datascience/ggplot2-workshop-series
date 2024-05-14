@@ -12,13 +12,17 @@ website:
     style: "docked"
     search: true
     logo: logo.png
+    title: "Data Science Team"
     contents:
       - section: "Upcoming series"
         href: "2024/index.qmd"
         contents:
-          - "2024/01-foundations/index.qmd"
-          - "2024/02-design/index.qmd"
-          - "2024/03-extensions/index.qmd"
+          - text: "Session 1 - Foundations"
+            href: "2024/01-foundations/index.qmd"
+          - text: "Session 2 - Design"
+            href: "2024/02-design/index.qmd"
+          - text: "Session 3 - Extensions"
+            href: "2024/03-extensions/index.qmd"
       - section: "2023"
         contents:
           - "2023/01-foundations/index.qmd"
