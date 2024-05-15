@@ -7,8 +7,7 @@ format: html
 
 **Instructor:** Eric Scott, Renata Diaz, Kristina Riemer
 
-In this workshop you'll gain a better understanding of the "grammar of graphics"—the theory underlying many data visualization tools, including ggplot2.
-Using practical examples, you'll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.
+There are over 100 packages that extend the functionality of ggplot2 to allow you to make just about any data visualization you can think of! In this workshop we'll cover a few of our favorite extensions, such as for multi-panel figures and animating visualizations, and show you how to find the ggplot2 extension that meets your data visualization needs.
 
 [Registration](https://arizona.zoom.us/meeting/register/tZwsd-murTMsG9DosEldScve878o0FrwsC-5#/registration)
 
