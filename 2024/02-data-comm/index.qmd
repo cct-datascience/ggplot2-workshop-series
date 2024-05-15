@@ -1,0 +1,18 @@
+---
+title: Effective Data Communication With `ggplot2`
+format: html
+---
+
+**Date & time:** Thursday June 13, 2024, 11am - 1pm AZ
+
+**Instructor:** Renata Diaz
+
+In this session, we will introduce major principles of effective data visualization and then cover how to implement these principles in your plots with `ggplot2`. 
+
+[Registration](https://arizona.zoom.us/meeting/register/tZUpc-GrpjgvE9fWgeQBZqaVcEOUKxm76IbQ#/registration)
+
+**Prerequisites:**
+
+-   Install R, RStudio, and `ggplot2`
+
+-   Some previous usage of `ggplot2`

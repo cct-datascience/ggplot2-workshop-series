@@ -26,5 +26,5 @@ These sessions are stand-alone, so feel free to attend any or all of them!
 See more details and register for each session on their page:
 
 1.  [Foundations of `ggplot2`](01-foundations/index.qmd)
-2.  [Crafting Professional Quality Data Visualizations With `ggplot2`](02-design/index.qmd)
+2.  [Crafting Professional Quality Data Visualizations With `ggplot2`](02-data-comm/index.qmd)
 3.  [Exploring The Wide World of `ggplot2` Extensions](03-extensions/index.qmd)
