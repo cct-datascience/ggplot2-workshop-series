@@ -10,7 +10,7 @@ format: html
 In this workshop you'll gain a better understanding of the "grammar of graphics"—the theory underlying many data visualization tools, including ggplot2.
 Using practical examples, you'll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.
 
-[Registration]()
+[Registration](https://arizona.zoom.us/meeting/register/tZwsd-murTMsG9DosEldScve878o0FrwsC-5#/registration)
 
 **Prerequisites:**
 

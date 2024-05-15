@@ -9,7 +9,7 @@ format: html
 
 In this session, we will introduce principles of effective data communication and learn how to use ggplot2 customizations to create professional-quality visualizations. We will include customized color schemes, annotations and legends, and exporting figures to publication-quality formats. 
 
-[Registration]()
+[Registration](https://arizona.zoom.us/meeting/register/tZUpc-GrpjgvE9fWgeQBZqaVcEOUKxm76IbQ#/registration)
 
 **Prerequisites:**
 
