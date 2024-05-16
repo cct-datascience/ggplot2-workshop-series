@@ -10,14 +10,14 @@
     ]
   },
   {
-    "objectID": "2024/02-design/index.html",
-    "href": "2024/02-design/index.html",
-    "title": "Crafting Professional Quality Data Visualizations With ggplot2",
+    "objectID": "2024/02-data-comm/index.html",
+    "href": "2024/02-data-comm/index.html",
+    "title": "Effective Data Communication With ggplot2",
     "section": "",
-    "text": "Date & time: Thursday June 13, 2024, 11am - 1pm AZ\nInstructor: Renata Diaz\nIn this session, we will introduce principles of effective data communication and learn how to use ggplot2 customizations to create professional-quality visualizations. We will include customized color schemes, annotations and legends, and exporting figures to publication-quality formats.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
+    "text": "Date & time: Thursday June 13, 2024, 11am - 1pm AZ\nInstructor: Renata Diaz, Devin Bayly\nIn this session, we will introduce major principles of effective data visualization and then cover how to implement these principles in your plots with ggplot2.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
     "crumbs": [
       "Upcoming series",
-      "Session 2 - Design"
+      "Session 2 - Data Communication"
     ]
   },
   {
@@ -498,7 +498,7 @@
     "text": "Date & time: 11 a.m. to 1 p.m., June 12, 2023\nInstructor: Eric Scott\nIf you know how to make basic plots with ggplot2, but struggle to add on finishing touches like specifying colors, customizing axes, adding text to plots, and creating multi-panel figures, then this workshop is for you!\n\nRecording\nNotes\n    View slides in full screen",
     "crumbs": [
       "2023",
-      "Session 2 - Design"
+      "Session 2 - Customizations"
     ]
   },
   {
@@ -881,7 +881,7 @@
     "href": "2024/03-extensions/index.html",
     "title": "Exploring The Wide World of ggplot2 Extensions",
     "section": "",
-    "text": "Date & time: Thursday June 20, 2024, 11am - 1pm AZ\nInstructor: Eric Scott, Renata Diaz, Kristina Riemer\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying many data visualization tools, including ggplot2. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
+    "text": "Date & time: Thursday June 20, 2024, 11am - 1pm AZ\nInstructor: Eric Scott, Renata Diaz, Kristina Riemer\nThere are over 100 packages that extend the functionality of ggplot2 to allow you to make just about any data visualization you can think of! In this workshop we’ll cover a few of our favorite extensions, such as for multi-panel figures and animating visualizations, and show you how to find the ggplot2 extension that meets your data visualization needs.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
     "crumbs": [
       "Upcoming series",
       "Session 3 - Extensions"
