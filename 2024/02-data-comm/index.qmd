@@ -5,7 +5,7 @@ format: html
 
 **Date & time:** Thursday June 13, 2024, 11am - 1pm AZ
 
-**Instructor:** Renata Diaz
+**Instructor:** Renata Diaz, Devin Bayly
 
 In this session, we will introduce major principles of effective data visualization and then cover how to implement these principles in your plots with `ggplot2`. 
 
