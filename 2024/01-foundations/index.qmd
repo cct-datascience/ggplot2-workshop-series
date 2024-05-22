@@ -17,3 +17,5 @@ Using practical examples, you'll learn how understanding the grammar of graphics
 -   Install R, RStudio, and `ggplot2`
 
 -   Some previous usage of `ggplot2`
+
+{{< revealjs slides.html >}}

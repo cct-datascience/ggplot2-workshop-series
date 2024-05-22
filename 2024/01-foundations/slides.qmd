@@ -1,8 +1,301 @@
 ---
-title: Slides!
-author: Eric Scott
-format: uaz-revealjs
+title: Foundations of {ggplot2}
+author: Eric R Scott
+format: 
+  uaz-revealjs:
+  # revealjs:
+    incremental: true
+bibliography: references.bib
 ---
 
-## Hello
-these are slides
+## Learning Objectives
+
+```{r}
+#| label: setup
+#| include: false
+
+library(palmerpenguins)
+library(ggplot2)
+library(glue)
+library(gapminder)
+library(countdown)
+## pak::pak("r-for-educators/flair")
+# library(flair)
+theme_set(theme_minimal())
+```
+
+-   Learn about the most recent changes in `ggplot2`
+-   Understand the "grammar of graphics" and how it inspired `ggplot2`'s design
+-   Know what it means to "map data to aesthetics"
+-   Understand the relationship between a "geom" and a "stat"
+
+------------------------------------------------------------------------
+
+![](https://media.springernature.com/w316/springer-static/cover-hires/book/978-0-387-28695-2?as=webp){fig-align="center"}
+
+## A Grammar of Graphics
+
+-   A book by @wilkinson2005
+-   Inspired the development of *many* graphics programs including `ggplot2` [@wickham2010]
+-   Alternative to having a function for every kind of plot
+-   A framework for layering elements to create any kind of plot
+
+## Grammar of Graphics Components
+
+```{r}
+#| label: peng_plot
+#| include: false
+p <- 
+  ggplot(penguins, aes(x = body_mass_g, y = bill_length_mm, color = species)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(vars(island), ncol = 1)
+```
+
+::: columns
+::: {.column width="50%"}
+::: nonincremental
+1.  Data
+2.  Aesthetics
+3.  Scales
+4.  Geometric Objects
+5.  Statistics
+6.  Facets
+7.  Coordinate System
+:::
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| warning: false
+#| fig-height: 5
+#| fig-width: 4.5
+p
+```
+:::
+:::
+
+## Data
+
+::: columns
+::: {.column width="50%"}
+What is being visualized?
+
+-   344 observations
+
+-   body mass measured in grams
+
+-   bill length measured in mm
+
+-   three species
+
+-   three islands
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| warning: false
+#| fig-height: 5
+#| fig-width: 4.5
+p
+```
+:::
+:::
+
+## Aesthetics
+
+::: columns
+::: {.column width="50%"}
+What visual elements are used to encode data?
+
+-   Color
+
+-   x position
+
+-   y position
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| warning: false
+#| fig-height: 5
+#| fig-width: 4.5
+p
+```
+:::
+:::
+
+## Scales
+
+::: columns
+::: {.column width="50%"}
+What range of values is visualized?
+Are values continuous or discrete?
+How is that range broken up visually?
+
+-   x-axis continuous from `r glue_collapse(range(penguins$body_mass_g, na.rm = TRUE), sep = " - ")` , 4 major breaks
+
+-   y-axis continuous from `r glue_collapse(range(penguins$bill_length_mm, na.rm = TRUE), sep = " - ")` , 3 major breaks
+
+-   colors are discrete: red, green, blue
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| warning: false
+#| fig-height: 5
+#| fig-width: 4.5
+p
+```
+:::
+:::
+
+## Geometric Objects ("geoms")
+
+::: columns
+::: {.column width="50%"}
+How are data represented visually?
+
+-   Data is represented using circles/points
+-   Trend is represented as a line
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| warning: false
+#| fig-height: 5
+#| fig-width: 4.5
+p
+```
+:::
+:::
+
+::: notes
+Both aesthetics and geoms are related to the visual representation of data.
+To distinguish aesthetics and geoms, think about how geoms can have *many* aesthetics.
+E.g. points have position, shape, size, color, and transparency and different data could be mapped to each of those aesthetics.
+:::
+
+## Statistics ("stats")
+
+::: columns
+::: {.column width="50%"}
+What calculations or transformations need to be done to present the data?
+
+-   For points, none (stat = "identity")
+
+-   For trend lines, linear regression
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| warning: false
+#| fig-height: 5
+#| fig-width: 4.5
+p
+```
+:::
+:::
+
+## Facets
+
+::: columns
+::: {.column width="50%"}
+By what variable are different subsets of the data split apart into "small multiples"?
+
+-   Faceted by island
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| warning: false
+#| fig-height: 5
+#| fig-width: 4.5
+p
+```
+:::
+:::
+
+## Coordinate System
+
+::: columns
+::: {.column width="50%"}
+How are positions represented visually?
+
+-   Cartesian coordinates
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| warning: false
+#| fig-height: 5
+#| fig-width: 4.5
+p
+```
+:::
+:::
+
+::: notes
+Other options include polar coordinates or the many possible coordinate systems used in maps.
+:::
+
+## Practice
+
+Identify each of the seven components of this plot
+
+::: columns
+::: {.column width="50%"}
+::: nonincremental
+1.  Data
+2.  Aesthetics
+3.  Scales
+4.  Geometric Objects
+5.  Statistics
+6.  Facets
+7.  Coordinate System
+:::
+:::
+
+::: {.column width="50%"}
+[![](https://s3.eu-west-1.amazonaws.com/static.gapminder.org/GapminderMedia/wp-uploads/20161215191134/countries_health_wealth_2016_v13.jpg){fig-align="center"}](https://www.gapminder.org/tag/chart/)
+:::
+:::
+
+## Break ⏰
+
+```{r}
+#| echo: false
+countdown::countdown(
+  minutes = 10L,
+  font_size = "5em",
+  left = 0,
+  right = 0,
+  bottom = 0
+)
+```
+
+## How `ggplot2` implements the 7 components
+
+go through each component again, but highlight code on left and incrementally build plot on right (or something like that).
+Things you *could* demonstrate for each component:
+
+1.  Data: using different data for different geoms
+2.  Aesthetics: ??
+3.  Scales: manual breaks, transformations
+4.  Geoms: how each geom has a default stat, how to figure out which aesthetics a geom has
+5.  Stats: how each stat has a default geom, `stat_summary()`
+6.  Facets: `facet_wrap` vs `facet_grid`, free scales
+7.  Coords: how adjusting limits here is different from in scales, polar coords, `coord_sf`
+
+## References
+
+::: refs
+:::
