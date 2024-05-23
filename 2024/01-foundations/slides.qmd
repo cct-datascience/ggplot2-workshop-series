@@ -57,11 +57,11 @@ p <-
 ::: nonincremental
 1.  Data
 2.  Aesthetics
-3.  Scales
-4.  Geometric Objects
+3.  Scales (and guides)
+4.  Geometric objects
 5.  Statistics
 6.  Facets
-7.  Coordinate System
+7.  Coordinate system
 :::
 :::
 
@@ -128,13 +128,16 @@ p
 :::
 :::
 
-## Scales
+## Scales (and guides)
+
+TODO: maybe replace image with annotated one like in 2023 presentation
 
 ::: columns
 ::: {.column width="50%"}
-What range of values is visualized?
-Are values continuous or discrete?
-How is that range broken up visually?
+What range of data is represented and how is it visualized?
+
+Scales translate data space (in data units) into aesthetic space (e.g. position, color).
+A guide (axis or legend) does the inverse—relates visual properties back to data.
 
 -   x-axis continuous from `r glue_collapse(range(penguins$body_mass_g, na.rm = TRUE), sep = " - ")` , 4 major breaks
 
@@ -288,7 +291,7 @@ go through each component again, but highlight code on left and incrementally bu
 Things you *could* demonstrate for each component:
 
 1.  Data: using different data for different geoms
-2.  Aesthetics: ??
+2.  Aesthetics: inheritance of aesthetics (putting them in ggplot() vs in geom\_\*())
 3.  Scales: manual breaks, transformations
 4.  Geoms: how each geom has a default stat, how to figure out which aesthetics a geom has
 5.  Stats: how each stat has a default geom, `stat_summary()`
