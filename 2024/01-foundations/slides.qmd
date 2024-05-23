@@ -130,18 +130,15 @@ p
 
 ## Scales (and guides)
 
-TODO: maybe replace image with annotated one like in 2023 presentation
+<!--# TODO: maybe replace image with annotated one like in 2023 presentation  -->
 
 ::: columns
 ::: {.column width="50%"}
 What range of data is represented and how is it visualized?
 
-Scales translate data space (in data units) into aesthetic space (e.g. position, color).
-A guide (axis or legend) does the inverse—relates visual properties back to data.
+-   x-axis continuous from `r glue_collapse(range(penguins$body_mass_g, na.rm = TRUE), sep = "–")` , 4 major breaks
 
--   x-axis continuous from `r glue_collapse(range(penguins$body_mass_g, na.rm = TRUE), sep = " - ")` , 4 major breaks
-
--   y-axis continuous from `r glue_collapse(range(penguins$bill_length_mm, na.rm = TRUE), sep = " - ")` , 3 major breaks
+-   y-axis continuous from `r glue_collapse(range(penguins$bill_length_mm, na.rm = TRUE), sep = "–")` , 3 major breaks
 
 -   colors are discrete: red, green, blue
 :::
@@ -155,6 +152,11 @@ A guide (axis or legend) does the inverse—relates visual properties back to da
 p
 ```
 :::
+:::
+
+::: notes
+Scales translate data space (in data units) into aesthetic space (e.g. position, color).
+A guide (axis or legend) does the inverse—relates visual properties back to data.
 :::
 
 ## Geometric Objects ("geoms")
