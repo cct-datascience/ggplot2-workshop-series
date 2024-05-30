@@ -1,0 +1,53 @@
+---
+title: Effective Data Communication with {ggplot2}
+author: Renata Diaz
+format: 
+  uaz-revealjs:
+  # revealjs:
+    incremental: true
+---
+
+## Learning Objectives
+
+```{r}
+#| label: setup
+#| include: false
+
+library(palmerpenguins)
+library(ggplot2)
+library(countdown)
+## pak::pak("r-for-educators/flair")
+# library(flair)
+theme_set(theme_minimal())
+```
+
+- Implement principles of effective data communication with {ggplot2}:
+- Use `geom` options to modify marks
+- Use `theme` options to maximize data-to-ink ratio
+- Use `facet_wrap` or `facet_grid` to maximize data density
+- Use the data-to-viz flowchart and {ggplot2} to choose and create a chart 
+
+# Data Communication Toolbox
+
+## `geom_*`
+
+Show using `shape` to modify geom_point; show removing geom_fills
+
+## `theme()`
+
+Show using `theme` to remove/lighten gridlines, remove unnnecessary elements.
+
+## `facet`
+
+Show (possibly a review of session 1) using `facet` to maximize data density
+
+# Putting it all together
+
+## Dataset
+
+## Choose a chart type
+
+## Begin with the defaults
+
+## How can we improve?
+
