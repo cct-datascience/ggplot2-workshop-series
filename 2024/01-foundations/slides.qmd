@@ -444,7 +444,6 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
 ::: notes
 Start by summarizing the `penguins` dataset to get some summary statistics for the error bars.
 Notice that `ggplot()` uses the raw data though.\
-
 \
 Then add the raw data points, in this case with `geom_jitter()`\
 \
@@ -455,14 +454,66 @@ The `x` mapping is inherited, but we need to supply new aesthetic mappings for `
 
 ## Aesthetics
 
+::: nonicremental
 -   Aesthetics are *inherited* when placed in `ggplot()` but can also be specified per layer
 -   Aesthetics can be mapped to data or set as constant
-
-::: notes
-
-This might be a good place to look through help files and figure out which aesthetics are valid for mapping
-
 :::
+::: notes
+This might be a good place to look through help files and figure out which aesthetics are valid for mapping
+:::
+
+## {.smaller}
+
+Aesthetic mappings supplied to `ggplot2()` are inherited by all layers
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| code-line-numbers: "1|"
+ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
+  geom_boxplot() +
+  geom_jitter() 
+```
+
+## {.smaller}
+
+Mappings supplied to a geom only affect that geom.
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| code-line-numbers: "1,3|"
+ggplot(penguins, aes(x = island, y = body_mass_g)) +
+  geom_boxplot() +
+  geom_jitter(aes(color = sex))
+```
+
+## {.smaller}
+
+Turn off inheritance from `ggplot()` for individual geoms with `inherit.aes = FALSE`.
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| code-line-numbers: "2|"
+ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
+  geom_boxplot(aes(x = island, y = body_mass_g), inherit.aes = FALSE) +
+  geom_jitter()
+```
+
+## {.smaller}
+
+Setting an aesthetic (rather than mapping to data with `aes()`)
+
+```{r}
+#| echo: true
+#| output-location: fragment
+#| code-line-numbers: "2-3|"
+ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
+  geom_boxplot(color = "black") +
+  geom_jitter(color = "darkred")
+```
+
 
 ## Scales
 
