@@ -5,6 +5,7 @@ format:
   uaz-revealjs:
   # revealjs:
     incremental: true
+css: custom.css
 bibliography: references.bib
 ---
 
@@ -74,6 +75,10 @@ p <-
 p
 ```
 :::
+:::
+
+::: notes
+We're going to go through each of these and examine how they appear in this example plot
 :::
 
 ## Data
@@ -287,18 +292,215 @@ countdown::countdown(
 )
 ```
 
-## How `ggplot2` implements the 7 components
+# `ggplot2` and the Grammar of Graphics
 
-go through each component again, but highlight code on left and incrementally build plot on right (or something like that).
-Things you *could* demonstrate for each component:
+::: notes
+Now we're going to go through each of the seven components and see some examples of how they are implemented in `ggplot2`
+:::
 
-1.  Data: using different data for different geoms
-2.  Aesthetics: inheritance of aesthetics (putting them in ggplot() vs in geom\_\*())
-3.  Scales: manual breaks, transformations
-4.  Geoms: how each geom has a default stat, how to figure out which aesthetics a geom has
-5.  Stats: how each stat has a default geom, `stat_summary()`
-6.  Facets: `facet_wrap` vs `facet_grid`, free scales
-7.  Coords: how adjusting limits here is different from in scales, polar coords, `coord_sf`
+## Data
+
+::: nonincremental
+-   Data is *inherited* by default, but can be overridden for specific layers
+
+-   Worked example: jitter plot of raw data with mean ± standard deviation
+:::
+
+```{r}
+#| fig-align: center
+library(tidyverse)
+library(palmerpenguins)
+peng_summary <- 
+  penguins |> 
+  group_by(island) |> 
+  summarize(
+    mean_mass = mean(body_mass_g, na.rm = TRUE),
+    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
+    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
+  )
+ggplot(penguins, aes(x = island, y = body_mass_g)) +
+  geom_jitter(alpha = 0.4) +
+  geom_pointrange(
+    data = peng_summary,
+    aes(y = mean_mass, ymin = lower_sd, ymax = upper_sd),
+    shape = "square",
+    color = "blue"
+  )
+```
+
+##  {.smaller}
+
+::: r-stack
+
+::: fragment
+```{r}
+#| echo: true
+#| output-location: column
+#| fig-height: 5
+#| fig-width: 4.5
+#| classes: output6040
+library(tidyverse)
+library(palmerpenguins)
+
+peng_summary <- 
+  penguins |> 
+  group_by(island) |> 
+  summarize(
+    mean_mass = mean(body_mass_g, na.rm = TRUE),
+    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
+    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
+  )
+peng_summary
+```
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| output-location: column
+#| fig-height: 5
+#| fig-width: 4.5
+#| classes: output6040
+#| code-line-numbers: "15"
+library(tidyverse)
+library(palmerpenguins)
+
+peng_summary <- 
+  penguins |> 
+  group_by(island) |> 
+  summarize(
+    mean_mass = mean(body_mass_g, na.rm = TRUE),
+    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
+    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
+  )
+# peng_summary
+
+set.seed(123)
+ggplot(penguins, aes(x = island, y = body_mass_g)) 
+```
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| output-location: column
+#| fig-height: 5
+#| fig-width: 4.5
+#| classes: output6040
+#| code-line-numbers: "15-16"
+library(tidyverse)
+library(palmerpenguins)
+
+peng_summary <- 
+  penguins |> 
+  group_by(island) |> 
+  summarize(
+    mean_mass = mean(body_mass_g, na.rm = TRUE),
+    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
+    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
+  )
+# peng_summary
+
+set.seed(123)
+ggplot(penguins, aes(x = island, y = body_mass_g)) +
+  geom_jitter(alpha = 0.4)
+```
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| output-location: column
+#| fig-height: 5
+#| fig-width: 4.5
+#| classes: output6040
+#| code-line-numbers: "17-22|18|19|"
+library(tidyverse)
+library(palmerpenguins)
+
+peng_summary <- 
+  penguins |> 
+  group_by(island) |> 
+  summarize(
+    mean_mass = mean(body_mass_g, na.rm = TRUE),
+    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
+    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
+  )
+# peng_summary
+
+set.seed(123)
+ggplot(penguins, aes(x = island, y = body_mass_g)) +
+  geom_jitter(alpha = 0.4) +
+  geom_pointrange(
+    data = peng_summary,
+    aes(y = mean_mass, ymin = lower_sd, ymax = upper_sd),
+    shape = "square",
+    color = "blue"
+  )
+```
+:::
+:::
+
+::: notes
+Start by summarizing the `penguins` dataset to get some summary statistics for the error bars.
+Notice that `ggplot()` uses the raw data though.\
+
+\
+Then add the raw data points, in this case with `geom_jitter()`\
+\
+Then add the `geom_pointrange()`.
+Notice that we override the inherited data with `data = peng_summary` .
+The `x` mapping is inherited, but we need to supply new aesthetic mappings for `y`, `ymin`, and `ymax`
+:::
+
+## Aesthetics
+
+-   Aesthetics are *inherited* when placed in `ggplot()` but can also be specified per layer
+-   Aesthetics can be mapped to data or set as constant
+
+::: notes
+
+This might be a good place to look through help files and figure out which aesthetics are valid for mapping
+
+:::
+
+## Scales
+
+-   There are *many* `scale_` functions
+-   Modifying scales is one way to modify legends
+
+## Geoms
+
+-  Every geom has a default stat, but it can be overridden
+-  Not all geoms use the same aesthetics
+
+::: notes
+possible worked examples:
+- go through help file
+- use a non-default stat for a geom
+- use after_stat() to use a different variable calculated by a stat (e.g. in geom_histogram())
+:::
+
+## Stats
+
+-  Every stat has a default geom and you *usually* use the `geom_*()` function
+-  Some stats don't have an equivalent geom, but are still very useful
+-  Worked example: adding mean ± SD on top of jitter plot with `stat_summary()`
+
+::: notes
+might also demonstrate using a non-default geom for a stat
+:::
+
+## Facets
+
+- `facet_wrap()` and `facet_grid()`
+- Facets will be explored more in part 2 of this series
+
+## Coords
+
+- Adjusting x and y limits with `coord_cartesian()` behaves differently than adjusting them with `scale_<x/y>_continuous()`
+- `coord_polar()` for polar data
+
 
 ## References
 
