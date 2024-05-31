@@ -89,13 +89,13 @@ What is being visualized?
 
 -   344 observations
 
--   body mass measured in grams
+-   Body mass measured in grams
 
--   bill length measured in mm
+-   Bill length measured in mm
 
--   three species
+-   Three species
 
--   three islands
+-   Three islands
 :::
 
 ::: {.column width="50%"}
@@ -141,11 +141,11 @@ p
 ::: {.column width="50%"}
 What range of data is represented and how is it visualized?
 
--   x-axis continuous from `r glue_collapse(range(penguins$body_mass_g, na.rm = TRUE), sep = "–")` , 4 major breaks
+-   x-axis continuous from `r glue_collapse(range(penguins$body_mass_g, na.rm = TRUE), sep = "–")`, 4 major breaks
 
--   y-axis continuous from `r glue_collapse(range(penguins$bill_length_mm, na.rm = TRUE), sep = "–")` , 3 major breaks
+-   y-axis continuous from `r glue_collapse(range(penguins$bill_length_mm, na.rm = TRUE), sep = "–")`, 3 major breaks
 
--   colors are discrete: red, green, blue
+-   Colors are discrete: red, green, blue
 :::
 
 ::: {.column width="50%"}
@@ -233,6 +233,10 @@ p
 :::
 :::
 
+::: notes
+Not every plot has facets Plots can be faceted by multiple (2) variables in a grid
+:::
+
 ## Coordinate System
 
 ::: columns
@@ -308,6 +312,8 @@ Now we're going to go through each of the seven components and see some examples
 
 ```{r}
 #| fig-align: center
+#| fig-height: 4
+#| fig-width: 7
 library(tidyverse)
 library(palmerpenguins)
 peng_summary <- 
@@ -331,7 +337,6 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
 ##  {.smaller}
 
 ::: r-stack
-
 ::: fragment
 ```{r}
 #| echo: true
@@ -444,6 +449,7 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
 ::: notes
 Start by summarizing the `penguins` dataset to get some summary statistics for the error bars.
 Notice that `ggplot()` uses the raw data though.\
+
 \
 Then add the raw data points, in this case with `geom_jitter()`\
 \
@@ -458,11 +464,12 @@ The `x` mapping is inherited, but we need to supply new aesthetic mappings for `
 -   Aesthetics are *inherited* when placed in `ggplot()` but can also be specified per layer
 -   Aesthetics can be mapped to data or set as constant
 :::
+
 ::: notes
 This might be a good place to look through help files and figure out which aesthetics are valid for mapping
 :::
 
-## {.smaller}
+##  {.smaller}
 
 Aesthetic mappings supplied to `ggplot2()` are inherited by all layers
 
@@ -475,7 +482,7 @@ ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
   geom_jitter() 
 ```
 
-## {.smaller}
+##  {.smaller}
 
 Mappings supplied to a geom only affect that geom.
 
@@ -488,7 +495,7 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
   geom_jitter(aes(color = sex))
 ```
 
-## {.smaller}
+##  {.smaller}
 
 Turn off inheritance from `ggplot()` for individual geoms with `inherit.aes = FALSE`.
 
@@ -501,7 +508,7 @@ ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
   geom_jitter()
 ```
 
-## {.smaller}
+##  {.smaller}
 
 Setting an aesthetic (rather than mapping to data with `aes()`)
 
@@ -514,44 +521,113 @@ ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
   geom_jitter(color = "darkred")
 ```
 
-
 ## Scales
+
+<!-- TODO: come up with a worked example for this one -->
 
 -   There are *many* `scale_` functions
 -   Modifying scales is one way to modify legends
 
 ## Geoms
 
--  Every geom has a default stat, but it can be overridden
--  Not all geoms use the same aesthetics
+-   Every geom has a default stat, but it can be overridden
+-   Not all geoms use the same aesthetics
+-   Worked example: explore the anatomy of a help file (e.g. `?geom_point()`)
+    -   How can you determine the default stat for a geom?
+    -   How can you find out what aesthetics a geom has?
 
-::: notes
-possible worked examples:
-- go through help file
-- use a non-default stat for a geom
-- use after_stat() to use a different variable calculated by a stat (e.g. in geom_histogram())
+##  {.smaller}
+
+```{r}
+#| echo: true
+#| fig-align: center
+df <- expand_grid(x = LETTERS[1:5], y = 1:5)
+ggplot(df) +
+  geom_point(aes(x = x, y = y, 
+        color = x, shape = x,
+        size = y, alpha = y, stroke = y))
+```
+
+::: callout-caution
+With great power, comes great responsibility!
+It's not always a *good idea* to map data to aesthetics just because you can.
+Stay tuned for part 2 of this series for more!
 :::
 
 ## Stats
 
--  Every stat has a default geom and you *usually* use the `geom_*()` function
--  Some stats don't have an equivalent geom, but are still very useful
--  Worked example: adding mean ± SD on top of jitter plot with `stat_summary()`
+<!-- NOTE: an alternative to this would be to talk about how the stats of some geoms (e.g. geom_histogram()) actually return multiple values that you can select from with `after_stat()`.  Maybe that is more useful? -->
+
+-   Every stat has a default geom and you *usually* use the `geom_*()` function
+-   Some stats *don't* have an equivalent geom
+-   Worked example: adding mean ± SD on top of jitter plot with `stat_summary()`
 
 ::: notes
 might also demonstrate using a non-default geom for a stat
 :::
 
+## `stat_summary()` key arguments
+
+`fun.data`—A function that is given the complete data and should return a data frame with variables ymin, y, and ymax.
+
+```{r}
+#| echo: true
+mean_sdl(rnorm(100), mult = 1)
+```
+
+::: callout-note
+`mult` multiplies the standard deviation.
+The default is `2`.
+:::
+
+. . .
+
+`fun.args`—list of arguments to function in `fun.data` (optional)
+
+. . .
+
+`geom`—default is `"pointrange"`, but could be anything that uses `y`, `ymin` and `ymax` aesthetic mappings
+
+##  {.smaller}
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| code-line-numbers: "|4-9|5|6|"
+set.seed(123)
+ggplot(penguins, aes(x = island, y = body_mass_g)) +
+  geom_jitter(alpha = 0.4) +
+  stat_summary(
+    fun.data = "mean_sdl",
+    fun.args = list(mult = 1),
+    color = "blue",
+    shape = "square"
+  )
+```
+
+## Use your own function
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| code-line-numbers: "|1-3|6"
+median_80 <- function(vals) {
+   tibble(y = median(vals, na.rm = TRUE), ymin = quantile(vals, 0.1), ymax = quantile(vals, 0.9))
+}
+ggplot(penguins, aes(x = island, y = body_mass_g)) +
+  geom_jitter(alpha = 0.4) +
+  stat_summary(fun.data = "median_80")
+```
+
 ## Facets
 
-- `facet_wrap()` and `facet_grid()`
-- Facets will be explored more in part 2 of this series
+-   Implemented with `facet_wrap()` and `facet_grid()`
+-   Facets will be explored more in part 2 of this series
 
 ## Coords
 
-- Adjusting x and y limits with `coord_cartesian()` behaves differently than adjusting them with `scale_<x/y>_continuous()`
-- `coord_polar()` for polar data
-
+-   Adjusting x and y limits with `coord_cartesian()` behaves differently than adjusting them with `scale_<x/y>_continuous()`
+-   `coord_polar()` for polar data
 
 ## References
 
