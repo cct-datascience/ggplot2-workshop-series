@@ -562,27 +562,20 @@ Stay tuned for part 2 of this series for more!
 -   Some stats *don't* have an equivalent geom
 -   Worked example: adding mean ± SD on top of jitter plot with `stat_summary()`
 
-::: notes
-might also demonstrate using a non-default geom for a stat
-:::
-
-## `stat_summary()` key arguments
+## `stat_summary()` key arguments {.smaller}
 
 `fun.data`—A function that is given the complete data and should return a data frame with variables ymin, y, and ymax.
+
+. . .
 
 ```{r}
 #| echo: true
 mean_sdl(rnorm(100), mult = 1)
 ```
 
-::: callout-note
-`mult` multiplies the standard deviation.
-The default is `2`.
-:::
-
 . . .
 
-`fun.args`—list of arguments to function in `fun.data` (optional)
+`fun.args`—list of arguments to function in `fun.data` (optional); `mult` multiplies the standard deviation
 
 . . .
 
@@ -605,7 +598,7 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
   )
 ```
 
-## Use your own function
+## Use your own function {.smaller}
 
 ```{r}
 #| echo: true
@@ -626,8 +619,11 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
 
 ## Coords
 
--   Adjusting x and y limits with `coord_cartesian()` behaves differently than adjusting them with `scale_<x/y>_continuous()`
+-   Adjusting x and y limits with `coord_cartesian()` is different than ajusting limits in a scale
 -   `coord_polar()` for polar data
+-   Worked example: zooming in on data
+
+<!-- the last example from ?coord_cartesian() is pretty good -->
 
 ## References
 
