@@ -1,6 +1,6 @@
 ---
 title: Foundations of {ggplot2}
-author: Eric R Scott
+author: Eric R. Scott
 format: 
   uaz-revealjs:
   # revealjs:
@@ -22,7 +22,7 @@ library(gapminder)
 library(countdown)
 ## pak::pak("r-for-educators/flair")
 # library(flair)
-theme_set(theme_minimal())
+theme_set(theme_bw())
 ```
 
 -   Understand the "grammar of graphics" and how it inspired `ggplot2`'s design
@@ -476,6 +476,8 @@ The `x` mapping is inherited, but we need to supply new aesthetic mappings for `
 ::: nonicremental
 -   Aesthetics are *inherited* when placed in `ggplot()` but can also be specified per layer
 -   Aesthetics can be mapped to data or set as constant
+-   All the aesthetics and their possible values: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
+-   Worked example: box plot for each island layered ontop of jitter plot for each island x sex combination.
 :::
 
 ::: notes
@@ -536,10 +538,63 @@ ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
 
 ## Scales
 
-<!-- TODO: come up with a worked example for this one -->
+-   `scale_` functions effect the range (limits) and breaks of scales and the labels and appearance of corresponding guides.
+-   Worked example: 1) re-order and re-color a discrete color scale, 2) change the number of breaks on the x-axis
 
--   There are *many* `scale_` functions
--   Modifying scales is one way to modify legends
+##  {.smaller}
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| code-line-numbers: "|3|4-8|9"
+p + 
+  scale_color_manual(
+    name = "Species",
+    values = c(
+      "Adelie" = "#7570b3",
+      "Chinstrap" = "#d95f02",
+      "Gentoo" = "#1b9e77"
+    ),
+    breaks = c("Gentoo", "Chinstrap", "Adelie")
+  )
+```
+
+::: notes
+`values` takes a named vector and is used to assign a color (hex code or color name) to each level of the variable.  `breaks` changes the order.
+:::
+
+##  {.smaller}
+
+*About* 10 breaks at "pretty" values:
+
+```{r}
+#| echo: true
+#| fig-align: center
+
+p +
+  scale_x_continuous(
+    name = "Bill Length (mm)",
+    n.breaks = 10
+  )
+
+```
+
+
+##  {.smaller}
+
+Breaks at *exactly* a sequence of values:
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| 
+p + 
+  scale_x_continuous(
+    name = "Bill Length (mm)",
+    breaks = seq(from = 2000, to = 7000, by = 303) 
+  )
+```
+
 
 ## Geoms
 
@@ -624,6 +679,35 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
   geom_jitter(alpha = 0.4) +
   stat_summary(fun.data = "median_80")
 ```
+
+## {.smaller}
+[alternate worked example for `stat`] Some "stats" calculate multiple values available with `after_stat()`.
+
+
+```{r}
+#| echo: true
+ggplot(penguins) +
+  geom_histogram(aes(x = body_mass_g)) +
+  facet_wrap(vars(island))
+```
+
+::: notes
+Notice there are just fewer observations on Torgersen island.  This could make it difficult to compare if you are mainly interested in comparing the *distribution* of body size across islands.
+:::
+
+## {.smaller}
+Use `after_stat(density)` to make it easier to compare distributions with different total n.
+
+```{r}
+#| echo: true
+ggplot(penguins) +
+  geom_histogram(aes(x = body_mass_g, y = after_stat(density))) +
+  facet_wrap(vars(island))
+```
+
+::: notes
+`after_stat(density)` makes the bars in each facet integrate to 1, so they now show *relative* distribution of body mass.
+:::
 
 ## Facets
 
