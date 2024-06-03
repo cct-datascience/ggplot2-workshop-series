@@ -25,10 +25,11 @@ library(countdown)
 theme_set(theme_minimal())
 ```
 
--   Learn about the most recent changes in `ggplot2`
 -   Understand the "grammar of graphics" and how it inspired `ggplot2`'s design
 -   Know what it means to "map data to aesthetics"
+-   Learn to plot different data sets on the same visualization
 -   Understand the relationship between a "geom" and a "stat"
+-   Learn to customize scales and guides
 
 ------------------------------------------------------------------------
 
@@ -85,17 +86,15 @@ We're going to go through each of these and examine how they appear in this exam
 
 ::: columns
 ::: {.column width="50%"}
-What is being visualized?
+Observations and variables to be visualized.
 
--   344 observations
+What data is being visualized?
 
 -   Body mass measured in grams
 
 -   Bill length measured in mm
 
--   Three species
-
--   Three islands
+-   Island and species categories
 :::
 
 ::: {.column width="50%"}
@@ -113,7 +112,9 @@ p
 
 ::: columns
 ::: {.column width="50%"}
-What visual elements are used to encode data?
+Visual elements (color, shape, position, size, etc.) used to encode data.
+
+What aesthetics are used to encode these data?
 
 -   Color
 
@@ -135,17 +136,18 @@ p
 
 ## Scales (and guides)
 
-<!--# TODO: maybe replace image with annotated one like in 2023 presentation  -->
-
 ::: columns
 ::: {.column width="50%"}
-What range of data is represented and how is it visualized?
+Scales translate data units into visual units, guides translate visual units back to data units.
 
--   x-axis continuous from `r glue_collapse(range(penguins$body_mass_g, na.rm = TRUE), sep = "–")`, 4 major breaks
+What scales are used?
 
--   y-axis continuous from `r glue_collapse(range(penguins$bill_length_mm, na.rm = TRUE), sep = "–")`, 3 major breaks
+-   Continuous and linear x and y axes (scales)
 
--   Colors are discrete: red, green, blue
+```{=html}
+<!-- -->
+```
+-   Discrete (categorical) color scale
 :::
 
 ::: {.column width="50%"}
@@ -160,15 +162,18 @@ p
 :::
 
 ::: notes
-Scales translate data space (in data units) into aesthetic space (e.g. position, color).
-A guide (axis or legend) does the inverse—relates visual properties back to data.
+Scale translates data units (e.g. grams) into visual units (pixels).
+Guides translate visual units (e.g. color hue) back to data units (species category).
+Walk through this with annotations.
 :::
 
 ## Geometric Objects ("geoms")
 
 ::: columns
 ::: {.column width="50%"}
-How are data represented visually?
+Objects, often having multiple aesthetics, that represent data visually.
+
+What geometric objects are used?
 
 -   Data is represented using circles/points
 -   Trend is represented as a line
@@ -195,7 +200,9 @@ E.g. points have position, shape, size, color, and transparency and different da
 
 ::: columns
 ::: {.column width="50%"}
-What calculations or transformations need to be done to present the data?
+Any calculations or transformations needed to summarize the data to plot it.
+
+What "stats" are used?
 
 -   For points, none (stat = "identity")
 
@@ -217,7 +224,9 @@ p
 
 ::: columns
 ::: {.column width="50%"}
-By what variable are different subsets of the data split apart into "small multiples"?
+Plots can be split into small multiples or "facets" by a variable.
+
+What is the faceting variable?
 
 -   Faceted by island
 :::
@@ -234,14 +243,18 @@ p
 :::
 
 ::: notes
-Not every plot has facets Plots can be faceted by multiple (2) variables in a grid
+Not every plot has facets.
+Plots can be faceted by multiple (2) variables in a grid
 :::
 
 ## Coordinate System
 
 ::: columns
 ::: {.column width="50%"}
-How are positions represented visually?
+How spatial positions are represented on paper (or screen)—e.g.
+map projections.
+
+What coordinate system is used?
 
 -   Cartesian coordinates
 :::
