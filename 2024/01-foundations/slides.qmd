@@ -20,6 +20,7 @@ library(ggplot2)
 library(glue)
 library(gapminder)
 library(countdown)
+library(tidyr)
 ## pak::pak("r-for-educators/flair")
 # library(flair)
 theme_set(theme_bw())
@@ -48,7 +49,7 @@ theme_set(theme_bw())
 #| label: peng_plot
 #| include: false
 p <- 
-  ggplot(penguins, aes(x = body_mass_g, y = bill_length_mm, color = species)) +
+  ggplot(penguins |> drop_na(), aes(x = body_mass_g, y = bill_length_mm, color = species)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
   facet_wrap(vars(island), ncol = 1)
@@ -144,9 +145,8 @@ What scales are used?
 
 -   Continuous and linear x and y axes (scales)
 
-```{=html}
 <!-- -->
-```
+
 -   Discrete (categorical) color scale
 :::
 
@@ -560,7 +560,8 @@ p +
 ```
 
 ::: notes
-`values` takes a named vector and is used to assign a color (hex code or color name) to each level of the variable.  `breaks` changes the order.
+`values` takes a named vector and is used to assign a color (hex code or color name) to each level of the variable.
+`breaks` changes the order.
 :::
 
 ##  {.smaller}
@@ -579,7 +580,6 @@ p +
 
 ```
 
-
 ##  {.smaller}
 
 Breaks at *exactly* a sequence of values:
@@ -594,7 +594,6 @@ p +
     breaks = seq(from = 2000, to = 7000, by = 303) 
   )
 ```
-
 
 ## Geoms
 
@@ -680,9 +679,10 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
   stat_summary(fun.data = "median_80")
 ```
 
-## {.smaller}
-[alternate worked example for `stat`] Some "stats" calculate multiple values available with `after_stat()`.
+##  {.smaller}
 
+<!-- alternative worked example for `stat`.  I am leaning toward this one because it is simpler-->
+Some "stats" calculate multiple values available with `after_stat()`.
 
 ```{r}
 #| echo: true
@@ -692,10 +692,12 @@ ggplot(penguins) +
 ```
 
 ::: notes
-Notice there are just fewer observations on Torgersen island.  This could make it difficult to compare if you are mainly interested in comparing the *distribution* of body size across islands.
+Notice there are just fewer observations on Torgersen island.
+This could make it difficult to compare if you are mainly interested in comparing the *distribution* of body size across islands.
 :::
 
-## {.smaller}
+##  {.smaller}
+
 Use `after_stat(density)` to make it easier to compare distributions with different total n.
 
 ```{r}
@@ -716,11 +718,45 @@ ggplot(penguins) +
 
 ## Coords
 
--   Adjusting x and y limits with `coord_cartesian()` is different than ajusting limits in a scale
--   `coord_polar()` for polar data
+-   Adjusting x and y limits with `coord_cartesian()` is different than adjusting limits in a scale
+-   `coord_polar()` for polar data, `coord_sf()` for maps
 -   Worked example: zooming in on data
 
-<!-- the last example from ?coord_cartesian() is pretty good -->
+##  {.smaller}
+
+Setting axis limits in `scale_x_continuous()` *removes* data that is out of range
+
+```{r}
+#| echo: true
+#| warning: true
+#| fig-align: center
+
+p + scale_x_continuous(limits = c(4000, 5000))
+
+```
+
+::: notes
+Importantly, notice that the best-fit line from `geom_smooth()` is now *only* considering the points between 4000 and 5000 g body mass!
+:::
+
+## {.smaller}
+
+Setting axis limits in `coord_cartesian()` simply *zooms in*
+
+```{r}
+#| echo: true
+#| warning: true
+#| fig-align: center
+
+p + coord_cartesian(xlim = c(4000, 5000))
+
+```
+
+::: notes
+Notice that points whose centers are < 4000 or > 5000 still show up
+:::
+
+<!-- TODO: add boilerplate wrap-up slide -->
 
 ## References
 
