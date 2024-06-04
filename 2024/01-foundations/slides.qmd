@@ -538,7 +538,7 @@ ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
 
 ## Scales
 
--   `scale_` functions effect the range (limits) and breaks of scales and the labels and appearance of corresponding guides.
+-   `scale_` functions affect the range (limits) and breaks of scales and the labels and appearance of corresponding guides.
 -   Worked example: 1) re-order and re-color a discrete color scale, 2) change the number of breaks on the x-axis
 
 ##  {.smaller}
@@ -756,7 +756,14 @@ p + coord_cartesian(xlim = c(4000, 5000))
 Notice that points whose centers are < 4000 or > 5000 still show up
 :::
 
-<!-- TODO: add boilerplate wrap-up slide -->
+## Resources
+
+- [ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/)
+- [The R Graph Gallery](https://r-graph-gallery.com/)
+- [ggplot2 documentation](https://ggplot2.tidyverse.org/index.html)
+- CCT Data Science [drop-in hours](https://datascience.cct.arizona.edu/events/weekly-drop-hours-alvsce-researchers) (Tuesdays 9-10am)
+- [Data Science Incubator](https://datascience.cct.arizona.edu/incubator)
+
 
 ## References
 
