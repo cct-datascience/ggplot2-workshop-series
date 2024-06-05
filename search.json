@@ -25,7 +25,56 @@
     "href": "2024/01-foundations/notes.html",
     "title": "Notes for foundations of ggplot2",
     "section": "",
-    "text": "Hey these are some notes"
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)\ntheme_set(theme_bw())"
+  },
+  {
+    "objectID": "2024/01-foundations/notes.html#data",
+    "href": "2024/01-foundations/notes.html#data",
+    "title": "Notes for foundations of ggplot2",
+    "section": "Data",
+    "text": "Data\nThis is the plot we’re trying to re-create:\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nWhat geom can we use for error bars? Type geom_ and hit tab to see a list of all possible geom_ functions. geom_errorbar() sounds about right! What data do we need to plot an error bar? View the help file with ?geom_errorbar and check the “Aesthetics” section. Looks like we need x (island), ymin, and ymax.\nLet’s start by summarizing the data to calculate a mean and standard deviation for each island.\n\npeng_summary &lt;- \n  penguins |&gt; \n  group_by(island) |&gt; #for each island...\n  summarize(\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    sd = sd(body_mass_g, na.rm = TRUE)\n  )\npeng_summary\n\n# A tibble: 3 × 3\n  island    mean_mass    sd\n  &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt;\n1 Biscoe        4716.  783.\n2 Dream         3713.  417.\n3 Torgersen     3706.  445.\n\n\nThen let’s get values for the lower and upper parts of the error bars.\n\npeng_summary &lt;-\n  peng_summary |&gt; \n  mutate(lower = mean_mass - sd, upper = mean_mass + sd)\npeng_summary\n\n# A tibble: 3 × 5\n  island    mean_mass    sd lower upper\n  &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Biscoe        4716.  783. 3933. 5499.\n2 Dream         3713.  417. 3296. 4130.\n3 Torgersen     3706.  445. 3261. 4151.\n\n\nNow we can plot the error bars and means.\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(aes(y = mean_mass)) +\n  #sd:\n  geom_errorbar(aes(ymin = lower, ymax = upper))\n\n\n\n\n\n\n\nLet’s do some tweaking to make this look more appealing\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(\n    aes(y = mean_mass),\n    shape = \"square\",\n    color = \"blue\",\n    size = 2.5\n  )+\n  #sd:\n  geom_errorbar(\n    data = peng_summary,\n    aes(ymin = lower, ymax = upper),\n    width = 0.1,\n    color = \"blue\"\n  ) \n\n\n\n\n\n\n\nNow we can add the raw data using geom_jitter() by overriding the data argument.\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(\n    aes(y = mean_mass),\n    shape = \"square\",\n    color = \"blue\",\n    size = 2.5\n  )+\n  #sd:\n  geom_errorbar(\n    data = peng_summary,\n    aes(ymin = lower, ymax = upper),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins, #override data to use penguins instead of peng_summary\n    aes(y = body_mass_g),\n  )\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nAnd finally we can do some tweaking of the jitter layer\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(\n    aes(y = mean_mass),\n    shape = \"square\",\n    color = \"blue\",\n    size = 2.5\n  )+\n  #sd:\n  geom_errorbar(\n    data = peng_summary,\n    aes(ymin = lower, ymax = upper),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins, #override data to use penguins instead of peng_summary\n    aes(y = body_mass_g),\n    alpha = 0.4, #add transparency\n    height = 0 #don't jitter vertically, only horizontally\n  )\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "2024/01-foundations/notes.html#aesthetics",
+    "href": "2024/01-foundations/notes.html#aesthetics",
+    "title": "Notes for foundations of ggplot2",
+    "section": "Aesthetics",
+    "text": "Aesthetics\nLet’s use a boxplot on top of the jitter plot and have the points colored by sex but not the box plots\nWhen color = sex is in the aes() call in ggplot(), this aesthetic mapping is inherited by all geoms.\n\nggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +\n  geom_boxplot() +\n  geom_jitter()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nIf we want to map sex to color only for the jitter layer, we can remove it from ggplot() and add it to geom_jitter()\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_boxplot() +\n  geom_jitter(aes(color = sex))\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nOr, we can use inherit.aes = FALSE and specify all the aesthetic mappings for the boxplot layer.\n\nggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +\n  geom_boxplot(aes(x = island, y = body_mass_g), inherit.aes = FALSE) +\n  geom_jitter()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nIf you set aesthetic mappings to constants, it overrides the mappings to data.\n\nggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +\n  geom_boxplot(color = \"darkgreen\") +\n  geom_jitter()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "2024/01-foundations/notes.html#scales",
+    "href": "2024/01-foundations/notes.html#scales",
+    "title": "Notes for foundations of ggplot2",
+    "section": "Scales",
+    "text": "Scales\nHere’s the original plot, saved as p\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nAnd here’s what it’s going to end up like after modifying scales:\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nFirst, let’s address the color scale. Two changes need to happen: custom colors, and a re-ordering of the species in the legend. scale_color_manual() can take care of both.\nWe can supply whatever colors we want with a named vector where the names correspond to levels of the species variable that is mapped to color.\n\nmy_cols &lt;- c(\n  \"Adelie\" = \"#7570b3\",\n  \"Chinstrap\" = \"#d95f02\",\n  \"Gentoo\" = \"#1b9e77\"\n)\n\nThese are hex-codes, but you can also used named colors in R.\nSupply that named vector to the values argument.\n\np +\n  scale_color_manual(\n    name = \"Species\",\n    values = my_cols\n  )\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nThe re-ordering happens with the breaks argument like so:\n\np_new &lt;- p +\n  scale_color_manual(\n    name = \"Species\",\n    values = my_cols,\n    breaks = c(\"Gentoo\", \"Chinstrap\", \"Adelie\")\n  )\np_new\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nNow we can move on to the x and y axes. For the x-axis, let’s increase the number of breaks to about 10.\n\np_new +\n  scale_x_continuous(n.breaks = 10)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nAnd we can supply exact breaks to the y-axis.\n\np_new +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(breaks = seq(from = 30, to = 65, by = 5.5))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1),\n               color = \"blue\", shape = \"square\")\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "2024/01-foundations/notes.html#geoms",
+    "href": "2024/01-foundations/notes.html#geoms",
+    "title": "Notes for foundations of ggplot2",
+    "section": "Geoms",
+    "text": "Geoms\n\ndf &lt;- expand_grid(x = LETTERS[1:5], y = 1:5)\nggplot(df) +\n  geom_point(aes(x = x, y = y, \n        color = x, shape = x,\n        size = y, alpha = y, stroke = y))"
+  },
+  {
+    "objectID": "2024/01-foundations/notes.html#stats",
+    "href": "2024/01-foundations/notes.html#stats",
+    "title": "Notes for foundations of ggplot2",
+    "section": "Stats",
+    "text": "Stats\nstat_summary()\nstat_summary() calculates some summary statistics as y, ymin, and ymax (and possibly other aesthetic mappings) and supplies them to a geom (default = “pointrange”). This is a shortcut for doing the sort of plot we did in the “Data” section without having to create a separate dataset.\nFirst, let’s see what the default looks like:\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  stat_summary()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nNo summary function supplied, defaulting to `mean_se()`\n\n\n\n\n\n\n\n\nAs you can see in the warning, by default it is plotting mean ± SE (standard error) with the mean_se() function. To instead plot mean ± SD we can either create our own function or use mean_sdl() and change it’s mult argument from the default 2 which doubles the SD.\nLet’s see what mean_sdl() does on its own:\n\nmean_sdl(rnorm(100), mult = 1)\n\n          y      ymin     ymax\n1 0.1180258 -0.941024 1.177076\n\n\nIt creates a tibble with the columns y, ymin, and ymax. Any function that does this will work with stat_summary() by supplying it to the fun.data argument. To pass along the mult argument, we have to use the fun.args argument.\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1))\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\n\n\n\n\n\n\nNow we can add our data!\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = \"mean_sdl\", fun.args = list(mult = 1),\n               color = \"blue\", shape = \"square\")\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nWe could instead use our own custom function that plots the median and the middle 80% of data points, for example.\n\nmedian_80 &lt;- function(vals) {\n   tibble(y = median(vals, na.rm = TRUE),\n          ymin = quantile(vals, 0.1),\n          ymax = quantile(vals, 0.9))\n}\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = \"median_80\", color = \"blue\", shape = \"square\")\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nBinned density plot with geom_histogram() and after_stat()\n\nSome “stats” calculate multiple values available with after_stat(). For example, geom_histogram() uses the count variable calculated by stat_bin() to plot the number of data points in each bit on the y-axis.\nHere’s a histogram of body mass faceted by island:\n\nggplot(penguins) +\n  geom_histogram(aes(x = body_mass_g)) +\n  facet_wrap(vars(island))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\nTorgersen island clearly just has fewer penguins, making it somewhat difficult to compare the relative distribution of body mass among the islands.\nIn the “Computed variables” section of ?stat_bin() you see that it also calculates density, ncount, ndensity, and width. We can plot density of points rather than count using after_stat(density).\n\nggplot(penguins) +\n  geom_histogram(aes(x = body_mass_g, y = after_stat(density))) +\n  facet_wrap(vars(island))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\nNow the bars for each island add up to 1, taking sample size out of the equation."
+  },
+  {
+    "objectID": "2024/01-foundations/notes.html#facets",
+    "href": "2024/01-foundations/notes.html#facets",
+    "title": "Notes for foundations of ggplot2",
+    "section": "Facets",
+    "text": "Facets\nfacet_wrap() facets by a single variable\n\nggplot(penguins, aes(x = body_mass_g, y = bill_length_mm)) +\n  facet_wrap(vars(island)) +\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nfacet_grid() facets by two variables\n\nggplot(penguins, aes(x = body_mass_g, y = bill_length_mm)) +\n  facet_grid(vars(sex), vars(island)) +\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "2024/01-foundations/notes.html#coords",
+    "href": "2024/01-foundations/notes.html#coords",
+    "title": "Notes for foundations of ggplot2",
+    "section": "Coords",
+    "text": "Coords\nThere are multiple ways to change the axis limits in ggplot2. First, you can change them with scale_x_continuous() or scale_y_continuous()\n\np\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\np + scale_x_continuous(limits = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 222 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 222 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nYou can see in the warning message printed that 222 rows have been removed before drawing this plot. You can tell because the trend lines produced by geom_smooth() now have different slopes because they are fit to only a subset of data!\nYou can also change the limits with coord_cartesian()\n\np + coord_cartesian(xlim = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nThis has the effect of zooming in on the x-axis. The lines and points just outside of the limits are cut off and the slopes of the trend lines are unaffected because no data has been removed."
   },
   {
     "objectID": "2023/03-extensions/slides.html#learning-objectives",
@@ -863,18 +912,214 @@
     "href": "2024/01-foundations/index.html",
     "title": "Foundations of ggplot2",
     "section": "",
-    "text": "Date & time: Thursday June 6, 2024, 11am - 1pm AZ\nInstructor: Eric Scott\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying many data visualization tools, including ggplot2. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
+    "text": "Date & time: Thursday June 6, 2024, 11am - 1pm AZ\nInstructor: Eric Scott\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying many data visualization tools, including ggplot2. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2\n\nMaterials:\n\nNotes\n    View slides in full screen",
     "crumbs": [
       "Upcoming series",
       "Session 1 - Foundations"
     ]
   },
   {
-    "objectID": "2024/01-foundations/slides.html#hello",
-    "href": "2024/01-foundations/slides.html#hello",
-    "title": "Slides!",
-    "section": "Hello",
-    "text": "Hello\nthese are slides\n\n\n\n\nIntermediate ggplot2 workshop series"
+    "objectID": "2024/01-foundations/slides.html#learning-objectives",
+    "href": "2024/01-foundations/slides.html#learning-objectives",
+    "title": "Foundations of {ggplot2}",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nUnderstand the “grammar of graphics” and how it inspired ggplot2’s design\nKnow what it means to “map data to aesthetics”\nLearn to plot different data sets on the same visualization\nUnderstand the relationship between a “geom” and a “stat”\nLearn to customize scales and guides"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#a-grammar-of-graphics",
+    "href": "2024/01-foundations/slides.html#a-grammar-of-graphics",
+    "title": "Foundations of {ggplot2}",
+    "section": "A Grammar of Graphics",
+    "text": "A Grammar of Graphics\n\nA book by Wilkinson (2005)\nInspired the development of many graphics programs including ggplot2 (Wickham 2010)\nAlternative to having a function for every kind of plot\nA framework for layering elements to create any kind of plot"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#grammar-of-graphics-components",
+    "href": "2024/01-foundations/slides.html#grammar-of-graphics-components",
+    "title": "Foundations of {ggplot2}",
+    "section": "Grammar of Graphics Components",
+    "text": "Grammar of Graphics Components\n\n\n\n\nData\nAesthetics\nScales (and guides)\nGeometric objects\nStatistics\nFacets\nCoordinate system\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe’re going to go through each of these and examine how they appear in this example plot"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#data",
+    "href": "2024/01-foundations/slides.html#data",
+    "title": "Foundations of {ggplot2}",
+    "section": "Data",
+    "text": "Data\n\n\nObservations and variables to be visualized.\nWhat data is being visualized?\n\nBody mass measured in grams\nBill length measured in mm\nIsland and species categories"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#aesthetics",
+    "href": "2024/01-foundations/slides.html#aesthetics",
+    "title": "Foundations of {ggplot2}",
+    "section": "Aesthetics",
+    "text": "Aesthetics\n\n\nVisual elements (color, shape, position, size, etc.) used to encode data.\nWhat aesthetics are used to encode these data?\n\nColor\nx position\ny position"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#scales-and-guides",
+    "href": "2024/01-foundations/slides.html#scales-and-guides",
+    "title": "Foundations of {ggplot2}",
+    "section": "Scales (and guides)",
+    "text": "Scales (and guides)\n\n\nScales translate data units into visual units, guides translate visual units back to data units.\nWhat scales are used?\n\nContinuous and linear x and y axes (scales)\n\n\n\nDiscrete (categorical) color scale\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScale translates data units (e.g. grams) into visual units (pixels). Guides translate visual units (e.g. color hue) back to data units (species category). Walk through this with annotations."
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#geometric-objects-geoms",
+    "href": "2024/01-foundations/slides.html#geometric-objects-geoms",
+    "title": "Foundations of {ggplot2}",
+    "section": "Geometric Objects (“geoms”)",
+    "text": "Geometric Objects (“geoms”)\n\n\nObjects, often having multiple aesthetics, that represent data visually.\nWhat geometric objects are used?\n\nData is represented using circles/points\nTrend is represented as a line\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBoth aesthetics and geoms are related to the visual representation of data. To distinguish aesthetics and geoms, think about how geoms can have many aesthetics. E.g. points have position, shape, size, color, and transparency and different data could be mapped to each of those aesthetics."
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#statistics-stats",
+    "href": "2024/01-foundations/slides.html#statistics-stats",
+    "title": "Foundations of {ggplot2}",
+    "section": "Statistics (“stats”)",
+    "text": "Statistics (“stats”)\n\n\nAny calculations or transformations applied to the data in order to plot it.\nWhat “stats” are used?\n\nFor points, none (stat = “identity”)\nFor trend lines, linear regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIf the data are 344 observations, are any transformations needed to draw one of the two “geoms” in the plot?"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#facets",
+    "href": "2024/01-foundations/slides.html#facets",
+    "title": "Foundations of {ggplot2}",
+    "section": "Facets",
+    "text": "Facets\n\n\nPlots can be split into small multiples or “facets” by a variable.\nWhat is the faceting variable?\n\nFaceted by island\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNot every plot has facets. Plots can be faceted by multiple (2) variables in a grid"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#coordinate-system",
+    "href": "2024/01-foundations/slides.html#coordinate-system",
+    "title": "Foundations of {ggplot2}",
+    "section": "Coordinate System",
+    "text": "Coordinate System\n\n\nHow spatial positions are represented on paper (or screen)—e.g. map projections.\nWhat coordinate system is used?\n\nCartesian coordinates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOther options include polar coordinates or the many possible coordinate systems used in maps."
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#practice",
+    "href": "2024/01-foundations/slides.html#practice",
+    "title": "Foundations of {ggplot2}",
+    "section": "Practice",
+    "text": "Practice\nIdentify each of the seven components of this plot\n\n\n\n\nData\nAesthetics\nScales\nGeometric Objects\nStatistics\nFacets\nCoordinate System"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#break",
+    "href": "2024/01-foundations/slides.html#break",
+    "title": "Foundations of {ggplot2}",
+    "section": "Break ⏰",
+    "text": "Break ⏰\n\n\n\n−+\n10:00"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#data-1",
+    "href": "2024/01-foundations/slides.html#data-1",
+    "title": "Foundations of {ggplot2}",
+    "section": "Data",
+    "text": "Data\n\n\nData is inherited from ggplot() by all layers, but can be overridden for specific layers\nWorked example: jitter plot of raw data with mean ± standard deviation"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section",
+    "href": "2024/01-foundations/slides.html#section",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(palmerpenguins)\n\n#summarize dataset\npeng_summary &lt;- \n  penguins |&gt; \n  group_by(island) |&gt; \n  summarize(\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),\n    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)\n  )\n\nggplot(peng_summary, aes(x = island, y = mean_mass)) +\n  #mean\n  geom_point(shape = \"square\", color = \"blue\", size = 2.5) +\n  #sd\n  geom_errorbar(\n    data = peng_summary,\n    aes(y = mean_mass, ymin = lower_sd, ymax = upper_sd),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins,\n    aes(y = body_mass_g),\n    alpha = 0.4,\n    height = 0\n  )\n\n\n\n\n\n\n\n\n\n\n\nStart by summarizing the penguins dataset to get some summary statistics for the error bars. Notice that ggplot() uses the raw data though.\n\n\nThen add the raw data points, in this case with geom_jitter()\n\nThen add the geom_pointrange(). Notice that we override the inherited data with data = peng_summary . The x mapping is inherited, but we need to supply new aesthetic mappings for y, ymin, and ymax"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#aesthetics-1",
+    "href": "2024/01-foundations/slides.html#aesthetics-1",
+    "title": "Foundations of {ggplot2}",
+    "section": "Aesthetics",
+    "text": "Aesthetics\n\n\nAesthetics are inherited when placed in ggplot() but can also be specified per layer\nAesthetics can be mapped to data or set as constant\nAll the aesthetics and their possible values: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html\nWorked example: box plot for each island layered ontop of jitter plot for each island x sex combination.\n\n\n\nThis might be a good place to look through help files and figure out which aesthetics are valid for mapping"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-1",
+    "href": "2024/01-foundations/slides.html#section-1",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "Aesthetic mappings supplied to ggplot() are inherited, aesthetic mappings supplied to a geom only affect that geom.\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_boxplot() +\n  geom_jitter(aes(color = sex))"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#scales",
+    "href": "2024/01-foundations/slides.html#scales",
+    "title": "Foundations of {ggplot2}",
+    "section": "Scales",
+    "text": "Scales\n\nscale_ functions affect the range (limits) and breaks of scales and the labels and appearance of corresponding guides.\nWorked example: 1) re-order and re-color a discrete color scale, 2) change the number of breaks on the axes"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-2",
+    "href": "2024/01-foundations/slides.html#section-2",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "p + \n  scale_color_manual(\n    values = c(\n      \"Adelie\" = \"#7570b3\",\n      \"Chinstrap\" = \"#d95f02\",\n      \"Gentoo\" = \"#1b9e77\"\n    ),\n    breaks = c(\"Gentoo\", \"Chinstrap\", \"Adelie\")\n  ) +\n  scale_x_continuous(\n    n.breaks = 10\n  ) +\n  scale_y_continuous(\n    breaks = seq(from = 30, to = 65, by = 5.5)\n  )\n\n\n\nvalues takes a named vector and is used to assign a color (hex code or color name) to each level of the variable. breaks changes the order."
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#geoms",
+    "href": "2024/01-foundations/slides.html#geoms",
+    "title": "Foundations of {ggplot2}",
+    "section": "Geoms",
+    "text": "Geoms\n\nEvery geom has a default stat, but it can be overridden\nNot all geoms use the same aesthetics\nWorked example: explore the anatomy of a help file (e.g. ?geom_point())\n\nHow can you determine the default stat for a geom?\nHow can you find out what aesthetics a geom has?"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-3",
+    "href": "2024/01-foundations/slides.html#section-3",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "df &lt;- expand_grid(x = LETTERS[1:5], y = 1:5)\nggplot(df) +\n  geom_point(aes(x = x, y = y, \n        color = x, shape = x,\n        size = y, alpha = y, stroke = y))\n\n\n\n\n\n\n\n\nCaution\n\n\nWith great power, comes great responsibility! It’s not always a good idea to map data to aesthetics just because you can. Stay tuned for part 2 of this series for more!"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#stats",
+    "href": "2024/01-foundations/slides.html#stats",
+    "title": "Foundations of {ggplot2}",
+    "section": "Stats",
+    "text": "Stats\n\nEvery stat has a default geom and you usually use the geom_*() function\nSome stats calculate multiple values that are available with after_stat()\nWorked examples:\n\nAdding mean ± SD on top of jitter plot with stat_summary()\nMaking a binned density plot with geom_histogram() and after_stat()"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-4",
+    "href": "2024/01-foundations/slides.html#section-4",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "stat_summary()\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1),\n               color = \"blue\", shape = \"square\")"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-5",
+    "href": "2024/01-foundations/slides.html#section-5",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "Binned density plot with geom_histogram() and after_stat()\n\nggplot(penguins) +\n  geom_histogram(aes(x = body_mass_g, y = after_stat(density))) +\n  facet_wrap(vars(island))"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#facets-1",
+    "href": "2024/01-foundations/slides.html#facets-1",
+    "title": "Foundations of {ggplot2}",
+    "section": "Facets",
+    "text": "Facets\n\nImplemented with facet_wrap() and facet_grid()\nFacets will be explored more in part 2 of this series"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#coords",
+    "href": "2024/01-foundations/slides.html#coords",
+    "title": "Foundations of {ggplot2}",
+    "section": "Coords",
+    "text": "Coords\n\nAdjusting x and y limits with coord_cartesian() is different than adjusting limits in a scale\ncoord_polar() for polar data, coord_sf() for maps\nWorked example: zooming in on data"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-6",
+    "href": "2024/01-foundations/slides.html#section-6",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "Setting axis limits in scale_x_continuous() removes data that is out of range\n\np + scale_x_continuous(limits = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 222 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 222 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\nImportantly, notice that the best-fit line from geom_smooth() is now only considering the points between 4000 and 5000 g body mass!"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-7",
+    "href": "2024/01-foundations/slides.html#section-7",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "Setting axis limits in coord_cartesian() simply zooms in\n\np + coord_cartesian(xlim = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\nNotice that points whose centers are &lt; 4000 or &gt; 5000 still show up"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#resources",
+    "href": "2024/01-foundations/slides.html#resources",
+    "title": "Foundations of {ggplot2}",
+    "section": "Resources",
+    "text": "Resources\n\nggplot2: Elegant Graphics for Data Analysis (3e)\nThe R Graph Gallery\nggplot2 documentation\nCCT Data Science drop-in hours (Tuesdays 9-10am)\nData Science Incubator"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#references",
+    "href": "2024/01-foundations/slides.html#references",
+    "title": "Foundations of {ggplot2}",
+    "section": "References",
+    "text": "References\n\n\n\n\n\n\n\nIntermediate ggplot2 workshop series\n\n\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.” Journal of Computational and Graphical Statistics 19 (1): 3–28. https://doi.org/10.1198/jcgs.2009.07098.\n\n\nWilkinson, Leland. 2005. The Grammar of Graphics. 2nd ed. Statistics and Computing. New York: Springer-Verlag. https://doi.org/10.1007/0-387-28695-0."
   },
   {
     "objectID": "2024/03-extensions/index.html",
