@@ -24,6 +24,7 @@ library(tidyr)
 ## pak::pak("r-for-educators/flair")
 # library(flair)
 theme_set(theme_bw())
+set.seed(123)
 ```
 
 -   Understand the "grammar of graphics" and how it inspired `ggplot2`'s design
@@ -200,7 +201,7 @@ E.g. points have position, shape, size, color, and transparency and different da
 
 ::: columns
 ::: {.column width="50%"}
-Any calculations or transformations needed to summarize the data to plot it.
+Any calculations or transformations applied to the data in order to plot it.
 
 What "stats" are used?
 
@@ -218,6 +219,10 @@ What "stats" are used?
 p
 ```
 :::
+:::
+
+::: notes
+If the data are 344 observations, are any transformations needed to draw one of the two "geoms" in the plot?
 :::
 
 ## Facets
@@ -318,7 +323,7 @@ Now we're going to go through each of the seven components and see some examples
 ## Data
 
 ::: nonincremental
--   Data is *inherited* by default, but can be overridden for specific layers
+-   Data is *inherited* from `ggplot()` by all layers, but can be overridden for specific layers
 
 -   Worked example: jitter plot of raw data with mean ± standard deviation
 :::
@@ -349,17 +354,17 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
 
 ##  {.smaller}
 
-::: r-stack
-::: fragment
+
 ```{r}
 #| echo: true
 #| output-location: column
-#| fig-height: 5
+#| fig-height: 5.5
 #| fig-width: 4.5
 #| classes: output6040
 library(tidyverse)
 library(palmerpenguins)
 
+#summarize dataset
 peng_summary <- 
   penguins |> 
   group_by(island) |> 
@@ -368,96 +373,26 @@ peng_summary <-
     lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
     upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
   )
-peng_summary
-```
-:::
 
-::: fragment
-```{r}
-#| echo: true
-#| output-location: column
-#| fig-height: 5
-#| fig-width: 4.5
-#| classes: output6040
-#| code-line-numbers: "15"
-library(tidyverse)
-library(palmerpenguins)
-
-peng_summary <- 
-  penguins |> 
-  group_by(island) |> 
-  summarize(
-    mean_mass = mean(body_mass_g, na.rm = TRUE),
-    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
-    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
-  )
-# peng_summary
-
-set.seed(123)
-ggplot(penguins, aes(x = island, y = body_mass_g)) 
-```
-:::
-
-::: fragment
-```{r}
-#| echo: true
-#| output-location: column
-#| fig-height: 5
-#| fig-width: 4.5
-#| classes: output6040
-#| code-line-numbers: "15-16"
-library(tidyverse)
-library(palmerpenguins)
-
-peng_summary <- 
-  penguins |> 
-  group_by(island) |> 
-  summarize(
-    mean_mass = mean(body_mass_g, na.rm = TRUE),
-    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
-    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
-  )
-# peng_summary
-
-set.seed(123)
-ggplot(penguins, aes(x = island, y = body_mass_g)) +
-  geom_jitter(alpha = 0.4)
-```
-:::
-
-::: fragment
-```{r}
-#| echo: true
-#| output-location: column
-#| fig-height: 5
-#| fig-width: 4.5
-#| classes: output6040
-#| code-line-numbers: "17-22|18|19|"
-library(tidyverse)
-library(palmerpenguins)
-
-peng_summary <- 
-  penguins |> 
-  group_by(island) |> 
-  summarize(
-    mean_mass = mean(body_mass_g, na.rm = TRUE),
-    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
-    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
-  )
-# peng_summary
-
-set.seed(123)
-ggplot(penguins, aes(x = island, y = body_mass_g)) +
-  geom_jitter(alpha = 0.4) +
-  geom_pointrange(
+ggplot(peng_summary, aes(x = island, y = mean_mass)) +
+  #mean
+  geom_point(shape = "square", color = "blue", size = 2.5) +
+  #sd
+  geom_errorbar(
     data = peng_summary,
     aes(y = mean_mass, ymin = lower_sd, ymax = upper_sd),
-    shape = "square",
+    width = 0.1,
     color = "blue"
+  ) +
+  #add raw data:
+  geom_jitter(
+    data = penguins,
+    aes(y = body_mass_g),
+    alpha = 0.4,
+    height = 0
   )
 ```
-:::
-:::
+
 
 ::: notes
 Start by summarizing the `penguins` dataset to get some summary statistics for the error bars.
@@ -486,76 +421,41 @@ This might be a good place to look through help files and figure out which aesth
 
 ##  {.smaller}
 
-Aesthetic mappings supplied to `ggplot2()` are inherited by all layers
+Aesthetic mappings supplied to `ggplot()` are inherited, aesthetic mappings supplied to a geom only affect that geom.
 
 ```{r}
 #| echo: true
 #| output-location: fragment
-#| code-line-numbers: "1|"
-ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
-  geom_boxplot() +
-  geom_jitter() 
-```
-
-##  {.smaller}
-
-Mappings supplied to a geom only affect that geom.
-
-```{r}
-#| echo: true
-#| output-location: fragment
-#| code-line-numbers: "1,3|"
 ggplot(penguins, aes(x = island, y = body_mass_g)) +
   geom_boxplot() +
   geom_jitter(aes(color = sex))
 ```
 
-##  {.smaller}
-
-Turn off inheritance from `ggplot()` for individual geoms with `inherit.aes = FALSE`.
-
-```{r}
-#| echo: true
-#| output-location: fragment
-#| code-line-numbers: "2|"
-ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
-  geom_boxplot(aes(x = island, y = body_mass_g), inherit.aes = FALSE) +
-  geom_jitter()
-```
-
-##  {.smaller}
-
-Setting an aesthetic (rather than mapping to data with `aes()`)
-
-```{r}
-#| echo: true
-#| output-location: fragment
-#| code-line-numbers: "2-3|"
-ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
-  geom_boxplot(color = "black") +
-  geom_jitter(color = "darkred")
-```
 
 ## Scales
 
 -   `scale_` functions affect the range (limits) and breaks of scales and the labels and appearance of corresponding guides.
--   Worked example: 1) re-order and re-color a discrete color scale, 2) change the number of breaks on the x-axis
+-   Worked example: 1) re-order and re-color a discrete color scale, 2) change the number of breaks on the axes
 
 ##  {.smaller}
 
 ```{r}
 #| echo: true
 #| fig-align: center
-#| code-line-numbers: "|3|4-8|9"
 p + 
   scale_color_manual(
-    name = "Species",
     values = c(
       "Adelie" = "#7570b3",
       "Chinstrap" = "#d95f02",
       "Gentoo" = "#1b9e77"
     ),
     breaks = c("Gentoo", "Chinstrap", "Adelie")
+  ) +
+  scale_x_continuous(
+    n.breaks = 10
+  ) +
+  scale_y_continuous(
+    breaks = seq(from = 30, to = 65, by = 5.5)
   )
 ```
 
@@ -564,36 +464,6 @@ p +
 `breaks` changes the order.
 :::
 
-##  {.smaller}
-
-*About* 10 breaks at "pretty" values:
-
-```{r}
-#| echo: true
-#| fig-align: center
-
-p +
-  scale_x_continuous(
-    name = "Bill Length (mm)",
-    n.breaks = 10
-  )
-
-```
-
-##  {.smaller}
-
-Breaks at *exactly* a sequence of values:
-
-```{r}
-#| echo: true
-#| fig-align: center
-#| 
-p + 
-  scale_x_continuous(
-    name = "Bill Length (mm)",
-    breaks = seq(from = 2000, to = 7000, by = 303) 
-  )
-```
 
 ## Geoms
 
@@ -623,93 +493,35 @@ Stay tuned for part 2 of this series for more!
 
 ## Stats
 
-<!-- NOTE: an alternative to this would be to talk about how the stats of some geoms (e.g. geom_histogram()) actually return multiple values that you can select from with `after_stat()`.  Maybe that is more useful? -->
-
 -   Every stat has a default geom and you *usually* use the `geom_*()` function
--   Some stats *don't* have an equivalent geom
--   Worked example: adding mean ± SD on top of jitter plot with `stat_summary()`
+-   Some stats calculate multiple values that are available with `after_stat()`
+-   Worked examples: 
+    1. Adding mean ± SD on top of jitter plot with `stat_summary()` 
+    2. Making a binned density plot with `geom_histogram()` and `after_stat()`
 
-## `stat_summary()` key arguments {.smaller}
-
-`fun.data`—A function that is given the complete data and should return a data frame with variables ymin, y, and ymax.
-
-. . .
-
-```{r}
-#| echo: true
-mean_sdl(rnorm(100), mult = 1)
-```
-
-. . .
-
-`fun.args`—list of arguments to function in `fun.data` (optional); `mult` multiplies the standard deviation
-
-. . .
-
-`geom`—default is `"pointrange"`, but could be anything that uses `y`, `ymin` and `ymax` aesthetic mappings
-
-##  {.smaller}
+## {.smaller}
+`stat_summary()`
 
 ```{r}
 #| echo: true
 #| fig-align: center
-#| code-line-numbers: "|4-9|5|6|"
-set.seed(123)
 ggplot(penguins, aes(x = island, y = body_mass_g)) +
-  geom_jitter(alpha = 0.4) +
-  stat_summary(
-    fun.data = "mean_sdl",
-    fun.args = list(mult = 1),
-    color = "blue",
-    shape = "square"
-  )
+  geom_jitter(alpha = 0.4, height = 0) +
+  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1),
+               color = "blue", shape = "square")
 ```
 
-## Use your own function {.smaller}
+## {.smaller}
+Binned density plot with `geom_histogram()` and `after_stat()`
 
 ```{r}
 #| echo: true
 #| fig-align: center
-#| code-line-numbers: "|1-3|6"
-median_80 <- function(vals) {
-   tibble(y = median(vals, na.rm = TRUE), ymin = quantile(vals, 0.1), ymax = quantile(vals, 0.9))
-}
-ggplot(penguins, aes(x = island, y = body_mass_g)) +
-  geom_jitter(alpha = 0.4) +
-  stat_summary(fun.data = "median_80")
-```
-
-##  {.smaller}
-
-<!-- alternative worked example for `stat`.  I am leaning toward this one because it is simpler-->
-Some "stats" calculate multiple values available with `after_stat()`.
-
-```{r}
-#| echo: true
-ggplot(penguins) +
-  geom_histogram(aes(x = body_mass_g)) +
-  facet_wrap(vars(island))
-```
-
-::: notes
-Notice there are just fewer observations on Torgersen island.
-This could make it difficult to compare if you are mainly interested in comparing the *distribution* of body size across islands.
-:::
-
-##  {.smaller}
-
-Use `after_stat(density)` to make it easier to compare distributions with different total n.
-
-```{r}
-#| echo: true
 ggplot(penguins) +
   geom_histogram(aes(x = body_mass_g, y = after_stat(density))) +
   facet_wrap(vars(island))
 ```
 
-::: notes
-`after_stat(density)` makes the bars in each facet integrate to 1, so they now show *relative* distribution of body mass.
-:::
 
 ## Facets
 
