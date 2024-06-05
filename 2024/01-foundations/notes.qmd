@@ -4,6 +4,7 @@ author: Eric Scott
 format: 
   html:
     toc: true
+  typst: default
 execute: 
   echo: true
 ---
