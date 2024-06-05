@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
   <li><a href="#facets" id="toc-facets" class="nav-link" data-scroll-target="#facets">Facets</a></li>
   <li><a href="#coords" id="toc-coords" class="nav-link" data-scroll-target="#coords">Coords</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/cct-datascience/ggplot2-workshop-series/blob/main/2024/01-foundations/notes.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/cct-datascience/ggplot2-workshop-series/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/cct-datascience/ggplot2-workshop-series/blob/main/2024/01-foundations/notes.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/cct-datascience/ggplot2-workshop-series/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="notes.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -559,8 +559,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mean_sdl</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, mult <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          y      ymin     ymax
-1 0.1180258 -0.941024 1.177076</code></pre>
+<pre><code>           y       ymin     ymax
+1 0.09425761 -0.9631673 1.151682</code></pre>
 </div>
 </div>
 <p>It creates a tibble with the columns y, ymin, and ymax. Any function that does this will work with <code>stat_summary()</code> by supplying it to the <code>fun.data</code> argument. To pass along the <code>mult</code> argument, we have to use the <code>fun.args</code> argument.</p>
