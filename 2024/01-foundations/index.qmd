@@ -15,5 +15,10 @@ Using practical examples, you'll learn how understanding the grammar of graphics
 **Prerequisites:**
 
 -   Install R, RStudio, and `ggplot2`
-
 -   Some previous usage of `ggplot2`
+
+
+**Materials:**
+
+- [Notes](notes.qmd)
+- {{< revealjs slides.html >}}
