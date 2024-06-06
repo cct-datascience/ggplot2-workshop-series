@@ -5,6 +5,7 @@
 <meta name="generator" content="quarto-1.4.555">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Eric Scott">
+<meta name="dcterms.date" content="2024-06-06">
 <title>Intermediate ggplot2 workshop series - Notes for foundations of ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
@@ -139,6 +140,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 6, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -559,8 +566,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mean_sdl</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, mult <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           y       ymin     ymax
-1 0.09425761 -0.9631673 1.151682</code></pre>
+<pre><code>           y       ymin      ymax
+1 -0.1189119 -0.9675821 0.7297584</code></pre>
 </div>
 </div>
 <p>It creates a tibble with the columns y, ymin, and ymax. Any function that does this will work with <code>stat_summary()</code> by supplying it to the <code>fun.data</code> argument. To pass along the <code>mult</code> argument, we have to use the <code>fun.args</code> argument.</p>
