@@ -1,6 +1,7 @@
 ---
 title: Foundations of {ggplot2}
 author: Eric R. Scott
+date: 2024-06-06
 format: 
   uaz-revealjs:
   # revealjs:
