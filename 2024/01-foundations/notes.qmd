@@ -1,6 +1,7 @@
 ---
 title: Notes for foundations of ggplot2
 author: Eric Scott
+date: 2024-06-06
 format: 
   html:
     toc: true
@@ -200,7 +201,7 @@ ggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +
 Here's the original plot, saved as `p`
 
 ```{r}
-#| echo: false
+#| echo: true
 p <- 
   ggplot(penguins |> drop_na(), aes(x = body_mass_g, y = bill_length_mm, color = species)) +
   geom_point() +
@@ -285,6 +286,14 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
   geom_jitter(alpha = 0.4, height = 0) +
   stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1),
                color = "blue", shape = "square")
+```
+
+You can also use `scale_x_log10()` to create breaks for a log scale
+
+```{r}
+#| echo: true
+p + scale_x_continuous(n.breaks = 15)
+p + scale_x_log10(n.breaks = 15)
 ```
 
 
@@ -414,3 +423,23 @@ p + coord_cartesian(xlim = c(4000, 5000))
 
 This has the effect of ***zooming in*** on the x-axis.  The lines and points just outside of the limits are cut off and the slopes of the trend lines are unaffected because no data has been removed.
 
+We can use `coord_trans()` to warp the coordinate system to plot things on a log scale, for example.  This does something slightly different than `scale_x_log10()`.
+
+```{r}
+df <- tibble(x = 1:100,
+           y = x^2)
+p2 <- 
+  ggplot(df, aes(x = x, y = y)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+p2
+```
+
+
+
+```{r}
+p2 + coord_trans(x = "log10") 
+p2 + scale_x_log10()
+```
+
+You can see that `coord_trans()` *warps* the coordinate space because the regression line, which we specified as being straight with `method = "lm"`, is now curved.  But with `scale_x_log10()` the line stays straight—the scale transforms the data *before* `geom_smooth()` calculates its statistics.
