@@ -116,7 +116,7 @@ Use `theme_set(theme_bw())` outside your plot code to set the theme for a whole 
 
 - show the same data with different mark/channel mapping
 
-## Demo with equisse
+## Demo with esquisse
 
 <https://dreamrs.github.io/esquisse/>
 
