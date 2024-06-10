@@ -1,10 +1,12 @@
 ---
 title: Foundations of {ggplot2}
-author: Eric R Scott
+author: Eric R. Scott
+date: 2024-06-06
 format: 
   uaz-revealjs:
   # revealjs:
     incremental: true
+css: custom.css
 bibliography: references.bib
 ---
 
@@ -19,15 +21,18 @@ library(ggplot2)
 library(glue)
 library(gapminder)
 library(countdown)
+library(tidyr)
 ## pak::pak("r-for-educators/flair")
 # library(flair)
-theme_set(theme_minimal())
+theme_set(theme_bw())
+set.seed(123)
 ```
 
--   Learn about the most recent changes in `ggplot2`
 -   Understand the "grammar of graphics" and how it inspired `ggplot2`'s design
 -   Know what it means to "map data to aesthetics"
+-   Learn to plot different data sets on the same visualization
 -   Understand the relationship between a "geom" and a "stat"
+-   Learn to customize scales and guides
 
 ------------------------------------------------------------------------
 
@@ -46,7 +51,7 @@ theme_set(theme_minimal())
 #| label: peng_plot
 #| include: false
 p <- 
-  ggplot(penguins, aes(x = body_mass_g, y = bill_length_mm, color = species)) +
+  ggplot(penguins |> drop_na(), aes(x = body_mass_g, y = bill_length_mm, color = species)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
   facet_wrap(vars(island), ncol = 1)
@@ -76,21 +81,23 @@ p
 :::
 :::
 
+::: notes
+We're going to go through each of these and examine how they appear in this example plot
+:::
+
 ## Data
 
 ::: columns
 ::: {.column width="50%"}
-What is being visualized?
+Observations and variables to be visualized.
 
--   344 observations
+What data is being visualized?
 
--   body mass measured in grams
+-   Body mass measured in grams
 
--   bill length measured in mm
+-   Bill length measured in mm
 
--   three species
-
--   three islands
+-   Island and species categories
 :::
 
 ::: {.column width="50%"}
@@ -108,7 +115,9 @@ p
 
 ::: columns
 ::: {.column width="50%"}
-What visual elements are used to encode data?
+Visual elements (color, shape, position, size, etc.) used to encode data.
+
+What aesthetics are used to encode these data?
 
 -   Color
 
@@ -130,17 +139,17 @@ p
 
 ## Scales (and guides)
 
-<!--# TODO: maybe replace image with annotated one like in 2023 presentation  -->
-
 ::: columns
 ::: {.column width="50%"}
-What range of data is represented and how is it visualized?
+Scales translate data units into visual units, guides translate visual units back to data units.
 
--   x-axis continuous from `r glue_collapse(range(penguins$body_mass_g, na.rm = TRUE), sep = "–")` , 4 major breaks
+What scales are used?
 
--   y-axis continuous from `r glue_collapse(range(penguins$bill_length_mm, na.rm = TRUE), sep = "–")` , 3 major breaks
+-   Continuous and linear x and y axes (scales)
 
--   colors are discrete: red, green, blue
+<!-- -->
+
+-   Discrete (categorical) color scale
 :::
 
 ::: {.column width="50%"}
@@ -155,15 +164,18 @@ p
 :::
 
 ::: notes
-Scales translate data space (in data units) into aesthetic space (e.g. position, color).
-A guide (axis or legend) does the inverse—relates visual properties back to data.
+Scale translates data units (e.g. grams) into visual units (pixels).
+Guides translate visual units (e.g. color hue) back to data units (species category).
+Walk through this with annotations.
 :::
 
 ## Geometric Objects ("geoms")
 
 ::: columns
 ::: {.column width="50%"}
-How are data represented visually?
+Objects, often having multiple aesthetics, that represent data visually.
+
+What geometric objects are used?
 
 -   Data is represented using circles/points
 -   Trend is represented as a line
@@ -190,7 +202,9 @@ E.g. points have position, shape, size, color, and transparency and different da
 
 ::: columns
 ::: {.column width="50%"}
-What calculations or transformations need to be done to present the data?
+Any calculations or transformations applied to the data in order to plot it.
+
+What "stats" are used?
 
 -   For points, none (stat = "identity")
 
@@ -208,11 +222,17 @@ p
 :::
 :::
 
+::: notes
+If the data are 344 observations, are any transformations needed to draw one of the two "geoms" in the plot?
+:::
+
 ## Facets
 
 ::: columns
 ::: {.column width="50%"}
-By what variable are different subsets of the data split apart into "small multiples"?
+Plots can be split into small multiples or "facets" by a variable.
+
+What is the faceting variable?
 
 -   Faceted by island
 :::
@@ -228,11 +248,19 @@ p
 :::
 :::
 
+::: notes
+Not every plot has facets.
+Plots can be faceted by multiple (2) variables in a grid
+:::
+
 ## Coordinate System
 
 ::: columns
 ::: {.column width="50%"}
-How are positions represented visually?
+How spatial positions are represented on paper (or screen)—e.g.
+map projections.
+
+What coordinate system is used?
 
 -   Cartesian coordinates
 :::
@@ -287,18 +315,268 @@ countdown::countdown(
 )
 ```
 
-## How `ggplot2` implements the 7 components
+# `ggplot2` and the Grammar of Graphics
 
-go through each component again, but highlight code on left and incrementally build plot on right (or something like that).
-Things you *could* demonstrate for each component:
+::: notes
+Now we're going to go through each of the seven components and see some examples of how they are implemented in `ggplot2`
+:::
 
-1.  Data: using different data for different geoms
-2.  Aesthetics: inheritance of aesthetics (putting them in ggplot() vs in geom\_\*())
-3.  Scales: manual breaks, transformations
-4.  Geoms: how each geom has a default stat, how to figure out which aesthetics a geom has
-5.  Stats: how each stat has a default geom, `stat_summary()`
-6.  Facets: `facet_wrap` vs `facet_grid`, free scales
-7.  Coords: how adjusting limits here is different from in scales, polar coords, `coord_sf`
+## Data
+
+::: nonincremental
+-   Data is *inherited* from `ggplot()` by all layers, but can be overridden for specific layers
+
+-   Worked example: jitter plot of raw data with mean ± standard deviation
+:::
+
+```{r}
+#| fig-align: center
+#| fig-height: 4
+#| fig-width: 7
+library(tidyverse)
+library(palmerpenguins)
+peng_summary <- 
+  penguins |> 
+  group_by(island) |> 
+  summarize(
+    mean_mass = mean(body_mass_g, na.rm = TRUE),
+    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
+    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
+  )
+ggplot(penguins, aes(x = island, y = body_mass_g)) +
+  geom_jitter(alpha = 0.4) +
+  geom_pointrange(
+    data = peng_summary,
+    aes(y = mean_mass, ymin = lower_sd, ymax = upper_sd),
+    shape = "square",
+    color = "blue"
+  )
+```
+
+##  {.smaller}
+
+
+```{r}
+#| echo: true
+#| output-location: column
+#| fig-height: 5.5
+#| fig-width: 4.5
+#| classes: output6040
+library(tidyverse)
+library(palmerpenguins)
+
+#summarize dataset
+peng_summary <- 
+  penguins |> 
+  group_by(island) |> 
+  summarize(
+    mean_mass = mean(body_mass_g, na.rm = TRUE),
+    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),
+    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)
+  )
+
+ggplot(peng_summary, aes(x = island, y = mean_mass)) +
+  #mean
+  geom_point(shape = "square", color = "blue", size = 2.5) +
+  #sd
+  geom_errorbar(
+    data = peng_summary,
+    aes(y = mean_mass, ymin = lower_sd, ymax = upper_sd),
+    width = 0.1,
+    color = "blue"
+  ) +
+  #add raw data:
+  geom_jitter(
+    data = penguins,
+    aes(y = body_mass_g),
+    alpha = 0.4,
+    height = 0
+  )
+```
+
+
+::: notes
+Start by summarizing the `penguins` dataset to get some summary statistics for the error bars.
+Notice that `ggplot()` uses the raw data though.\
+
+\
+Then add the raw data points, in this case with `geom_jitter()`\
+\
+Then add the `geom_pointrange()`.
+Notice that we override the inherited data with `data = peng_summary` .
+The `x` mapping is inherited, but we need to supply new aesthetic mappings for `y`, `ymin`, and `ymax`
+:::
+
+## Aesthetics
+
+::: nonicremental
+-   Aesthetics are *inherited* when placed in `ggplot()` but can also be specified per layer
+-   Aesthetics can be mapped to data or set as constant
+-   All the aesthetics and their possible values: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
+-   Worked example: box plot for each island layered ontop of jitter plot for each island x sex combination.
+:::
+
+::: notes
+This might be a good place to look through help files and figure out which aesthetics are valid for mapping
+:::
+
+##  {.smaller}
+
+Aesthetic mappings supplied to `ggplot()` are inherited, aesthetic mappings supplied to a geom only affect that geom.
+
+```{r}
+#| echo: true
+#| output-location: fragment
+ggplot(penguins, aes(x = island, y = body_mass_g)) +
+  geom_boxplot() +
+  geom_jitter(aes(color = sex))
+```
+
+
+## Scales
+
+-   `scale_` functions affect the range (limits) and breaks of scales and the labels and appearance of corresponding guides.
+-   Worked example: 1) re-order and re-color a discrete color scale, 2) change the number of breaks on the axes
+
+##  {.smaller}
+
+```{r}
+#| echo: true
+#| fig-align: center
+p + 
+  scale_color_manual(
+    values = c(
+      "Adelie" = "#7570b3",
+      "Chinstrap" = "#d95f02",
+      "Gentoo" = "#1b9e77"
+    ),
+    breaks = c("Gentoo", "Chinstrap", "Adelie")
+  ) +
+  scale_x_continuous(
+    n.breaks = 10
+  ) +
+  scale_y_continuous(
+    breaks = seq(from = 30, to = 65, by = 5.5)
+  )
+```
+
+::: notes
+`values` takes a named vector and is used to assign a color (hex code or color name) to each level of the variable.
+`breaks` changes the order.
+:::
+
+
+## Geoms
+
+-   Every geom has a default stat, but it can be overridden
+-   Not all geoms use the same aesthetics
+-   Worked example: explore the anatomy of a help file (e.g. `?geom_point()`)
+    -   How can you determine the default stat for a geom?
+    -   How can you find out what aesthetics a geom has?
+
+##  {.smaller}
+
+```{r}
+#| echo: true
+#| fig-align: center
+df <- expand_grid(x = LETTERS[1:5], y = 1:5)
+ggplot(df) +
+  geom_point(aes(x = x, y = y, 
+        color = x, shape = x,
+        size = y, alpha = y, stroke = y))
+```
+
+::: callout-caution
+With great power, comes great responsibility!
+It's not always a *good idea* to map data to aesthetics just because you can.
+Stay tuned for part 2 of this series for more!
+:::
+
+## Stats
+
+-   Every stat has a default geom and you *usually* use the `geom_*()` function
+-   Some stats calculate multiple values that are available with `after_stat()`
+-   Worked examples: 
+    1. Adding mean ± SD on top of jitter plot with `stat_summary()` 
+    2. Making a binned density plot with `geom_histogram()` and `after_stat()`
+
+## {.smaller}
+`stat_summary()`
+
+```{r}
+#| echo: true
+#| fig-align: center
+ggplot(penguins, aes(x = island, y = body_mass_g)) +
+  geom_jitter(alpha = 0.4, height = 0) +
+  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1),
+               color = "blue", shape = "square")
+```
+
+## {.smaller}
+Binned density plot with `geom_histogram()` and `after_stat()`
+
+```{r}
+#| echo: true
+#| fig-align: center
+ggplot(penguins) +
+  geom_histogram(aes(x = body_mass_g, y = after_stat(density))) +
+  facet_wrap(vars(island))
+```
+
+
+## Facets
+
+-   Implemented with `facet_wrap()` and `facet_grid()`
+-   Facets will be explored more in part 2 of this series
+
+## Coords
+
+-   Adjusting x and y limits with `coord_cartesian()` is different than adjusting limits in a scale
+-   `coord_polar()` for polar data, `coord_sf()` for maps
+-   Worked example: zooming in on data
+
+##  {.smaller}
+
+Setting axis limits in `scale_x_continuous()` *removes* data that is out of range
+
+```{r}
+#| echo: true
+#| warning: true
+#| fig-align: center
+
+p + scale_x_continuous(limits = c(4000, 5000))
+
+```
+
+::: notes
+Importantly, notice that the best-fit line from `geom_smooth()` is now *only* considering the points between 4000 and 5000 g body mass!
+:::
+
+## {.smaller}
+
+Setting axis limits in `coord_cartesian()` simply *zooms in*
+
+```{r}
+#| echo: true
+#| warning: true
+#| fig-align: center
+
+p + coord_cartesian(xlim = c(4000, 5000))
+
+```
+
+::: notes
+Notice that points whose centers are < 4000 or > 5000 still show up
+:::
+
+## Resources
+
+- [ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/)
+- [The R Graph Gallery](https://r-graph-gallery.com/)
+- [ggplot2 documentation](https://ggplot2.tidyverse.org/index.html)
+- CCT Data Science [drop-in hours](https://datascience.cct.arizona.edu/events/weekly-drop-hours-alvsce-researchers) (Tuesdays 9-10am)
+- [Data Science Incubator](https://datascience.cct.arizona.edu/incubator)
+
 
 ## References
 
