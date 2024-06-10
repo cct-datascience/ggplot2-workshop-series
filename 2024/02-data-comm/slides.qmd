@@ -1,53 +1,129 @@
 ---
-title: Effective Data Communication with {ggplot2}
+title: Effective Data Communication With {ggplot2}
+subtitle: Part II - Putting theory into practice
 author: Renata Diaz
+date: 2024-06-13
 format: 
   uaz-revealjs:
   # revealjs:
     incremental: true
+css: custom.css
 ---
 
 ## Learning Objectives
 
-```{r}
-#| label: setup
-#| include: false
+-   Implement principles of effective design using {ggplot}. Including:
+-   Maximize data:ink ratio using themes and facets
+-   Customize marks and channels using geoms and aes(thetics).
+-   Work through an example as a group.
 
-library(palmerpenguins)
+## Maximizing data:ink ratio
+
+## The {ggplot2} default
+
+```{r, include = F, echo = F}
+library(dplyr)
+library(palmerpenguins) 
 library(ggplot2)
-library(countdown)
-## pak::pak("r-for-educators/flair")
-# library(flair)
-theme_set(theme_minimal())
+
+data(penguins)
+
 ```
 
-- Implement principles of effective data communication with {ggplot2}:
-- Use `geom` options to modify marks
-- Use `theme` options to maximize data-to-ink ratio
-- Use `facet_wrap` or `facet_grid` to maximize data density
-- Use the data-to-viz flowchart and {ggplot2} to choose and create a chart 
+```{r, echo = T}
 
-# Data Communication Toolbox
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() 
 
-## `geom_*`
+```
 
-Show using `shape` to modify geom_point; show removing geom_fills
+## {theme\_\*}
 
-## `theme()`
+```{r, echo = T}
 
-Show using `theme` to remove/lighten gridlines, remove unnnecessary elements.
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme_bw()
+```
 
-## `facet`
+## {theme\_\*}
 
-Show (possibly a review of session 1) using `facet` to maximize data density
+```{r, echo = T}
 
-# Putting it all together
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme_void()
+```
 
-## Dataset
+## {theme\_\*}
 
-## Choose a chart type
+For a complete list of preset themes:
 
-## Begin with the defaults
+```{r, echo = T, eval = F}
+?theme_void
+```
 
-## How can we improve?
+[Or online here.](https://ggplot2.tidyverse.org/reference/ggtheme.html)
 
+## {theme\_\*}
+
+::: callout-important
+`theme_bw()` and `theme_minimal` can remove a lot of unnecessary ink with one fell swoop.
+
+Use `theme_set(theme_bw())` outside your plot code to set the theme for a whole script or notebook.
+:::
+
+## Modify a theme
+
+-   The preset themes either leave unnecessary ink, or remove necessary information.
+-   The `theme()` function allows you to modify individual elements of a theme
+-   The `theme` options are vast. We'll break it down.
+
+## Anatomy of `theme`
+
+- `theme( <part of the plot> = <element_*(element_options)>)`
+- Parts of the plot: axis, legend, panel, plot, strip.
+- Elements: element_blank, element_text, element_line, element_rect.  
+- You can modify all lines/rectangles at once using `theme(line = element_line())`, etc. 
+
+## Modifying elements
+
+## Maximizing use of space
+
+## `facet_wrap` 
+
+## `facet_grid`
+
+## Marks and channels
+
+- Marks correspond to `geoms`
+    - `geom_point, geom_line, geom_col, ...`
+- Align marks with data using `aes`:
+    - `x` and `y` for position
+    - `color` and `fill` for color scale
+      - Discrete or continuous
+    - `alpha` for opacity
+    - `size` for size
+    
+
+## Example modifying geoms
+
+- show the same data with different mark/channel mapping
+
+## Demo with equisse
+
+https://cct-datascience.quarto.pub/exploring-the-wide-world-of-ggplot2-extensions/#/esquisse
+
+## Talk through example dataset
+
+<https://docs.google.com/spreadsheets/d/1U5OpOxM-aU8KV7xeqHaqsBoAV2koMYZYBCtNn7cCEFg/edit?gid=1285249029#gid=1285249029>
+
+Discuss:
+
+- How would you visualize this? What channels (axes and aesthetics) and marks would you use?
