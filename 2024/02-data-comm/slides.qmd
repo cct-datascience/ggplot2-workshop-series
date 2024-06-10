@@ -28,6 +28,9 @@ library(ggplot2)
 
 data(penguins)
 
+penguins <- penguins |>
+  filter(!is.na(sex))
+
 ```
 
 ```{r, echo = T}
@@ -91,26 +94,126 @@ Use `theme_set(theme_bw())` outside your plot code to set the theme for a whole 
 - Parts of the plot: axis, legend, panel, plot, strip.
 - Elements: element_blank, element_text, element_line, element_rect.  
 - You can modify all lines/rectangles at once using `theme(line = element_line())`, etc. 
+- See the [rendered documentation](https://ggplot2.tidyverse.org/reference/theme.html) to help you figure out how to change specific elements.
+
+## Remove the background panel
+
+```{r, echo = T}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) 
+```
+
+## Re-add grid lines
+
+```{r, echo = T}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+theme(panel.grid.major = element_line(color = "black", linewidth = .5))
+
+```
+
+## Hierarchical modifications
+
 
 ## Modifying elements
+
+```{r, echo = T}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+theme(panel.grid.major.x = element_line(color = "black", linewidth = .5)) # Modify only the x axis
+
+```
 
 ## Maximizing use of space
 
 ## `facet_wrap` 
 
+```{r}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+facet_wrap(vars(island))
+```
+
+## `facet_wrap` 
+
+```{r}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+facet_wrap(vars(island), ncol = 1)
+```
+
+
 ## `facet_grid`
 
+```{r}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+facet_grid(rows = vars(island), cols = vars(sex))
+```
+
+
+## Modify facet label placement
+
+```{r}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+facet_grid(rows = vars(island), cols = vars(sex), switch = "y")
+```
+
+## Modify facet scales
+
+```{r}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+facet_grid(rows = vars(island), cols = vars(sex), switch = "y")
+```
+
+
+## Modify facet theme options
+
+```{r}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+facet_grid(rows = vars(island), cols = vars(sex), switch = "y")
+```
 ## Marks and channels
 
 - Marks correspond to `geoms`
-    - `geom_point, geom_line, geom_col, ...`
+- `geom_point, geom_line, geom_col, ...`
 - Align marks with data using `aes`:
-    - `x` and `y` for position
-    - `color` and `fill` for color scale
-      - Discrete or continuous
-    - `alpha` for opacity
-    - `size` for size
-    
+- `x` and `y` for position
+- `color` and `fill` for color scale
+- Discrete or continuous
+- `alpha` for opacity
+- `size` for size
+
 
 ## Example modifying geoms
 
