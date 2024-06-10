@@ -1,0 +1,117 @@
+---
+title: Effective Data Communication With {ggplot2}
+subtitle: Part II - Putting theory into practice
+author: Renata Diaz
+date: 2024-06-13
+format: 
+  uaz-revealjs:
+  # revealjs:
+    incremental: true
+css: custom.css
+---
+
+## Learning Objectives
+
+-   Implement principles of effective design using {ggplot}. Including:
+-   Maximize data:ink ratio using themes and facets
+-   Customize marks and channels using geoms and aes(thetics).
+-   Work through an example as a group.
+
+## Maximizing data:ink ratio
+
+## The {ggplot2} default
+
+```{r, include = F, echo = F}
+library(dplyr)
+library(palmerpenguins) 
+library(ggplot2)
+
+data(penguins)
+
+```
+
+```{r, echo = T}
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() 
+
+```
+
+## {theme\_\*}
+
+```{r, echo = T}
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme_bw()
+```
+
+## {theme\_\*}
+
+```{r, echo = T}
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme_void()
+```
+
+## {theme\_\*}
+
+For a complete list of preset themes:
+
+```{r, echo = T, eval = F}
+?theme_void
+```
+
+[Or online here.](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+
+## {theme\_\*}
+
+::: callout-important
+`theme_bw()` and `theme_minimal` can remove a lot of unnecessary ink with one fell swoop.
+
+Use `theme_set(theme_bw())` outside your plot code to set the theme for a whole script or notebook.
+:::
+
+## Modify a theme
+
+-   The preset themes either leave unnecessary ink, or remove necessary information.
+-   The `theme()` function allows you to modify individual elements of a theme
+-   The `theme` options are vast. We'll break it down.
+
+## Anatomy of `theme`
+
+- `theme( <part of the plot> = <element_*(element_options)>)`
+- Parts of the plot: axis, legend, panel, plot, strip.
+- Elements: element_blank, element_text, element_line, element_rect.  
+- You can modify all lines/rectangles at once using `theme(line = element_line())`, etc. 
+
+## Modifying elements
+
+## Maximizing use of space
+
+## `facet_wrap` 
+
+## `facet_grid`
+
+## Marks and channels
+
+- Marks correspond to `geoms`
+    - `geom_point, geom_line, geom_col, ...`
+- Align marks with data using `aes`:
+    - `x` and `y` for position
+    - `color` and `fill` for color scale
+      - Discrete or continuous
+    - `alpha` for opacity
+    - `size` for size
+    
+
+## Example modifying geoms
+
+## Worked example as a group
