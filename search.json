@@ -10,545 +10,365 @@
     ]
   },
   {
-    "objectID": "2024/02-data-comm/index.html",
-    "href": "2024/02-data-comm/index.html",
-    "title": "Effective Data Communication With ggplot2",
+    "objectID": "2024/02-data-comm/slides.html#learning-objectives",
+    "href": "2024/02-data-comm/slides.html#learning-objectives",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nImplement principles of effective design using {ggplot}. Including:\nMaximize data:ink ratio using themes and facets\nCustomize marks and channels using geoms and aes(thetics).\nWork through an example as a group."
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#maximizing-dataink-ratio",
+    "href": "2024/02-data-comm/slides.html#maximizing-dataink-ratio",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Maximizing data:ink ratio",
+    "text": "Maximizing data:ink ratio"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#the-ggplot2-default",
+    "href": "2024/02-data-comm/slides.html#the-ggplot2-default",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "The {ggplot2} default",
+    "text": "The {ggplot2} default\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point()"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#theme_",
+    "href": "2024/02-data-comm/slides.html#theme_",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "{theme_*}",
+    "text": "{theme_*}\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme_bw()"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#theme_-1",
+    "href": "2024/02-data-comm/slides.html#theme_-1",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "{theme_*}",
+    "text": "{theme_*}\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme_void()"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#theme_-2",
+    "href": "2024/02-data-comm/slides.html#theme_-2",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "{theme_*}",
+    "text": "{theme_*}\nFor a complete list of preset themes:\n\n?theme_void\n\nOr online here."
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#theme_-3",
+    "href": "2024/02-data-comm/slides.html#theme_-3",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "{theme_*}",
+    "text": "{theme_*}\n\n\n\n\n\n\nImportant\n\n\ntheme_bw() and theme_minimal can remove a lot of unnecessary ink with one fell swoop.\nUse theme_set(theme_bw()) outside your plot code to set the theme for a whole script or notebook."
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#modify-a-theme",
+    "href": "2024/02-data-comm/slides.html#modify-a-theme",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Modify a theme",
+    "text": "Modify a theme\n\nThe preset themes either leave unnecessary ink, or remove necessary information.\nThe theme() function allows you to modify individual elements of a theme\nThe theme options are vast. We’ll break it down."
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#anatomy-of-theme",
+    "href": "2024/02-data-comm/slides.html#anatomy-of-theme",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Anatomy of theme",
+    "text": "Anatomy of theme\n\ntheme( &lt;part of the plot&gt; = &lt;element_*(element_options)&gt;)\nParts of the plot: axis, legend, panel, plot, strip.\nElements: element_blank, element_text, element_line, element_rect.\n\nYou can modify all lines/rectangles at once using theme(line = element_line()), etc."
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#modifying-elements",
+    "href": "2024/02-data-comm/slides.html#modifying-elements",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Modifying elements",
+    "text": "Modifying elements"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#maximizing-use-of-space",
+    "href": "2024/02-data-comm/slides.html#maximizing-use-of-space",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Maximizing use of space",
+    "text": "Maximizing use of space"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#facet_wrap",
+    "href": "2024/02-data-comm/slides.html#facet_wrap",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "facet_wrap",
+    "text": "facet_wrap"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#facet_grid",
+    "href": "2024/02-data-comm/slides.html#facet_grid",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "facet_grid",
+    "text": "facet_grid"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#marks-and-channels",
+    "href": "2024/02-data-comm/slides.html#marks-and-channels",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Marks and channels",
+    "text": "Marks and channels\n\nMarks correspond to geoms\n\ngeom_point, geom_line, geom_col, ...\n\nAlign marks with data using aes:\n\nx and y for position\ncolor and fill for color scale\n\nDiscrete or continuous\n\nalpha for opacity\nsize for size"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#example-modifying-geoms",
+    "href": "2024/02-data-comm/slides.html#example-modifying-geoms",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Example modifying geoms",
+    "text": "Example modifying geoms"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#worked-example-as-a-group",
+    "href": "2024/02-data-comm/slides.html#worked-example-as-a-group",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Worked example as a group",
+    "text": "Worked example as a group\n\n\n\n\nIntermediate ggplot2 workshop series"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#learning-objectives",
+    "href": "2024/01-foundations/slides.html#learning-objectives",
+    "title": "Foundations of {ggplot2}",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nUnderstand the “grammar of graphics” and how it inspired ggplot2’s design\nKnow what it means to “map data to aesthetics”\nLearn to plot different data sets on the same visualization\nUnderstand the relationship between a “geom” and a “stat”\nLearn to customize scales and guides"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#a-grammar-of-graphics",
+    "href": "2024/01-foundations/slides.html#a-grammar-of-graphics",
+    "title": "Foundations of {ggplot2}",
+    "section": "A Grammar of Graphics",
+    "text": "A Grammar of Graphics\n\nA book by Wilkinson (2005)\nInspired the development of many graphics programs including ggplot2 (Wickham 2010)\nAlternative to having a function for every kind of plot\nA framework for layering elements to create any kind of plot"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#grammar-of-graphics-components",
+    "href": "2024/01-foundations/slides.html#grammar-of-graphics-components",
+    "title": "Foundations of {ggplot2}",
+    "section": "Grammar of Graphics Components",
+    "text": "Grammar of Graphics Components\n\n\n\n\nData\nAesthetics\nScales (and guides)\nGeometric objects\nStatistics\nFacets\nCoordinate system\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe’re going to go through each of these and examine how they appear in this example plot"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#data",
+    "href": "2024/01-foundations/slides.html#data",
+    "title": "Foundations of {ggplot2}",
+    "section": "Data",
+    "text": "Data\n\n\nObservations and variables to be visualized.\nWhat data is being visualized?\n\nBody mass measured in grams\nBill length measured in mm\nIsland and species categories"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#aesthetics",
+    "href": "2024/01-foundations/slides.html#aesthetics",
+    "title": "Foundations of {ggplot2}",
+    "section": "Aesthetics",
+    "text": "Aesthetics\n\n\nVisual elements (color, shape, position, size, etc.) used to encode data.\nWhat aesthetics are used to encode these data?\n\nColor\nx position\ny position"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#scales-and-guides",
+    "href": "2024/01-foundations/slides.html#scales-and-guides",
+    "title": "Foundations of {ggplot2}",
+    "section": "Scales (and guides)",
+    "text": "Scales (and guides)\n\n\nScales translate data units into visual units, guides translate visual units back to data units.\nWhat scales are used?\n\nContinuous and linear x and y axes (scales)\n\n\n\nDiscrete (categorical) color scale\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScale translates data units (e.g. grams) into visual units (pixels). Guides translate visual units (e.g. color hue) back to data units (species category). Walk through this with annotations."
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#geometric-objects-geoms",
+    "href": "2024/01-foundations/slides.html#geometric-objects-geoms",
+    "title": "Foundations of {ggplot2}",
+    "section": "Geometric Objects (“geoms”)",
+    "text": "Geometric Objects (“geoms”)\n\n\nObjects, often having multiple aesthetics, that represent data visually.\nWhat geometric objects are used?\n\nData is represented using circles/points\nTrend is represented as a line\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBoth aesthetics and geoms are related to the visual representation of data. To distinguish aesthetics and geoms, think about how geoms can have many aesthetics. E.g. points have position, shape, size, color, and transparency and different data could be mapped to each of those aesthetics."
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#statistics-stats",
+    "href": "2024/01-foundations/slides.html#statistics-stats",
+    "title": "Foundations of {ggplot2}",
+    "section": "Statistics (“stats”)",
+    "text": "Statistics (“stats”)\n\n\nAny calculations or transformations applied to the data in order to plot it.\nWhat “stats” are used?\n\nFor points, none (stat = “identity”)\nFor trend lines, linear regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIf the data are 344 observations, are any transformations needed to draw one of the two “geoms” in the plot?"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#facets",
+    "href": "2024/01-foundations/slides.html#facets",
+    "title": "Foundations of {ggplot2}",
+    "section": "Facets",
+    "text": "Facets\n\n\nPlots can be split into small multiples or “facets” by a variable.\nWhat is the faceting variable?\n\nFaceted by island\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNot every plot has facets. Plots can be faceted by multiple (2) variables in a grid"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#coordinate-system",
+    "href": "2024/01-foundations/slides.html#coordinate-system",
+    "title": "Foundations of {ggplot2}",
+    "section": "Coordinate System",
+    "text": "Coordinate System\n\n\nHow spatial positions are represented on paper (or screen)—e.g. map projections.\nWhat coordinate system is used?\n\nCartesian coordinates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOther options include polar coordinates or the many possible coordinate systems used in maps."
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#practice",
+    "href": "2024/01-foundations/slides.html#practice",
+    "title": "Foundations of {ggplot2}",
+    "section": "Practice",
+    "text": "Practice\nIdentify each of the seven components of this plot\n\n\n\n\nData\nAesthetics\nScales\nGeometric Objects\nStatistics\nFacets\nCoordinate System"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#break",
+    "href": "2024/01-foundations/slides.html#break",
+    "title": "Foundations of {ggplot2}",
+    "section": "Break ⏰",
+    "text": "Break ⏰\n\n\n\n−+\n10:00"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#data-1",
+    "href": "2024/01-foundations/slides.html#data-1",
+    "title": "Foundations of {ggplot2}",
+    "section": "Data",
+    "text": "Data\n\n\nData is inherited from ggplot() by all layers, but can be overridden for specific layers\nWorked example: jitter plot of raw data with mean ± standard deviation"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section",
+    "href": "2024/01-foundations/slides.html#section",
+    "title": "Foundations of {ggplot2}",
     "section": "",
-    "text": "Date & time: Thursday June 13, 2024, 11am - 1pm AZ\nInstructor: Renata Diaz, Devin Bayly\nIn this session, we will introduce major principles of effective data visualization and then cover how to implement these principles in your plots with ggplot2.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
+    "text": "library(tidyverse)\nlibrary(palmerpenguins)\n\n#summarize dataset\npeng_summary &lt;- \n  penguins |&gt; \n  group_by(island) |&gt; \n  summarize(\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),\n    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)\n  )\n\nggplot(peng_summary, aes(x = island, y = mean_mass)) +\n  #mean\n  geom_point(shape = \"square\", color = \"blue\", size = 2.5) +\n  #sd\n  geom_errorbar(\n    data = peng_summary,\n    aes(y = mean_mass, ymin = lower_sd, ymax = upper_sd),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins,\n    aes(y = body_mass_g),\n    alpha = 0.4,\n    height = 0\n  )\n\n\n\n\n\n\n\n\n\n\n\nStart by summarizing the penguins dataset to get some summary statistics for the error bars. Notice that ggplot() uses the raw data though.\n\n\nThen add the raw data points, in this case with geom_jitter()\n\nThen add the geom_pointrange(). Notice that we override the inherited data with data = peng_summary . The x mapping is inherited, but we need to supply new aesthetic mappings for y, ymin, and ymax"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#aesthetics-1",
+    "href": "2024/01-foundations/slides.html#aesthetics-1",
+    "title": "Foundations of {ggplot2}",
+    "section": "Aesthetics",
+    "text": "Aesthetics\n\n\nAesthetics are inherited when placed in ggplot() but can also be specified per layer\nAesthetics can be mapped to data or set as constant\nAll the aesthetics and their possible values: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html\nWorked example: box plot for each island layered ontop of jitter plot for each island x sex combination.\n\n\n\nThis might be a good place to look through help files and figure out which aesthetics are valid for mapping"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-1",
+    "href": "2024/01-foundations/slides.html#section-1",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "Aesthetic mappings supplied to ggplot() are inherited, aesthetic mappings supplied to a geom only affect that geom.\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_boxplot() +\n  geom_jitter(aes(color = sex))"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#scales",
+    "href": "2024/01-foundations/slides.html#scales",
+    "title": "Foundations of {ggplot2}",
+    "section": "Scales",
+    "text": "Scales\n\nscale_ functions affect the range (limits) and breaks of scales and the labels and appearance of corresponding guides.\nWorked example: 1) re-order and re-color a discrete color scale, 2) change the number of breaks on the axes"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-2",
+    "href": "2024/01-foundations/slides.html#section-2",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "p + \n  scale_color_manual(\n    values = c(\n      \"Adelie\" = \"#7570b3\",\n      \"Chinstrap\" = \"#d95f02\",\n      \"Gentoo\" = \"#1b9e77\"\n    ),\n    breaks = c(\"Gentoo\", \"Chinstrap\", \"Adelie\")\n  ) +\n  scale_x_continuous(\n    n.breaks = 10\n  ) +\n  scale_y_continuous(\n    breaks = seq(from = 30, to = 65, by = 5.5)\n  )\n\n\n\nvalues takes a named vector and is used to assign a color (hex code or color name) to each level of the variable. breaks changes the order."
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#geoms",
+    "href": "2024/01-foundations/slides.html#geoms",
+    "title": "Foundations of {ggplot2}",
+    "section": "Geoms",
+    "text": "Geoms\n\nEvery geom has a default stat, but it can be overridden\nNot all geoms use the same aesthetics\nWorked example: explore the anatomy of a help file (e.g. ?geom_point())\n\nHow can you determine the default stat for a geom?\nHow can you find out what aesthetics a geom has?"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-3",
+    "href": "2024/01-foundations/slides.html#section-3",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "df &lt;- expand_grid(x = LETTERS[1:5], y = 1:5)\nggplot(df) +\n  geom_point(aes(x = x, y = y, \n        color = x, shape = x,\n        size = y, alpha = y, stroke = y))\n\n\n\n\n\n\n\n\nCaution\n\n\nWith great power, comes great responsibility! It’s not always a good idea to map data to aesthetics just because you can. Stay tuned for part 2 of this series for more!"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#stats",
+    "href": "2024/01-foundations/slides.html#stats",
+    "title": "Foundations of {ggplot2}",
+    "section": "Stats",
+    "text": "Stats\n\nEvery stat has a default geom and you usually use the geom_*() function\nSome stats calculate multiple values that are available with after_stat()\nWorked examples:\n\nAdding mean ± SD on top of jitter plot with stat_summary()\nMaking a binned density plot with geom_histogram() and after_stat()"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-4",
+    "href": "2024/01-foundations/slides.html#section-4",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "stat_summary()\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1),\n               color = \"blue\", shape = \"square\")"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-5",
+    "href": "2024/01-foundations/slides.html#section-5",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "Binned density plot with geom_histogram() and after_stat()\n\nggplot(penguins) +\n  geom_histogram(aes(x = body_mass_g, y = after_stat(density))) +\n  facet_wrap(vars(island))"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#facets-1",
+    "href": "2024/01-foundations/slides.html#facets-1",
+    "title": "Foundations of {ggplot2}",
+    "section": "Facets",
+    "text": "Facets\n\nImplemented with facet_wrap() and facet_grid()\nFacets will be explored more in part 2 of this series"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#coords",
+    "href": "2024/01-foundations/slides.html#coords",
+    "title": "Foundations of {ggplot2}",
+    "section": "Coords",
+    "text": "Coords\n\nAdjusting x and y limits with coord_cartesian() is different than adjusting limits in a scale\ncoord_polar() for polar data, coord_sf() for maps\nWorked example: zooming in on data"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-6",
+    "href": "2024/01-foundations/slides.html#section-6",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "Setting axis limits in scale_x_continuous() removes data that is out of range\n\np + scale_x_continuous(limits = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 222 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 222 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\nImportantly, notice that the best-fit line from geom_smooth() is now only considering the points between 4000 and 5000 g body mass!"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#section-7",
+    "href": "2024/01-foundations/slides.html#section-7",
+    "title": "Foundations of {ggplot2}",
+    "section": "",
+    "text": "Setting axis limits in coord_cartesian() simply zooms in\n\np + coord_cartesian(xlim = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\nNotice that points whose centers are &lt; 4000 or &gt; 5000 still show up"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#resources",
+    "href": "2024/01-foundations/slides.html#resources",
+    "title": "Foundations of {ggplot2}",
+    "section": "Resources",
+    "text": "Resources\n\nggplot2: Elegant Graphics for Data Analysis (3e)\nThe R Graph Gallery\nggplot2 documentation\nCCT Data Science drop-in hours (Tuesdays 9-10am)\nData Science Incubator"
+  },
+  {
+    "objectID": "2024/01-foundations/slides.html#references",
+    "href": "2024/01-foundations/slides.html#references",
+    "title": "Foundations of {ggplot2}",
+    "section": "References",
+    "text": "References\n\n\n\n\n\n\n\nIntermediate ggplot2 workshop series\n\n\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.” Journal of Computational and Graphical Statistics 19 (1): 3–28. https://doi.org/10.1198/jcgs.2009.07098.\n\n\nWilkinson, Leland. 2005. The Grammar of Graphics. 2nd ed. Statistics and Computing. New York: Springer-Verlag. https://doi.org/10.1007/0-387-28695-0."
+  },
+  {
+    "objectID": "2024/01-foundations/index.html",
+    "href": "2024/01-foundations/index.html",
+    "title": "Foundations of ggplot2",
+    "section": "",
+    "text": "Date & time: Thursday June 6, 2024, 11am - 1pm AZ\nInstructor: Eric Scott\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying many data visualization tools, including ggplot2. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2\n\nMaterials:\n\nNotes\n    View slides in full screen",
     "crumbs": [
       "Upcoming series",
-      "Session 2 - Data Communication"
-    ]
-  },
-  {
-    "objectID": "2024/01-foundations/notes.html",
-    "href": "2024/01-foundations/notes.html",
-    "title": "Notes for foundations of ggplot2",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)\ntheme_set(theme_bw())"
-  },
-  {
-    "objectID": "2024/01-foundations/notes.html#data",
-    "href": "2024/01-foundations/notes.html#data",
-    "title": "Notes for foundations of ggplot2",
-    "section": "Data",
-    "text": "Data\nThis is the plot we’re trying to re-create:\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nWhat geom can we use for error bars? Type geom_ and hit tab to see a list of all possible geom_ functions. geom_errorbar() sounds about right! What data do we need to plot an error bar? View the help file with ?geom_errorbar and check the “Aesthetics” section. Looks like we need x (island), ymin, and ymax.\nLet’s start by summarizing the data to calculate a mean and standard deviation for each island.\n\npeng_summary &lt;- \n  penguins |&gt; \n  group_by(island) |&gt; #for each island...\n  summarize(\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    sd = sd(body_mass_g, na.rm = TRUE)\n  )\npeng_summary\n\n# A tibble: 3 × 3\n  island    mean_mass    sd\n  &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt;\n1 Biscoe        4716.  783.\n2 Dream         3713.  417.\n3 Torgersen     3706.  445.\n\n\nThen let’s get values for the lower and upper parts of the error bars.\n\npeng_summary &lt;-\n  peng_summary |&gt; \n  mutate(lower = mean_mass - sd, upper = mean_mass + sd)\npeng_summary\n\n# A tibble: 3 × 5\n  island    mean_mass    sd lower upper\n  &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Biscoe        4716.  783. 3933. 5499.\n2 Dream         3713.  417. 3296. 4130.\n3 Torgersen     3706.  445. 3261. 4151.\n\n\nNow we can plot the error bars and means.\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(aes(y = mean_mass)) +\n  #sd:\n  geom_errorbar(aes(ymin = lower, ymax = upper))\n\n\n\n\n\n\n\nLet’s do some tweaking to make this look more appealing\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(\n    aes(y = mean_mass),\n    shape = \"square\",\n    color = \"blue\",\n    size = 2.5\n  )+\n  #sd:\n  geom_errorbar(\n    data = peng_summary,\n    aes(ymin = lower, ymax = upper),\n    width = 0.1,\n    color = \"blue\"\n  ) \n\n\n\n\n\n\n\nNow we can add the raw data using geom_jitter() by overriding the data argument.\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(\n    aes(y = mean_mass),\n    shape = \"square\",\n    color = \"blue\",\n    size = 2.5\n  )+\n  #sd:\n  geom_errorbar(\n    data = peng_summary,\n    aes(ymin = lower, ymax = upper),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins, #override data to use penguins instead of peng_summary\n    aes(y = body_mass_g),\n  )\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nAnd finally we can do some tweaking of the jitter layer\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(\n    aes(y = mean_mass),\n    shape = \"square\",\n    color = \"blue\",\n    size = 2.5\n  )+\n  #sd:\n  geom_errorbar(\n    data = peng_summary,\n    aes(ymin = lower, ymax = upper),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins, #override data to use penguins instead of peng_summary\n    aes(y = body_mass_g),\n    alpha = 0.4, #add transparency\n    height = 0 #don't jitter vertically, only horizontally\n  )\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
-  },
-  {
-    "objectID": "2024/01-foundations/notes.html#aesthetics",
-    "href": "2024/01-foundations/notes.html#aesthetics",
-    "title": "Notes for foundations of ggplot2",
-    "section": "Aesthetics",
-    "text": "Aesthetics\nLet’s use a boxplot on top of the jitter plot and have the points colored by sex but not the box plots\nWhen color = sex is in the aes() call in ggplot(), this aesthetic mapping is inherited by all geoms.\n\nggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +\n  geom_boxplot() +\n  geom_jitter()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nIf we want to map sex to color only for the jitter layer, we can remove it from ggplot() and add it to geom_jitter()\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_boxplot() +\n  geom_jitter(aes(color = sex))\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nOr, we can use inherit.aes = FALSE and specify all the aesthetic mappings for the boxplot layer.\n\nggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +\n  geom_boxplot(aes(x = island, y = body_mass_g), inherit.aes = FALSE) +\n  geom_jitter()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nIf you set aesthetic mappings to constants, it overrides the mappings to data.\n\nggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +\n  geom_boxplot(color = \"darkgreen\") +\n  geom_jitter()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
-  },
-  {
-    "objectID": "2024/01-foundations/notes.html#scales",
-    "href": "2024/01-foundations/notes.html#scales",
-    "title": "Notes for foundations of ggplot2",
-    "section": "Scales",
-    "text": "Scales\nHere’s the original plot, saved as p\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nAnd here’s what it’s going to end up like after modifying scales:\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nFirst, let’s address the color scale. Two changes need to happen: custom colors, and a re-ordering of the species in the legend. scale_color_manual() can take care of both.\nWe can supply whatever colors we want with a named vector where the names correspond to levels of the species variable that is mapped to color.\n\nmy_cols &lt;- c(\n  \"Adelie\" = \"#7570b3\",\n  \"Chinstrap\" = \"#d95f02\",\n  \"Gentoo\" = \"#1b9e77\"\n)\n\nThese are hex-codes, but you can also used named colors in R.\nSupply that named vector to the values argument.\n\np +\n  scale_color_manual(\n    name = \"Species\",\n    values = my_cols\n  )\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nThe re-ordering happens with the breaks argument like so:\n\np_new &lt;- p +\n  scale_color_manual(\n    name = \"Species\",\n    values = my_cols,\n    breaks = c(\"Gentoo\", \"Chinstrap\", \"Adelie\")\n  )\np_new\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nNow we can move on to the x and y axes. For the x-axis, let’s increase the number of breaks to about 10.\n\np_new +\n  scale_x_continuous(n.breaks = 10)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nAnd we can supply exact breaks to the y-axis.\n\np_new +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(breaks = seq(from = 30, to = 65, by = 5.5))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1),\n               color = \"blue\", shape = \"square\")\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
-  },
-  {
-    "objectID": "2024/01-foundations/notes.html#geoms",
-    "href": "2024/01-foundations/notes.html#geoms",
-    "title": "Notes for foundations of ggplot2",
-    "section": "Geoms",
-    "text": "Geoms\n\ndf &lt;- expand_grid(x = LETTERS[1:5], y = 1:5)\nggplot(df) +\n  geom_point(aes(x = x, y = y, \n        color = x, shape = x,\n        size = y, alpha = y, stroke = y))"
-  },
-  {
-    "objectID": "2024/01-foundations/notes.html#stats",
-    "href": "2024/01-foundations/notes.html#stats",
-    "title": "Notes for foundations of ggplot2",
-    "section": "Stats",
-    "text": "Stats\nstat_summary()\nstat_summary() calculates some summary statistics as y, ymin, and ymax (and possibly other aesthetic mappings) and supplies them to a geom (default = “pointrange”). This is a shortcut for doing the sort of plot we did in the “Data” section without having to create a separate dataset.\nFirst, let’s see what the default looks like:\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  stat_summary()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nNo summary function supplied, defaulting to `mean_se()`\n\n\n\n\n\n\n\n\nAs you can see in the warning, by default it is plotting mean ± SE (standard error) with the mean_se() function. To instead plot mean ± SD we can either create our own function or use mean_sdl() and change it’s mult argument from the default 2 which doubles the SD.\nLet’s see what mean_sdl() does on its own:\n\nmean_sdl(rnorm(100), mult = 1)\n\n           y       ymin      ymax\n1 -0.1189119 -0.9675821 0.7297584\n\n\nIt creates a tibble with the columns y, ymin, and ymax. Any function that does this will work with stat_summary() by supplying it to the fun.data argument. To pass along the mult argument, we have to use the fun.args argument.\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1))\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\n\n\n\n\n\n\nNow we can add our data!\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = \"mean_sdl\", fun.args = list(mult = 1),\n               color = \"blue\", shape = \"square\")\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nWe could instead use our own custom function that plots the median and the middle 80% of data points, for example.\n\nmedian_80 &lt;- function(vals) {\n   tibble(y = median(vals, na.rm = TRUE),\n          ymin = quantile(vals, 0.1),\n          ymax = quantile(vals, 0.9))\n}\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = \"median_80\", color = \"blue\", shape = \"square\")\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nBinned density plot with geom_histogram() and after_stat()\n\nSome “stats” calculate multiple values available with after_stat(). For example, geom_histogram() uses the count variable calculated by stat_bin() to plot the number of data points in each bit on the y-axis.\nHere’s a histogram of body mass faceted by island:\n\nggplot(penguins) +\n  geom_histogram(aes(x = body_mass_g)) +\n  facet_wrap(vars(island))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\nTorgersen island clearly just has fewer penguins, making it somewhat difficult to compare the relative distribution of body mass among the islands.\nIn the “Computed variables” section of ?stat_bin() you see that it also calculates density, ncount, ndensity, and width. We can plot density of points rather than count using after_stat(density).\n\nggplot(penguins) +\n  geom_histogram(aes(x = body_mass_g, y = after_stat(density))) +\n  facet_wrap(vars(island))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\nNow the bars for each island add up to 1, taking sample size out of the equation."
-  },
-  {
-    "objectID": "2024/01-foundations/notes.html#facets",
-    "href": "2024/01-foundations/notes.html#facets",
-    "title": "Notes for foundations of ggplot2",
-    "section": "Facets",
-    "text": "Facets\nfacet_wrap() facets by a single variable\n\nggplot(penguins, aes(x = body_mass_g, y = bill_length_mm)) +\n  facet_wrap(vars(island)) +\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nfacet_grid() facets by two variables\n\nggplot(penguins, aes(x = body_mass_g, y = bill_length_mm)) +\n  facet_grid(vars(sex), vars(island)) +\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
-  },
-  {
-    "objectID": "2024/01-foundations/notes.html#coords",
-    "href": "2024/01-foundations/notes.html#coords",
-    "title": "Notes for foundations of ggplot2",
-    "section": "Coords",
-    "text": "Coords\nThere are multiple ways to change the axis limits in ggplot2. First, you can change them with scale_x_continuous() or scale_y_continuous()\n\np\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\np + scale_x_continuous(limits = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 222 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 222 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nYou can see in the warning message printed that 222 rows have been removed before drawing this plot. You can tell because the trend lines produced by geom_smooth() now have different slopes because they are fit to only a subset of data!\nYou can also change the limits with coord_cartesian()\n\np + coord_cartesian(xlim = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nThis has the effect of zooming in on the x-axis. The lines and points just outside of the limits are cut off and the slopes of the trend lines are unaffected because no data has been removed."
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#learning-objectives",
-    "href": "2023/03-extensions/slides.html#learning-objectives",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nUnderstand where to find packages that extend ggplot2\nMake animated plots with gganimate\nInteractively create plots with esquisse\nConvert ggplot2 plots to interactive plotly plots\nLabel data with ggrepel"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#packages",
-    "href": "2023/03-extensions/slides.html#packages",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Packages",
-    "text": "Packages\n\nlibrary(ggplot2)\nlibrary(palmerpenguins)"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#extensions-to-ggplot2",
-    "href": "2023/03-extensions/slides.html#extensions-to-ggplot2",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Extensions to ggplot2",
-    "text": "Extensions to ggplot2\nThere are many kinds of extensions to ggplot2, but many of them can be put into one of two “bins”\n\nPackages that add new layers\nPackages that wrap multiple layers for convenience"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#packages-that-extend-ggplot2",
-    "href": "2023/03-extensions/slides.html#packages-that-extend-ggplot2",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Packages that extend ggplot2",
-    "text": "Packages that extend ggplot2\nSome packages add new layers or themes that can be combined with standard ggplot2 functions.\n\nlibrary(ggbeeswarm)\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot() +\n  geom_beeswarm()\n\n\n\ngeom_beeswarm() can easily be added to other geom_s"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#packages-that-wrap-ggplot2",
-    "href": "2023/03-extensions/slides.html#packages-that-wrap-ggplot2",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Packages that wrap ggplot2",
-    "text": "Packages that wrap ggplot2\nOther packages provide convenience “all-in-one” functions that combine multiple layers for you.\n\nlibrary(ggpubr)\nggstripchart(penguins, x = \"species\", y = \"body_mass_g\",\n             add = \"boxplot\") +\n  scale_y_continuous(\"Body Mass (g)\", n.breaks = 10)\n\n\n\nNotice that ggstripchart() totally replaces ggplot(aes(…)) . However, it still makes a ggplot object that you can add layers to."
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#finding-extensions",
-    "href": "2023/03-extensions/slides.html#finding-extensions",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Finding Extensions",
-    "text": "Finding Extensions\n\nBrowse the ggplot2 extensions gallery\nCheck out the Awesome ggplot2 list\nThe R Graph Gallery\nGoogle search with “ggplot2” keyword"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#gganimate",
-    "href": "2023/03-extensions/slides.html#gganimate",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "gganimate",
-    "text": "gganimate\n\nlibrary(gganimate)\n\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n  geom_point() +\n  transition_time(year) + \n  labs(title = \"Year: {frame_time}\")"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#gganimate-1",
-    "href": "2023/03-extensions/slides.html#gganimate-1",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "gganimate",
-    "text": "gganimate\n\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n  geom_point() +\n  transition_states(year, transition_length = 0.5) +\n  labs(title = \"Year: {closest_state}\") +\n  shadow_wake(wake_length = 0.1)\n\n\n\nanim_save(\"~/Desktop/test_anim.gif\")"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#plotly",
-    "href": "2023/03-extensions/slides.html#plotly",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "plotly",
-    "text": "plotly\n\nlibrary(plotly)\n\n\n\nplotly R package is interface to a JavaScript library for making interactive data visualizations\nOnly important to know that because if you search for plotly help, sometimes you’ll get JavaScript code examples.\nplotly kind of uses the grammar of graphics, but building a plot from scratch is tricky\nggplotly() transforms ggplot objects into interactive plotly plots. 90% of the time it gets you 90% of the way there"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#basic-interactive-plot-with-plotly",
-    "href": "2023/03-extensions/slides.html#basic-interactive-plot-with-plotly",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Basic interactive plot with plotly",
-    "text": "Basic interactive plot with plotly\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p)"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#customize-tooltip",
-    "href": "2023/03-extensions/slides.html#customize-tooltip",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Customize tooltip",
-    "text": "Customize tooltip\nYou can customize the info displayed in the tooltip with ggplotly(). Give it additional aesthetic text to include something only as a tooltip.\n\np2 &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  #Ignore unknown aesthetics warning\n  geom_point(aes(text = sex)) +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p2, tooltip = c(\"text\", \"bill_depth_mm\", \"bill_length_mm\"))\n\n\n\n\n\n\n\nWarning\n\n\nOutput not shown because currently plotly does not play nicely with Quarto revealjs slides (how this slide deck was made)"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#animate-plots-with-plotly",
-    "href": "2023/03-extensions/slides.html#animate-plots-with-plotly",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Animate plots with plotly",
-    "text": "Animate plots with plotly\nYou can use ggplotly() to make interactive animated plots by using the frame aesthetic\n\nlibrary(gapminder) #dataset\np3 &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +\n  geom_point(aes(size = pop, frame = year, ids = country)) +\n  scale_x_log10()\n\nggplotly(p3)\n\n\n\n\n\n\n\nWarning\n\n\nOutput not shown because currently plotly does not play nicely with Quarto revealjs slides (how this slide deck was made)"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#esquisse",
-    "href": "2023/03-extensions/slides.html#esquisse",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "esquisse",
-    "text": "esquisse\n\n\n\nlibrary(dplyr)\nlibrary(esquisse)\n\npenguins &lt;- \n  penguins %&gt;%\n  na.omit()\nesquisser(penguins)"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#ggrepel",
-    "href": "2023/03-extensions/slides.html#ggrepel",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "ggrepel",
-    "text": "ggrepel\nThe ggrepel package is helpful for directly labeling plots, especially when labels would otherwise overlap.\n\n\n\n\n\n\ngeom_text()\n\n\n\n\n\n\n\ngeom_text_repel()"
-  },
-  {
-    "objectID": "2023/03-extensions/slides.html#getting-help",
-    "href": "2023/03-extensions/slides.html#getting-help",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "Getting Help",
-    "text": "Getting Help\n\ngganimate: Getting started guide, reference\ngplotly(): https://plotly.com/ggplot2/\nesquisse: Getting started guide, reference\nggrepel: Gallery of examples, list of available aesthetics you can map data to.\nOur drop-in hours\nUA Data Science Slack"
-  },
-  {
-    "objectID": "2023/03-extensions/index.html",
-    "href": "2023/03-extensions/index.html",
-    "title": "Exploring the wide world of ggplot2 extensions",
-    "section": "",
-    "text": "Date & time: 11 a.m. to 1 p.m., June 26, 2023\nInstructors: Kristina Riemer & Eric Scott\nThere are over 100 packages that extend the functionality of ggplot2 to allow you to make just about any data visualization you can think of! In this workshop we’ll cover a few of our favorite extensions and show you how to find the ggplot2 extension that meets your data visualization needs.\n\nRecording\nNotes\n    View slides in full screen",
-    "crumbs": [
-      "2023",
-      "Session 3 - Extensions"
-    ]
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html",
-    "href": "2023/02-publication-quality-figs/notes.html",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "",
-    "text": "Learning Objectives\n\n\n\n\nCustomize color palettes with accessibility in mind\nCustomize appearance of plots with themes\nCustomizing axes (ticks, grid-lines, labels, date axes, transformations)\nCreate custom legends\nSave high resolution or vector formats\nArrange multi-panel figures"
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#required-by-journals",
-    "href": "2023/02-publication-quality-figs/notes.html#required-by-journals",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Required by journals",
-    "text": "Required by journals\nJournals often require certain modifications to your plots to make them publication-ready\n\nHigh resolution\nSpecific file types (TIFF, EPS, PDF are common)\nFigure size limits\nFont size suggestions"
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#not-required-but-good-practice",
-    "href": "2023/02-publication-quality-figs/notes.html#not-required-but-good-practice",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Not required, but good practice",
-    "text": "Not required, but good practice\nOther modifications to the appearance of your plot are a good idea, but less often required by journals or reviewers\n\nColorblind accessible colors\nGrey scale friendly colors\nPerceptually-even colors\nScreen-reader compatible\nHigh data-ink ratio (simplify plot, within reason)\nArrangement of related plots into multi-panel figures"
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#example-plots",
-    "href": "2023/02-publication-quality-figs/notes.html#example-plots",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Example plots",
-    "text": "Example plots\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nA version of the plot from part 1 of this workshop series is re-created here.\n\nCodep1 &lt;-\n  ggplot(data = penguins |&gt; \n           filter(!is.na(sex)),\n         mapping = aes(x = species, \n                       y = body_mass_g,\n                       shape = sex)) +\n  geom_point(\n    alpha = 0.15,\n    position = position_jitterdodge(dodge.width = 0.75)\n  ) +\n  stat_summary(\n    fun.data = mean_sdl,\n    position = position_dodge(width = 0.75)\n  )\n\n\n\np1\n\n\n\n\n\n\n\nIn addition, I’ll create two more basic plots for practice combining plots into multi-panel figures.\n\nCode#bill length vs. flipper length\np2 &lt;-\n  ggplot(penguins,\n         aes(\n           x = flipper_length_mm,\n           y = bill_length_mm,\n           color = species,\n           fill = species,\n           shape = species\n         )) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n\n\np2\n\n\n\n\n\n\n\n\nCode# flipper length to mass ratio vs. bill_length\np3 &lt;-\n  ggplot(penguins,\n         aes(\n           x = flipper_length_mm,\n           y = bill_depth_mm,\n           color = species,\n           fill = species,\n           shape = species\n         )) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n\n\np3"
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#color",
-    "href": "2023/02-publication-quality-figs/notes.html#color",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Color",
-    "text": "Color\nThere are many ways to change plot colors, including using built-in palettes, packages that add color palettes, and manually. It’s usually best to choose a color palette that meets these criteria:\n\nColorblind friendly\nGreyscale friendly\nPerceptually even\nHigh contrast (with background & eachother)\n\nThe viridis color palettes built in to ggplot2 generally meet these criteria and are a good choice for many visualizations.\nHere’s an example plot with a color bar:\n\nv &lt;- \n  ggplot(\n    penguins,\n    aes(x = bill_length_mm, y = bill_depth_mm, color = body_mass_g)\n  ) +\n  geom_point()\nv\n\n\n\n\n\n\n\nFor a continuous color scale use scale_color_viridis_c()\n\nv + scale_color_viridis_c()\n\n\n\n\n\n\n\nOther palettes are available by changing option\n\n# Variations with option = \"A\" through \"H\"\nv + scale_color_viridis_c(option = \"B\")\n\n\n\n\n\n\n\nA binned version is available with scale_color_viridis_b()\n\nv + scale_color_viridis_b(option = \"B\", n.breaks = 5)\n\n\n\n\n\n\n\nThe viridis palettes tend to end on a very bright yellow, which doesn’t look great on light backgrounds, especially on a projector. You can “cap” the scale using begin and end.\nE.g. Begin at 10% in to skip the darkest purples and end at 90% to skip the brightest yellows\nv + scale_color_viridis_c()\nv + scale_color_viridis_c(begin = 0.1, end = 0.9)\n\n\n\n\n\n\n\n\n\n\nDiscrete colors\nOur initial example plot uses just 3 colors, but we can still use viridis to ensure they are colorblind friendly and perceptually even using scale_color_viridis_d() for “discrete”. The colors still follow a gradient from cool to warm.\n\np2 + scale_color_viridis_d(end = 0.9, option = \"C\")\n\n\n\n\n\n\n\nTo apply the same color scale to both “fill” and “color”, you can use the aesthetics argument to scale_color_* or scale_fill_* functions.\n\np2 + \n  scale_color_viridis_d(end = 0.9, option = \"C\", aesthetics = c(\"fill\", \"color\"))\n\n\n\n\n\n\n\nManual color palette\nMaybe you don’t like the viridis palettes or maybe you want a palette more appropriate for diverging or discrete data. There are a ton of tools for generating color palettes—both R packages that extend ggplot2 and external tools.\nPackages and resources to check out:\n\n\ncolorspace (Zeileis et al. 2019)\n\ncols4all\npaletteer\nComprehensive list of color palettes in r\n\nYou can use any set of colors as a custom palette with scale_color_manual().\n\nmy_cols &lt;- c(\"#B60A1C\",\"#E39802\",\"#309143\")\n\np2 + scale_color_manual(values = my_cols, aesthetics = c(\"color\", \"fill\"))\n\n\n\n\n\n\n\nSpecify which color goes with which factor level by using a named vector.\nmy_cols &lt;- \n  c(\"Chinstrap\" = \"#B60A1C\", \"Gentoo\" = \"#E39802\", \"Adelie\" = \"#309143\")\np2 &lt;- p2 + \n  scale_color_manual(values = my_cols, aesthetics = c(\"color\", \"fill\"))\np2\np3 &lt;- p3 +\n  scale_color_manual(values = my_cols, aesthetics = c(\"color\", \"fill\"))\np3"
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#labeling-scales",
-    "href": "2023/02-publication-quality-figs/notes.html#labeling-scales",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Labeling scales",
-    "text": "Labeling scales\nEach scale (color, fill, shape), including x and y axes, can have a label. There are multiple ways to set this, but I’ll demonstrate setting it with labs()\n\np2 + labs(color = \"Penguin Species\")\n\n\n\n\n\n\n\nThis creates a separate legend for color. Guides with the same name will get combined when possible.\n\np2 + \n  labs(\n    color = \"Penguin Species\",\n    shape = \"Penguin Species\",\n    fill = \"Penguin Species\"\n  )\n\n\n\n\n\n\n\nWe can also use labs() to re-name the axes\n\np2 &lt;- p2 + \n  labs(\n    color = \"Penguin Species\",\n    shape = \"Penguin Species\",\n    fill = \"Penguin Species\",\n    x = \"Flipper Length (mm)\",\n    y = \"Bill Length (mm)\"\n  )\np2\n\n\n\n\n\n\n\n\np3 &lt;- p3 + \n  labs(\n    color = \"Penguin Species\",\n    shape = \"Penguin Species\",\n    fill = \"Penguin Species\",\n    x = \"Flipper Length (mm)\",\n    y = \"Bill Depth (mm)\"\n  )\np3\n\n\n\n\n\n\n\n\np1 &lt;- p1 +\n  labs(x = \"Species\", y = \"Body Mass (g)\", shape = \"Sex\")\np1"
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#custom-axes",
-    "href": "2023/02-publication-quality-figs/notes.html#custom-axes",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Custom Axes",
-    "text": "Custom Axes\nAxes are a type of scale and can be modified with ggplot2 functions like scale_x_continuous() for continuous data, scale_x_discrete() for discrete data, etc.\nOur first plot has a discrete x axis and a continuous y axis. We can use a scale_*() to change the x-axis labels (there are other ways to do this of course) and adjust the number of breaks on the y-axis\n\nscinames &lt;-\n  c(\"Adelie\" = \"P. adeliae\", \"Chinstrap\" = \"P. antarticus\", \"Gentoo\" = \"P. papua\")\np1 &lt;- \n  p1 + scale_x_discrete(labels = scinames) + scale_y_continuous(n.breaks = 12)\np1 \n\n\n\n\n\n\n\nYou’ll notice that n.breaks=12 doesn’t produce exactly 12 breaks—it preferences “pretty” breaks at whole numbers and tries to get about as many breaks as you asked for. Supply a numeric vector to breaks if you want to specify the breaks exactly.\nAxis limits\nYou can set the range of an axis two ways, and the choice of which way is consequential. Setting limits inside of scale_() crops the data while coord_cartesian() only crops the plotting area. With ylim(2000, 5500) the mean and standard error for our largest penguins are re-drawn using the cropped data while they are unaffected by coord_cartesian() (except that they go off the edge of the plotting area now)\np1 + scale_y_continuous(limits = c(2000, 5500), n.breaks = 12)\n# p1 + ylim(2000, 5500) #shortcut if you only want to change limits\np1 + coord_cartesian(ylim = c(2000, 5500))\n\n\n\n\n\nLimits set in scale_y_*() or with ylim()\n\n\n\n\n\nLimits set in coord_cartesian()\n\n\n\n\n\nWe can use coord_flip() to make a horizontal graph.\n\np1 + coord_flip()\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\ncoord_flip() only changes where the x and y axes are drawn. In the plot above, the axis labeled “species” is still the x-axis, as far as ggplot2 code is concerned."
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#customizing-appearance-with-theme",
-    "href": "2023/02-publication-quality-figs/notes.html#customizing-appearance-with-theme",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Customizing appearance with theme()\n",
-    "text": "Customizing appearance with theme()\n\n\nThere are several complete themes built-in to ggplot2, and many more available from other packages.\np2 + theme_bw()\np2 + theme_minimal()\n\n\n\n\n\ntheme_bw()\n\n\n\n\n\ntheme_minimal()\n\n\n\n\n\nlibrary(ggthemes)\np1 + theme_solarized()\n\n\n\ntheme_solarized() from ggthemes package\n\n\n\nCustomizing themes “manually” involves knowing the name of the theme element and it’s corresponding element_*() function. A good place to start is the help page for theme() https://ggplot2.tidyverse.org/reference/theme.html\n\n\n\n\n\n\nTip\n\n\n\nIt’s best to find a built-in theme_*() function that gets you most of the way there and then customize with theme()\n\n\n\np1 + \n  theme_minimal() + \n  theme(axis.line = element_line(linewidth = 0.5, lineend = \"round\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\nActivity\n\n\n\nName some things about the appearance of p1 that you want to change and we’ll figure it out together!\n\n\nYou can save your theme as an R object to re-use, or use theme_set() at the top of a script to make it the default.\n\n#create a custom theme\nmy_theme &lt;- \n  theme_minimal() + \n  theme(\n    axis.line = element_line(linewidth = 0.5, lineend = \"round\"),\n    axis.ticks = element_line(linewidth = 0.2),\n    legend.background = element_rect(linewidth = 0.2)\n  )\n\n#add to a plot\np2 + my_theme\n\n\n\n\n\n\n#or set as default\ntheme_set(my_theme)\n\np3"
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#multi-panel-figures",
-    "href": "2023/02-publication-quality-figs/notes.html#multi-panel-figures",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Multi-panel figures",
-    "text": "Multi-panel figures\npatchwork allows simple composistion of multi-panel figures with ggplot2 plots\n\nlibrary(patchwork)\np1 + p2\n\n\n\n\n\n\n\n\n+ combines plots\n| combines plots side-by-side\n/ combines plots vertically\n() can be used to nest operations\n\n\np1 / (p2 | p3)\n\n\n\n\n\n\n\n\nplot_layout() controls layout. The coolest feature, IMO, is guides = \"collect\" which combines duplicate legends\nplot_annotation() is useful for adding labels to panels\n\n\np_combined &lt;-\n  p1 /\n  (p2 + p3 + plot_layout(guides = \"collect\")) + \n  plot_annotation(tag_levels = \"a\", tag_suffix = \")\")\np_combined\n\n\n\n\n\n\n\nYou can also apply layers or themes to all sub-plots by using & instead of +\n\np_combined & theme_dark()"
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#saving-plots",
-    "href": "2023/02-publication-quality-figs/notes.html#saving-plots",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Saving plots",
-    "text": "Saving plots\nAlthough we often leave this step until the end, I think it’s good to save your plot to a file early on once the plot starts taking shape. If you have some plot dimensions in mind, this allows you to see how any further changes will look in the finished plot.\n\nggsave(\n  filename = \"penguins.png\", # filetype comes from filename extension\n  plot = p_combined, # default is prev. plot, but good to specify\n  width = 7, \n  height = 5, \n  units = \"in\", \n  dpi = \"print\" # resolution for raster images\n)\n\n\nFor example, with these dimensions (4x3 in.), the points and lines appear quite large and some of the text is probably larger than it needs to be. If we had saved the plot earlier, we wouldn’t necessarily have to go back and tweak things.\nRaster vs. Vector\nRaster images (e.g. .jpg, .png, .tiff) are made of pixels and the resolution can vary. Vector images (e.g. .svg, .eps) are not made of pixels and don’t have a resolution.\n\n\n\n\n\n\nTip\n\n\n\nTry zooming in on the images below in your browser to see the difference\n\n\n\n\n\n\n\n\n\n\nRaster (72 dpi .png file)\n\n\n\n\n\nVector (.svg file)\n\n\n\n\nVector images should be used whenever possible and accepted by the journal. Vector formats are more accessible for screen-readers as well (although you should always provide alt-text when possible)"
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#getting-help",
-    "href": "2023/02-publication-quality-figs/notes.html#getting-help",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Getting help",
-    "text": "Getting help\nBesides adding ggplot2 to search terms, there a few good places to look for help or inspiration in improving or modifying the appearance of ggplot2 plots:\n\nThe ggplot2 documentation itself, in particular the examples on the theme() page and the FAQ on customization.\nThe R Graph Gallery has a wide variety of plots with R code walkthroughs.\nThe ggplot2 book: https://ggplot2-book.org/\n\nYou can always come by our drop-in hours to ask questions as well!"
-  },
-  {
-    "objectID": "2023/02-publication-quality-figs/notes.html#part-3-next-week",
-    "href": "2023/02-publication-quality-figs/notes.html#part-3-next-week",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
-    "section": "Part 3 next week!",
-    "text": "Part 3 next week!\n“Exploring the wide world of ggplot2 extensions”\n🗓️ June 26, 11:00am–1:00pm\n\nRegister"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#cct-data-science-ggplot2-series",
-    "href": "2023/01-foundations/slides.html#cct-data-science-ggplot2-series",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "CCT Data Science ggplot2 series",
-    "text": "CCT Data Science ggplot2 series\n\nIn Part 1 of this series, we will:\n\nExplore the grammar of graphics\nMap data to aesthetics\nUnderstand layer components\nInterpret ggplot2 documentation\nCreate a layered plot\nIntroduce function and syntax of visual elements"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#what-is-a-grammar",
-    "href": "2023/01-foundations/slides.html#what-is-a-grammar",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "What is a grammar?",
-    "text": "What is a grammar?\n“The fundamental principles or rules of an art or science” - Oxford English Dictionary\n\n\nreveal composition of complicated graphics\nstrong foundation for understanding a range of graphics\nguide for well-formed or correct graphics\n\n\n\n\n\n\n\n\nNote\n\n\nSee “The Grammar of Graphics” by Leland Wilkinson (2005) and “A Layered Grammar of Graphics” by Hadley Wickham (2010)"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#layered-grammar-of-graphics",
-    "href": "2023/01-foundations/slides.html#layered-grammar-of-graphics",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Layered grammar of graphics",
-    "text": "Layered grammar of graphics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 builds complex plots iteratively, one layer at a time.\n\n\nWhat are the necessary components of a plot?\nWhat are necessary components of a layer?"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#components-of-a-plot",
-    "href": "2023/01-foundations/slides.html#components-of-a-plot",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Components of a plot",
-    "text": "Components of a plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA plot contains:\n\n\nData and aesthetic mapping\nLayer(s) containing geometric object(s) and statistical transformation(s)\nScales\nCoordinate system\n(Optional) facets or themes"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#components-of-a-layer",
-    "href": "2023/01-foundations/slides.html#components-of-a-layer",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Components of a layer",
-    "text": "Components of a layer\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA layer contains:\n\n\nData with aesthetic mapping\nA statistical transformation, or stat\nA geometric object, or geom\nA position adjustment"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#what-data-inputs-are-needed",
-    "href": "2023/01-foundations/slides.html#what-data-inputs-are-needed",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "What data inputs are needed?",
-    "text": "What data inputs are needed?\nData can be added to either the entire ggplot object or a particular layer.\nInput data must be a dataframe in ‘tidy’ format:\n\n\nevery column is a variable\nevery row is an observation\nevery cell is a single value\n\n\n\n\n\n\n\n\nNote\n\n\nSee “Tidy Data” by Wickham (2014) and the associated vignette"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#example-dataset---raw",
-    "href": "2023/01-foundations/slides.html#example-dataset---raw",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Example dataset - raw",
-    "text": "Example dataset - raw\n\n\n\n\n\n\nspecies\nbill_length_mm\nbill_depth_mm\nbody_mass_g\n\n\n\n\nAdelie\n39.1\n18.7\n3750\n\n\nAdelie\n39.5\n17.4\n3800\n\n\nGentoo\n46.7\n15.3\n5200\n\n\nGentoo\n43.3\n13.4\n4400\n\n\nChinstrap\n46.1\n18.2\n3250\n\n\nChinstrap\n51.3\n18.2\n3750"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#example-dataset---mapped",
-    "href": "2023/01-foundations/slides.html#example-dataset---mapped",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Example dataset - mapped",
-    "text": "Example dataset - mapped\n\n\n\n\n\n\n\n\n\n\n\n\naes(x = bill_length_mm,\n    y = bill_depth_mm,\n    size = body_mass_g,\n    color = species)\n\n\nVariables mapped to aesthetic:\n\n\n\n\n\n\nColor\nx\ny\nSize\n\n\n\n\nAdelie\n39.1\n18.7\n3750\n\n\nAdelie\n39.5\n17.4\n3800\n\n\nGentoo\n46.7\n15.3\n5200\n\n\nGentoo\n43.3\n13.4\n4400\n\n\nChinstrap\n46.1\n18.2\n3250\n\n\nChinstrap\n51.3\n18.2\n3750"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#where-to-specify-aesthetics",
-    "href": "2023/01-foundations/slides.html#where-to-specify-aesthetics",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Where to specify aesthetics?",
-    "text": "Where to specify aesthetics?\n\n\nCan be supplied to initial ggplot() call, in individual layers, or a combo\nggplot() data and aesthetics are inherited, but can be overridden"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#where-to-specify-aesthetics-1",
-    "href": "2023/01-foundations/slides.html#where-to-specify-aesthetics-1",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Where to specify aesthetics?",
-    "text": "Where to specify aesthetics?\n\nCan be supplied to initial ggplot() call, in individual layers, or a combo\nggplot() data and aesthetics are inherited, but can be overridden\n\n\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, \n                     color = species)) +\n  geom_point()\n\n\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n  geom_point(aes(color = species))\n\n\nggplot() +\n  geom_point(data = penguins,\n             aes(x = body_mass_g, y = flipper_length_mm, color = species))"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#inheritance-of-aesthetics-by-layers",
-    "href": "2023/01-foundations/slides.html#inheritance-of-aesthetics-by-layers",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Inheritance of aesthetics by layers",
-    "text": "Inheritance of aesthetics by layers\n\n\n\nggplot(penguins, aes(x = body_mass_g, \n                     y = flipper_length_mm, \n                     color = species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#inheritance-of-aesthetics-by-layers-1",
-    "href": "2023/01-foundations/slides.html#inheritance-of-aesthetics-by-layers-1",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Inheritance of aesthetics by layers",
-    "text": "Inheritance of aesthetics by layers\n\n\n\nggplot(penguins, aes(x = body_mass_g, \n                     y = flipper_length_mm, \n                     color = species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) \n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = body_mass_g, \n                     y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  geom_smooth(method = \"lm\", \n              se = FALSE)"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#mapping-aesthetics-to-constants",
-    "href": "2023/01-foundations/slides.html#mapping-aesthetics-to-constants",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Mapping aesthetics to constants",
-    "text": "Mapping aesthetics to constants\nSpecifying a constant inside aes() with quotes creates a legend on the fly\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           color = species)) +\n  geom_point(aes(y = bill_length_mm, \n                 shape = \"Length\")) +\n  geom_point(aes(y = bill_depth_mm, \n                 shape = \"Depth\")) +\n  ylab(\"Bill dimensions (mm)\") +\n  labs(shape = \"dimension\")"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#under-the-hood-with-layer",
-    "href": "2023/01-foundations/slides.html#under-the-hood-with-layer",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Under the hood with layer()",
-    "text": "Under the hood with layer()\n\n\nA layer contains:\n\nData with aesthetic mapping\nA statistical transformation, or stat\nA geometric object, or geom\nA position adjustment\n\n\n\nggplot() +\n  geom_point()\n\n\nggplot() +\n  layer(mapping = NULL,\n        data = NULL,\n        geom = \"point\",\n        stat = \"identity\",\n        position = \"identity\")\n\n\n\n\n\n\n\n\n\nNote\n\n\nAll geom_*() or stat_*() calls are customized shortcuts for the layer() function."
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#the-expediency-of-defaults",
-    "href": "2023/01-foundations/slides.html#the-expediency-of-defaults",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "The expediency of defaults",
-    "text": "The expediency of defaults\n\n\n\n\nDefining each of the components of a layer or whole graphic can be tiresome\nggplot2 has a hierarchy of defaults\nSo you can make a graph in 2 lines of code!"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#the-short-way-and-the-long-way",
-    "href": "2023/01-foundations/slides.html#the-short-way-and-the-long-way",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "The short way and the long way",
-    "text": "The short way and the long way\n\n\n\nggplot() +\n  geom_point(data = penguins,\n             mapping = aes(x = body_mass_g,\n                           y = flipper_length_mm))"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#the-short-way-and-the-long-way-1",
-    "href": "2023/01-foundations/slides.html#the-short-way-and-the-long-way-1",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "The short way and the long way",
-    "text": "The short way and the long way\n\n\n\nggplot() +\n  geom_point(data = penguins,\n             mapping = aes(x = body_mass_g,\n                           y = flipper_length_mm))\n\n\nggplot() +\n  layer(data = penguins,\n        mapping = aes(\n          x = body_mass_g,\n          y = flipper_length_mm),\n        geom = \"point\", \n        stat = \"identity\",\n        position = \"identity\") +\n  scale_x_continuous() +\n  scale_y_continuous() +\n  coord_cartesian()"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#stat_-vs.-geom_",
-    "href": "2023/01-foundations/slides.html#stat_-vs.-geom_",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "stat_* vs. geom_*",
-    "text": "stat_* vs. geom_*\n“Every geom has a default statistic, and every statistic has a default geom.” - Wickham (2010)\n\n\nstat_* transforms the data\n\nBy computing or summarizing from original input dataset\nReturns a new dataset that can be mapped to aesthetics\n\ngeom_* control the type of plot rendered\n\n\n\n\n\n\n\n\nTip\n\n\nWhen in doubt, check the documentation"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#two-ways-to-plot-counts-categorical",
-    "href": "2023/01-foundations/slides.html#two-ways-to-plot-counts-categorical",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Two ways to plot counts (categorical)",
-    "text": "Two ways to plot counts (categorical)\nstat_count() and geom_bar() are equivalent\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, \n                     fill = sex)) +\n  stat_count()\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, \n                     fill = sex)) +\n  geom_bar()"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#two-ways-to-plot-density-continuous",
-    "href": "2023/01-foundations/slides.html#two-ways-to-plot-density-continuous",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Two ways to plot density (continuous)",
-    "text": "Two ways to plot density (continuous)\nstat_density() and geom_density() are not equivalent\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = body_mass_g, \n                     fill = species)) +\n  stat_density(alpha = 0.5)\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = body_mass_g, \n                     fill = species)) +\n  geom_density(alpha = 0.5)"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#when-to-use-which",
-    "href": "2023/01-foundations/slides.html#when-to-use-which",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "When to use which?",
-    "text": "When to use which?\nIn general, use geom_*() unless you are trying to:\n\nOverrideCustomizeSummarize\n\n\n\n\n\npenguins %&gt;%\n  count(species) %&gt;%\n  ggplot(aes(x = species, y = n)) +\n  geom_bar(stat = \"identity\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = species, \n                     y = after_stat(prop),\n                     group = 1)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins) +\n  stat_summary(aes(x = species,\n                   y = body_mass_g),\n               fun.min = min,\n               fun.max = max,\n               fun = mean)"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#a-panopoly-of-layer-options",
-    "href": "2023/01-foundations/slides.html#a-panopoly-of-layer-options",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "A panopoly of layer options!",
-    "text": "A panopoly of layer options!\nTrack all geom and stat options\n\n\n\n\n\n\nExercise\n\n\nFor each of the following problems, suggest a useful geom:\n\nDisplay how a variable has changed over time\nShow the detailed distribution of a single variable\nFocus attention on one portion of a large dataset\nDraw a map\nLabel outlying points"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#position-adjustment-options",
-    "href": "2023/01-foundations/slides.html#position-adjustment-options",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Position adjustment options",
-    "text": "Position adjustment options\n\nstackfilldodge\n\n\n\nggplot(data = penguins, mapping = aes(x = species, fill = sex)) +\n  geom_bar(position = \"stack\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, fill = sex)) +\n  geom_bar(position = \"fill\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, \n                     fill = sex)) +\n  geom_bar(position = \"dodge\")"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#position-adjustment-options-1",
-    "href": "2023/01-foundations/slides.html#position-adjustment-options-1",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Position adjustment options",
-    "text": "Position adjustment options\n\nidentityjitterjitterdodge\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = \"identity\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = \"jitter\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = position_jitterdodge())"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#position-adjustments-limitations",
-    "href": "2023/01-foundations/slides.html#position-adjustments-limitations",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Position adjustments limitations",
-    "text": "Position adjustments limitations\nFor example, boxplots and errorbars can’t be stacked.\n\n\n\n\n\n\nExercise\n\n\n\nWhat properties must a geom possess to be stackable?\nWhat properties must a geom possess to be dodgeable?"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#recreating-a-layered-plot",
-    "href": "2023/01-foundations/slides.html#recreating-a-layered-plot",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Recreating a layered plot",
-    "text": "Recreating a layered plot\n\n\n\n\n\n\n\nExercise\n\n\nWhat are the two layers in this plot? What data when into each?"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#scales-and-guides",
-    "href": "2023/01-foundations/slides.html#scales-and-guides",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Scales and guides",
-    "text": "Scales and guides\n\n\nEach scale is a function that translate data space (in data units) into aesthetic space (e.g., pixels)\nA guide (axis or legend) is the inverse function, that converts visual properties back to data"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#scales-and-guides-1",
-    "href": "2023/01-foundations/slides.html#scales-and-guides-1",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Scales and guides",
-    "text": "Scales and guides\n\nEach scale is a function that translate data space (in data units) into aesthetic space (e.g., pixels)\nA guide (axis or legend) is the inverse function, that converts visual properties back to data\n\n\nAre axes and legends equivalent?"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#scale-specification",
-    "href": "2023/01-foundations/slides.html#scale-specification",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Scale specification",
-    "text": "Scale specification\nEvery aesthetic in a plot is associated with exactly one scale.\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species))\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  scale_x_continuous() + \n  scale_y_continuous() + \n  scale_colour_discrete()\n\n\n\nScale functions names are made of 3 pieces separated by “_”:\n\n\nscale\nthe name of the primary aesthetic (color, shape, x)\nthe name of the scale (discrete, continuous, brewer)"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#what-does-a-coordinate-system-do",
-    "href": "2023/01-foundations/slides.html#what-does-a-coordinate-system-do",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "What does a coordinate system do?",
-    "text": "What does a coordinate system do?\nCoordinate systems have 2 primary roles:\n\n\nCombine the x and y position aesthetics to produce a 2-dimensional position on the plot\nIn coordination with faceting (optional), draw axes and panel backgrounds"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#types-of-coordinate-systems",
-    "href": "2023/01-foundations/slides.html#types-of-coordinate-systems",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Types of coordinate systems",
-    "text": "Types of coordinate systems\n\n\nLinear:\n\ncoord_cartesian(): common default\ncoord_flip(): x and y axes flipped\ncoord_fixed(): fixed aspect ratio\n\n\n\n\nNon-linear:\n\n\ncoord_map()/coord_quickmap()/coord_sf(): map projections, x and y become longitude and latitude\ncoord_polar(): polar coordinates, x and y become angle and radius\ncoord_trans(): apply transformations"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#faceting",
-    "href": "2023/01-foundations/slides.html#faceting",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Faceting",
-    "text": "Faceting\nCreates small multiples to show different subsets:\n\nfacet_null(): default\nfacet_wrap(): “wraps” a 1d ribbon of panels into 2d\nfacet_grid(): 2d grid of panels defined by row and column"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#keeping-points-of-reference",
-    "href": "2023/01-foundations/slides.html#keeping-points-of-reference",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Keeping points of reference",
-    "text": "Keeping points of reference\n\n\n\n\n\n\nExercise\n\n\nRecreate the figure below. How would you get the gray points to show up on all facets?"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#theming",
-    "href": "2023/01-foundations/slides.html#theming",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Theming",
-    "text": "Theming\nControls non-data elements of plots (e.g., to match a style guide).\n\n\nTheme elements specify the non-data elements you can control: plot.title, legend.position\nEach element has an element function to describe its visual properties: element_text(), element_blank()\nThe theme() function allows overriding of the default theme: theme(legend.title = element_blank())"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#complete-themes",
-    "href": "2023/01-foundations/slides.html#complete-themes",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Complete themes",
-    "text": "Complete themes\n\ntheme_bw()theme_minimal()theme_classic()\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_classic()"
-  },
-  {
-    "objectID": "2023/01-foundations/slides.html#further-resources",
-    "href": "2023/01-foundations/slides.html#further-resources",
-    "title": "Understanding the foundations of ‘ggplot2’",
-    "section": "Further resources",
-    "text": "Further resources\n\n\nPenguin artwork by @allison_horst\nHadley Wickham’s “A layered grammar of graphics” (2010)\nHadley Wickham’s “ggplot2: Elegant Graphics for Data Analysis, 3rd edition”, now available online\n“R for Data Science”, by Hadley Wickham, Mine Cetinkaya-Rundel, & Garret Grolemund, especially chapters 2, 10, and 12\nSee us at drop-in hours\n\n\n\n\n\n\nIntermediate ggplot2 workshop series"
-  },
-  {
-    "objectID": "2023/01-foundations/index.html",
-    "href": "2023/01-foundations/index.html",
-    "title": "Understanding the foundations of ggplot2",
-    "section": "",
-    "text": "Date & time: Monday, June 5, 2023\nInstructor: Jessica Guo\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying the ggplot2 package. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\n\nRecording\nplot_layers.R\nplot_facets.R\n    View slides in full screen",
-    "crumbs": [
-      "2023",
       "Session 1 - Foundations"
     ]
   },
   {
-    "objectID": "2023/02-publication-quality-figs/index.html",
-    "href": "2023/02-publication-quality-figs/index.html",
-    "title": "Crafting Publication Quality Data Visualizations with ggplot2",
+    "objectID": "2023/03-extensions/notes.html",
+    "href": "2023/03-extensions/notes.html",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "",
-    "text": "Date & time: 11 a.m. to 1 p.m., June 12, 2023\nInstructor: Eric Scott\nIf you know how to make basic plots with ggplot2, but struggle to add on finishing touches like specifying colors, customizing axes, adding text to plots, and creating multi-panel figures, then this workshop is for you!\n\nRecording\nNotes\n    View slides in full screen",
-    "crumbs": [
-      "2023",
-      "Session 2 - Customizations"
-    ]
+    "text": "library(palmerpenguins)\nlibrary(ggplot2)"
+  },
+  {
+    "objectID": "2023/03-extensions/notes.html#gganimate",
+    "href": "2023/03-extensions/notes.html#gganimate",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "gganimate",
+    "text": "gganimate\n\nlibrary(gganimate)\n\n\nAnimate plots and save as gifs\nTakes some getting used to lingo\nCan control: what changes over time with transition_*, how the view of the axes changes with view_*, how much “memory” of the change there is, with shadow_*, and how data appears and disappears with enter_* and exit_*\nUse ? with functions to figure out what label name is\nThese penguin plots don’t really make sense because the data isn’t same individuals over the years; should set group in transition_states\nMention animate() for more control\n\nResources:\n\nBat data slides\nPenguins code source"
+  },
+  {
+    "objectID": "2023/03-extensions/notes.html#esquisse",
+    "href": "2023/03-extensions/notes.html#esquisse",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "esquisse",
+    "text": "esquisse\n\nlibrary(esquisse)\nlibrary(dplyr)\n\n\n“Esquisse” means rough first sketch in French\nesquisse vignette\nPoint and click to generate ggplot plots from data\nGood for exploring datasets (look at data too)\nStill have to modify dataset outside of tool, e.g., recoding factors\n\n\npenguins &lt;- penguins %&gt;% na.omit()\nesquisser(penguins)\n\n\nHelpful things: color codes variables, suggests plot types\nSave plot as image file, or copy and paste code into console (uses tidyverse)\nCan add to Shiny app to let non-R users create ggplots of data"
+  },
+  {
+    "objectID": "2023/03-extensions/notes.html#plotly",
+    "href": "2023/03-extensions/notes.html#plotly",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "plotly",
+    "text": "plotly\n\nlibrary(plotly)\n\n\nplotly R package is interface to a JavaScript library for making interactive data visualizations\nOnly important to know that because if you search for plotly help, sometimes you’ll get JavaScript code examples.\nplotly kind of uses the grammar of graphics, but building a plot from scratch is tricky\nplotly functions mostly take lists are arguments, which makes it very difficult to figure out what default values are or even what arguments functions can take.\nggplotly() transforms ggplot objects into interactive plotly plots. 90% of the time it gets you 90% of the way there\n\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p)\n\nBy default, you get:\n\nDrag a box to zoom, double-click to zoom out\nTooltips on hover\nAbility to hide and show points by clicking on the legend\nToolbar with tools including ability to download a PNG of the plot\n\nThis works in R Markdown or Quarto documents (i.e. there’s not a way to make these plots “stand-alone”—they’re rendered as HTML)\nTypes of plots\nWorks for most (all?) built-in geoms. Works for some plots made with ggplot2 extensions also. Demo a few different geoms like geom_boxplot(), geom_hisotgram(), geom_smooth()\nCustomize tooltip\nYou can customize the info displayed in the tooltip with ggplotly . Give it additional aesthetic text to include something only as a tooltip.\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  #Ignore unknown aesthetics warning\n  geom_point(aes(text = sex)) +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p, tooltip = c(\"text\", \"bill_depth_mm\", \"bill_length_mm\"))\n\nAnimations\nYou can use ggplotly() to make interactive animated plots by using the frame aesthetic\n\nlibrary(gapminder) #dataset\nhead(gapminder)\np2 &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +\n  geom_point(aes(size = pop, frame = year, ids = country)) +\n  scale_x_log10()\n\nggplotly(p2)"
+  },
+  {
+    "objectID": "2023/03-extensions/notes.html#ggrepel",
+    "href": "2023/03-extensions/notes.html#ggrepel",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "ggrepel",
+    "text": "ggrepel\nThe ggrepel package is helpful for directly labeling plots, especially when labels would otherwise overlap.\n\n#make rownames into columns\ndat &lt;- mtcars |&gt; tibble::rownames_to_column(var = \"car\")\ndat\np3 &lt;- \n  ggplot(dat,\n  aes(wt, mpg, label = car, colour = factor(cyl))) +\n  geom_point()\n#without ggrepel\np3 + geom_text()\np3 + geom_label()\nlibrary(ggrepel)\np3 + geom_text_repel()\np3 + geom_label_repel()\n\nAdjust appearance of labels\nBy default, little segments are drawn connecting labels to points only when labels are far enough away. This can be adjusted.\n\np3 + geom_label_repel(min.segment.length = 0)\n\nOverlapping labels\nYou see a warning about labels being removed due to overlaps. Make text smaller, plot larger, adjust max.overlaps , force labels further apart, make it try harder to find positions that don’t overlap.\n\n#don't usually need to do all of these things, but they're some options\np4 &lt;- \n  p3 + \n  geom_label_repel(\n    min.segment.length = 0,\n    #smaller labels\n    size = 3, \n    label.padding = 0.15,\n    #draw labels even if overlapping with things\n    max.overlaps = 15, #default is 10, increase to get more labels drawn\n    #force labels further from point\n    force = 5,\n    #ask it to try harder\n    max.time = 2,\n    max.iter = 15000,\n    show.legend = FALSE\n  )\np4\n\nLabels are random\nLabels are positioned randomly, so they’re different every time a plot is rendered\np4\np4\n\n\n\nYou can set.seed() at the top of your script to ensure reproducibility.\nset.seed(123)\np4\nset.seed(123)\np4\n\n\n\nLabel just some points\nYou can label just select points\n\ncars &lt;- c(\"Volvo 142E\", \"Merc 230\")\nggplot(dat, aes(wt, mpg, label = ifelse(car %in% cars, car, \"\"))) +\n  geom_point(color = \"red\") +\n  geom_label_repel(min.segment.length = 0, nudge_x = 0.5, nudge_y = 3)"
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#learning-objectives",
@@ -873,253 +693,545 @@
     "text": "Part 3 in two weeks!\n“Exploring the wide world of ggplot2 extensions”\n🗓️ June 26\n⌚️ 11:00am–1:00pm\nRegistration\n\n\n\n\nIntermediate ggplot2 workshop series"
   },
   {
-    "objectID": "2023/03-extensions/notes.html",
-    "href": "2023/03-extensions/notes.html",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "objectID": "2023/02-publication-quality-figs/index.html",
+    "href": "2023/02-publication-quality-figs/index.html",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "",
-    "text": "library(palmerpenguins)\nlibrary(ggplot2)"
-  },
-  {
-    "objectID": "2023/03-extensions/notes.html#gganimate",
-    "href": "2023/03-extensions/notes.html#gganimate",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "gganimate",
-    "text": "gganimate\n\nlibrary(gganimate)\n\n\nAnimate plots and save as gifs\nTakes some getting used to lingo\nCan control: what changes over time with transition_*, how the view of the axes changes with view_*, how much “memory” of the change there is, with shadow_*, and how data appears and disappears with enter_* and exit_*\nUse ? with functions to figure out what label name is\nThese penguin plots don’t really make sense because the data isn’t same individuals over the years; should set group in transition_states\nMention animate() for more control\n\nResources:\n\nBat data slides\nPenguins code source"
-  },
-  {
-    "objectID": "2023/03-extensions/notes.html#esquisse",
-    "href": "2023/03-extensions/notes.html#esquisse",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "esquisse",
-    "text": "esquisse\n\nlibrary(esquisse)\nlibrary(dplyr)\n\n\n“Esquisse” means rough first sketch in French\nesquisse vignette\nPoint and click to generate ggplot plots from data\nGood for exploring datasets (look at data too)\nStill have to modify dataset outside of tool, e.g., recoding factors\n\n\npenguins &lt;- penguins %&gt;% na.omit()\nesquisser(penguins)\n\n\nHelpful things: color codes variables, suggests plot types\nSave plot as image file, or copy and paste code into console (uses tidyverse)\nCan add to Shiny app to let non-R users create ggplots of data"
-  },
-  {
-    "objectID": "2023/03-extensions/notes.html#plotly",
-    "href": "2023/03-extensions/notes.html#plotly",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "plotly",
-    "text": "plotly\n\nlibrary(plotly)\n\n\nplotly R package is interface to a JavaScript library for making interactive data visualizations\nOnly important to know that because if you search for plotly help, sometimes you’ll get JavaScript code examples.\nplotly kind of uses the grammar of graphics, but building a plot from scratch is tricky\nplotly functions mostly take lists are arguments, which makes it very difficult to figure out what default values are or even what arguments functions can take.\nggplotly() transforms ggplot objects into interactive plotly plots. 90% of the time it gets you 90% of the way there\n\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p)\n\nBy default, you get:\n\nDrag a box to zoom, double-click to zoom out\nTooltips on hover\nAbility to hide and show points by clicking on the legend\nToolbar with tools including ability to download a PNG of the plot\n\nThis works in R Markdown or Quarto documents (i.e. there’s not a way to make these plots “stand-alone”—they’re rendered as HTML)\nTypes of plots\nWorks for most (all?) built-in geoms. Works for some plots made with ggplot2 extensions also. Demo a few different geoms like geom_boxplot(), geom_hisotgram(), geom_smooth()\nCustomize tooltip\nYou can customize the info displayed in the tooltip with ggplotly . Give it additional aesthetic text to include something only as a tooltip.\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  #Ignore unknown aesthetics warning\n  geom_point(aes(text = sex)) +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p, tooltip = c(\"text\", \"bill_depth_mm\", \"bill_length_mm\"))\n\nAnimations\nYou can use ggplotly() to make interactive animated plots by using the frame aesthetic\n\nlibrary(gapminder) #dataset\nhead(gapminder)\np2 &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +\n  geom_point(aes(size = pop, frame = year, ids = country)) +\n  scale_x_log10()\n\nggplotly(p2)"
-  },
-  {
-    "objectID": "2023/03-extensions/notes.html#ggrepel",
-    "href": "2023/03-extensions/notes.html#ggrepel",
-    "title": "Exploring the Wide World of ggplot2 Extensions",
-    "section": "ggrepel",
-    "text": "ggrepel\nThe ggrepel package is helpful for directly labeling plots, especially when labels would otherwise overlap.\n\n#make rownames into columns\ndat &lt;- mtcars |&gt; tibble::rownames_to_column(var = \"car\")\ndat\np3 &lt;- \n  ggplot(dat,\n  aes(wt, mpg, label = car, colour = factor(cyl))) +\n  geom_point()\n#without ggrepel\np3 + geom_text()\np3 + geom_label()\nlibrary(ggrepel)\np3 + geom_text_repel()\np3 + geom_label_repel()\n\nAdjust appearance of labels\nBy default, little segments are drawn connecting labels to points only when labels are far enough away. This can be adjusted.\n\np3 + geom_label_repel(min.segment.length = 0)\n\nOverlapping labels\nYou see a warning about labels being removed due to overlaps. Make text smaller, plot larger, adjust max.overlaps , force labels further apart, make it try harder to find positions that don’t overlap.\n\n#don't usually need to do all of these things, but they're some options\np4 &lt;- \n  p3 + \n  geom_label_repel(\n    min.segment.length = 0,\n    #smaller labels\n    size = 3, \n    label.padding = 0.15,\n    #draw labels even if overlapping with things\n    max.overlaps = 15, #default is 10, increase to get more labels drawn\n    #force labels further from point\n    force = 5,\n    #ask it to try harder\n    max.time = 2,\n    max.iter = 15000,\n    show.legend = FALSE\n  )\np4\n\nLabels are random\nLabels are positioned randomly, so they’re different every time a plot is rendered\np4\np4\n\n\n\nYou can set.seed() at the top of your script to ensure reproducibility.\nset.seed(123)\np4\nset.seed(123)\np4\n\n\n\nLabel just some points\nYou can label just select points\n\ncars &lt;- c(\"Volvo 142E\", \"Merc 230\")\nggplot(dat, aes(wt, mpg, label = ifelse(car %in% cars, car, \"\"))) +\n  geom_point(color = \"red\") +\n  geom_label_repel(min.segment.length = 0, nudge_x = 0.5, nudge_y = 3)"
-  },
-  {
-    "objectID": "2024/01-foundations/index.html",
-    "href": "2024/01-foundations/index.html",
-    "title": "Foundations of ggplot2",
-    "section": "",
-    "text": "Date & time: Thursday June 6, 2024, 11am - 1pm AZ\nInstructor: Eric Scott\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying many data visualization tools, including ggplot2. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2\n\nMaterials:\n\nNotes\n    View slides in full screen",
+    "text": "Date & time: 11 a.m. to 1 p.m., June 12, 2023\nInstructor: Eric Scott\nIf you know how to make basic plots with ggplot2, but struggle to add on finishing touches like specifying colors, customizing axes, adding text to plots, and creating multi-panel figures, then this workshop is for you!\n\nRecording\nNotes\n    View slides in full screen",
     "crumbs": [
-      "Upcoming series",
+      "2023",
+      "Session 2 - Customizations"
+    ]
+  },
+  {
+    "objectID": "2023/01-foundations/index.html",
+    "href": "2023/01-foundations/index.html",
+    "title": "Understanding the foundations of ggplot2",
+    "section": "",
+    "text": "Date & time: Monday, June 5, 2023\nInstructor: Jessica Guo\nIn this workshop you’ll gain a better understanding of the “grammar of graphics”—the theory underlying the ggplot2 package. Using practical examples, you’ll learn how understanding the grammar of graphics can help you build more creative, complex, information-rich visualizations.\n\nRecording\nplot_layers.R\nplot_facets.R\n    View slides in full screen",
+    "crumbs": [
+      "2023",
       "Session 1 - Foundations"
     ]
   },
   {
-    "objectID": "2024/01-foundations/slides.html#learning-objectives",
-    "href": "2024/01-foundations/slides.html#learning-objectives",
-    "title": "Foundations of {ggplot2}",
+    "objectID": "2023/01-foundations/slides.html#cct-data-science-ggplot2-series",
+    "href": "2023/01-foundations/slides.html#cct-data-science-ggplot2-series",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "CCT Data Science ggplot2 series",
+    "text": "CCT Data Science ggplot2 series\n\nIn Part 1 of this series, we will:\n\nExplore the grammar of graphics\nMap data to aesthetics\nUnderstand layer components\nInterpret ggplot2 documentation\nCreate a layered plot\nIntroduce function and syntax of visual elements"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#what-is-a-grammar",
+    "href": "2023/01-foundations/slides.html#what-is-a-grammar",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "What is a grammar?",
+    "text": "What is a grammar?\n“The fundamental principles or rules of an art or science” - Oxford English Dictionary\n\n\nreveal composition of complicated graphics\nstrong foundation for understanding a range of graphics\nguide for well-formed or correct graphics\n\n\n\n\n\n\n\n\nNote\n\n\nSee “The Grammar of Graphics” by Leland Wilkinson (2005) and “A Layered Grammar of Graphics” by Hadley Wickham (2010)"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#layered-grammar-of-graphics",
+    "href": "2023/01-foundations/slides.html#layered-grammar-of-graphics",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Layered grammar of graphics",
+    "text": "Layered grammar of graphics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 builds complex plots iteratively, one layer at a time.\n\n\nWhat are the necessary components of a plot?\nWhat are necessary components of a layer?"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#components-of-a-plot",
+    "href": "2023/01-foundations/slides.html#components-of-a-plot",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Components of a plot",
+    "text": "Components of a plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA plot contains:\n\n\nData and aesthetic mapping\nLayer(s) containing geometric object(s) and statistical transformation(s)\nScales\nCoordinate system\n(Optional) facets or themes"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#components-of-a-layer",
+    "href": "2023/01-foundations/slides.html#components-of-a-layer",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Components of a layer",
+    "text": "Components of a layer\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA layer contains:\n\n\nData with aesthetic mapping\nA statistical transformation, or stat\nA geometric object, or geom\nA position adjustment"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#what-data-inputs-are-needed",
+    "href": "2023/01-foundations/slides.html#what-data-inputs-are-needed",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "What data inputs are needed?",
+    "text": "What data inputs are needed?\nData can be added to either the entire ggplot object or a particular layer.\nInput data must be a dataframe in ‘tidy’ format:\n\n\nevery column is a variable\nevery row is an observation\nevery cell is a single value\n\n\n\n\n\n\n\n\nNote\n\n\nSee “Tidy Data” by Wickham (2014) and the associated vignette"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#example-dataset---raw",
+    "href": "2023/01-foundations/slides.html#example-dataset---raw",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Example dataset - raw",
+    "text": "Example dataset - raw\n\n\n\n\n\n\nspecies\nbill_length_mm\nbill_depth_mm\nbody_mass_g\n\n\n\n\nAdelie\n39.1\n18.7\n3750\n\n\nAdelie\n39.5\n17.4\n3800\n\n\nGentoo\n46.7\n15.3\n5200\n\n\nGentoo\n43.3\n13.4\n4400\n\n\nChinstrap\n46.1\n18.2\n3250\n\n\nChinstrap\n51.3\n18.2\n3750"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#example-dataset---mapped",
+    "href": "2023/01-foundations/slides.html#example-dataset---mapped",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Example dataset - mapped",
+    "text": "Example dataset - mapped\n\n\n\n\n\n\n\n\n\n\n\n\naes(x = bill_length_mm,\n    y = bill_depth_mm,\n    size = body_mass_g,\n    color = species)\n\n\nVariables mapped to aesthetic:\n\n\n\n\n\n\nColor\nx\ny\nSize\n\n\n\n\nAdelie\n39.1\n18.7\n3750\n\n\nAdelie\n39.5\n17.4\n3800\n\n\nGentoo\n46.7\n15.3\n5200\n\n\nGentoo\n43.3\n13.4\n4400\n\n\nChinstrap\n46.1\n18.2\n3250\n\n\nChinstrap\n51.3\n18.2\n3750"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#where-to-specify-aesthetics",
+    "href": "2023/01-foundations/slides.html#where-to-specify-aesthetics",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Where to specify aesthetics?",
+    "text": "Where to specify aesthetics?\n\n\nCan be supplied to initial ggplot() call, in individual layers, or a combo\nggplot() data and aesthetics are inherited, but can be overridden"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#where-to-specify-aesthetics-1",
+    "href": "2023/01-foundations/slides.html#where-to-specify-aesthetics-1",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Where to specify aesthetics?",
+    "text": "Where to specify aesthetics?\n\nCan be supplied to initial ggplot() call, in individual layers, or a combo\nggplot() data and aesthetics are inherited, but can be overridden\n\n\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, \n                     color = species)) +\n  geom_point()\n\n\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n  geom_point(aes(color = species))\n\n\nggplot() +\n  geom_point(data = penguins,\n             aes(x = body_mass_g, y = flipper_length_mm, color = species))"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#inheritance-of-aesthetics-by-layers",
+    "href": "2023/01-foundations/slides.html#inheritance-of-aesthetics-by-layers",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Inheritance of aesthetics by layers",
+    "text": "Inheritance of aesthetics by layers\n\n\n\nggplot(penguins, aes(x = body_mass_g, \n                     y = flipper_length_mm, \n                     color = species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE)"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#inheritance-of-aesthetics-by-layers-1",
+    "href": "2023/01-foundations/slides.html#inheritance-of-aesthetics-by-layers-1",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Inheritance of aesthetics by layers",
+    "text": "Inheritance of aesthetics by layers\n\n\n\nggplot(penguins, aes(x = body_mass_g, \n                     y = flipper_length_mm, \n                     color = species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) \n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = body_mass_g, \n                     y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  geom_smooth(method = \"lm\", \n              se = FALSE)"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#mapping-aesthetics-to-constants",
+    "href": "2023/01-foundations/slides.html#mapping-aesthetics-to-constants",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Mapping aesthetics to constants",
+    "text": "Mapping aesthetics to constants\nSpecifying a constant inside aes() with quotes creates a legend on the fly\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           color = species)) +\n  geom_point(aes(y = bill_length_mm, \n                 shape = \"Length\")) +\n  geom_point(aes(y = bill_depth_mm, \n                 shape = \"Depth\")) +\n  ylab(\"Bill dimensions (mm)\") +\n  labs(shape = \"dimension\")"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#under-the-hood-with-layer",
+    "href": "2023/01-foundations/slides.html#under-the-hood-with-layer",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Under the hood with layer()",
+    "text": "Under the hood with layer()\n\n\nA layer contains:\n\nData with aesthetic mapping\nA statistical transformation, or stat\nA geometric object, or geom\nA position adjustment\n\n\n\nggplot() +\n  geom_point()\n\n\nggplot() +\n  layer(mapping = NULL,\n        data = NULL,\n        geom = \"point\",\n        stat = \"identity\",\n        position = \"identity\")\n\n\n\n\n\n\n\n\n\nNote\n\n\nAll geom_*() or stat_*() calls are customized shortcuts for the layer() function."
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#the-expediency-of-defaults",
+    "href": "2023/01-foundations/slides.html#the-expediency-of-defaults",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "The expediency of defaults",
+    "text": "The expediency of defaults\n\n\n\n\nDefining each of the components of a layer or whole graphic can be tiresome\nggplot2 has a hierarchy of defaults\nSo you can make a graph in 2 lines of code!"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#the-short-way-and-the-long-way",
+    "href": "2023/01-foundations/slides.html#the-short-way-and-the-long-way",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "The short way and the long way",
+    "text": "The short way and the long way\n\n\n\nggplot() +\n  geom_point(data = penguins,\n             mapping = aes(x = body_mass_g,\n                           y = flipper_length_mm))"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#the-short-way-and-the-long-way-1",
+    "href": "2023/01-foundations/slides.html#the-short-way-and-the-long-way-1",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "The short way and the long way",
+    "text": "The short way and the long way\n\n\n\nggplot() +\n  geom_point(data = penguins,\n             mapping = aes(x = body_mass_g,\n                           y = flipper_length_mm))\n\n\nggplot() +\n  layer(data = penguins,\n        mapping = aes(\n          x = body_mass_g,\n          y = flipper_length_mm),\n        geom = \"point\", \n        stat = \"identity\",\n        position = \"identity\") +\n  scale_x_continuous() +\n  scale_y_continuous() +\n  coord_cartesian()"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#stat_-vs.-geom_",
+    "href": "2023/01-foundations/slides.html#stat_-vs.-geom_",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "stat_* vs. geom_*",
+    "text": "stat_* vs. geom_*\n“Every geom has a default statistic, and every statistic has a default geom.” - Wickham (2010)\n\n\nstat_* transforms the data\n\nBy computing or summarizing from original input dataset\nReturns a new dataset that can be mapped to aesthetics\n\ngeom_* control the type of plot rendered\n\n\n\n\n\n\n\n\nTip\n\n\nWhen in doubt, check the documentation"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#two-ways-to-plot-counts-categorical",
+    "href": "2023/01-foundations/slides.html#two-ways-to-plot-counts-categorical",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Two ways to plot counts (categorical)",
+    "text": "Two ways to plot counts (categorical)\nstat_count() and geom_bar() are equivalent\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, \n                     fill = sex)) +\n  stat_count()\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, \n                     fill = sex)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#two-ways-to-plot-density-continuous",
+    "href": "2023/01-foundations/slides.html#two-ways-to-plot-density-continuous",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Two ways to plot density (continuous)",
+    "text": "Two ways to plot density (continuous)\nstat_density() and geom_density() are not equivalent\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = body_mass_g, \n                     fill = species)) +\n  stat_density(alpha = 0.5)\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = body_mass_g, \n                     fill = species)) +\n  geom_density(alpha = 0.5)"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#when-to-use-which",
+    "href": "2023/01-foundations/slides.html#when-to-use-which",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "When to use which?",
+    "text": "When to use which?\nIn general, use geom_*() unless you are trying to:\n\nOverrideCustomizeSummarize\n\n\n\n\n\npenguins %&gt;%\n  count(species) %&gt;%\n  ggplot(aes(x = species, y = n)) +\n  geom_bar(stat = \"identity\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = species, \n                     y = after_stat(prop),\n                     group = 1)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins) +\n  stat_summary(aes(x = species,\n                   y = body_mass_g),\n               fun.min = min,\n               fun.max = max,\n               fun = mean)"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#a-panopoly-of-layer-options",
+    "href": "2023/01-foundations/slides.html#a-panopoly-of-layer-options",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "A panopoly of layer options!",
+    "text": "A panopoly of layer options!\nTrack all geom and stat options\n\n\n\n\n\n\nExercise\n\n\nFor each of the following problems, suggest a useful geom:\n\nDisplay how a variable has changed over time\nShow the detailed distribution of a single variable\nFocus attention on one portion of a large dataset\nDraw a map\nLabel outlying points"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#position-adjustment-options",
+    "href": "2023/01-foundations/slides.html#position-adjustment-options",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Position adjustment options",
+    "text": "Position adjustment options\n\nstackfilldodge\n\n\n\nggplot(data = penguins, mapping = aes(x = species, fill = sex)) +\n  geom_bar(position = \"stack\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, fill = sex)) +\n  geom_bar(position = \"fill\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, \n                     fill = sex)) +\n  geom_bar(position = \"dodge\")"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#position-adjustment-options-1",
+    "href": "2023/01-foundations/slides.html#position-adjustment-options-1",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Position adjustment options",
+    "text": "Position adjustment options\n\nidentityjitterjitterdodge\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = \"identity\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = \"jitter\")\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, mapping = aes(x = species, y = body_mass_g, color = sex)) +\n  geom_point(position = position_jitterdodge())"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#position-adjustments-limitations",
+    "href": "2023/01-foundations/slides.html#position-adjustments-limitations",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Position adjustments limitations",
+    "text": "Position adjustments limitations\nFor example, boxplots and errorbars can’t be stacked.\n\n\n\n\n\n\nExercise\n\n\n\nWhat properties must a geom possess to be stackable?\nWhat properties must a geom possess to be dodgeable?"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#recreating-a-layered-plot",
+    "href": "2023/01-foundations/slides.html#recreating-a-layered-plot",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Recreating a layered plot",
+    "text": "Recreating a layered plot\n\n\n\n\n\n\n\nExercise\n\n\nWhat are the two layers in this plot? What data when into each?"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#scales-and-guides",
+    "href": "2023/01-foundations/slides.html#scales-and-guides",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Scales and guides",
+    "text": "Scales and guides\n\n\nEach scale is a function that translate data space (in data units) into aesthetic space (e.g., pixels)\nA guide (axis or legend) is the inverse function, that converts visual properties back to data"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#scales-and-guides-1",
+    "href": "2023/01-foundations/slides.html#scales-and-guides-1",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Scales and guides",
+    "text": "Scales and guides\n\nEach scale is a function that translate data space (in data units) into aesthetic space (e.g., pixels)\nA guide (axis or legend) is the inverse function, that converts visual properties back to data\n\n\nAre axes and legends equivalent?"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#scale-specification",
+    "href": "2023/01-foundations/slides.html#scale-specification",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Scale specification",
+    "text": "Scale specification\nEvery aesthetic in a plot is associated with exactly one scale.\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species))\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  scale_x_continuous() + \n  scale_y_continuous() + \n  scale_colour_discrete()\n\n\n\nScale functions names are made of 3 pieces separated by “_”:\n\n\nscale\nthe name of the primary aesthetic (color, shape, x)\nthe name of the scale (discrete, continuous, brewer)"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#what-does-a-coordinate-system-do",
+    "href": "2023/01-foundations/slides.html#what-does-a-coordinate-system-do",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "What does a coordinate system do?",
+    "text": "What does a coordinate system do?\nCoordinate systems have 2 primary roles:\n\n\nCombine the x and y position aesthetics to produce a 2-dimensional position on the plot\nIn coordination with faceting (optional), draw axes and panel backgrounds"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#types-of-coordinate-systems",
+    "href": "2023/01-foundations/slides.html#types-of-coordinate-systems",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Types of coordinate systems",
+    "text": "Types of coordinate systems\n\n\nLinear:\n\ncoord_cartesian(): common default\ncoord_flip(): x and y axes flipped\ncoord_fixed(): fixed aspect ratio\n\n\n\n\nNon-linear:\n\n\ncoord_map()/coord_quickmap()/coord_sf(): map projections, x and y become longitude and latitude\ncoord_polar(): polar coordinates, x and y become angle and radius\ncoord_trans(): apply transformations"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#faceting",
+    "href": "2023/01-foundations/slides.html#faceting",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Faceting",
+    "text": "Faceting\nCreates small multiples to show different subsets:\n\nfacet_null(): default\nfacet_wrap(): “wraps” a 1d ribbon of panels into 2d\nfacet_grid(): 2d grid of panels defined by row and column"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#keeping-points-of-reference",
+    "href": "2023/01-foundations/slides.html#keeping-points-of-reference",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Keeping points of reference",
+    "text": "Keeping points of reference\n\n\n\n\n\n\nExercise\n\n\nRecreate the figure below. How would you get the gray points to show up on all facets?"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#theming",
+    "href": "2023/01-foundations/slides.html#theming",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Theming",
+    "text": "Theming\nControls non-data elements of plots (e.g., to match a style guide).\n\n\nTheme elements specify the non-data elements you can control: plot.title, legend.position\nEach element has an element function to describe its visual properties: element_text(), element_blank()\nThe theme() function allows overriding of the default theme: theme(legend.title = element_blank())"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#complete-themes",
+    "href": "2023/01-foundations/slides.html#complete-themes",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Complete themes",
+    "text": "Complete themes\n\ntheme_bw()theme_minimal()theme_classic()\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_classic()"
+  },
+  {
+    "objectID": "2023/01-foundations/slides.html#further-resources",
+    "href": "2023/01-foundations/slides.html#further-resources",
+    "title": "Understanding the foundations of ‘ggplot2’",
+    "section": "Further resources",
+    "text": "Further resources\n\n\nPenguin artwork by @allison_horst\nHadley Wickham’s “A layered grammar of graphics” (2010)\nHadley Wickham’s “ggplot2: Elegant Graphics for Data Analysis, 3rd edition”, now available online\n“R for Data Science”, by Hadley Wickham, Mine Cetinkaya-Rundel, & Garret Grolemund, especially chapters 2, 10, and 12\nSee us at drop-in hours\n\n\n\n\n\n\nIntermediate ggplot2 workshop series"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html",
+    "href": "2023/02-publication-quality-figs/notes.html",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "",
+    "text": "Learning Objectives\n\n\n\n\nCustomize color palettes with accessibility in mind\nCustomize appearance of plots with themes\nCustomizing axes (ticks, grid-lines, labels, date axes, transformations)\nCreate custom legends\nSave high resolution or vector formats\nArrange multi-panel figures"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#required-by-journals",
+    "href": "2023/02-publication-quality-figs/notes.html#required-by-journals",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Required by journals",
+    "text": "Required by journals\nJournals often require certain modifications to your plots to make them publication-ready\n\nHigh resolution\nSpecific file types (TIFF, EPS, PDF are common)\nFigure size limits\nFont size suggestions"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#not-required-but-good-practice",
+    "href": "2023/02-publication-quality-figs/notes.html#not-required-but-good-practice",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Not required, but good practice",
+    "text": "Not required, but good practice\nOther modifications to the appearance of your plot are a good idea, but less often required by journals or reviewers\n\nColorblind accessible colors\nGrey scale friendly colors\nPerceptually-even colors\nScreen-reader compatible\nHigh data-ink ratio (simplify plot, within reason)\nArrangement of related plots into multi-panel figures"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#example-plots",
+    "href": "2023/02-publication-quality-figs/notes.html#example-plots",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Example plots",
+    "text": "Example plots\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nA version of the plot from part 1 of this workshop series is re-created here.\n\nCodep1 &lt;-\n  ggplot(data = penguins |&gt; \n           filter(!is.na(sex)),\n         mapping = aes(x = species, \n                       y = body_mass_g,\n                       shape = sex)) +\n  geom_point(\n    alpha = 0.15,\n    position = position_jitterdodge(dodge.width = 0.75)\n  ) +\n  stat_summary(\n    fun.data = mean_sdl,\n    position = position_dodge(width = 0.75)\n  )\n\n\n\np1\n\n\n\n\n\n\n\nIn addition, I’ll create two more basic plots for practice combining plots into multi-panel figures.\n\nCode#bill length vs. flipper length\np2 &lt;-\n  ggplot(penguins,\n         aes(\n           x = flipper_length_mm,\n           y = bill_length_mm,\n           color = species,\n           fill = species,\n           shape = species\n         )) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n\n\np2\n\n\n\n\n\n\n\n\nCode# flipper length to mass ratio vs. bill_length\np3 &lt;-\n  ggplot(penguins,\n         aes(\n           x = flipper_length_mm,\n           y = bill_depth_mm,\n           color = species,\n           fill = species,\n           shape = species\n         )) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n\n\np3"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#color",
+    "href": "2023/02-publication-quality-figs/notes.html#color",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Color",
+    "text": "Color\nThere are many ways to change plot colors, including using built-in palettes, packages that add color palettes, and manually. It’s usually best to choose a color palette that meets these criteria:\n\nColorblind friendly\nGreyscale friendly\nPerceptually even\nHigh contrast (with background & eachother)\n\nThe viridis color palettes built in to ggplot2 generally meet these criteria and are a good choice for many visualizations.\nHere’s an example plot with a color bar:\n\nv &lt;- \n  ggplot(\n    penguins,\n    aes(x = bill_length_mm, y = bill_depth_mm, color = body_mass_g)\n  ) +\n  geom_point()\nv\n\n\n\n\n\n\n\nFor a continuous color scale use scale_color_viridis_c()\n\nv + scale_color_viridis_c()\n\n\n\n\n\n\n\nOther palettes are available by changing option\n\n# Variations with option = \"A\" through \"H\"\nv + scale_color_viridis_c(option = \"B\")\n\n\n\n\n\n\n\nA binned version is available with scale_color_viridis_b()\n\nv + scale_color_viridis_b(option = \"B\", n.breaks = 5)\n\n\n\n\n\n\n\nThe viridis palettes tend to end on a very bright yellow, which doesn’t look great on light backgrounds, especially on a projector. You can “cap” the scale using begin and end.\nE.g. Begin at 10% in to skip the darkest purples and end at 90% to skip the brightest yellows\nv + scale_color_viridis_c()\nv + scale_color_viridis_c(begin = 0.1, end = 0.9)\n\n\n\n\n\n\n\n\n\n\nDiscrete colors\nOur initial example plot uses just 3 colors, but we can still use viridis to ensure they are colorblind friendly and perceptually even using scale_color_viridis_d() for “discrete”. The colors still follow a gradient from cool to warm.\n\np2 + scale_color_viridis_d(end = 0.9, option = \"C\")\n\n\n\n\n\n\n\nTo apply the same color scale to both “fill” and “color”, you can use the aesthetics argument to scale_color_* or scale_fill_* functions.\n\np2 + \n  scale_color_viridis_d(end = 0.9, option = \"C\", aesthetics = c(\"fill\", \"color\"))\n\n\n\n\n\n\n\nManual color palette\nMaybe you don’t like the viridis palettes or maybe you want a palette more appropriate for diverging or discrete data. There are a ton of tools for generating color palettes—both R packages that extend ggplot2 and external tools.\nPackages and resources to check out:\n\n\ncolorspace (Zeileis et al. 2019)\n\ncols4all\npaletteer\nComprehensive list of color palettes in r\n\nYou can use any set of colors as a custom palette with scale_color_manual().\n\nmy_cols &lt;- c(\"#B60A1C\",\"#E39802\",\"#309143\")\n\np2 + scale_color_manual(values = my_cols, aesthetics = c(\"color\", \"fill\"))\n\n\n\n\n\n\n\nSpecify which color goes with which factor level by using a named vector.\nmy_cols &lt;- \n  c(\"Chinstrap\" = \"#B60A1C\", \"Gentoo\" = \"#E39802\", \"Adelie\" = \"#309143\")\np2 &lt;- p2 + \n  scale_color_manual(values = my_cols, aesthetics = c(\"color\", \"fill\"))\np2\np3 &lt;- p3 +\n  scale_color_manual(values = my_cols, aesthetics = c(\"color\", \"fill\"))\np3"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#labeling-scales",
+    "href": "2023/02-publication-quality-figs/notes.html#labeling-scales",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Labeling scales",
+    "text": "Labeling scales\nEach scale (color, fill, shape), including x and y axes, can have a label. There are multiple ways to set this, but I’ll demonstrate setting it with labs()\n\np2 + labs(color = \"Penguin Species\")\n\n\n\n\n\n\n\nThis creates a separate legend for color. Guides with the same name will get combined when possible.\n\np2 + \n  labs(\n    color = \"Penguin Species\",\n    shape = \"Penguin Species\",\n    fill = \"Penguin Species\"\n  )\n\n\n\n\n\n\n\nWe can also use labs() to re-name the axes\n\np2 &lt;- p2 + \n  labs(\n    color = \"Penguin Species\",\n    shape = \"Penguin Species\",\n    fill = \"Penguin Species\",\n    x = \"Flipper Length (mm)\",\n    y = \"Bill Length (mm)\"\n  )\np2\n\n\n\n\n\n\n\n\np3 &lt;- p3 + \n  labs(\n    color = \"Penguin Species\",\n    shape = \"Penguin Species\",\n    fill = \"Penguin Species\",\n    x = \"Flipper Length (mm)\",\n    y = \"Bill Depth (mm)\"\n  )\np3\n\n\n\n\n\n\n\n\np1 &lt;- p1 +\n  labs(x = \"Species\", y = \"Body Mass (g)\", shape = \"Sex\")\np1"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#custom-axes",
+    "href": "2023/02-publication-quality-figs/notes.html#custom-axes",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Custom Axes",
+    "text": "Custom Axes\nAxes are a type of scale and can be modified with ggplot2 functions like scale_x_continuous() for continuous data, scale_x_discrete() for discrete data, etc.\nOur first plot has a discrete x axis and a continuous y axis. We can use a scale_*() to change the x-axis labels (there are other ways to do this of course) and adjust the number of breaks on the y-axis\n\nscinames &lt;-\n  c(\"Adelie\" = \"P. adeliae\", \"Chinstrap\" = \"P. antarticus\", \"Gentoo\" = \"P. papua\")\np1 &lt;- \n  p1 + scale_x_discrete(labels = scinames) + scale_y_continuous(n.breaks = 12)\np1 \n\n\n\n\n\n\n\nYou’ll notice that n.breaks=12 doesn’t produce exactly 12 breaks—it preferences “pretty” breaks at whole numbers and tries to get about as many breaks as you asked for. Supply a numeric vector to breaks if you want to specify the breaks exactly.\nAxis limits\nYou can set the range of an axis two ways, and the choice of which way is consequential. Setting limits inside of scale_() crops the data while coord_cartesian() only crops the plotting area. With ylim(2000, 5500) the mean and standard error for our largest penguins are re-drawn using the cropped data while they are unaffected by coord_cartesian() (except that they go off the edge of the plotting area now)\np1 + scale_y_continuous(limits = c(2000, 5500), n.breaks = 12)\n# p1 + ylim(2000, 5500) #shortcut if you only want to change limits\np1 + coord_cartesian(ylim = c(2000, 5500))\n\n\n\n\n\nLimits set in scale_y_*() or with ylim()\n\n\n\n\n\nLimits set in coord_cartesian()\n\n\n\n\n\nWe can use coord_flip() to make a horizontal graph.\n\np1 + coord_flip()\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\ncoord_flip() only changes where the x and y axes are drawn. In the plot above, the axis labeled “species” is still the x-axis, as far as ggplot2 code is concerned."
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#customizing-appearance-with-theme",
+    "href": "2023/02-publication-quality-figs/notes.html#customizing-appearance-with-theme",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Customizing appearance with theme()\n",
+    "text": "Customizing appearance with theme()\n\n\nThere are several complete themes built-in to ggplot2, and many more available from other packages.\np2 + theme_bw()\np2 + theme_minimal()\n\n\n\n\n\ntheme_bw()\n\n\n\n\n\ntheme_minimal()\n\n\n\n\n\nlibrary(ggthemes)\np1 + theme_solarized()\n\n\n\ntheme_solarized() from ggthemes package\n\n\n\nCustomizing themes “manually” involves knowing the name of the theme element and it’s corresponding element_*() function. A good place to start is the help page for theme() https://ggplot2.tidyverse.org/reference/theme.html\n\n\n\n\n\n\nTip\n\n\n\nIt’s best to find a built-in theme_*() function that gets you most of the way there and then customize with theme()\n\n\n\np1 + \n  theme_minimal() + \n  theme(axis.line = element_line(linewidth = 0.5, lineend = \"round\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\nActivity\n\n\n\nName some things about the appearance of p1 that you want to change and we’ll figure it out together!\n\n\nYou can save your theme as an R object to re-use, or use theme_set() at the top of a script to make it the default.\n\n#create a custom theme\nmy_theme &lt;- \n  theme_minimal() + \n  theme(\n    axis.line = element_line(linewidth = 0.5, lineend = \"round\"),\n    axis.ticks = element_line(linewidth = 0.2),\n    legend.background = element_rect(linewidth = 0.2)\n  )\n\n#add to a plot\np2 + my_theme\n\n\n\n\n\n\n#or set as default\ntheme_set(my_theme)\n\np3"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#multi-panel-figures",
+    "href": "2023/02-publication-quality-figs/notes.html#multi-panel-figures",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Multi-panel figures",
+    "text": "Multi-panel figures\npatchwork allows simple composistion of multi-panel figures with ggplot2 plots\n\nlibrary(patchwork)\np1 + p2\n\n\n\n\n\n\n\n\n+ combines plots\n| combines plots side-by-side\n/ combines plots vertically\n() can be used to nest operations\n\n\np1 / (p2 | p3)\n\n\n\n\n\n\n\n\nplot_layout() controls layout. The coolest feature, IMO, is guides = \"collect\" which combines duplicate legends\nplot_annotation() is useful for adding labels to panels\n\n\np_combined &lt;-\n  p1 /\n  (p2 + p3 + plot_layout(guides = \"collect\")) + \n  plot_annotation(tag_levels = \"a\", tag_suffix = \")\")\np_combined\n\n\n\n\n\n\n\nYou can also apply layers or themes to all sub-plots by using & instead of +\n\np_combined & theme_dark()"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#saving-plots",
+    "href": "2023/02-publication-quality-figs/notes.html#saving-plots",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Saving plots",
+    "text": "Saving plots\nAlthough we often leave this step until the end, I think it’s good to save your plot to a file early on once the plot starts taking shape. If you have some plot dimensions in mind, this allows you to see how any further changes will look in the finished plot.\n\nggsave(\n  filename = \"penguins.png\", # filetype comes from filename extension\n  plot = p_combined, # default is prev. plot, but good to specify\n  width = 7, \n  height = 5, \n  units = \"in\", \n  dpi = \"print\" # resolution for raster images\n)\n\n\nFor example, with these dimensions (4x3 in.), the points and lines appear quite large and some of the text is probably larger than it needs to be. If we had saved the plot earlier, we wouldn’t necessarily have to go back and tweak things.\nRaster vs. Vector\nRaster images (e.g. .jpg, .png, .tiff) are made of pixels and the resolution can vary. Vector images (e.g. .svg, .eps) are not made of pixels and don’t have a resolution.\n\n\n\n\n\n\nTip\n\n\n\nTry zooming in on the images below in your browser to see the difference\n\n\n\n\n\n\n\n\n\n\nRaster (72 dpi .png file)\n\n\n\n\n\nVector (.svg file)\n\n\n\n\nVector images should be used whenever possible and accepted by the journal. Vector formats are more accessible for screen-readers as well (although you should always provide alt-text when possible)"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#getting-help",
+    "href": "2023/02-publication-quality-figs/notes.html#getting-help",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Getting help",
+    "text": "Getting help\nBesides adding ggplot2 to search terms, there a few good places to look for help or inspiration in improving or modifying the appearance of ggplot2 plots:\n\nThe ggplot2 documentation itself, in particular the examples on the theme() page and the FAQ on customization.\nThe R Graph Gallery has a wide variety of plots with R code walkthroughs.\nThe ggplot2 book: https://ggplot2-book.org/\n\nYou can always come by our drop-in hours to ask questions as well!"
+  },
+  {
+    "objectID": "2023/02-publication-quality-figs/notes.html#part-3-next-week",
+    "href": "2023/02-publication-quality-figs/notes.html#part-3-next-week",
+    "title": "Crafting Publication Quality Data Visualizations with ggplot2\n",
+    "section": "Part 3 next week!",
+    "text": "Part 3 next week!\n“Exploring the wide world of ggplot2 extensions”\n🗓️ June 26, 11:00am–1:00pm\n\nRegister"
+  },
+  {
+    "objectID": "2023/03-extensions/index.html",
+    "href": "2023/03-extensions/index.html",
+    "title": "Exploring the wide world of ggplot2 extensions",
+    "section": "",
+    "text": "Date & time: 11 a.m. to 1 p.m., June 26, 2023\nInstructors: Kristina Riemer & Eric Scott\nThere are over 100 packages that extend the functionality of ggplot2 to allow you to make just about any data visualization you can think of! In this workshop we’ll cover a few of our favorite extensions and show you how to find the ggplot2 extension that meets your data visualization needs.\n\nRecording\nNotes\n    View slides in full screen",
+    "crumbs": [
+      "2023",
+      "Session 3 - Extensions"
+    ]
+  },
+  {
+    "objectID": "2023/03-extensions/slides.html#learning-objectives",
+    "href": "2023/03-extensions/slides.html#learning-objectives",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nUnderstand the “grammar of graphics” and how it inspired ggplot2’s design\nKnow what it means to “map data to aesthetics”\nLearn to plot different data sets on the same visualization\nUnderstand the relationship between a “geom” and a “stat”\nLearn to customize scales and guides"
+    "text": "Learning Objectives\n\nUnderstand where to find packages that extend ggplot2\nMake animated plots with gganimate\nInteractively create plots with esquisse\nConvert ggplot2 plots to interactive plotly plots\nLabel data with ggrepel"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#a-grammar-of-graphics",
-    "href": "2024/01-foundations/slides.html#a-grammar-of-graphics",
-    "title": "Foundations of {ggplot2}",
-    "section": "A Grammar of Graphics",
-    "text": "A Grammar of Graphics\n\nA book by Wilkinson (2005)\nInspired the development of many graphics programs including ggplot2 (Wickham 2010)\nAlternative to having a function for every kind of plot\nA framework for layering elements to create any kind of plot"
+    "objectID": "2023/03-extensions/slides.html#packages",
+    "href": "2023/03-extensions/slides.html#packages",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Packages",
+    "text": "Packages\n\nlibrary(ggplot2)\nlibrary(palmerpenguins)"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#grammar-of-graphics-components",
-    "href": "2024/01-foundations/slides.html#grammar-of-graphics-components",
-    "title": "Foundations of {ggplot2}",
-    "section": "Grammar of Graphics Components",
-    "text": "Grammar of Graphics Components\n\n\n\n\nData\nAesthetics\nScales (and guides)\nGeometric objects\nStatistics\nFacets\nCoordinate system\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe’re going to go through each of these and examine how they appear in this example plot"
+    "objectID": "2023/03-extensions/slides.html#extensions-to-ggplot2",
+    "href": "2023/03-extensions/slides.html#extensions-to-ggplot2",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Extensions to ggplot2",
+    "text": "Extensions to ggplot2\nThere are many kinds of extensions to ggplot2, but many of them can be put into one of two “bins”\n\nPackages that add new layers\nPackages that wrap multiple layers for convenience"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#data",
-    "href": "2024/01-foundations/slides.html#data",
-    "title": "Foundations of {ggplot2}",
-    "section": "Data",
-    "text": "Data\n\n\nObservations and variables to be visualized.\nWhat data is being visualized?\n\nBody mass measured in grams\nBill length measured in mm\nIsland and species categories"
+    "objectID": "2023/03-extensions/slides.html#packages-that-extend-ggplot2",
+    "href": "2023/03-extensions/slides.html#packages-that-extend-ggplot2",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Packages that extend ggplot2",
+    "text": "Packages that extend ggplot2\nSome packages add new layers or themes that can be combined with standard ggplot2 functions.\n\nlibrary(ggbeeswarm)\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot() +\n  geom_beeswarm()\n\n\n\ngeom_beeswarm() can easily be added to other geom_s"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#aesthetics",
-    "href": "2024/01-foundations/slides.html#aesthetics",
-    "title": "Foundations of {ggplot2}",
-    "section": "Aesthetics",
-    "text": "Aesthetics\n\n\nVisual elements (color, shape, position, size, etc.) used to encode data.\nWhat aesthetics are used to encode these data?\n\nColor\nx position\ny position"
+    "objectID": "2023/03-extensions/slides.html#packages-that-wrap-ggplot2",
+    "href": "2023/03-extensions/slides.html#packages-that-wrap-ggplot2",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Packages that wrap ggplot2",
+    "text": "Packages that wrap ggplot2\nOther packages provide convenience “all-in-one” functions that combine multiple layers for you.\n\nlibrary(ggpubr)\nggstripchart(penguins, x = \"species\", y = \"body_mass_g\",\n             add = \"boxplot\") +\n  scale_y_continuous(\"Body Mass (g)\", n.breaks = 10)\n\n\n\nNotice that ggstripchart() totally replaces ggplot(aes(…)) . However, it still makes a ggplot object that you can add layers to."
   },
   {
-    "objectID": "2024/01-foundations/slides.html#scales-and-guides",
-    "href": "2024/01-foundations/slides.html#scales-and-guides",
-    "title": "Foundations of {ggplot2}",
-    "section": "Scales (and guides)",
-    "text": "Scales (and guides)\n\n\nScales translate data units into visual units, guides translate visual units back to data units.\nWhat scales are used?\n\nContinuous and linear x and y axes (scales)\n\n\n\nDiscrete (categorical) color scale\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScale translates data units (e.g. grams) into visual units (pixels). Guides translate visual units (e.g. color hue) back to data units (species category). Walk through this with annotations."
+    "objectID": "2023/03-extensions/slides.html#finding-extensions",
+    "href": "2023/03-extensions/slides.html#finding-extensions",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Finding Extensions",
+    "text": "Finding Extensions\n\nBrowse the ggplot2 extensions gallery\nCheck out the Awesome ggplot2 list\nThe R Graph Gallery\nGoogle search with “ggplot2” keyword"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#geometric-objects-geoms",
-    "href": "2024/01-foundations/slides.html#geometric-objects-geoms",
-    "title": "Foundations of {ggplot2}",
-    "section": "Geometric Objects (“geoms”)",
-    "text": "Geometric Objects (“geoms”)\n\n\nObjects, often having multiple aesthetics, that represent data visually.\nWhat geometric objects are used?\n\nData is represented using circles/points\nTrend is represented as a line\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBoth aesthetics and geoms are related to the visual representation of data. To distinguish aesthetics and geoms, think about how geoms can have many aesthetics. E.g. points have position, shape, size, color, and transparency and different data could be mapped to each of those aesthetics."
+    "objectID": "2023/03-extensions/slides.html#gganimate",
+    "href": "2023/03-extensions/slides.html#gganimate",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "gganimate",
+    "text": "gganimate\n\nlibrary(gganimate)\n\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n  geom_point() +\n  transition_time(year) + \n  labs(title = \"Year: {frame_time}\")"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#statistics-stats",
-    "href": "2024/01-foundations/slides.html#statistics-stats",
-    "title": "Foundations of {ggplot2}",
-    "section": "Statistics (“stats”)",
-    "text": "Statistics (“stats”)\n\n\nAny calculations or transformations applied to the data in order to plot it.\nWhat “stats” are used?\n\nFor points, none (stat = “identity”)\nFor trend lines, linear regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIf the data are 344 observations, are any transformations needed to draw one of the two “geoms” in the plot?"
+    "objectID": "2023/03-extensions/slides.html#gganimate-1",
+    "href": "2023/03-extensions/slides.html#gganimate-1",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "gganimate",
+    "text": "gganimate\n\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n  geom_point() +\n  transition_states(year, transition_length = 0.5) +\n  labs(title = \"Year: {closest_state}\") +\n  shadow_wake(wake_length = 0.1)\n\n\n\nanim_save(\"~/Desktop/test_anim.gif\")"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#facets",
-    "href": "2024/01-foundations/slides.html#facets",
-    "title": "Foundations of {ggplot2}",
-    "section": "Facets",
-    "text": "Facets\n\n\nPlots can be split into small multiples or “facets” by a variable.\nWhat is the faceting variable?\n\nFaceted by island\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNot every plot has facets. Plots can be faceted by multiple (2) variables in a grid"
+    "objectID": "2023/03-extensions/slides.html#plotly",
+    "href": "2023/03-extensions/slides.html#plotly",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "plotly",
+    "text": "plotly\n\nlibrary(plotly)\n\n\n\nplotly R package is interface to a JavaScript library for making interactive data visualizations\nOnly important to know that because if you search for plotly help, sometimes you’ll get JavaScript code examples.\nplotly kind of uses the grammar of graphics, but building a plot from scratch is tricky\nggplotly() transforms ggplot objects into interactive plotly plots. 90% of the time it gets you 90% of the way there"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#coordinate-system",
-    "href": "2024/01-foundations/slides.html#coordinate-system",
-    "title": "Foundations of {ggplot2}",
-    "section": "Coordinate System",
-    "text": "Coordinate System\n\n\nHow spatial positions are represented on paper (or screen)—e.g. map projections.\nWhat coordinate system is used?\n\nCartesian coordinates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOther options include polar coordinates or the many possible coordinate systems used in maps."
+    "objectID": "2023/03-extensions/slides.html#basic-interactive-plot-with-plotly",
+    "href": "2023/03-extensions/slides.html#basic-interactive-plot-with-plotly",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Basic interactive plot with plotly",
+    "text": "Basic interactive plot with plotly\n\np &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point() +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p)"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#practice",
-    "href": "2024/01-foundations/slides.html#practice",
-    "title": "Foundations of {ggplot2}",
-    "section": "Practice",
-    "text": "Practice\nIdentify each of the seven components of this plot\n\n\n\n\nData\nAesthetics\nScales\nGeometric Objects\nStatistics\nFacets\nCoordinate System"
+    "objectID": "2023/03-extensions/slides.html#customize-tooltip",
+    "href": "2023/03-extensions/slides.html#customize-tooltip",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Customize tooltip",
+    "text": "Customize tooltip\nYou can customize the info displayed in the tooltip with ggplotly(). Give it additional aesthetic text to include something only as a tooltip.\n\np2 &lt;- \n  ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  #Ignore unknown aesthetics warning\n  geom_point(aes(text = sex)) +\n  labs(x = \"Bill length (mm)\", y = \"Bill depth (mm)\", color = \"Penguin Species\") +\n  theme_bw()\n\nggplotly(p2, tooltip = c(\"text\", \"bill_depth_mm\", \"bill_length_mm\"))\n\n\n\n\n\n\n\nWarning\n\n\nOutput not shown because currently plotly does not play nicely with Quarto revealjs slides (how this slide deck was made)"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#break",
-    "href": "2024/01-foundations/slides.html#break",
-    "title": "Foundations of {ggplot2}",
-    "section": "Break ⏰",
-    "text": "Break ⏰\n\n\n\n−+\n10:00"
+    "objectID": "2023/03-extensions/slides.html#animate-plots-with-plotly",
+    "href": "2023/03-extensions/slides.html#animate-plots-with-plotly",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Animate plots with plotly",
+    "text": "Animate plots with plotly\nYou can use ggplotly() to make interactive animated plots by using the frame aesthetic\n\nlibrary(gapminder) #dataset\np3 &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +\n  geom_point(aes(size = pop, frame = year, ids = country)) +\n  scale_x_log10()\n\nggplotly(p3)\n\n\n\n\n\n\n\nWarning\n\n\nOutput not shown because currently plotly does not play nicely with Quarto revealjs slides (how this slide deck was made)"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#data-1",
-    "href": "2024/01-foundations/slides.html#data-1",
-    "title": "Foundations of {ggplot2}",
-    "section": "Data",
-    "text": "Data\n\n\nData is inherited from ggplot() by all layers, but can be overridden for specific layers\nWorked example: jitter plot of raw data with mean ± standard deviation"
+    "objectID": "2023/03-extensions/slides.html#esquisse",
+    "href": "2023/03-extensions/slides.html#esquisse",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "esquisse",
+    "text": "esquisse\n\n\n\nlibrary(dplyr)\nlibrary(esquisse)\n\npenguins &lt;- \n  penguins %&gt;%\n  na.omit()\nesquisser(penguins)"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#section",
-    "href": "2024/01-foundations/slides.html#section",
-    "title": "Foundations of {ggplot2}",
+    "objectID": "2023/03-extensions/slides.html#ggrepel",
+    "href": "2023/03-extensions/slides.html#ggrepel",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "ggrepel",
+    "text": "ggrepel\nThe ggrepel package is helpful for directly labeling plots, especially when labels would otherwise overlap.\n\n\n\n\n\n\ngeom_text()\n\n\n\n\n\n\n\ngeom_text_repel()"
+  },
+  {
+    "objectID": "2023/03-extensions/slides.html#getting-help",
+    "href": "2023/03-extensions/slides.html#getting-help",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Getting Help",
+    "text": "Getting Help\n\ngganimate: Getting started guide, reference\ngplotly(): https://plotly.com/ggplot2/\nesquisse: Getting started guide, reference\nggrepel: Gallery of examples, list of available aesthetics you can map data to.\nOur drop-in hours\nUA Data Science Slack"
+  },
+  {
+    "objectID": "2024/01-foundations/notes.html",
+    "href": "2024/01-foundations/notes.html",
+    "title": "Notes for foundations of ggplot2",
     "section": "",
-    "text": "library(tidyverse)\nlibrary(palmerpenguins)\n\n#summarize dataset\npeng_summary &lt;- \n  penguins |&gt; \n  group_by(island) |&gt; \n  summarize(\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),\n    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)\n  )\n\nggplot(peng_summary, aes(x = island, y = mean_mass)) +\n  #mean\n  geom_point(shape = \"square\", color = \"blue\", size = 2.5) +\n  #sd\n  geom_errorbar(\n    data = peng_summary,\n    aes(y = mean_mass, ymin = lower_sd, ymax = upper_sd),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins,\n    aes(y = body_mass_g),\n    alpha = 0.4,\n    height = 0\n  )\n\n\n\n\n\n\n\n\n\n\n\nStart by summarizing the penguins dataset to get some summary statistics for the error bars. Notice that ggplot() uses the raw data though.\n\n\nThen add the raw data points, in this case with geom_jitter()\n\nThen add the geom_pointrange(). Notice that we override the inherited data with data = peng_summary . The x mapping is inherited, but we need to supply new aesthetic mappings for y, ymin, and ymax"
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)\ntheme_set(theme_bw())"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#aesthetics-1",
-    "href": "2024/01-foundations/slides.html#aesthetics-1",
-    "title": "Foundations of {ggplot2}",
+    "objectID": "2024/01-foundations/notes.html#data",
+    "href": "2024/01-foundations/notes.html#data",
+    "title": "Notes for foundations of ggplot2",
+    "section": "Data",
+    "text": "Data\nThis is the plot we’re trying to re-create:\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nWhat geom can we use for error bars? Type geom_ and hit tab to see a list of all possible geom_ functions. geom_errorbar() sounds about right! What data do we need to plot an error bar? View the help file with ?geom_errorbar and check the “Aesthetics” section. Looks like we need x (island), ymin, and ymax.\nLet’s start by summarizing the data to calculate a mean and standard deviation for each island.\n\npeng_summary &lt;- \n  penguins |&gt; \n  group_by(island) |&gt; #for each island...\n  summarize(\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    sd = sd(body_mass_g, na.rm = TRUE)\n  )\npeng_summary\n\n# A tibble: 3 × 3\n  island    mean_mass    sd\n  &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt;\n1 Biscoe        4716.  783.\n2 Dream         3713.  417.\n3 Torgersen     3706.  445.\n\n\nThen let’s get values for the lower and upper parts of the error bars.\n\npeng_summary &lt;-\n  peng_summary |&gt; \n  mutate(lower = mean_mass - sd, upper = mean_mass + sd)\npeng_summary\n\n# A tibble: 3 × 5\n  island    mean_mass    sd lower upper\n  &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Biscoe        4716.  783. 3933. 5499.\n2 Dream         3713.  417. 3296. 4130.\n3 Torgersen     3706.  445. 3261. 4151.\n\n\nNow we can plot the error bars and means.\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(aes(y = mean_mass)) +\n  #sd:\n  geom_errorbar(aes(ymin = lower, ymax = upper))\n\n\n\n\n\n\n\nLet’s do some tweaking to make this look more appealing\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(\n    aes(y = mean_mass),\n    shape = \"square\",\n    color = \"blue\",\n    size = 2.5\n  )+\n  #sd:\n  geom_errorbar(\n    data = peng_summary,\n    aes(ymin = lower, ymax = upper),\n    width = 0.1,\n    color = \"blue\"\n  ) \n\n\n\n\n\n\n\nNow we can add the raw data using geom_jitter() by overriding the data argument.\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(\n    aes(y = mean_mass),\n    shape = \"square\",\n    color = \"blue\",\n    size = 2.5\n  )+\n  #sd:\n  geom_errorbar(\n    data = peng_summary,\n    aes(ymin = lower, ymax = upper),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins, #override data to use penguins instead of peng_summary\n    aes(y = body_mass_g),\n  )\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nAnd finally we can do some tweaking of the jitter layer\n\nggplot(peng_summary, aes(x = island)) +\n  #mean:\n  geom_point(\n    aes(y = mean_mass),\n    shape = \"square\",\n    color = \"blue\",\n    size = 2.5\n  )+\n  #sd:\n  geom_errorbar(\n    data = peng_summary,\n    aes(ymin = lower, ymax = upper),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins, #override data to use penguins instead of peng_summary\n    aes(y = body_mass_g),\n    alpha = 0.4, #add transparency\n    height = 0 #don't jitter vertically, only horizontally\n  )\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "2024/01-foundations/notes.html#aesthetics",
+    "href": "2024/01-foundations/notes.html#aesthetics",
+    "title": "Notes for foundations of ggplot2",
     "section": "Aesthetics",
-    "text": "Aesthetics\n\n\nAesthetics are inherited when placed in ggplot() but can also be specified per layer\nAesthetics can be mapped to data or set as constant\nAll the aesthetics and their possible values: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html\nWorked example: box plot for each island layered ontop of jitter plot for each island x sex combination.\n\n\n\nThis might be a good place to look through help files and figure out which aesthetics are valid for mapping"
+    "text": "Aesthetics\nLet’s use a boxplot on top of the jitter plot and have the points colored by sex but not the box plots\nWhen color = sex is in the aes() call in ggplot(), this aesthetic mapping is inherited by all geoms.\n\nggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +\n  geom_boxplot() +\n  geom_jitter()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nIf we want to map sex to color only for the jitter layer, we can remove it from ggplot() and add it to geom_jitter()\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_boxplot() +\n  geom_jitter(aes(color = sex))\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nOr, we can use inherit.aes = FALSE and specify all the aesthetic mappings for the boxplot layer.\n\nggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +\n  geom_boxplot(aes(x = island, y = body_mass_g), inherit.aes = FALSE) +\n  geom_jitter()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nIf you set aesthetic mappings to constants, it overrides the mappings to data.\n\nggplot(penguins, aes(x = island, y = body_mass_g, color = sex)) +\n  geom_boxplot(color = \"darkgreen\") +\n  geom_jitter()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
-    "objectID": "2024/01-foundations/slides.html#section-1",
-    "href": "2024/01-foundations/slides.html#section-1",
-    "title": "Foundations of {ggplot2}",
-    "section": "",
-    "text": "Aesthetic mappings supplied to ggplot() are inherited, aesthetic mappings supplied to a geom only affect that geom.\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_boxplot() +\n  geom_jitter(aes(color = sex))"
-  },
-  {
-    "objectID": "2024/01-foundations/slides.html#scales",
-    "href": "2024/01-foundations/slides.html#scales",
-    "title": "Foundations of {ggplot2}",
+    "objectID": "2024/01-foundations/notes.html#scales",
+    "href": "2024/01-foundations/notes.html#scales",
+    "title": "Notes for foundations of ggplot2",
     "section": "Scales",
-    "text": "Scales\n\nscale_ functions affect the range (limits) and breaks of scales and the labels and appearance of corresponding guides.\nWorked example: 1) re-order and re-color a discrete color scale, 2) change the number of breaks on the axes"
+    "text": "Scales\nHere’s the original plot, saved as p\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nAnd here’s what it’s going to end up like after modifying scales:\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nFirst, let’s address the color scale. Two changes need to happen: custom colors, and a re-ordering of the species in the legend. scale_color_manual() can take care of both.\nWe can supply whatever colors we want with a named vector where the names correspond to levels of the species variable that is mapped to color.\n\nmy_cols &lt;- c(\n  \"Adelie\" = \"#7570b3\",\n  \"Chinstrap\" = \"#d95f02\",\n  \"Gentoo\" = \"#1b9e77\"\n)\n\nThese are hex-codes, but you can also used named colors in R.\nSupply that named vector to the values argument.\n\np +\n  scale_color_manual(\n    name = \"Species\",\n    values = my_cols\n  )\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nThe re-ordering happens with the breaks argument like so:\n\np_new &lt;- p +\n  scale_color_manual(\n    name = \"Species\",\n    values = my_cols,\n    breaks = c(\"Gentoo\", \"Chinstrap\", \"Adelie\")\n  )\np_new\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nNow we can move on to the x and y axes. For the x-axis, let’s increase the number of breaks to about 10.\n\np_new +\n  scale_x_continuous(n.breaks = 10)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nAnd we can supply exact breaks to the y-axis.\n\np_new +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(breaks = seq(from = 30, to = 65, by = 5.5))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1),\n               color = \"blue\", shape = \"square\")\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
-    "objectID": "2024/01-foundations/slides.html#section-2",
-    "href": "2024/01-foundations/slides.html#section-2",
-    "title": "Foundations of {ggplot2}",
-    "section": "",
-    "text": "p + \n  scale_color_manual(\n    values = c(\n      \"Adelie\" = \"#7570b3\",\n      \"Chinstrap\" = \"#d95f02\",\n      \"Gentoo\" = \"#1b9e77\"\n    ),\n    breaks = c(\"Gentoo\", \"Chinstrap\", \"Adelie\")\n  ) +\n  scale_x_continuous(\n    n.breaks = 10\n  ) +\n  scale_y_continuous(\n    breaks = seq(from = 30, to = 65, by = 5.5)\n  )\n\n\n\nvalues takes a named vector and is used to assign a color (hex code or color name) to each level of the variable. breaks changes the order."
-  },
-  {
-    "objectID": "2024/01-foundations/slides.html#geoms",
-    "href": "2024/01-foundations/slides.html#geoms",
-    "title": "Foundations of {ggplot2}",
+    "objectID": "2024/01-foundations/notes.html#geoms",
+    "href": "2024/01-foundations/notes.html#geoms",
+    "title": "Notes for foundations of ggplot2",
     "section": "Geoms",
-    "text": "Geoms\n\nEvery geom has a default stat, but it can be overridden\nNot all geoms use the same aesthetics\nWorked example: explore the anatomy of a help file (e.g. ?geom_point())\n\nHow can you determine the default stat for a geom?\nHow can you find out what aesthetics a geom has?"
+    "text": "Geoms\n\ndf &lt;- expand_grid(x = LETTERS[1:5], y = 1:5)\nggplot(df) +\n  geom_point(aes(x = x, y = y, \n        color = x, shape = x,\n        size = y, alpha = y, stroke = y))"
   },
   {
-    "objectID": "2024/01-foundations/slides.html#section-3",
-    "href": "2024/01-foundations/slides.html#section-3",
-    "title": "Foundations of {ggplot2}",
-    "section": "",
-    "text": "df &lt;- expand_grid(x = LETTERS[1:5], y = 1:5)\nggplot(df) +\n  geom_point(aes(x = x, y = y, \n        color = x, shape = x,\n        size = y, alpha = y, stroke = y))\n\n\n\n\n\n\n\n\nCaution\n\n\nWith great power, comes great responsibility! It’s not always a good idea to map data to aesthetics just because you can. Stay tuned for part 2 of this series for more!"
-  },
-  {
-    "objectID": "2024/01-foundations/slides.html#stats",
-    "href": "2024/01-foundations/slides.html#stats",
-    "title": "Foundations of {ggplot2}",
+    "objectID": "2024/01-foundations/notes.html#stats",
+    "href": "2024/01-foundations/notes.html#stats",
+    "title": "Notes for foundations of ggplot2",
     "section": "Stats",
-    "text": "Stats\n\nEvery stat has a default geom and you usually use the geom_*() function\nSome stats calculate multiple values that are available with after_stat()\nWorked examples:\n\nAdding mean ± SD on top of jitter plot with stat_summary()\nMaking a binned density plot with geom_histogram() and after_stat()"
+    "text": "Stats\nstat_summary()\nstat_summary() calculates some summary statistics as y, ymin, and ymax (and possibly other aesthetic mappings) and supplies them to a geom (default = “pointrange”). This is a shortcut for doing the sort of plot we did in the “Data” section without having to create a separate dataset.\nFirst, let’s see what the default looks like:\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  stat_summary()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nNo summary function supplied, defaulting to `mean_se()`\n\n\n\n\n\n\n\n\nAs you can see in the warning, by default it is plotting mean ± SE (standard error) with the mean_se() function. To instead plot mean ± SD we can either create our own function or use mean_sdl() and change it’s mult argument from the default 2 which doubles the SD.\nLet’s see what mean_sdl() does on its own:\n\nmean_sdl(rnorm(100), mult = 1)\n\n           y       ymin      ymax\n1 -0.1189119 -0.9675821 0.7297584\n\n\nIt creates a tibble with the columns y, ymin, and ymax. Any function that does this will work with stat_summary() by supplying it to the fun.data argument. To pass along the mult argument, we have to use the fun.args argument.\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1))\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\n\n\n\n\n\n\nNow we can add our data!\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = \"mean_sdl\", fun.args = list(mult = 1),\n               color = \"blue\", shape = \"square\")\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nWe could instead use our own custom function that plots the median and the middle 80% of data points, for example.\n\nmedian_80 &lt;- function(vals) {\n   tibble(y = median(vals, na.rm = TRUE),\n          ymin = quantile(vals, 0.1),\n          ymax = quantile(vals, 0.9))\n}\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = \"median_80\", color = \"blue\", shape = \"square\")\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_summary()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nBinned density plot with geom_histogram() and after_stat()\n\nSome “stats” calculate multiple values available with after_stat(). For example, geom_histogram() uses the count variable calculated by stat_bin() to plot the number of data points in each bit on the y-axis.\nHere’s a histogram of body mass faceted by island:\n\nggplot(penguins) +\n  geom_histogram(aes(x = body_mass_g)) +\n  facet_wrap(vars(island))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\nTorgersen island clearly just has fewer penguins, making it somewhat difficult to compare the relative distribution of body mass among the islands.\nIn the “Computed variables” section of ?stat_bin() you see that it also calculates density, ncount, ndensity, and width. We can plot density of points rather than count using after_stat(density).\n\nggplot(penguins) +\n  geom_histogram(aes(x = body_mass_g, y = after_stat(density))) +\n  facet_wrap(vars(island))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\nNow the bars for each island add up to 1, taking sample size out of the equation."
   },
   {
-    "objectID": "2024/01-foundations/slides.html#section-4",
-    "href": "2024/01-foundations/slides.html#section-4",
-    "title": "Foundations of {ggplot2}",
-    "section": "",
-    "text": "stat_summary()\n\nggplot(penguins, aes(x = island, y = body_mass_g)) +\n  geom_jitter(alpha = 0.4, height = 0) +\n  stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1),\n               color = \"blue\", shape = \"square\")"
-  },
-  {
-    "objectID": "2024/01-foundations/slides.html#section-5",
-    "href": "2024/01-foundations/slides.html#section-5",
-    "title": "Foundations of {ggplot2}",
-    "section": "",
-    "text": "Binned density plot with geom_histogram() and after_stat()\n\nggplot(penguins) +\n  geom_histogram(aes(x = body_mass_g, y = after_stat(density))) +\n  facet_wrap(vars(island))"
-  },
-  {
-    "objectID": "2024/01-foundations/slides.html#facets-1",
-    "href": "2024/01-foundations/slides.html#facets-1",
-    "title": "Foundations of {ggplot2}",
+    "objectID": "2024/01-foundations/notes.html#facets",
+    "href": "2024/01-foundations/notes.html#facets",
+    "title": "Notes for foundations of ggplot2",
     "section": "Facets",
-    "text": "Facets\n\nImplemented with facet_wrap() and facet_grid()\nFacets will be explored more in part 2 of this series"
+    "text": "Facets\nfacet_wrap() facets by a single variable\n\nggplot(penguins, aes(x = body_mass_g, y = bill_length_mm)) +\n  facet_wrap(vars(island)) +\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nfacet_grid() facets by two variables\n\nggplot(penguins, aes(x = body_mass_g, y = bill_length_mm)) +\n  facet_grid(vars(sex), vars(island)) +\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
-    "objectID": "2024/01-foundations/slides.html#coords",
-    "href": "2024/01-foundations/slides.html#coords",
-    "title": "Foundations of {ggplot2}",
+    "objectID": "2024/01-foundations/notes.html#coords",
+    "href": "2024/01-foundations/notes.html#coords",
+    "title": "Notes for foundations of ggplot2",
     "section": "Coords",
-    "text": "Coords\n\nAdjusting x and y limits with coord_cartesian() is different than adjusting limits in a scale\ncoord_polar() for polar data, coord_sf() for maps\nWorked example: zooming in on data"
+    "text": "Coords\nThere are multiple ways to change the axis limits in ggplot2. First, you can change them with scale_x_continuous() or scale_y_continuous()\n\np\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\np + scale_x_continuous(limits = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 222 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 222 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nYou can see in the warning message printed that 222 rows have been removed before drawing this plot. You can tell because the trend lines produced by geom_smooth() now have different slopes because they are fit to only a subset of data!\nYou can also change the limits with coord_cartesian()\n\np + coord_cartesian(xlim = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nThis has the effect of zooming in on the x-axis. The lines and points just outside of the limits are cut off and the slopes of the trend lines are unaffected because no data has been removed."
   },
   {
-    "objectID": "2024/01-foundations/slides.html#section-6",
-    "href": "2024/01-foundations/slides.html#section-6",
-    "title": "Foundations of {ggplot2}",
+    "objectID": "2024/02-data-comm/index.html",
+    "href": "2024/02-data-comm/index.html",
+    "title": "Effective Data Communication With ggplot2",
     "section": "",
-    "text": "Setting axis limits in scale_x_continuous() removes data that is out of range\n\np + scale_x_continuous(limits = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 222 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 222 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\nImportantly, notice that the best-fit line from geom_smooth() is now only considering the points between 4000 and 5000 g body mass!"
-  },
-  {
-    "objectID": "2024/01-foundations/slides.html#section-7",
-    "href": "2024/01-foundations/slides.html#section-7",
-    "title": "Foundations of {ggplot2}",
-    "section": "",
-    "text": "Setting axis limits in coord_cartesian() simply zooms in\n\np + coord_cartesian(xlim = c(4000, 5000))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\nNotice that points whose centers are &lt; 4000 or &gt; 5000 still show up"
-  },
-  {
-    "objectID": "2024/01-foundations/slides.html#resources",
-    "href": "2024/01-foundations/slides.html#resources",
-    "title": "Foundations of {ggplot2}",
-    "section": "Resources",
-    "text": "Resources\n\nggplot2: Elegant Graphics for Data Analysis (3e)\nThe R Graph Gallery\nggplot2 documentation\nCCT Data Science drop-in hours (Tuesdays 9-10am)\nData Science Incubator"
-  },
-  {
-    "objectID": "2024/01-foundations/slides.html#references",
-    "href": "2024/01-foundations/slides.html#references",
-    "title": "Foundations of {ggplot2}",
-    "section": "References",
-    "text": "References\n\n\n\n\n\n\n\nIntermediate ggplot2 workshop series\n\n\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.” Journal of Computational and Graphical Statistics 19 (1): 3–28. https://doi.org/10.1198/jcgs.2009.07098.\n\n\nWilkinson, Leland. 2005. The Grammar of Graphics. 2nd ed. Statistics and Computing. New York: Springer-Verlag. https://doi.org/10.1007/0-387-28695-0."
+    "text": "Date & time: Thursday June 13, 2024, 11am - 1pm AZ\nInstructor: Renata Diaz, Devin Bayly\nIn this session, we will introduce major principles of effective data visualization and then cover how to implement these principles in your plots with ggplot2.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
+    "crumbs": [
+      "Upcoming series",
+      "Session 2 - Data Communication"
+    ]
   },
   {
     "objectID": "2024/03-extensions/index.html",
