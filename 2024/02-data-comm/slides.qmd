@@ -118,7 +118,7 @@ Use `theme_set(theme_bw())` outside your plot code to set the theme for a whole 
 
 ## Demo with equisse
 
-https://cct-datascience.quarto.pub/exploring-the-wide-world-of-ggplot2-extensions/#/esquisse
+<https://dreamrs.github.io/esquisse/>
 
 ## Talk through example dataset
 
