@@ -22,3 +22,5 @@ Using practical examples, you'll learn how understanding the grammar of graphics
 
 - [Notes](notes.qmd)
 - {{< revealjs slides.html >}}
+- Recording:
+    {{< video https://youtu.be/1eCCaAo13_E >}}
