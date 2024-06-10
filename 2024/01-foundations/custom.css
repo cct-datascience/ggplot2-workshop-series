@@ -1,0 +1,10 @@
+/* how to adjust relative column with for output-location: column option. https://github.com/quarto-dev/quarto-cli/discussions/6950 */
+
+.reveal .output6040 > div.column:first-child {
+  width: 60%;
+  vertical-align: top;
+}
+.reveal .output6040 > div.column:not(:first-child) {
+  width: 40%;
+  vertical-align: top;
+}
