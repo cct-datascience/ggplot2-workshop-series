@@ -15,6 +15,7 @@ css: custom.css
 -   Implement principles of effective design using {ggplot}. Including:
 -   Maximize data:ink ratio using themes and facets
 -   Customize marks and channels using geoms and aes(thetics).
+-   Use helper tools including `cols4all` and `esquisse` to make thoughtful visualization choices.
 -   Work through an example as a group.
 
 ## Maximizing data:ink ratio
@@ -88,7 +89,7 @@ Use `theme_set(theme_bw())` outside your plot code to set the theme for a whole 
 -   The `theme()` function allows you to modify individual elements of a theme
 -   The `theme` options are vast. We'll break it down.
 
-## Anatomy of `theme`
+## Anatomy of `theme` {.smaller}
 
 - `theme( <part of the plot> = <element_*(element_options)>)`
 - Parts of the plot: axis, legend, panel, plot, strip.
@@ -118,10 +119,9 @@ theme(panel.grid.major = element_line(color = "black", linewidth = .5))
 
 ```
 
-## Hierarchical modifications
 
 
-## Modifying elements
+## Hierarchichal modifications
 
 ```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
@@ -137,7 +137,7 @@ theme(panel.grid.major.x = element_line(color = "black", linewidth = .5)) # Modi
 
 ## `facet_wrap` 
 
-```{r}
+```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
 bill_depth_mm,
 color = species)) +
@@ -148,7 +148,7 @@ facet_wrap(vars(island))
 
 ## `facet_wrap` 
 
-```{r}
+```{r, echo =T}
 ggplot(penguins, aes(body_mass_g, 
 bill_depth_mm,
 color = species)) +
@@ -160,7 +160,7 @@ facet_wrap(vars(island), ncol = 1)
 
 ## `facet_grid`
 
-```{r}
+```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
 bill_depth_mm,
 color = species)) +
@@ -172,7 +172,7 @@ facet_grid(rows = vars(island), cols = vars(sex))
 
 ## Modify facet label placement
 
-```{r}
+```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
 bill_depth_mm,
 color = species)) +
@@ -183,50 +183,180 @@ facet_grid(rows = vars(island), cols = vars(sex), switch = "y")
 
 ## Modify facet scales
 
-```{r}
+```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
 bill_depth_mm,
 color = species)) +
 geom_point() +
 theme(panel.background = element_blank()) +
-facet_grid(rows = vars(island), cols = vars(sex), switch = "y")
+facet_grid(rows = vars(island), cols = vars(sex), switch = "y", scales = "free_y")
 ```
 
+## Modify facet scales
 
-## Modify facet theme options
-
-```{r}
+```{r, echo = T, output = F}
 ggplot(penguins, aes(body_mass_g, 
 bill_depth_mm,
 color = species)) +
 geom_point() +
 theme(panel.background = element_blank()) +
-facet_grid(rows = vars(island), cols = vars(sex), switch = "y")
+facet_grid(rows = vars(island), cols = vars(sex), switch = "y", scales = "free_y")
 ```
-## Marks and channels
+
+::: callout-important
+Use judiciously!
+:::
+
+
+## Modify facet strip options
+
+```{r, echo = T}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+facet_grid(rows = vars(island), cols = vars(sex), switch = "y") +
+theme(strip.background = element_blank())
+```
+## Move the legend
+
+```{r, echo = T}
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm,
+color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+facet_grid(rows = vars(island), cols = vars(sex), switch = "y") +
+theme(legend.position = "bottom")
+```
+## Marks and channels {.smaller}
 
 - Marks correspond to `geoms`
-- `geom_point, geom_line, geom_col, ...`
-- Align marks with data using `aes`:
-- `x` and `y` for position
-- `color` and `fill` for color scale
-- Discrete or continuous
-- `alpha` for opacity
-- `size` for size
+  - `geom_point, geom_line, geom_col, ...`
+- We map marks to data using `aes` (aesthetics):
+  - `x` and `y` for position
+  - `color` and `fill` for color scale
+  - Discrete or continuous
+  - `alpha` for opacity
+  - `size` for size
+- Aesthetics can be set manually, if not mapped to data. 
 
 
-## Example modifying geoms
+## Counterintuitive marks and channels
 
-- show the same data with different mark/channel mapping
+Size is much worse than position for showing continuous data!
 
-## Demo with esquisse
+```{r, echo = T}
 
-<https://dreamrs.github.io/esquisse/>
+ggplot(penguins, aes(sex, species, size = body_mass_g)) +
+geom_jitter() +
+theme(panel.background = element_blank())
 
-## Talk through example dataset
+```
 
-<https://docs.google.com/spreadsheets/d/1U5OpOxM-aU8KV7xeqHaqsBoAV2koMYZYBCtNn7cCEFg/edit?gid=1285249029#gid=1285249029>
 
-Discuss:
+## Counterintuitive marks and channels
 
-- How would you visualize this? What channels (axes and aesthetics) and marks would you use?
+Size is much worse than position for showing continuous data!
+
+```{r, echo = T}
+
+ggplot(penguins, aes(body_mass_g)) +
+geom_histogram() +
+theme(panel.background = element_blank()) +
+facet_grid(rows = vars(species),
+cols = vars(sex), 
+switch = "y")
+
+```
+
+
+## Marks and channels: Options
+
+Shape is less effective than color for differentiating categories!
+
+```{r, echo = T}
+
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm, shape = species)) +
+geom_point() +
+theme(panel.background = element_blank()) 
+
+```
+
+## Marks and channels: Options
+
+Shape is less effective than color for differentiating categories!
+
+
+```{r, echo = T}
+
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm, color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) 
+
+```
+
+## Effective color scales
+
+- There are multitudes of color palettes available for R.
+- Color palettes can be sequential, categorical, diverging, or bivariate.
+- Not all color palettes will be equally accessible to all viewers.
+- [Cols4All](https://mtennekes.github.io/cols4all/) helps you explore color palettes and find one to meet your needs. 
+
+## `cols4all`
+
+```{r, eval = F, echo = T}
+install.packages("cols4all", dependencies = TRUE)
+
+library(cols4all)
+
+c4a_gui()
+```
+
+```{r}
+library(cols4all)
+
+ggplot(penguins, aes(body_mass_g, 
+bill_depth_mm, color = species)) +
+geom_point() +
+theme(panel.background = element_blank()) +
+scale_color_discrete_c4a_cat(palette = "carto.vivid")
+```
+
+## A data-to-viz helper: Esquisse
+
+- [`esquisse`](https://dreamrs.github.io/esquisse/) is a ggplot2 *extension* for exploring data-viz pairings
+- Stay tuned for session 3 for more on extensions!
+
+
+## Esquisse demo
+
+```{r, echo = T, eval = F}
+install.packages("esquisse")
+
+esquisse::esquisser(penguins)
+```
+
+## Let's put it together
+
+- [Look at one of the example data tables here.](https://docs.google.com/spreadsheets/d/1U5OpOxM-aU8KV7xeqHaqsBoAV2koMYZYBCtNn7cCEFg/edit?gid=1285249029#gid=1285249029)
+- How would you visualize this? 
+  - What channels (axes and aesthetics) and marks would you use?
+  - What features of the data would you emphasize?
+  - Would you use facets?
+  
+
+## Resources
+
+- [ggplot2 documentation](https://ggplot2.tidyverse.org/index.html)
+- [cols4all](https://mtennekes.github.io/cols4all/)
+- [esquisse](https://dreamrs.github.io/esquisse/)
+- CCT Data Science [drop-in hours](https://datascience.cct.arizona.edu/events/weekly-drop-hours-alvsce-researchers) (Tuesdays 9-10am)
+- [Data Science Incubator](https://datascience.cct.arizona.edu/incubator)
+
+## Next up: ggplot2 extensions!
+
+[More information and register here.](https://cct-datascience.github.io/ggplot2-workshop-series/2024/03-extensions/)
