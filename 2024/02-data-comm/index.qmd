@@ -20,5 +20,5 @@ In this session, we will introduce major principles of effective data visualizat
 
 **Materials:**
 
-- [Script to accompany slides](2024/02-data-comm/script.R)
+- [Script to accompany slides](script.R)
 - {{< revealjs slides.html >}}

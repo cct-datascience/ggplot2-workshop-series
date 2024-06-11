@@ -3,6 +3,8 @@ project:
   render: 
     - "*.qmd"
     - "!CONTRIBUTING.md"
+  resources:
+    - 2024/02-data-comm/script.R
   
 website:
   title: "Intermediate ggplot2 workshop series"
