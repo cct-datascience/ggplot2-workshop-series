@@ -13,12 +13,12 @@ css: custom.css
 ## Learning Objectives
 
 -   Implement principles of effective design using {ggplot}. Including:
--   Maximize data:ink ratio using themes and facets
--   Customize marks and channels using geoms and aes(thetics).
--   Use helper tools including `cols4all` and `esquisse` to make thoughtful visualization choices.
--   Work through an example as a group.
+    -   Maximize data:ink ratio using themes and facets
+    -   Customize marks and channels using geoms and aes(thetics).
+    -   Use helper tools including `cols4all` and `esquisse` to make thoughtful visualization choices.
+    -   Work through an example as a group.
 
-## Maximizing data:ink ratio
+# Maximizing data:ink ratio
 
 ## The {ggplot2} default
 
@@ -45,7 +45,7 @@ ggplot(penguins, aes(body_mass_g,
 
 ## {theme\_\*}
 
-```{r, echo = T}
+```{r, echo = TRUE, `code-line-numbers`="|5"}
 
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
@@ -56,7 +56,9 @@ ggplot(penguins, aes(body_mass_g,
 
 ## {theme\_\*}
 
-```{r, echo = T}
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|5"
 
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
@@ -99,7 +101,10 @@ Use `theme_set(theme_bw())` outside your plot code to set the theme for a whole 
 
 ## Remove the background panel
 
-```{r, echo = T}
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|5"
+
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
                      color = species)) +
@@ -109,7 +114,10 @@ ggplot(penguins, aes(body_mass_g,
 
 ## Re-add grid lines
 
-```{r, echo = T}
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|6"
+
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
                      color = species)) +
@@ -123,21 +131,26 @@ ggplot(penguins, aes(body_mass_g,
 
 ## Hierarchichal modifications
 
-```{r, echo = T}
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|6"
+
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
                      color = species)) +
   geom_point() +
   theme(panel.background = element_blank()) +
-  theme(panel.grid.major.x = element_line(color = "black", linewidth = .5)) # Modify only the x axis
-
+  theme(panel.grid.major.x = element_line(color = "black", linewidth = .5))
 ```
 
-## Maximizing use of space
+# Maximizing use of space
 
 ## `facet_wrap` 
 
-```{r, echo = T}
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|6"
+
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
                      color = species)) +
@@ -148,7 +161,11 @@ ggplot(penguins, aes(body_mass_g,
 
 ## `facet_wrap` 
 
-```{r, echo =T}
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|6"
+
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
                      color = species)) +
@@ -160,7 +177,10 @@ ggplot(penguins, aes(body_mass_g,
 
 ## `facet_grid`
 
-```{r, echo = T}
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|6"
+
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
                      color = species)) +
@@ -172,7 +192,11 @@ ggplot(penguins, aes(body_mass_g,
 
 ## Modify facet label placement
 
-```{r, echo = T}
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|6"
+
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
                      color = species)) +
@@ -183,7 +207,11 @@ ggplot(penguins, aes(body_mass_g,
 
 ## Modify facet scales
 
-```{r, echo = T}
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|6"
+
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
                      color = species)) +
@@ -210,7 +238,10 @@ Use judiciously!
 
 ## Modify facet strip options
 
-```{r, echo = T}
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|7"
+
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
                      color = species)) +
@@ -219,9 +250,13 @@ ggplot(penguins, aes(body_mass_g,
   facet_grid(rows = vars(island), cols = vars(sex), switch = "y") +
   theme(strip.background = element_blank())
 ```
+
 ## Move the legend
 
-```{r, echo = T}
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|7"
+
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
                      color = species)) +
@@ -230,7 +265,7 @@ ggplot(penguins, aes(body_mass_g,
   facet_grid(rows = vars(island), cols = vars(sex), switch = "y") +
   theme(legend.position = "bottom")
 ```
-## Marks and channels {.smaller}
+# Marks and channels {.smaller}
 
 - Marks correspond to `geoms`
   - `geom_point, geom_line, geom_col, ...`
@@ -276,10 +311,14 @@ ggplot(penguins, aes(body_mass_g)) +
 
 Shape is less effective than color for differentiating categories!
 
-```{r, echo = T}
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|3"
 
 ggplot(penguins, aes(body_mass_g, 
-                     bill_depth_mm, shape = species)) +
+                     bill_depth_mm, 
+shape = species)) +
   geom_point() +
   theme(panel.background = element_blank()) 
 
@@ -290,10 +329,14 @@ ggplot(penguins, aes(body_mass_g,
 Shape is less effective than color for differentiating categories!
 
 
-```{r, echo = T}
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|3"
 
 ggplot(penguins, aes(body_mass_g, 
-                     bill_depth_mm, color = species)) +
+                     bill_depth_mm, 
+color = species)) +
   geom_point() +
   theme(panel.background = element_blank()) 
 
