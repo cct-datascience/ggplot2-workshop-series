@@ -101,21 +101,21 @@ Use `theme_set(theme_bw())` outside your plot code to set the theme for a whole 
 
 ```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) 
 ```
 
 ## Re-add grid lines
 
 ```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-theme(panel.grid.major = element_line(color = "black", linewidth = .5))
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  theme(panel.grid.major = element_line(color = "black", linewidth = .5))
 
 ```
 
@@ -125,11 +125,11 @@ theme(panel.grid.major = element_line(color = "black", linewidth = .5))
 
 ```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-theme(panel.grid.major.x = element_line(color = "black", linewidth = .5)) # Modify only the x axis
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  theme(panel.grid.major.x = element_line(color = "black", linewidth = .5)) # Modify only the x axis
 
 ```
 
@@ -139,22 +139,22 @@ theme(panel.grid.major.x = element_line(color = "black", linewidth = .5)) # Modi
 
 ```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-facet_wrap(vars(island))
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_wrap(vars(island))
 ```
 
 ## `facet_wrap` 
 
 ```{r, echo =T}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-facet_wrap(vars(island), ncol = 1)
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_wrap(vars(island), ncol = 1)
 ```
 
 
@@ -162,11 +162,11 @@ facet_wrap(vars(island), ncol = 1)
 
 ```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-facet_grid(rows = vars(island), cols = vars(sex))
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), cols = vars(sex))
 ```
 
 
@@ -174,33 +174,33 @@ facet_grid(rows = vars(island), cols = vars(sex))
 
 ```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-facet_grid(rows = vars(island), cols = vars(sex), switch = "y")
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), cols = vars(sex), switch = "y")
 ```
 
 ## Modify facet scales
 
 ```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-facet_grid(rows = vars(island), cols = vars(sex), switch = "y", scales = "free_y")
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), cols = vars(sex), switch = "y", scales = "free_y")
 ```
 
 ## Modify facet scales
 
 ```{r, echo = T, output = F}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-facet_grid(rows = vars(island), cols = vars(sex), switch = "y", scales = "free_y")
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), cols = vars(sex), switch = "y", scales = "free_y")
 ```
 
 ::: callout-important
@@ -212,23 +212,23 @@ Use judiciously!
 
 ```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-facet_grid(rows = vars(island), cols = vars(sex), switch = "y") +
-theme(strip.background = element_blank())
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), cols = vars(sex), switch = "y") +
+  theme(strip.background = element_blank())
 ```
 ## Move the legend
 
 ```{r, echo = T}
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm,
-color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-facet_grid(rows = vars(island), cols = vars(sex), switch = "y") +
-theme(legend.position = "bottom")
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), cols = vars(sex), switch = "y") +
+  theme(legend.position = "bottom")
 ```
 ## Marks and channels {.smaller}
 
@@ -250,8 +250,8 @@ Size is much worse than position for showing continuous data!
 ```{r, echo = T}
 
 ggplot(penguins, aes(sex, species, size = body_mass_g)) +
-geom_jitter() +
-theme(panel.background = element_blank())
+  geom_jitter() +
+  theme(panel.background = element_blank())
 
 ```
 
@@ -263,11 +263,11 @@ Size is much worse than position for showing continuous data!
 ```{r, echo = T}
 
 ggplot(penguins, aes(body_mass_g)) +
-geom_histogram() +
-theme(panel.background = element_blank()) +
-facet_grid(rows = vars(species),
-cols = vars(sex), 
-switch = "y")
+  geom_histogram() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(species),
+             cols = vars(sex), 
+             switch = "y")
 
 ```
 
@@ -279,9 +279,9 @@ Shape is less effective than color for differentiating categories!
 ```{r, echo = T}
 
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm, shape = species)) +
-geom_point() +
-theme(panel.background = element_blank()) 
+                     bill_depth_mm, shape = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) 
 
 ```
 
@@ -293,9 +293,9 @@ Shape is less effective than color for differentiating categories!
 ```{r, echo = T}
 
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm, color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) 
+                     bill_depth_mm, color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) 
 
 ```
 
@@ -320,10 +320,10 @@ c4a_gui()
 library(cols4all)
 
 ggplot(penguins, aes(body_mass_g, 
-bill_depth_mm, color = species)) +
-geom_point() +
-theme(panel.background = element_blank()) +
-scale_color_discrete_c4a_cat(palette = "carto.vivid")
+                     bill_depth_mm, color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  scale_color_discrete_c4a_cat(palette = "carto.vivid")
 ```
 
 ## A data-to-viz helper: Esquisse
