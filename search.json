@@ -10,18 +10,18 @@
     ]
   },
   {
+    "objectID": "2024/02-data-comm/slides.html#code-along-script",
+    "href": "2024/02-data-comm/slides.html#code-along-script",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Code-along script",
+    "text": "Code-along script\nScript for today’s examples."
+  },
+  {
     "objectID": "2024/02-data-comm/slides.html#learning-objectives",
     "href": "2024/02-data-comm/slides.html#learning-objectives",
     "title": "Effective Data Communication With {ggplot2}",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nImplement principles of effective design using {ggplot}. Including:\nMaximize data:ink ratio using themes and facets\nCustomize marks and channels using geoms and aes(thetics).\nWork through an example as a group."
-  },
-  {
-    "objectID": "2024/02-data-comm/slides.html#maximizing-dataink-ratio",
-    "href": "2024/02-data-comm/slides.html#maximizing-dataink-ratio",
-    "title": "Effective Data Communication With {ggplot2}",
-    "section": "Maximizing data:ink ratio",
-    "text": "Maximizing data:ink ratio"
+    "text": "Learning Objectives\n\nImplement principles of effective design using {ggplot}. Including:\n\nMaximize data:ink ratio using themes and facets\nCustomize marks and channels using geoms and aes(thetics).\nUse helper tools including cols4all and esquisse to make thoughtful visualization choices.\nWork through an example as a group."
   },
   {
     "objectID": "2024/02-data-comm/slides.html#the-ggplot2-default",
@@ -70,56 +70,161 @@
     "href": "2024/02-data-comm/slides.html#anatomy-of-theme",
     "title": "Effective Data Communication With {ggplot2}",
     "section": "Anatomy of theme",
-    "text": "Anatomy of theme\n\ntheme( &lt;part of the plot&gt; = &lt;element_*(element_options)&gt;)\nParts of the plot: axis, legend, panel, plot, strip.\nElements: element_blank, element_text, element_line, element_rect.\n\nYou can modify all lines/rectangles at once using theme(line = element_line()), etc."
+    "text": "Anatomy of theme\n\ntheme( &lt;part of the plot&gt; = &lt;element_*(element_options)&gt;)\nParts of the plot: axis, legend, panel, plot, strip.\nElements: element_blank, element_text, element_line, element_rect.\n\nYou can modify all lines/rectangles at once using theme(line = element_line()), etc.\nSee the rendered documentation to help you figure out how to change specific elements."
   },
   {
-    "objectID": "2024/02-data-comm/slides.html#modifying-elements",
-    "href": "2024/02-data-comm/slides.html#modifying-elements",
+    "objectID": "2024/02-data-comm/slides.html#remove-the-background-panel",
+    "href": "2024/02-data-comm/slides.html#remove-the-background-panel",
     "title": "Effective Data Communication With {ggplot2}",
-    "section": "Modifying elements",
-    "text": "Modifying elements"
+    "section": "Remove the background panel",
+    "text": "Remove the background panel\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank())"
   },
   {
-    "objectID": "2024/02-data-comm/slides.html#maximizing-use-of-space",
-    "href": "2024/02-data-comm/slides.html#maximizing-use-of-space",
+    "objectID": "2024/02-data-comm/slides.html#re-add-grid-lines",
+    "href": "2024/02-data-comm/slides.html#re-add-grid-lines",
     "title": "Effective Data Communication With {ggplot2}",
-    "section": "Maximizing use of space",
-    "text": "Maximizing use of space"
+    "section": "Re-add grid lines",
+    "text": "Re-add grid lines\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank(),\n        panel.grid.major = element_line(color = \"black\", linewidth = .5))"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#hierarchichal-modifications",
+    "href": "2024/02-data-comm/slides.html#hierarchichal-modifications",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Hierarchichal modifications",
+    "text": "Hierarchichal modifications\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank()) +\n  theme(panel.grid.major = element_line(color = \"black\", linewidth = .5))  +\n  theme(panel.grid.major.x = element_line(color = \"red\", linewidth = .1))"
   },
   {
     "objectID": "2024/02-data-comm/slides.html#facet_wrap",
     "href": "2024/02-data-comm/slides.html#facet_wrap",
     "title": "Effective Data Communication With {ggplot2}",
     "section": "facet_wrap",
-    "text": "facet_wrap"
+    "text": "facet_wrap\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank()) +\n  facet_wrap(vars(island))"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#facet_wrap-1",
+    "href": "2024/02-data-comm/slides.html#facet_wrap-1",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "facet_wrap",
+    "text": "facet_wrap\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank()) +\n  facet_wrap(vars(island), \n              ncol = 1)"
   },
   {
     "objectID": "2024/02-data-comm/slides.html#facet_grid",
     "href": "2024/02-data-comm/slides.html#facet_grid",
     "title": "Effective Data Communication With {ggplot2}",
     "section": "facet_grid",
-    "text": "facet_grid"
+    "text": "facet_grid\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank()) +\n  facet_grid(rows = vars(island), \n              cols = vars(sex))"
   },
   {
-    "objectID": "2024/02-data-comm/slides.html#marks-and-channels",
-    "href": "2024/02-data-comm/slides.html#marks-and-channels",
+    "objectID": "2024/02-data-comm/slides.html#modify-facet-label-placement",
+    "href": "2024/02-data-comm/slides.html#modify-facet-label-placement",
     "title": "Effective Data Communication With {ggplot2}",
-    "section": "Marks and channels",
-    "text": "Marks and channels\n\nMarks correspond to geoms\n\ngeom_point, geom_line, geom_col, ...\n\nAlign marks with data using aes:\n\nx and y for position\ncolor and fill for color scale\n\nDiscrete or continuous\n\nalpha for opacity\nsize for size"
+    "section": "Modify facet label placement",
+    "text": "Modify facet label placement\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank()) +\n  facet_grid(rows = vars(island), \n              cols = vars(sex), \n              switch = \"y\")"
   },
   {
-    "objectID": "2024/02-data-comm/slides.html#example-modifying-geoms",
-    "href": "2024/02-data-comm/slides.html#example-modifying-geoms",
+    "objectID": "2024/02-data-comm/slides.html#modify-facet-scales",
+    "href": "2024/02-data-comm/slides.html#modify-facet-scales",
     "title": "Effective Data Communication With {ggplot2}",
-    "section": "Example modifying geoms",
-    "text": "Example modifying geoms"
+    "section": "Modify facet scales",
+    "text": "Modify facet scales\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank()) +\n  facet_grid(rows = vars(island), \n              cols = vars(sex), \n              switch = \"y\", \n              scales = \"free_y\")"
   },
   {
-    "objectID": "2024/02-data-comm/slides.html#worked-example-as-a-group",
-    "href": "2024/02-data-comm/slides.html#worked-example-as-a-group",
+    "objectID": "2024/02-data-comm/slides.html#modify-facet-scales-1",
+    "href": "2024/02-data-comm/slides.html#modify-facet-scales-1",
     "title": "Effective Data Communication With {ggplot2}",
-    "section": "Worked example as a group",
-    "text": "Worked example as a group\n\n\n\n\nIntermediate ggplot2 workshop series"
+    "section": "Modify facet scales",
+    "text": "Modify facet scales\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank()) +\n  facet_grid(rows = vars(island), \n              cols = vars(sex), \n              switch = \"y\", \n              scales = \"free_y\")\n\n\n\n\n\n\n\nImportant\n\n\nUse judiciously!"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#modify-facet-strip-options",
+    "href": "2024/02-data-comm/slides.html#modify-facet-strip-options",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Modify facet strip options",
+    "text": "Modify facet strip options\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank()) +\n  facet_grid(rows = vars(island), \n              cols = vars(sex), \n              switch = \"y\") +\n  theme(strip.background = element_blank())"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#move-the-legend",
+    "href": "2024/02-data-comm/slides.html#move-the-legend",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Move the legend",
+    "text": "Move the legend\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm,\n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank()) +\n  facet_grid(rows = vars(island), \n              cols = vars(sex), \n              switch = \"y\") +\n  theme(legend.position = \"bottom\")"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#counterintuitive-marks-and-channels",
+    "href": "2024/02-data-comm/slides.html#counterintuitive-marks-and-channels",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Counterintuitive marks and channels",
+    "text": "Counterintuitive marks and channels\nSize is much worse than position for showing continuous data!\n\nggplot(penguins, aes(sex, species, size = body_mass_g)) +\n  geom_jitter() +\n  theme(panel.background = element_blank())"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#counterintuitive-marks-and-channels-1",
+    "href": "2024/02-data-comm/slides.html#counterintuitive-marks-and-channels-1",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Counterintuitive marks and channels",
+    "text": "Counterintuitive marks and channels\nSize is much worse than position for showing continuous data!\n\nggplot(penguins, aes(body_mass_g)) +\n  geom_histogram() +\n  theme(panel.background = element_blank()) +\n  facet_grid(rows = vars(species),\n             cols = vars(sex), \n             switch = \"y\")"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#marks-and-channels-options",
+    "href": "2024/02-data-comm/slides.html#marks-and-channels-options",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Marks and channels: Options",
+    "text": "Marks and channels: Options\nShape is less effective than color for differentiating categories!\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm, \n                     shape = species)) +\n  geom_point() +\n  theme(panel.background = element_blank())"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#marks-and-channels-options-1",
+    "href": "2024/02-data-comm/slides.html#marks-and-channels-options-1",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Marks and channels: Options",
+    "text": "Marks and channels: Options\nShape is less effective than color for differentiating categories!\n\nggplot(penguins, aes(body_mass_g, \n                     bill_depth_mm, \n                     color = species)) +\n  geom_point() +\n  theme(panel.background = element_blank())"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#effective-color-scales",
+    "href": "2024/02-data-comm/slides.html#effective-color-scales",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Effective color scales",
+    "text": "Effective color scales\n\nThere are multitudes of color palettes available for R.\nColor palettes can be sequential, categorical, diverging, or bivariate.\nNot all color palettes will be equally accessible to all viewers.\nCols4All helps you explore color palettes and find one to meet your needs."
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#cols4all",
+    "href": "2024/02-data-comm/slides.html#cols4all",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "cols4all",
+    "text": "cols4all\n\ninstall.packages(\"cols4all\", dependencies = TRUE)\n\nlibrary(cols4all)\n\nc4a_gui()"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#a-data-to-viz-helper-esquisse",
+    "href": "2024/02-data-comm/slides.html#a-data-to-viz-helper-esquisse",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "A data-to-viz helper: Esquisse",
+    "text": "A data-to-viz helper: Esquisse\n\nesquisse is a ggplot2 extension for exploring data-viz pairings\nStay tuned for session 3 for more on extensions!"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#esquisse-demo",
+    "href": "2024/02-data-comm/slides.html#esquisse-demo",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Esquisse demo",
+    "text": "Esquisse demo\n\ninstall.packages(\"esquisse\")\n\nesquisse::esquisser(penguins)"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#lets-put-it-together",
+    "href": "2024/02-data-comm/slides.html#lets-put-it-together",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Let’s put it together",
+    "text": "Let’s put it together\n\nTake a look at the “Measles” data table here.\nLet’s think through a visualization we could make of these data. Ask:\n\nWhich data variables will tell a story? What types of data are they?\nWhich chart type(s) would be appropriate for these data types?\nWhat marks and channels shall we use?\nWhat additional design decisions could we make to improve the graphic?"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#resources",
+    "href": "2024/02-data-comm/slides.html#resources",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Resources",
+    "text": "Resources\n\nggplot2 documentation\ncols4all\nesquisse\nCCT Data Science drop-in hours (Tuesdays 9-10am)\nData Science Incubator"
+  },
+  {
+    "objectID": "2024/02-data-comm/slides.html#next-up-ggplot2-extensions",
+    "href": "2024/02-data-comm/slides.html#next-up-ggplot2-extensions",
+    "title": "Effective Data Communication With {ggplot2}",
+    "section": "Next up: ggplot2 extensions!",
+    "text": "Next up: ggplot2 extensions!\nMore information and register here.\n\n\n\n\nIntermediate ggplot2 workshop series"
   },
   {
     "objectID": "2024/01-foundations/slides.html#learning-objectives",
@@ -1227,7 +1332,7 @@
     "href": "2024/02-data-comm/index.html",
     "title": "Effective Data Communication With ggplot2",
     "section": "",
-    "text": "Date & time: Thursday June 13, 2024, 11am - 1pm AZ\nInstructor: Renata Diaz, Devin Bayly\nIn this session, we will introduce major principles of effective data visualization and then cover how to implement these principles in your plots with ggplot2.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2",
+    "text": "Date & time: Thursday June 13, 2024, 11am - 1pm AZ\nInstructor: Renata Diaz, Devin Bayly\nIn this session, we will introduce major principles of effective data visualization and then cover how to implement these principles in your plots with ggplot2.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2\n\nMaterials:\n\nScript to accompany slides\n    View slides in full screen",
     "crumbs": [
       "Upcoming series",
       "Session 2 - Data Communication"
