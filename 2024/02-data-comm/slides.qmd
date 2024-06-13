@@ -10,6 +10,10 @@ format:
 css: custom.css
 ---
 
+## Code-along script
+
+[Script for today's examples.](script.R)
+
 ## Learning Objectives
 
 -   Implement principles of effective design using {ggplot}. Including:
