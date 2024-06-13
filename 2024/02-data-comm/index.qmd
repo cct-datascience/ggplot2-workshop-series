@@ -16,3 +16,9 @@ In this session, we will introduce major principles of effective data visualizat
 -   Install R, RStudio, and `ggplot2`
 
 -   Some previous usage of `ggplot2`
+
+
+**Materials:**
+
+- [Script to accompany slides](script.R)
+- {{< revealjs slides.html >}}

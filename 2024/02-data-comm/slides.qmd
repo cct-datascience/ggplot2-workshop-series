@@ -10,14 +10,19 @@ format:
 css: custom.css
 ---
 
+## Code-along script
+
+[Script for today's examples.](script.R)
+
 ## Learning Objectives
 
 -   Implement principles of effective design using {ggplot}. Including:
--   Maximize data:ink ratio using themes and facets
--   Customize marks and channels using geoms and aes(thetics).
--   Work through an example as a group.
+    -   Maximize data:ink ratio using themes and facets
+    -   Customize marks and channels using geoms and aes(thetics).
+    -   Use helper tools including `cols4all` and `esquisse` to make thoughtful visualization choices.
+    -   Work through an example as a group.
 
-## Maximizing data:ink ratio
+# Maximizing data:ink ratio
 
 ## The {ggplot2} default
 
@@ -27,6 +32,9 @@ library(palmerpenguins)
 library(ggplot2)
 
 data(penguins)
+
+penguins <- penguins |>
+  filter(!is.na(sex))
 
 ```
 
@@ -41,7 +49,7 @@ ggplot(penguins, aes(body_mass_g,
 
 ## {theme\_\*}
 
-```{r, echo = T}
+```{r, echo = TRUE, `code-line-numbers`="5"}
 
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
@@ -52,7 +60,9 @@ ggplot(penguins, aes(body_mass_g,
 
 ## {theme\_\*}
 
-```{r, echo = T}
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "5"
 
 ggplot(penguins, aes(body_mass_g, 
                      bill_depth_mm,
@@ -85,33 +95,331 @@ Use `theme_set(theme_bw())` outside your plot code to set the theme for a whole 
 -   The `theme()` function allows you to modify individual elements of a theme
 -   The `theme` options are vast. We'll break it down.
 
-## Anatomy of `theme`
+## Anatomy of `theme` {.smaller}
 
 - `theme( <part of the plot> = <element_*(element_options)>)`
 - Parts of the plot: axis, legend, panel, plot, strip.
 - Elements: element_blank, element_text, element_line, element_rect.  
 - You can modify all lines/rectangles at once using `theme(line = element_line())`, etc. 
+- See the [rendered documentation](https://ggplot2.tidyverse.org/reference/theme.html) to help you figure out how to change specific elements.
 
-## Modifying elements
+## Remove the background panel
 
-## Maximizing use of space
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "5"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) 
+```
+
+## Re-add grid lines
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "6"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank(),
+        panel.grid.major = element_line(color = "black", linewidth = .5))
+
+```
+
+
+
+## Hierarchichal modifications
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "6|7"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  theme(panel.grid.major = element_line(color = "black", linewidth = .5))  +
+  theme(panel.grid.major.x = element_line(color = "red", linewidth = .1))
+```
+
+# Maximizing use of space
 
 ## `facet_wrap` 
 
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "6"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_wrap(vars(island))
+```
+
+## `facet_wrap` 
+
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "7"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_wrap(vars(island), 
+              ncol = 1)
+```
+
+
 ## `facet_grid`
 
-## Marks and channels
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "6,7"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), 
+              cols = vars(sex))
+```
+
+
+## Modify facet label placement
+
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "8"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), 
+              cols = vars(sex), 
+              switch = "y")
+```
+
+## Modify facet scales
+
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "9"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), 
+              cols = vars(sex), 
+              switch = "y", 
+              scales = "free_y")
+```
+
+## Modify facet scales
+
+```{r, echo = T, output = F}
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), 
+              cols = vars(sex), 
+              switch = "y", 
+              scales = "free_y")
+```
+
+::: callout-important
+Use judiciously!
+:::
+
+
+## Modify facet strip options
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "9"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), 
+              cols = vars(sex), 
+              switch = "y") +
+  theme(strip.background = element_blank())
+```
+
+## Move the legend
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "9"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm,
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(island), 
+              cols = vars(sex), 
+              switch = "y") +
+  theme(legend.position = "bottom")
+```
+# Marks and channels {.smaller}
 
 - Marks correspond to `geoms`
-    - `geom_point, geom_line, geom_col, ...`
-- Align marks with data using `aes`:
-    - `x` and `y` for position
-    - `color` and `fill` for color scale
-      - Discrete or continuous
-    - `alpha` for opacity
-    - `size` for size
-    
+  - `geom_point, geom_line, geom_col, ...`
+- We map marks to data using `aes` (aesthetics):
+  - `x` and `y` for position
+  - `color` and `fill` for color scale
+  - Discrete or continuous
+  - `alpha` for opacity
+  - `size` for size
+- Aesthetics can be set manually, if not mapped to data. 
 
-## Example modifying geoms
 
-## Worked example as a group
+## Counterintuitive marks and channels
+
+Size is much worse than position for showing continuous data!
+
+```{r, echo = T}
+
+ggplot(penguins, aes(sex, species, size = body_mass_g)) +
+  geom_jitter() +
+  theme(panel.background = element_blank())
+
+```
+
+
+## Counterintuitive marks and channels
+
+Size is much worse than position for showing continuous data!
+
+```{r, echo = T}
+
+ggplot(penguins, aes(body_mass_g)) +
+  geom_histogram() +
+  theme(panel.background = element_blank()) +
+  facet_grid(rows = vars(species),
+             cols = vars(sex), 
+             switch = "y")
+
+```
+
+
+## Marks and channels: Options
+
+Shape is less effective than color for differentiating categories!
+
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "3"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm, 
+                     shape = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) 
+
+```
+
+## Marks and channels: Options
+
+Shape is less effective than color for differentiating categories!
+
+
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "3"
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm, 
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) 
+
+```
+
+## Effective color scales
+
+- There are multitudes of color palettes available for R.
+- Color palettes can be sequential, categorical, diverging, or bivariate.
+- Not all color palettes will be equally accessible to all viewers.
+- [Cols4All](https://mtennekes.github.io/cols4all/) helps you explore color palettes and find one to meet your needs. 
+
+## `cols4all`
+
+```{r, eval = F, echo = T}
+install.packages("cols4all", dependencies = TRUE)
+
+library(cols4all)
+
+c4a_gui()
+```
+
+```{r}
+library(cols4all)
+
+ggplot(penguins, aes(body_mass_g, 
+                     bill_depth_mm, 
+                     color = species)) +
+  geom_point() +
+  theme(panel.background = element_blank()) +
+  scale_color_discrete_c4a_cat(palette = "carto.vivid")
+```
+
+## A data-to-viz helper: Esquisse
+
+- [`esquisse`](https://dreamrs.github.io/esquisse/) is a ggplot2 *extension* for exploring data-viz pairings
+- Stay tuned for session 3 for more on extensions!
+
+
+## Esquisse demo
+
+```{r, echo = T, eval = F}
+install.packages("esquisse")
+
+esquisse::esquisser(penguins)
+```
+
+## Let's put it together {.smaller}
+
+- [Take a look at the "Measles"  data table here.](https://docs.google.com/spreadsheets/d/1U5OpOxM-aU8KV7xeqHaqsBoAV2koMYZYBCtNn7cCEFg/edit?gid=1285249029#gid=1285249029)
+- Let's think through a visualization we could make of these data. Ask:
+    - Which data variables will tell a *story*? What types of data are they?
+    - Which chart type(s) would be appropriate for these data types?
+    - What marks and channels shall we use?
+    - What additional design decisions could we make to improve the graphic?
+
+## Resources
+
+- [ggplot2 documentation](https://ggplot2.tidyverse.org/index.html)
+- [cols4all](https://mtennekes.github.io/cols4all/)
+- [esquisse](https://dreamrs.github.io/esquisse/)
+- CCT Data Science [drop-in hours](https://datascience.cct.arizona.edu/events/weekly-drop-hours-alvsce-researchers) (Tuesdays 9-10am)
+- [Data Science Incubator](https://datascience.cct.arizona.edu/incubator)
+
+## Next up: ggplot2 extensions!
+
+[More information and register here.](https://cct-datascience.github.io/ggplot2-workshop-series/2024/03-extensions/)
