@@ -16,3 +16,7 @@ There are over 100 packages that extend the functionality of ggplot2 to allow yo
 -   Install R, RStudio, and `ggplot2`
 
 -   Some previous usage of `ggplot2`
+
+**Materials:**
+
+- {{< revealjs slides.html >}}
