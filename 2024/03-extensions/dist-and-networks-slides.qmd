@@ -1,0 +1,40 @@
+---
+title: Extensions
+author: Renata Diaz 
+date: 2024-06-20
+format: 
+  uaz-revealjs:
+  # revealjs:
+    incremental: true
+css: custom.css
+---
+
+# Distributions with {ggdist}
+
+- Easily add nuance to `geom_density`, `geom_histogram`, `geom_violin`, `geom_ribbon`.
+- Particularly useful for:
+  - Sample data
+  - Frequentist or Bayesian parameter distributions (note that if you use {tidybayes} you already use {ggdist})
+  - Fitted values + uncertainty
+  
+Show:
+
+* dotplots
+* ribbon plots
+* raincloud plots
+* distribution plots on frequentist model output
+* distribution plots on bayesian posteriors
+
+# Network data with {ggraph}
+
+## {ggraph}
+
+- Uses {tidygraph}, which allows you to use {igraph} in a tidy framework.
+  - 2 tables, nodes and edges
+
+
+Show:
+
+* Network
+* Dendrogram
+* Circular dendrogram
