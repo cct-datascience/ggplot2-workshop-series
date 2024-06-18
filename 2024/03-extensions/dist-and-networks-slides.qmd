@@ -223,7 +223,7 @@ head(penguin_lm_cont_fitted)
   - posterior predictions
 - We can fit a simple Bayesian linear model and visualize the posterior...
 
-## Visualizing Bayesian model components
+## Fitting a model
 
 ```{r, echo = F}
 library(brms)
@@ -237,24 +237,52 @@ load(here::here("2024", "03-extensions", "penguins_brm.RDS"))
 library(brms)
 library(tidybayes)
 
-penguins_brm <- brm(body_mass_g ~ species, data = penguins)
+penguins_brm <- brm(body_mass_g ~ species, data = penguins, iter = 1000)
 
 ```
 
-```{r, echo = T}
-penguins_brm |>
-tidybayes::add_draws(penguins) |>
-  head()
-```
-
-## Visualizing Bayesian model components
+## Extracting draws from the posterior
 
 ```{r, echo = T}
 penguins_brm %>%
-  tidybayes::spread_draws(species_mean[species]) %>%
-  ggplot(aes(x = species_mean, y = species)) +
-  stat_dots(quantiles = 100) 
+tidybayes::gather_draws(
+c(b_Intercept,
+b_speciesChinstrap,
+b_speciesGentoo)
+) |>
+head() 
 ```
+
+## Plotting slabintervals
+
+```{r, echo = T}
+penguins_brm %>%
+ tidybayes::gather_draws(
+c(b_Intercept,
+b_speciesChinstrap,
+b_speciesGentoo)
+) %>%
+  ggplot(aes(y = .variable, x = .value)) +
+  stat_slabinterval() 
+```
+
+## Plotting rainclouds
+
+```{r, echo = T}
+penguins_brm |>
+tidybayes::gather_draws(
+c(b_Intercept,
+b_speciesChinstrap,
+b_speciesGentoo)) %>%
+ggplot(aes(y = .variable, x = .value)) +  geom_dotsinterval(side = "bottom", dotsize = .05) + 
+stat_slabinterval() 
+```
+## Takeaways
+
+- `ggdist` contains `geom` and `stat` functions for plotting distributions.
+- Slab functions show variations on density plots.
+- Ribbons show variation around a line.
+- `ggdist` plays nicely with Bayesian and frequentist modeling frameworks.
 
 ## For more
 
