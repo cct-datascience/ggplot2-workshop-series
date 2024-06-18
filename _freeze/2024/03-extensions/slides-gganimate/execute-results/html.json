@@ -1,0 +1,21 @@
+{
+  "hash": "c113ce04074280222242a4df9cb19c6c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Exploring the Wide World of ggplot2 Extensions\"\nauthor: \n  - \"Eric R. Scott\"\n  - \"Kristina Riemer\"\n  - \"Renata Diaz\"\ndate: 2024-06-20\nformat: \n  uaz-revealjs: default\nexecute: \n  echo: true\neditor: visual\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\nlibrary(palmerpenguins)\n```\n:::\n\n\n## `gganimate`\n\nDisplay transitions between states of a variable\n\nUseful for showing trends in time series & spatial data\n\n::: callout-tip\n## Advice from the experts!\n\n\"Graphic elements should only transition between instances of the same underlying phenomenon\"\n:::\n\n## Example\n\nBody size distribution of penguins changing over the years\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(penguins, aes(x = body_mass_g, col = species)) +\n  geom_density() +\n  facet_wrap(~year)\n```\n\n::: {.cell-output-display}\n![](slides-gganimate_files/figure-revealjs/unnamed-chunk-2-1.png){width=960}\n:::\n:::\n\n\n## Show annual transition\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(gganimate)\n\nggplot(penguins, aes(x = body_mass_g, col = species)) +\n  geom_density() +\n  transition_states(year) +\n  ggtitle('Year: {closest_state}')\n```\n\n::: {.cell-output-display}\n![](slides-gganimate_files/figure-revealjs/unnamed-chunk-3-1.gif)\n:::\n:::\n\n\n## Add more detail\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(penguins, aes(x = body_mass_g, col = species)) +\n  geom_density() +\n  transition_states(year) +\n  ggtitle('Year: {closest_state}') +\n  shadow_wake(wake = 0.25)\n```\n\n::: {.cell-output-display}\n![](slides-gganimate_files/figure-revealjs/unnamed-chunk-4-1.gif)\n:::\n:::\n\n\n## Save file\n\n\n::: {.cell}\n\n```{.r .cell-code}\nanim_save(\"~/Desktop/test_anim.gif\")\n```\n:::\n\n\n## Resources\n\n-   Cheat sheet: <https://rstudio.github.io/cheatsheets/gganimate.pdf>\n-   Website: <https://gganimate.com>\n",
+    "supporting": [
+      "slides-gganimate_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-after-body": [
+        "\n<script>\n  // htmlwidgets need to know to resize themselves when slides are shown/hidden.\n  // Fire the \"slideenter\" event (handled by htmlwidgets.js) when the current\n  // slide changes (different for each slide format).\n  (function () {\n    // dispatch for htmlwidgets\n    function fireSlideEnter() {\n      const event = window.document.createEvent(\"Event\");\n      event.initEvent(\"slideenter\", true, true);\n      window.document.dispatchEvent(event);\n    }\n\n    function fireSlideChanged(previousSlide, currentSlide) {\n      fireSlideEnter();\n\n      // dispatch for shiny\n      if (window.jQuery) {\n        if (previousSlide) {\n          window.jQuery(previousSlide).trigger(\"hidden\");\n        }\n        if (currentSlide) {\n          window.jQuery(currentSlide).trigger(\"shown\");\n        }\n      }\n    }\n\n    // hookup for slidy\n    if (window.w3c_slidy) {\n      window.w3c_slidy.add_observer(function (slide_num) {\n        // slide_num starts at position 1\n        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);\n      });\n    }\n\n  })();\n</script>\n\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

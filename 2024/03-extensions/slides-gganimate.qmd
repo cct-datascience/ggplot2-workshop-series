@@ -1,0 +1,72 @@
+---
+title: "Exploring the Wide World of ggplot2 Extensions"
+author: 
+  - "Eric R. Scott"
+  - "Kristina Riemer"
+  - "Renata Diaz"
+date: 2024-06-20
+format: 
+  uaz-revealjs: default
+execute: 
+  echo: true
+editor: visual
+---
+
+```{r}
+library(ggplot2)
+library(palmerpenguins)
+```
+
+## `gganimate`
+
+Display transitions between states of a variable
+
+Useful for showing trends in time series & spatial data
+
+::: callout-tip
+## Advice from the experts!
+
+"Graphic elements should only transition between instances of the same underlying phenomenon"
+:::
+
+## Example
+
+Body size distribution of penguins changing over the years
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, col = species)) +
+  geom_density() +
+  facet_wrap(~year)
+```
+
+## Show annual transition
+
+```{r}
+library(gganimate)
+
+ggplot(penguins, aes(x = body_mass_g, col = species)) +
+  geom_density() +
+  transition_states(year) +
+  ggtitle('Year: {closest_state}')
+```
+
+## Add more detail
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, col = species)) +
+  geom_density() +
+  transition_states(year) +
+  ggtitle('Year: {closest_state}') +
+  shadow_wake(wake = 0.25)
+```
+
+## Save file
+
+```{r, eval=FALSE}
+anim_save("~/Desktop/test_anim.gif")
+```
+
+## Resources
+
+-   Cheat sheet: <https://rstudio.github.io/cheatsheets/gganimate.pdf>
+-   Website: <https://gganimate.com>
