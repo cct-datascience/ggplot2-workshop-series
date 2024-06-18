@@ -9,31 +9,268 @@ format:
 css: custom.css
 ---
 
-# Distributions with {ggdist}
+```{r, echo = F}
+library(dplyr)
+library(ggdist)
+library(ggplot2)
+library(distributional)
+library(palmerpenguins)
 
-- Easily add nuance to `geom_density`, `geom_histogram`, `geom_violin`, `geom_ribbon`.
+theme_set(theme_bw())
+
+penguins <- penguins |>
+  filter(!is.na(sex))
+```
+
+# `ggdist` for distributions {.smaller}
+
+- Easily add nuance to density/histogram/ribbon plots
 - Particularly useful for:
   - Sample data
-  - Frequentist or Bayesian parameter distributions (note that if you use {tidybayes} you already use {ggdist})
   - Fitted values + uncertainty
+  - Frequentist or Bayesian parameter distributions
   
-Show:
+## `slabinterval`
 
-* dotplots
-* ribbon plots
-* raincloud plots
-* distribution plots on frequentist model output
-* distribution plots on bayesian posteriors
 
-# Network data with {ggraph}
+```{r slabinterval, echo = T}
+penguins %>%
+  ggplot(aes(x = body_mass_g, y = species)) +
+  stat_slabinterval()
 
-## {ggraph}
+```
+::: notes
 
-- Uses {tidygraph}, which allows you to use {igraph} in a tidy framework.
+- This plots a "halfeye" plot with a density distribution and a line at the bottom showing the mean and quantiles of the data. 
+- Note that we didn't have to create any new objects; stat_slabinterval automatically calculates densities and summary statistics. There are corresponding geom_* functions for already summarized data. 
+- Other plot types within ggdist are variations on the stat_slabinterval theme.
+- Often you'll want to use these shortcuts instead of building something up out of scratch.
+:::
+
+## Example: `dotsinterval`
+
+```{r, echo = T}
+penguins %>%
+  ggplot(aes(x = body_mass_g, y = species)) +
+  stat_dotsinterval()
+```
+
+## Example: `interval`
+
+```{r, echo = T}
+penguins %>%
+  ggplot(aes(x = body_mass_g, y = species)) +
+  stat_interval()
+```
+
+## Example: `interval`
+
+```{r, echo = T}
+penguins %>%
+  ggplot(aes(x = body_mass_g, y = species)) +
+  stat_interval() +
+  scale_color_brewer()
+```
+
+## Combining elements: Raincloud plots
+
+```{r, echo = T}
+penguins %>%
+  ggplot(aes(x = body_mass_g, y = species)) +
+  stat_slabinterval() +
+  stat_dotsinterval(side = "bottom")
+
+```
+
+## Ribbon plots
+
+- `geom_lineribbon` plots uncertainty bands around a line (similar to `geom_ribbon`).
+- First we need to summarize the data.
+
+## Ribbon plots
+
+```{r, echo = T}
+penguins_summary <- penguins %>%
+  group_by(year, species) %>%
+  median_qi(body_mass_g, .width = c(.50, .80, .95)) 
+
+head(penguins_summary)
+```
+
+## Ribbon plots
+
+We can then plot the summarized data using `geom_lineribbon`:
+
+## Ribbon plots
+
+We can then plot the summarized data using `geom_lineribbon`:
+
+```{r, echo = T}
+penguins_summary %>%
+  ggplot(aes(x = year, y = body_mass_g, ymin = .lower, ymax = .upper)) +
+  geom_lineribbon() +
+  scale_fill_brewer() +
+  facet_wrap(vars(species))
+```
+
+
+## Ribbon plots
+
+Alternatively, `stat_lineribbon` will do this automatically:
+
+```{r, echo = T}
+penguins %>%
+  ggplot(aes(x = year, y = body_mass_g)) +
+  stat_lineribbon() +
+  scale_fill_brewer() +
+  facet_wrap(vars(species))
+```
+
+## Ribbon plots
+
+You can control the bands using the `.width` argument:
+
+```{r, echo = T}
+penguins %>%
+  ggplot(aes(x = year, y = body_mass_g)) +
+  stat_lineribbon(.width = c(.8, .97, .99)) +
+  scale_fill_brewer() +
+  facet_wrap(vars(species))
+```
+
+
+## Ribbon plots
+
+`.width = ppoints()` creates a gradient:
+
+```{r, echo = T}
+penguins %>%
+  ggplot(aes(x = year, y = body_mass_g, fill = after_stat(.width))) +
+  stat_lineribbon(.width = ppoints(100)) +
+  scale_fill_distiller() +
+  facet_wrap(vars(species))
+```
+
+## Visualizing frequentist model output
+
+Combined with the `broom` and `distributional` packages, `ggdist` can display frequentist model uncertainty.
+
+## Visualizing frequentist model output
+
+```{r, echo = T}
+
+library(broom)
+library(distributional)
+
+penguin_lm <- lm(body_mass_g ~  species, data = penguins)
+
+broom::tidy(penguin_lm)
+
+```
+
+
+## Visualizing frequentist model output
+
+```{r, echo = T}
+
+broom::tidy(penguin_lm) |>
+  ggplot(aes(y = term)) +
+    stat_halfeye(
+      aes(xdist = dist_student_t(df = df.residual(penguin_lm), mu = estimate, sigma = std.error))
+    )
+```
+
+
+## Visualizing frequentist model output
+
+- You can also use ribbons to show uncertainty around lines of fit.
+- We'll need a linear model with a continuous predictor.
+- And we'll use `tidyr::expand` and `broom::augment` to get the predicted line of fit from the model.
+
+
+## Visualizing frequentist model output
+
+```{r, echo = T}
+
+penguin_lm_cont <- lm(body_mass_g ~  year + species, data = penguins)
+
+penguin_lm_cont_fitted <- penguins %>%
+  group_by(species) %>%
+  tidyr::expand(year = seq(min(year), max(year), length.out = 3)) %>%
+  augment(penguin_lm_cont, newdata = ., se_fit = TRUE) 
+
+head(penguin_lm_cont_fitted) 
+
+```
+
+## Visualizing frequentist model output
+
+```{r, echo = T}
+
+  ggplot(penguin_lm_cont_fitted, aes(x = year)) +
+  stat_lineribbon(
+    aes(ydist = dist_student_t(df = df.residual(penguin_lm_cont), mu = .fitted, sigma = .se.fit))) +
+  facet_wrap(vars(species)) +
+  scale_fill_brewer() 
+
+```
+
+## Visualizing Bayesian model components
+
+- `ggdist` plots are great for visualizing Bayesian model components:
+  - priors
+  - posterior draws
+  - posterior predictions
+- We can fit a simple Bayesian linear model and visualize the posterior...
+
+## Visualizing Bayesian model components
+
+```{r, echo = F}
+library(brms)
+library(tidybayes)
+
+load(here::here("2024", "03-extensions", "penguins_brm.RDS"))
+```
+
+```{r, echo = T, eval = F}
+
+library(brms)
+library(tidybayes)
+
+penguins_brm <- brm(body_mass_g ~ species, data = penguins)
+
+```
+
+```{r, echo = T}
+penguins_brm |>
+tidybayes::add_draws(penguins) |>
+  head()
+```
+
+## Visualizing Bayesian model components
+
+```{r, echo = T}
+penguins_brm %>%
+  tidybayes::spread_draws(species_mean[species]) %>%
+  ggplot(aes(x = species_mean, y = species)) +
+  stat_dots(quantiles = 100) 
+```
+
+## For more
+
+See the [`ggdist` documentation here](https://mjskay.github.io/ggdist/index.html)!
+
+# Network data with `ggraph`
+
+## `ggraph`
+
+- Uses `tidygraph`, which allows you to use `igraph` and other network packages in a tidy framework.
   - 2 tables, nodes and edges
 
 
 Show:
+
+* Data input and `as_tbl_graph`
 
 * Network
 * Dendrogram
