@@ -107,13 +107,11 @@ p3 <- ggplot(penguins, aes(x = body_mass_g)) +
 ```
 
 ::: notes
-
 Things to notice:
 
-- Plots areas are aligned despite one not having a y-axis label
-- Only one legend
-- Labels for panels A, B, C
-
+-   Plots areas are aligned despite one not having a y-axis label
+-   Only one legend
+-   Labels for panels A, B, C
 :::
 
 ## Example plots
@@ -130,7 +128,6 @@ p3 <-
   facet_wrap(vars(island)) +
   geom_histogram()
 ```
-
 
 ## Combine plots
 
@@ -162,9 +159,7 @@ p1 + p2 + plot_layout(guides = "collect")
 ```
 
 ::: notes
-
 identical means same scale, same title, same glyph
-
 :::
 
 ## Combining axes
@@ -179,9 +174,9 @@ p1 + p2 + plot_layout(guides = "collect", axes = "collect")
 
 For more options for controlling layout, see the related vignette on the package website.
 
-- Adding empty areas
-- Inset plots
-- Adjusting widths and heights
+-   Adding empty areas
+-   Inset plots
+-   Adjusting widths and heights
 
 ## Tags
 
@@ -206,7 +201,6 @@ You can even combine `ggplot2` plots with base R plots with a special syntax
 ```{r}
 p1 + ~hist(penguins$bill_depth_mm, main = "")
 ```
-
 
 ## Getting Help
 
