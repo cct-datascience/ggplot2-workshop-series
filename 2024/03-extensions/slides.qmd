@@ -26,6 +26,7 @@ editor: visual
 library(ggplot2)
 library(palmerpenguins) #for example dataset
 library(patchwork) #for multi-panel figures
+library(gridGraphics) #for combining ggplot2 and base R figures
 library(gganimate) #for animated plots
 ```
 
