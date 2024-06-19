@@ -81,40 +81,10 @@ penguins %>%
 
 ```
 
-## Ribbon plots
-
--   `geom_lineribbon` plots uncertainty bands around a line (similar to `geom_ribbon`).
--   First we need to summarize the data.
 
 ## Ribbon plots
 
-```{r, echo = T}
-penguins_summary <- penguins %>%
-  group_by(year, species) %>%
-  median_qi(body_mass_g, .width = c(.50, .80, .95)) 
-
-head(penguins_summary)
-```
-
-## Ribbon plots
-
-We can then plot the summarized data using `geom_lineribbon`:
-
-## Ribbon plots
-
-We can then plot the summarized data using `geom_lineribbon`:
-
-```{r, echo = T}
-penguins_summary %>%
-  ggplot(aes(x = year, y = body_mass_g, ymin = .lower, ymax = .upper)) +
-  geom_lineribbon() +
-  scale_fill_brewer() +
-  facet_wrap(vars(species))
-```
-
-## Ribbon plots
-
-Alternatively, `stat_lineribbon` will do this automatically:
+`stat_lineribbon` plots quantile intervals around a line automatically:
 
 ```{r, echo = T}
 penguins %>%
@@ -247,20 +217,8 @@ b_speciesGentoo)
 head() 
 ```
 
-## Plotting slabintervals
 
-```{r, echo = T}
-penguins_brm %>%
- tidybayes::gather_draws(
-c(b_Intercept,
-b_speciesChinstrap,
-b_speciesGentoo)
-) %>%
-  ggplot(aes(y = .variable, x = .value)) +
-  stat_slabinterval() 
-```
-
-## Plotting rainclouds
+## Posterior draws rainclouds
 
 ```{r, echo = T}
 penguins_brm |>
