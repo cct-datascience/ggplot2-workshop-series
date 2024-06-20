@@ -179,3 +179,7 @@ install.packages("esquisse")
 
 esquisse::esquisser(penguins)
 
+
+# Measles data - not in git #### 
+
+measles <- read.csv(here::here("2024", "02-data-comm", "measles.csv"))
