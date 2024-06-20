@@ -1354,7 +1354,7 @@
     "href": "2024/03-extensions/slides.html#learning-objectives",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nUnderstand where to find packages that extend ggplot2\nAssemble multi-panel figures with patchwork\nMake animated plots with gganimate\nVisualize distributions with ggdist\nPlot network data with ggraph"
+    "text": "Learning Objectives\n\nUnderstand where to find packages that extend ggplot2\nDemonstrate some extension packages\n\nAssemble multi-panel figures with patchwork\nMake animated plots with gganimate\nVisualize distributions with ggdist\nPlot network data with ggraph"
   },
   {
     "objectID": "2024/03-extensions/slides.html#packages",
@@ -1403,14 +1403,21 @@
     "href": "2024/03-extensions/slides.html#example-plots",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Example plots",
-    "text": "Example plots\n\np1 &lt;- \n  ggplot(penguins, aes(x = body_mass_g, y = bill_length_mm, color = species)) +\n  geom_point()\np2 &lt;-\n  ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)) +\n  geom_point()\np3 &lt;- \n  ggplot(penguins, aes(x = body_mass_g)) + \n  facet_wrap(vars(island)) +\n  geom_histogram()"
+    "text": "Example plots\n\np1 &lt;- \n  ggplot(penguins, aes(x = body_mass_g, \n                       y = bill_length_mm, \n                       color = species)) +\n  geom_point()\np2 &lt;-\n  ggplot(penguins, aes(x = bill_depth_mm, \n                       y = bill_length_mm, \n                       color = species)) +\n  geom_point()\np3 &lt;- \n  ggplot(penguins, aes(x = body_mass_g)) + \n  facet_wrap(vars(island)) +\n  geom_histogram()"
   },
   {
     "objectID": "2024/03-extensions/slides.html#combine-plots",
     "href": "2024/03-extensions/slides.html#combine-plots",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Combine plots",
-    "text": "Combine plots\n\n\n\n\n+ wraps plots\n| combines plots horizontally\n/ combines plots vertically\n() can be used to nest operations\n\n\n\n\n(p1 | p2) / p3"
+    "text": "Combine plots\n\n+ wraps plots\n| combines plots horizontally\n/ combines plots vertically\n() can be used to nest operations"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#combine-plots-1",
+    "href": "2024/03-extensions/slides.html#combine-plots-1",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Combine plots",
+    "text": "Combine plots\n\n(p1 | p2) / p3"
   },
   {
     "objectID": "2024/03-extensions/slides.html#combine-guides",
@@ -1455,10 +1462,66 @@
     "text": "Using with base R plots\nYou can even combine ggplot2 plots with base R plots with a special syntax\n\np1 + ~hist(penguins$bill_depth_mm, main = \"\")"
   },
   {
+    "objectID": "2024/03-extensions/slides.html#gganimate",
+    "href": "2024/03-extensions/slides.html#gganimate",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "gganimate",
+    "text": "gganimate\nDisplay transitions between states of a variable\nUseful for showing trends in time series & spatial data\n\n\n\n\n\n\nAdvice from the experts!\n\n\n“Graphic elements should only transition between instances of the same underlying phenomenon”"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#example",
+    "href": "2024/03-extensions/slides.html#example",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Example",
+    "text": "Example\nBody size distribution of penguins changing over the years\n\nggplot(penguins, aes(x = body_mass_g, col = species)) +\n  geom_density() +\n  facet_wrap(~year)"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#show-annual-transition",
+    "href": "2024/03-extensions/slides.html#show-annual-transition",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Show annual transition",
+    "text": "Show annual transition\n\nlibrary(gganimate)\n\nggplot(penguins, aes(x = body_mass_g, col = species)) +\n  geom_density() +\n  transition_time(year) +\n  ggtitle('Year: {frame_time}')"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#add-history",
+    "href": "2024/03-extensions/slides.html#add-history",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Add history",
+    "text": "Add history\n\nggplot(penguins, aes(x = body_mass_g, col = species)) +\n  geom_density() +\n  transition_time(year) +\n  ggtitle('Year: {frame_time}') +\n  shadow_wake(wake = 0.3, wrap = FALSE)"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#modify-transition-speed",
+    "href": "2024/03-extensions/slides.html#modify-transition-speed",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Modify transition speed",
+    "text": "Modify transition speed\n\nggplot(penguins, aes(x = body_mass_g, col = species)) +\n  geom_density() +\n  transition_time(year) +\n  ggtitle('Year: {frame_time}') +\n  ease_aes(\"quintic-in-out\")"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#have-axes-follow-data",
+    "href": "2024/03-extensions/slides.html#have-axes-follow-data",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Have axes follow data",
+    "text": "Have axes follow data\n\nggplot(penguins, aes(x = body_mass_g, col = species)) +\n  geom_density() +\n  transition_time(year) +\n  ggtitle('Year: {frame_time}') +\n  view_follow()"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#save-file",
+    "href": "2024/03-extensions/slides.html#save-file",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Save file",
+    "text": "Save file\n\nanim_save(\"~/Desktop/test_anim.gif\")"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#extensions-resources",
+    "href": "2024/03-extensions/slides.html#extensions-resources",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Extensions Resources",
+    "text": "Extensions Resources\npatchwork\n\nPackage website\n\ngganimate\n\nCheat sheet\nWebsite"
+  },
+  {
     "objectID": "2024/03-extensions/slides.html#getting-help",
     "href": "2024/03-extensions/slides.html#getting-help",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Getting Help",
-    "text": "Getting Help\n\npatchwork: Package website\ngganimate: Getting started guide, reference\nOur drop-in hours\nUA Data Science Slack"
+    "text": "Getting Help\n\nOur drop-in hours\nUA Data Science Slack"
   }
 ]

@@ -422,10 +422,13 @@ Renata Diaz
 <h2>Learning Objectives</h2>
 <ul>
 <li>Understand where to find packages that extend <code>ggplot2</code></li>
+<li>Demonstrate some extension packages
+<ul>
 <li>Assemble multi-panel figures with <code>patchwork</code></li>
 <li>Make animated plots with <code>gganimate</code></li>
 <li>Visualize distributions with <code>ggdist</code></li>
 <li>Plot network data with <code>ggraph</code></li>
+</ul></li>
 </ul>
 </section>
 <section id="packages" class="slide level2">
@@ -554,43 +557,37 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <h2>Example plots</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>p1 <span class="ot">&lt;-</span> </span>
-<span id="cb4-2"><a></a>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb4-3"><a></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb4-4"><a></a>p2 <span class="ot">&lt;-</span></span>
-<span id="cb4-5"><a></a>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, <span class="at">y =</span> bill_length_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb4-6"><a></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb4-7"><a></a>p3 <span class="ot">&lt;-</span> </span>
-<span id="cb4-8"><a></a>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb4-9"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(island)) <span class="sc">+</span></span>
-<span id="cb4-10"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a></a>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, </span>
+<span id="cb4-3"><a></a>                       <span class="at">y =</span> bill_length_mm, </span>
+<span id="cb4-4"><a></a>                       <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb4-5"><a></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb4-6"><a></a>p2 <span class="ot">&lt;-</span></span>
+<span id="cb4-7"><a></a>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, </span>
+<span id="cb4-8"><a></a>                       <span class="at">y =</span> bill_length_mm, </span>
+<span id="cb4-9"><a></a>                       <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb4-10"><a></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb4-11"><a></a>p3 <span class="ot">&lt;-</span> </span>
+<span id="cb4-12"><a></a>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb4-13"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(island)) <span class="sc">+</span></span>
+<span id="cb4-14"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="combine-plots" class="slide level2">
 <h2>Combine plots</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div>
 <ul>
 <li><code>+</code> wraps plots</li>
 <li><code>|</code> combines plots horizontally</li>
 <li><code>/</code> combines plots vertically</li>
 <li><code>()</code> can be used to nest operations</li>
 </ul>
-</div>
-</div><div class="column" style="width:50%;">
+</section>
+<section id="combine-plots-1" class="slide level2">
+<h2>Combine plots</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>(p1 <span class="sc">|</span> p2) <span class="sc">/</span> p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="480"></p>
-</figure>
+
 </div>
-</div>
-</div>
-</div>
-</div>
-</section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
 <section id="combine-guides" class="slide level2">
 <h2>Combine guides</h2>
 <p>If plots have <em>identical</em> guides, you can combine them with <code>plot_layout(guides = "collect")</code></p>
@@ -653,11 +650,100 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 
 </div>
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<section id="gganimate" class="slide level2">
+<h2><code>gganimate</code></h2>
+<p>Display transitions between states of a variable</p>
+<p>Useful for showing trends in time series &amp; spatial data</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Advice from the experts!</strong></p>
+</div>
+<div class="callout-content">
+<p>“Graphic elements should only transition between instances of the same underlying phenomenon”</p>
+</div>
+</div>
+</div>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<p>Body size distribution of penguins changing over the years</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">col =</span> species)) <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<section id="show-annual-transition" class="slide level2">
+<h2>Show annual transition</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb12-2"><a></a></span>
+<span id="cb12-3"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">col =</span> species)) <span class="sc">+</span></span>
+<span id="cb12-4"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
+<span id="cb12-6"><a></a>  <span class="fu">ggtitle</span>(<span class="st">'Year: {frame_time}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.gif" class="r-stretch"></section>
+<section id="add-history" class="slide level2">
+<h2>Add history</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">col =</span> species)) <span class="sc">+</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">'Year: {frame_time}'</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a></a>  <span class="fu">shadow_wake</span>(<span class="at">wake =</span> <span class="fl">0.3</span>, <span class="at">wrap =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.gif" class="r-stretch"></section>
+<section id="modify-transition-speed" class="slide level2">
+<h2>Modify transition speed</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">col =</span> species)) <span class="sc">+</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">'Year: {frame_time}'</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a></a>  <span class="fu">ease_aes</span>(<span class="st">"quintic-in-out"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.gif" class="r-stretch"></section>
+<section id="have-axes-follow-data" class="slide level2">
+<h2>Have axes follow data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">col =</span> species)) <span class="sc">+</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">ggtitle</span>(<span class="st">'Year: {frame_time}'</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a></a>  <span class="fu">view_follow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.gif" class="r-stretch"></section>
+<section id="save-file" class="slide level2">
+<h2>Save file</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">anim_save</span>(<span class="st">"~/Desktop/test_anim.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="extensions-resources" class="slide level2">
+<h2>Extensions Resources</h2>
+<p><code>patchwork</code></p>
+<ul>
+<li><a href="https://patchwork.data-imaginist.com/index.html">Package website</a></li>
+</ul>
+<p><code>gganimate</code></p>
+<ul>
+<li><a href="https://rstudio.github.io/cheatsheets/gganimate.pdf">Cheat sheet</a></li>
+<li><a href="https://gganimate.com">Website</a></li>
+</ul>
+</section>
 <section id="getting-help" class="slide level2">
 <h2>Getting Help</h2>
 <ul>
-<li><p><code>patchwork</code>: <a href="https://patchwork.data-imaginist.com/index.html">Package website</a></p></li>
-<li><p><code>gganimate</code>: <a href="https://gganimate.com/articles/gganimate.html">Getting started guide</a>, <a href="https://gganimate.com/reference/index.html">reference</a></p></li>
 <li><p>Our <a href="https://datascience.cct.arizona.edu/drop-in-hours">drop-in hours</a></p></li>
 <li><p><a href="https://join.slack.com/t/uadatascience/shared_invite/zt-1xjxht9k0-E489WA6axO_SRVeKQh3cXg">UA Data Science Slack</a></p></li>
 </ul>
