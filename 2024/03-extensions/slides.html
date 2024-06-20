@@ -433,7 +433,7 @@ Renata Diaz
 </section>
 <section id="packages" class="slide level2">
 <h2>Packages</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a></a><span class="fu">library</span>(palmerpenguins) <span class="co">#for example dataset</span></span>
 <span id="cb1-3"><a></a><span class="fu">library</span>(patchwork) <span class="co">#for multi-panel figures</span></span>
@@ -459,7 +459,7 @@ Renata Diaz
 <span id="cb2-5"><a></a>  <span class="fu">theme_economist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><aside class="notes">
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><aside class="notes">
 <p><code>geom_beeswarm()</code> can easily be combined with other <code>geom_</code>s</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -481,7 +481,7 @@ Renata Diaz
 <span id="cb3-3"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Body Mass (g)"</span>, <span class="at">n.breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><aside class="notes">
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><aside class="notes">
 <p>With great power comes great responsibility—make sure you trust these stats!<br>
 Notice that the output is a ggplot object, so you can continue to add layers to it.</p>
 <style type="text/css">
@@ -537,7 +537,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <h2><code>patchwork</code></h2>
 <p><code>patchwork</code> allows you to compose multi-panel figures with ease</p>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><aside class="notes">
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><aside class="notes">
 <p>Things to notice:</p>
 <ul>
 <li>Plots areas are aligned despite one not having a y-axis label</li>
@@ -558,7 +558,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 </section>
 <section id="example-plots" class="slide level2">
 <h2>Example plots</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>p1 <span class="ot">&lt;-</span> </span>
 <span id="cb4-2"><a></a>  <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, </span>
 <span id="cb4-3"><a></a>                       <span class="at">y =</span> bill_length_mm, </span>
@@ -586,19 +586,19 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 </section>
 <section id="combine-plots-1" class="slide level2">
 <h2>Combine plots</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>(p1 <span class="sc">|</span> p2) <span class="sc">/</span> p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="combine-guides" class="slide level2">
 <h2>Combine guides</h2>
 <p>If plots have <em>identical</em> guides, you can combine them with <code>plot_layout(guides = "collect")</code></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"><aside class="notes">
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><aside class="notes">
 <p>identical means same scale, same title, same glyph</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -615,11 +615,11 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <section id="combining-axes" class="slide level2">
 <h2>Combining axes</h2>
 <p>As of the most recent version of <code>patchwork</code> (v1.2.0) you can also combine identical axes.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>, <span class="at">axes =</span> <span class="st">"collect"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="controlling-layout" class="slide level2">
 <h2>Controlling layout</h2>
 <p>For more options for controlling layout, see the related vignette on the package website.</p>
@@ -632,27 +632,27 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <section id="tags" class="slide level2">
 <h2>Tags</h2>
 <p>You can add “tags” to each panel with <code>plot_annotation()</code></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">"A"</span>, <span class="at">tag_suffix =</span> <span class="st">")"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="modifying-all-panels" class="slide level2">
 <h2>Modifying all panels</h2>
 <p>You can use the <code>&amp;</code> operator instead of <code>+</code> to modify <strong>all</strong> elements of a multi-panel figure.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">&amp;</span> <span class="fu">theme_bw</span>() <span class="sc">&amp;</span> <span class="fu">scale_color_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="using-with-base-r-plots" class="slide level2">
 <h2>Using with base R plots</h2>
 <p>You can even combine <code>ggplot2</code> plots with base R plots with a special syntax</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>p1 <span class="sc">+</span> <span class="er">~</span><span class="fu">hist</span>(penguins<span class="sc">$</span>bill_depth_mm, <span class="at">main =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="gganimate" class="slide level2">
 <h2><code>gganimate</code></h2>
 <p>Display transitions between states of a variable</p>
@@ -674,16 +674,16 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <section id="example" class="slide level2">
 <h2>Example</h2>
 <p>Body size distribution of penguins changing over the years</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">col =</span> species)) <span class="sc">+</span></span>
 <span id="cb11-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
 <span id="cb11-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="show-annual-transition" class="slide level2">
 <h2>Show annual transition</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">library</span>(gganimate)</span>
 <span id="cb12-2"><a></a></span>
 <span id="cb12-3"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">col =</span> species)) <span class="sc">+</span></span>
@@ -692,10 +692,10 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb12-6"><a></a>  <span class="fu">ggtitle</span>(<span class="st">'Year: {frame_time}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.gif" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.gif" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="add-history" class="slide level2">
 <h2>Add history</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">col =</span> species)) <span class="sc">+</span></span>
 <span id="cb13-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
 <span id="cb13-3"><a></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
@@ -703,10 +703,10 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb13-5"><a></a>  <span class="fu">shadow_wake</span>(<span class="at">wake =</span> <span class="fl">0.3</span>, <span class="at">wrap =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.gif" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.gif" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="modify-transition-speed" class="slide level2">
 <h2>Modify transition speed</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">col =</span> species)) <span class="sc">+</span></span>
 <span id="cb14-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
 <span id="cb14-3"><a></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
@@ -714,10 +714,10 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb14-5"><a></a>  <span class="fu">ease_aes</span>(<span class="st">"quintic-in-out"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.gif" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.gif" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="have-axes-follow-data" class="slide level2">
 <h2>Have axes follow data</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">col =</span> species)) <span class="sc">+</span></span>
 <span id="cb15-2"><a></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
 <span id="cb15-3"><a></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span></span>
@@ -725,10 +725,10 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb15-5"><a></a>  <span class="fu">view_follow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.gif" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.gif" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="save-file" class="slide level2">
 <h2>Save file</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">anim_save</span>(<span class="st">"~/Desktop/test_anim.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
@@ -747,13 +747,13 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 </section>
 <section id="slabinterval" class="slide level2">
 <h2><code>slabinterval</code></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> species)) <span class="sc">+</span></span>
 <span id="cb17-3"><a></a>  <span class="fu">stat_slabinterval</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/slabinterval-1.png" width="960" class="r-stretch"><aside class="notes">
+<img data-src="slides_files/figure-revealjs/slabinterval-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><aside class="notes">
 <ul>
 <li>This plots a “halfeye” plot with a density distribution and a line at the bottom showing the mean and quantiles of the data.</li>
 <li>Note that we didn’t have to create any new objects; stat_slabinterval automatically calculates densities and summary statistics. There are corresponding geom_* functions for already summarized data.</li>
@@ -774,46 +774,46 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 </section>
 <section id="example-dotsinterval" class="slide level2">
 <h2>Example: <code>dotsinterval</code></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
 <span id="cb18-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> species)) <span class="sc">+</span></span>
 <span id="cb18-3"><a></a>  <span class="fu">stat_dotsinterval</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="example-interval" class="slide level2">
 <h2>Example: <code>interval</code></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
 <span id="cb19-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> species)) <span class="sc">+</span></span>
 <span id="cb19-3"><a></a>  <span class="fu">stat_interval</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="example-interval-1" class="slide level2">
 <h2>Example: <code>interval</code></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
 <span id="cb20-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> species)) <span class="sc">+</span></span>
 <span id="cb20-3"><a></a>  <span class="fu">stat_interval</span>() <span class="sc">+</span></span>
 <span id="cb20-4"><a></a>  <span class="fu">scale_color_brewer</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="combining-elements-raincloud-plots" class="slide level2">
 <h2>Combining elements: Raincloud plots</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
 <span id="cb21-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> species)) <span class="sc">+</span></span>
 <span id="cb21-3"><a></a>  <span class="fu">stat_slabinterval</span>() <span class="sc">+</span></span>
 <span id="cb21-4"><a></a>  <span class="fu">stat_dotsinterval</span>(<span class="at">side =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="ribbon-plots" class="slide level2">
 <h2>Ribbon plots</h2>
 <p><code>stat_lineribbon</code> plots quantile intervals around a line automatically:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
 <span id="cb22-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
 <span id="cb22-3"><a></a>  <span class="fu">stat_lineribbon</span>() <span class="sc">+</span></span>
@@ -821,11 +821,11 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb22-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="ribbon-plots-1" class="slide level2">
 <h2>Ribbon plots</h2>
 <p>You can control the bands using the <code>.width</code> argument:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
 <span id="cb23-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
 <span id="cb23-3"><a></a>  <span class="fu">stat_lineribbon</span>(<span class="at">.width =</span> <span class="fu">c</span>(.<span class="dv">8</span>, .<span class="dv">97</span>, .<span class="dv">99</span>)) <span class="sc">+</span></span>
@@ -833,11 +833,11 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb23-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="ribbon-plots-2" class="slide level2">
 <h2>Ribbon plots</h2>
 <p><code>.width = ppoints()</code> creates a gradient:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
 <span id="cb24-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> <span class="fu">after_stat</span>(.width))) <span class="sc">+</span></span>
 <span id="cb24-3"><a></a>  <span class="fu">stat_lineribbon</span>(<span class="at">.width =</span> <span class="fu">ppoints</span>(<span class="dv">100</span>)) <span class="sc">+</span></span>
@@ -845,14 +845,14 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb24-5"><a></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="visualizing-frequentist-model-output" class="slide level2">
 <h2>Visualizing frequentist model output</h2>
 <p>Combined with the <code>broom</code> and <code>distributional</code> packages, <code>ggdist</code> can display frequentist model uncertainty.</p>
 </section>
 <section id="visualizing-frequentist-model-output-1" class="slide level2">
 <h2>Visualizing frequentist model output</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">library</span>(broom)</span>
 <span id="cb25-2"><a></a><span class="fu">library</span>(distributional)</span>
 <span id="cb25-3"><a></a></span>
@@ -871,7 +871,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 </section>
 <section id="visualizing-frequentist-model-output-2" class="slide level2">
 <h2>Visualizing frequentist model output</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>broom<span class="sc">::</span><span class="fu">tidy</span>(penguin_lm) <span class="sc">|&gt;</span></span>
 <span id="cb27-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> term)) <span class="sc">+</span></span>
 <span id="cb27-3"><a></a>    <span class="fu">stat_halfeye</span>(</span>
@@ -881,7 +881,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb27-7"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="visualizing-frequentist-model-output-3" class="slide level2">
 <h2>Visualizing frequentist model output</h2>
 <ul>
@@ -892,7 +892,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 </section>
 <section id="visualizing-frequentist-model-output-4" class="slide level2">
 <h2>Visualizing frequentist model output</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>penguin_lm_cont <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span>  year <span class="sc">+</span> species, <span class="at">data =</span> penguins)</span>
 <span id="cb28-2"><a></a></span>
 <span id="cb28-3"><a></a>penguin_lm_cont_fitted <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
@@ -916,7 +916,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 </section>
 <section id="visualizing-frequentist-model-output-5" class="slide level2">
 <h2>Visualizing frequentist model output</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>  <span class="fu">ggplot</span>(penguin_lm_cont_fitted, <span class="fu">aes</span>(<span class="at">x =</span> year)) <span class="sc">+</span></span>
 <span id="cb30-2"><a></a>  <span class="fu">stat_lineribbon</span>(</span>
 <span id="cb30-3"><a></a>    <span class="fu">aes</span>(<span class="at">ydist =</span> <span class="fu">dist_student_t</span>(<span class="at">df =</span> <span class="fu">df.residual</span>(penguin_lm_cont), </span>
@@ -926,7 +926,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb30-7"><a></a>  <span class="fu">scale_fill_brewer</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="visualizing-bayesian-model-components" class="slide level2">
 <h2>Visualizing Bayesian model components</h2>
 <ul>
@@ -941,7 +941,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 </section>
 <section id="fitting-a-model" class="slide level2">
 <h2>Fitting a model</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">library</span>(brms)</span>
 <span id="cb31-2"><a></a><span class="fu">library</span>(tidybayes)</span>
 <span id="cb31-3"><a></a></span>
@@ -950,7 +950,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 </section>
 <section id="extracting-draws-from-the-posterior" class="slide level2">
 <h2>Extracting draws from the posterior</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>penguins_brm <span class="sc">%&gt;%</span></span>
 <span id="cb32-2"><a></a>tidybayes<span class="sc">::</span><span class="fu">gather_draws</span>(</span>
 <span id="cb32-3"><a></a><span class="fu">c</span>(b_Intercept,</span>
@@ -974,7 +974,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 </section>
 <section id="posterior-draws-rainclouds" class="slide level2">
 <h2>Posterior draws rainclouds</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>penguins_brm <span class="sc">|&gt;</span></span>
 <span id="cb34-2"><a></a>tidybayes<span class="sc">::</span><span class="fu">gather_draws</span>(</span>
 <span id="cb34-3"><a></a><span class="fu">c</span>(b_Intercept,</span>
@@ -985,7 +985,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb34-8"><a></a>  <span class="fu">stat_slabinterval</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="takeaways" class="slide level2">
 <h2>Takeaways</h2>
 <ul>
@@ -1012,7 +1012,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <h2>Example: Mouse data</h2>
 <p>Begin by loading network data, in this case from the <code>graphml</code> format.</p>
 <p>Data from <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0134509">So et al.&nbsp;2015</a>, in the <a href="https://github.com/bansallab/asnr/tree/master">Animal Social Networks Repository</a>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">library</span>(igraph)</span>
 <span id="cb35-2"><a></a><span class="fu">library</span>(tidygraph)</span>
 <span id="cb35-3"><a></a></span>
@@ -1023,14 +1023,14 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <section id="example-as_tbl_graph" class="slide level2">
 <h2>Example: <code>as_tbl_graph</code></h2>
 <p><code>tidygraph::as_tbl_graph</code> standardizes different graph storage formats.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>mouse_graph <span class="ot">&lt;-</span> mouse_sniffing <span class="sc">|&gt;</span></span>
 <span id="cb36-2"><a></a><span class="fu">as_tbl_graph</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="plotting-mouse-sniffing-data" class="slide level2">
 <h2>Plotting mouse sniffing data</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">ggraph</span>(mouse_graph, <span class="at">layout =</span> <span class="st">'kk'</span>) <span class="sc">+</span> </span>
 <span id="cb37-2"><a></a>    <span class="fu">geom_edge_fan</span>() <span class="sc">+</span> </span>
 <span id="cb37-3"><a></a>    <span class="fu">geom_node_point</span>() <span class="sc">+</span></span>
@@ -1038,10 +1038,10 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb37-5"><a></a>    <span class="fu">ggtitle</span>(<span class="st">"Mouse sniffs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="alternate-layouts" class="slide level2">
 <h2>Alternate layouts</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">ggraph</span>(mouse_graph, <span class="at">layout =</span> <span class="st">'eigen'</span>) <span class="sc">+</span> </span>
 <span id="cb38-2"><a></a>    <span class="fu">geom_edge_fan</span>() <span class="sc">+</span> </span>
 <span id="cb38-3"><a></a>    <span class="fu">geom_node_point</span>() <span class="sc">+</span></span>
@@ -1049,10 +1049,10 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb38-5"><a></a>    <span class="fu">ggtitle</span>(<span class="st">"Mouse sniffs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-38-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="alternate-layouts-1" class="slide level2">
 <h2>Alternate layouts</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">ggraph</span>(mouse_graph, <span class="at">layout =</span> <span class="st">'linear'</span>, <span class="at">circular =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
 <span id="cb39-2"><a></a>    <span class="fu">geom_edge_fan</span>() <span class="sc">+</span> </span>
 <span id="cb39-3"><a></a>    <span class="fu">geom_node_point</span>() <span class="sc">+</span></span>
@@ -1060,7 +1060,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <span id="cb39-5"><a></a>    <span class="fu">ggtitle</span>(<span class="st">"Mouse sniffs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-38-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-39-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="example-phylogenies" class="slide level2">
 <h2>Example: phylogenies</h2>
 <ul>
@@ -1074,7 +1074,7 @@ Notice that the output is a ggplot object, so you can continue to add layers to 
 <img data-src="krat.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="getting-a-phylogeny-1" class="slide level2">
 <h2>Getting a phylogeny</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">library</span>(rotl)</span>
 <span id="cb40-2"><a></a>rodent_id <span class="ot">&lt;-</span> <span class="fu">tnrs_match_names</span>(<span class="st">"Heteromyidae"</span>)</span>
 <span id="cb40-3"><a></a>rodent_tree <span class="ot">&lt;-</span> <span class="fu">tol_subtree</span>(<span class="at">ott_id =</span> <span class="fu">ott_id</span>(rodent_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1093,26 +1093,26 @@ Progress [================================] 11/11 (100)  0s
 </section>
 <section id="convert-the-phylogeny-to-a-graph" class="slide level2">
 <h2>Convert the phylogeny to a graph</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>rodent_graph <span class="ot">&lt;-</span> <span class="fu">as_tbl_graph</span>(rodent_tree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="dendrogram" class="slide level2">
 <h2>Dendrogram</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="fu">ggraph</span>(rodent_graph, <span class="st">"dendrogram"</span>) <span class="sc">+</span></span>
 <span id="cb45-2"><a></a><span class="fu">geom_edge_link</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-41-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="unrooted-tree" class="slide level2">
 <h2>Unrooted tree</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">ggraph</span>(rodent_graph, <span class="st">"unrooted"</span>) <span class="sc">+</span></span>
 <span id="cb46-2"><a></a><span class="fu">geom_edge_link</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-42-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-43-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="takeaways-1" class="slide level2">
 <h2>Takeaways</h2>
 <ul>
@@ -1132,14 +1132,14 @@ Progress [================================] 11/11 (100)  0s
 <li><a href="https://rstudio.github.io/cheatsheets/gganimate.pdf">Cheat sheet</a></li>
 <li><a href="https://gganimate.com">Website</a></li>
 </ul>
+</section>
+<section id="extensions-resources-1" class="slide level2">
+<h2>Extensions Resources</h2>
 <p><code>ggdist</code></p>
 <ul>
 <li><a href="https://mjskay.github.io/ggdist/index.html">Documentation</a></li>
 <li>More about <a href="http://mjskay.github.io/tidybayes/">tidybayes</a></li>
 </ul>
-</section>
-<section id="extensions-resources-1" class="slide level2">
-<h2>Extensions Resources</h2>
 <p><code>ggraph</code></p>
 <ul>
 <li><a href="https://ggraph.data-imaginist.com/index.html"><code>ggraph</code> documentation</a></li>

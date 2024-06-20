@@ -1739,14 +1739,14 @@
     "href": "2024/03-extensions/slides.html#extensions-resources",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Extensions Resources",
-    "text": "Extensions Resources\npatchwork\n\nPackage website\n\ngganimate\n\nCheat sheet\nWebsite\n\nggdist\n\nDocumentation\nMore about tidybayes"
+    "text": "Extensions Resources\npatchwork\n\nPackage website\n\ngganimate\n\nCheat sheet\nWebsite"
   },
   {
     "objectID": "2024/03-extensions/slides.html#extensions-resources-1",
     "href": "2024/03-extensions/slides.html#extensions-resources-1",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Extensions Resources",
-    "text": "Extensions Resources\nggraph\n\nggraph documentation\ntidygraph documentation\nigraph R package documentation\nrotl documentation"
+    "text": "Extensions Resources\nggdist\n\nDocumentation\nMore about tidybayes\n\nggraph\n\nggraph documentation\ntidygraph documentation\nigraph R package documentation\nrotl documentation"
   },
   {
     "objectID": "2024/03-extensions/slides.html#getting-help",
