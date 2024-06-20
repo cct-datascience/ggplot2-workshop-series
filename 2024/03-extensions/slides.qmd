@@ -15,10 +15,11 @@ editor: visual
 ## Learning Objectives
 
 -   Understand where to find packages that extend `ggplot2`
--   Assemble multi-panel figures with `patchwork`
--   Make animated plots with `gganimate`
--   Visualize distributions with `ggdist`
--   Plot network data with `ggraph`
+- Demonstrate some extension packages
+    -   Assemble multi-panel figures with `patchwork`
+    -   Make animated plots with `gganimate`
+    -   Visualize distributions with `ggdist`
+    -   Plot network data with `ggraph`
 
 ## Packages
 
@@ -119,10 +120,14 @@ Things to notice:
 
 ```{r}
 p1 <- 
-  ggplot(penguins, aes(x = body_mass_g, y = bill_length_mm, color = species)) +
+  ggplot(penguins, aes(x = body_mass_g, 
+                       y = bill_length_mm, 
+                       color = species)) +
   geom_point()
 p2 <-
-  ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)) +
+  ggplot(penguins, aes(x = bill_depth_mm, 
+                       y = bill_length_mm, 
+                       color = species)) +
   geom_point()
 p3 <- 
   ggplot(penguins, aes(x = body_mass_g)) + 
@@ -132,24 +137,17 @@ p3 <-
 
 ## Combine plots
 
-::: columns
-::: {.column width="50%"}
-::: nonincremental
 -   `+` wraps plots
 -   `|` combines plots horizontally
 -   `/` combines plots vertically
 -   `()` can be used to nest operations
-:::
-:::
 
-::: {.column width="50%"}
+## Combine plots
+
 ```{r}
-#| fig-width: 5
-#| fig-height: 5
 (p1 | p2) / p3
 ```
-:::
-:::
+
 
 ## Combine guides
 
@@ -203,11 +201,87 @@ You can even combine `ggplot2` plots with base R plots with a special syntax
 p1 + ~hist(penguins$bill_depth_mm, main = "")
 ```
 
+## `gganimate`
+
+Display transitions between states of a variable
+
+Useful for showing trends in time series & spatial data
+
+::: callout-tip
+## Advice from the experts!
+
+"Graphic elements should only transition between instances of the same underlying phenomenon"
+:::
+
+## Example
+
+Body size distribution of penguins changing over the years
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, col = species)) +
+  geom_density() +
+  facet_wrap(~year)
+```
+
+## Show annual transition
+
+```{r}
+library(gganimate)
+
+ggplot(penguins, aes(x = body_mass_g, col = species)) +
+  geom_density() +
+  transition_time(year) +
+  ggtitle('Year: {frame_time}')
+```
+
+## Add history
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, col = species)) +
+  geom_density() +
+  transition_time(year) +
+  ggtitle('Year: {frame_time}') +
+  shadow_wake(wake = 0.3, wrap = FALSE)
+```
+
+## Modify transition speed
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, col = species)) +
+  geom_density() +
+  transition_time(year) +
+  ggtitle('Year: {frame_time}') +
+  ease_aes("quintic-in-out")
+```
+
+## Have axes follow data
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, col = species)) +
+  geom_density() +
+  transition_time(year) +
+  ggtitle('Year: {frame_time}') +
+  view_follow()
+```
+
+## Save file
+
+```{r, eval=FALSE}
+anim_save("~/Desktop/test_anim.gif")
+```
+
+## Extensions Resources
+
+`patchwork`
+
+- [Package website](https://patchwork.data-imaginist.com/index.html)
+
+`gganimate`
+
+-   [Cheat sheet](https://rstudio.github.io/cheatsheets/gganimate.pdf)
+-   [Website](https://gganimate.com)
+
 ## Getting Help
-
--   `patchwork`: [Package website](https://patchwork.data-imaginist.com/index.html)
-
--   `gganimate`: [Getting started guide](https://gganimate.com/articles/gganimate.html), [reference](https://gganimate.com/reference/index.html)
 
 -   Our [drop-in hours](https://datascience.cct.arizona.edu/drop-in-hours)
 
