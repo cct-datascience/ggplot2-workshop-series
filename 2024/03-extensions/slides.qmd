@@ -15,10 +15,11 @@ editor: visual
 ## Learning Objectives
 
 -   Understand where to find packages that extend `ggplot2`
--   Assemble multi-panel figures with `patchwork`
--   Make animated plots with `gganimate`
--   Visualize distributions with `ggdist`
--   Plot network data with `ggraph`
+- Demonstrate some extension packages
+    -   Assemble multi-panel figures with `patchwork`
+    -   Make animated plots with `gganimate`
+    -   Visualize distributions with `ggdist`
+    -   Plot network data with `ggraph`
 
 ## Packages
 
@@ -119,10 +120,14 @@ Things to notice:
 
 ```{r}
 p1 <- 
-  ggplot(penguins, aes(x = body_mass_g, y = bill_length_mm, color = species)) +
+  ggplot(penguins, aes(x = body_mass_g, 
+                       y = bill_length_mm, 
+                       color = species)) +
   geom_point()
 p2 <-
-  ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)) +
+  ggplot(penguins, aes(x = bill_depth_mm, 
+                       y = bill_length_mm, 
+                       color = species)) +
   geom_point()
 p3 <- 
   ggplot(penguins, aes(x = body_mass_g)) + 
@@ -132,24 +137,17 @@ p3 <-
 
 ## Combine plots
 
-::: columns
-::: {.column width="50%"}
-::: nonincremental
 -   `+` wraps plots
 -   `|` combines plots horizontally
 -   `/` combines plots vertically
 -   `()` can be used to nest operations
-:::
-:::
 
-::: {.column width="50%"}
+## Combine plots
+
 ```{r}
-#| fig-width: 5
-#| fig-height: 5
 (p1 | p2) / p3
 ```
-:::
-:::
+
 
 ## Combine guides
 
