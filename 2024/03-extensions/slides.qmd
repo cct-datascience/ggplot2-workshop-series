@@ -24,6 +24,12 @@ editor: visual
 ## Packages
 
 ```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(fig.align = "center")
+```
+
+```{r}
 library(ggplot2)
 library(palmerpenguins) #for example dataset
 library(patchwork) #for multi-panel figures
@@ -335,7 +341,6 @@ penguins %>%
 
 ```
 
-
 ## Ribbon plots
 
 `stat_lineribbon` plots quantile intervals around a line automatically:
@@ -475,7 +480,6 @@ b_speciesGentoo)
 head() 
 ```
 
-
 ## Posterior draws rainclouds
 
 ```{r, echo = T}
@@ -606,14 +610,9 @@ geom_edge_link()
 
 ## Takeaways
 
-- `ggraph` can plot many different types of network objects.
-- Use `as_tbl_graph` to convert graphs to `ggraph`-compatible objects.
-- Layouts strongly determine the appearance and interpretability of a graph.
-
-
-
-
-
+-   `ggraph` can plot many different types of network objects.
+-   Use `as_tbl_graph` to convert graphs to `ggraph`-compatible objects.
+-   Layouts strongly determine the appearance and interpretability of a graph.
 
 ## Extensions Resources
 
@@ -626,19 +625,19 @@ geom_edge_link()
 -   [Cheat sheet](https://rstudio.github.io/cheatsheets/gganimate.pdf)
 -   [Website](https://gganimate.com)
 
+## Extensions Resources
+
 `ggdist`
 
-- [Documentation](https://mjskay.github.io/ggdist/index.html)
-- More about [tidybayes](http://mjskay.github.io/tidybayes/)
-
-## Extensions Resources
+-   [Documentation](https://mjskay.github.io/ggdist/index.html)
+-   More about [tidybayes](http://mjskay.github.io/tidybayes/)
 
 `ggraph`
 
-- [`ggraph` documentation](https://ggraph.data-imaginist.com/index.html)
-- [`tidygraph` documentation](https://tidygraph.data-imaginist.com/)
-- [`igraph` R package documentation](https://r.igraph.org/)
-- [`rotl` documentation](https://cran.r-project.org/web/packages/rotl/rotl.pdf)
+-   [`ggraph` documentation](https://ggraph.data-imaginist.com/index.html)
+-   [`tidygraph` documentation](https://tidygraph.data-imaginist.com/)
+-   [`igraph` R package documentation](https://r.igraph.org/)
+-   [`rotl` documentation](https://cran.r-project.org/web/packages/rotl/rotl.pdf)
 
 ## Getting Help
 
