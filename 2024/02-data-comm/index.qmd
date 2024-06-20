@@ -22,3 +22,5 @@ In this session, we will introduce major principles of effective data visualizat
 
 - [Script to accompany slides](script.R)
 - {{< revealjs slides.html >}}
+- Recording:
+    {{< video https://youtu.be/wxDKpNW9SN0 >}}
