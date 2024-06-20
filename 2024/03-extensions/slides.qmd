@@ -232,18 +232,38 @@ library(gganimate)
 
 ggplot(penguins, aes(x = body_mass_g, col = species)) +
   geom_density() +
-  transition_states(year) +
-  ggtitle('Year: {closest_state}')
+  transition_time(year) +
+  ggtitle('Year: {frame_time}')
 ```
 
-## Add more detail
+## Add history
 
 ```{r}
 ggplot(penguins, aes(x = body_mass_g, col = species)) +
   geom_density() +
-  transition_states(year) +
-  ggtitle('Year: {closest_state}') +
-  shadow_wake(wake = 0.25)
+  transition_time(year) +
+  ggtitle('Year: {frame_time}') +
+  shadow_wake(wake = 0.3, wrap = FALSE)
+```
+
+## Modify transition speed
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, col = species)) +
+  geom_density() +
+  transition_time(year) +
+  ggtitle('Year: {frame_time}') +
+  ease_aes("quintic-in-out")
+```
+
+## Have axes follow data
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, col = species)) +
+  geom_density() +
+  transition_time(year) +
+  ggtitle('Year: {frame_time}') +
+  view_follow()
 ```
 
 ## Save file
