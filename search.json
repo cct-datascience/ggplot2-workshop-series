@@ -25,7 +25,7 @@
     "href": "2024/02-data-comm/index.html",
     "title": "Effective Data Communication With ggplot2",
     "section": "",
-    "text": "Date & time: Thursday June 13, 2024, 11am - 1pm AZ\nInstructor: Renata Diaz, Devin Bayly\nIn this session, we will introduce major principles of effective data visualization and then cover how to implement these principles in your plots with ggplot2.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2\n\nMaterials:\n\nScript to accompany slides\n    View slides in full screen",
+    "text": "Date & time: Thursday June 13, 2024, 11am - 1pm AZ\nInstructor: Renata Diaz, Devin Bayly\nIn this session, we will introduce major principles of effective data visualization and then cover how to implement these principles in your plots with ggplot2.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2\n\nMaterials:\n\nScript to accompany slides\n    View slides in full screen\n       \n      \n    \n  \nRecording:",
     "crumbs": [
       "Upcoming series",
       "Session 2 - Data Communication"
