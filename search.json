@@ -1361,7 +1361,7 @@
     "href": "2024/03-extensions/slides.html#packages",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Packages",
-    "text": "Packages\n\nlibrary(ggplot2)\nlibrary(palmerpenguins) #for example dataset\nlibrary(patchwork) #for multi-panel figures\nlibrary(gridGraphics) #for combining ggplot2 and base R figures\nlibrary(gganimate) #for animated plots"
+    "text": "Packages\n\nlibrary(ggplot2)\nlibrary(palmerpenguins) #for example dataset\nlibrary(patchwork) #for multi-panel figures\nlibrary(gridGraphics) #for combining ggplot2 and base R figures\nlibrary(gganimate) #for animated plots\nlibrary(ggdist) #for showing distributions + uncertainty in data\nlibrary(dplyr) #for cleaning data\nlibrary(ggraph) #for network data"
   },
   {
     "objectID": "2024/03-extensions/slides.html#general-use-and-modular",
@@ -1511,11 +1511,242 @@
     "text": "Save file\n\nanim_save(\"~/Desktop/test_anim.gif\")"
   },
   {
+    "objectID": "2024/03-extensions/slides.html#slabinterval",
+    "href": "2024/03-extensions/slides.html#slabinterval",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "slabinterval",
+    "text": "slabinterval\n\npenguins %&gt;%\n  ggplot(aes(x = body_mass_g, y = species)) +\n  stat_slabinterval()\n\n\n\n\nThis plots a “halfeye” plot with a density distribution and a line at the bottom showing the mean and quantiles of the data.\nNote that we didn’t have to create any new objects; stat_slabinterval automatically calculates densities and summary statistics. There are corresponding geom_* functions for already summarized data.\nOther plot types within ggdist are variations on the stat_slabinterval theme.\nOften you’ll want to use these shortcuts instead of building something up out of scratch."
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#example-dotsinterval",
+    "href": "2024/03-extensions/slides.html#example-dotsinterval",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Example: dotsinterval",
+    "text": "Example: dotsinterval\n\npenguins %&gt;%\n  ggplot(aes(x = body_mass_g, y = species)) +\n  stat_dotsinterval()"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#example-interval",
+    "href": "2024/03-extensions/slides.html#example-interval",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Example: interval",
+    "text": "Example: interval\n\npenguins %&gt;%\n  ggplot(aes(x = body_mass_g, y = species)) +\n  stat_interval()"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#example-interval-1",
+    "href": "2024/03-extensions/slides.html#example-interval-1",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Example: interval",
+    "text": "Example: interval\n\npenguins %&gt;%\n  ggplot(aes(x = body_mass_g, y = species)) +\n  stat_interval() +\n  scale_color_brewer()"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#combining-elements-raincloud-plots",
+    "href": "2024/03-extensions/slides.html#combining-elements-raincloud-plots",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Combining elements: Raincloud plots",
+    "text": "Combining elements: Raincloud plots\n\npenguins %&gt;%\n  ggplot(aes(x = body_mass_g, y = species)) +\n  stat_slabinterval() +\n  stat_dotsinterval(side = \"bottom\")"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#ribbon-plots",
+    "href": "2024/03-extensions/slides.html#ribbon-plots",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Ribbon plots",
+    "text": "Ribbon plots\nstat_lineribbon plots quantile intervals around a line automatically:\n\npenguins %&gt;%\n  ggplot(aes(x = year, y = body_mass_g)) +\n  stat_lineribbon() +\n  scale_fill_brewer() +\n  facet_wrap(vars(species))"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#ribbon-plots-1",
+    "href": "2024/03-extensions/slides.html#ribbon-plots-1",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Ribbon plots",
+    "text": "Ribbon plots\nYou can control the bands using the .width argument:\n\npenguins %&gt;%\n  ggplot(aes(x = year, y = body_mass_g)) +\n  stat_lineribbon(.width = c(.8, .97, .99)) +\n  scale_fill_brewer() +\n  facet_wrap(vars(species))"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#ribbon-plots-2",
+    "href": "2024/03-extensions/slides.html#ribbon-plots-2",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Ribbon plots",
+    "text": "Ribbon plots\n.width = ppoints() creates a gradient:\n\npenguins %&gt;%\n  ggplot(aes(x = year, y = body_mass_g, fill = after_stat(.width))) +\n  stat_lineribbon(.width = ppoints(100)) +\n  scale_fill_distiller() +\n  facet_wrap(vars(species))"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#visualizing-frequentist-model-output",
+    "href": "2024/03-extensions/slides.html#visualizing-frequentist-model-output",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Visualizing frequentist model output",
+    "text": "Visualizing frequentist model output\nCombined with the broom and distributional packages, ggdist can display frequentist model uncertainty."
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#visualizing-frequentist-model-output-1",
+    "href": "2024/03-extensions/slides.html#visualizing-frequentist-model-output-1",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Visualizing frequentist model output",
+    "text": "Visualizing frequentist model output\n\nlibrary(broom)\nlibrary(distributional)\n\npenguin_lm &lt;- lm(body_mass_g ~  species, data = penguins)\n\nbroom::tidy(penguin_lm)\n\n# A tibble: 3 × 5\n  term             estimate std.error statistic   p.value\n  &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)        3706.       38.1    97.2   6.88e-245\n2 speciesChinstrap     26.9      67.7     0.398 6.91e-  1\n3 speciesGentoo      1386.       56.9    24.4   1.01e- 75"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#visualizing-frequentist-model-output-2",
+    "href": "2024/03-extensions/slides.html#visualizing-frequentist-model-output-2",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Visualizing frequentist model output",
+    "text": "Visualizing frequentist model output\n\nbroom::tidy(penguin_lm) |&gt;\n  ggplot(aes(y = term)) +\n    stat_halfeye(\n      aes(xdist = dist_student_t(df = df.residual(penguin_lm), \n                                 mu = estimate, \n                                 sigma = std.error))\n    )"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#visualizing-frequentist-model-output-3",
+    "href": "2024/03-extensions/slides.html#visualizing-frequentist-model-output-3",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Visualizing frequentist model output",
+    "text": "Visualizing frequentist model output\n\nYou can also use ribbons to show uncertainty around lines of fit.\nWe’ll need a linear model with a continuous predictor.\nAnd we’ll use tidyr::expand and broom::augment to get the predicted line of fit from the model."
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#visualizing-frequentist-model-output-4",
+    "href": "2024/03-extensions/slides.html#visualizing-frequentist-model-output-4",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Visualizing frequentist model output",
+    "text": "Visualizing frequentist model output\n\npenguin_lm_cont &lt;- lm(body_mass_g ~  year + species, data = penguins)\n\npenguin_lm_cont_fitted &lt;- penguins %&gt;%\n  group_by(species) %&gt;%\n  tidyr::expand(year = seq(min(year), max(year), length.out = 3)) %&gt;%\n  augment(penguin_lm_cont, newdata = ., se_fit = TRUE) \n\nhead(penguin_lm_cont_fitted) \n\n# A tibble: 6 × 4\n  species    year .fitted .se.fit\n  &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 Adelie     2007   3703.    50.4\n2 Adelie     2008   3706.    38.2\n3 Adelie     2009   3709.    48.2\n4 Chinstrap  2007   3730.    63.6\n5 Chinstrap  2008   3733.    56.0\n6 Chinstrap  2009   3737.    64.5"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#visualizing-frequentist-model-output-5",
+    "href": "2024/03-extensions/slides.html#visualizing-frequentist-model-output-5",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Visualizing frequentist model output",
+    "text": "Visualizing frequentist model output\n\n  ggplot(penguin_lm_cont_fitted, aes(x = year)) +\n  stat_lineribbon(\n    aes(ydist = dist_student_t(df = df.residual(penguin_lm_cont), \n                               mu = .fitted, \n                               sigma = .se.fit))) +\n  facet_wrap(vars(species)) +\n  scale_fill_brewer()"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#visualizing-bayesian-model-components",
+    "href": "2024/03-extensions/slides.html#visualizing-bayesian-model-components",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Visualizing Bayesian model components",
+    "text": "Visualizing Bayesian model components\n\nggdist plots are great for visualizing Bayesian model components:\n\npriors\nposterior draws\nposterior predictions\n\nWe can fit a simple Bayesian linear model and visualize the posterior…"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#fitting-a-model",
+    "href": "2024/03-extensions/slides.html#fitting-a-model",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Fitting a model",
+    "text": "Fitting a model\n\nlibrary(brms)\nlibrary(tidybayes)\n\npenguins_brm &lt;- brm(body_mass_g ~ species, data = penguins, iter = 1000)"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#extracting-draws-from-the-posterior",
+    "href": "2024/03-extensions/slides.html#extracting-draws-from-the-posterior",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Extracting draws from the posterior",
+    "text": "Extracting draws from the posterior\n\npenguins_brm %&gt;%\ntidybayes::gather_draws(\nc(b_Intercept,\nb_speciesChinstrap,\nb_speciesGentoo)\n) |&gt;\nhead() \n\n# A tibble: 6 × 5\n# Groups:   .variable [1]\n  .chain .iteration .draw .variable   .value\n   &lt;int&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;\n1      1          1     1 b_Intercept  3646.\n2      1          2     2 b_Intercept  3680.\n3      1          3     3 b_Intercept  3694.\n4      1          4     4 b_Intercept  3688.\n5      1          5     5 b_Intercept  3632.\n6      1          6     6 b_Intercept  3779."
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#posterior-draws-rainclouds",
+    "href": "2024/03-extensions/slides.html#posterior-draws-rainclouds",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Posterior draws rainclouds",
+    "text": "Posterior draws rainclouds\n\npenguins_brm |&gt;\ntidybayes::gather_draws(\nc(b_Intercept,\nb_speciesChinstrap,\nb_speciesGentoo)) %&gt;%\nggplot(aes(y = .variable, x = .value)) +  \n  geom_dotsinterval(side = \"bottom\", dotsize = .05) + \n  stat_slabinterval()"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#takeaways",
+    "href": "2024/03-extensions/slides.html#takeaways",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nggdist contains geom and stat functions for plotting distributions.\nSlab functions show variations on density plots.\nRibbons show variation around a line.\nggdist plays nicely with Bayesian and frequentist modeling frameworks."
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#ggraph",
+    "href": "2024/03-extensions/slides.html#ggraph",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "ggraph",
+    "text": "ggraph\n\nFor plotting networks, graphs, and trees\nAdds layouts and geoms for nodes and edges\nIntegrates with tidygraph to wrap around numerous other graph object types (igraph, dedrogram, hclust, graph, phylo, …)"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#example-mouse-data",
+    "href": "2024/03-extensions/slides.html#example-mouse-data",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Example: Mouse data",
+    "text": "Example: Mouse data\nBegin by loading network data, in this case from the graphml format.\nData from So et al. 2015, in the Animal Social Networks Repository.\n\nlibrary(igraph)\nlibrary(tidygraph)\n\nmouse_sniffing &lt;- read_graph(here::here(\"2024\", \"03-extensions\", \"mouse_so_grooming_network.graphml\"),\nformat = \"graphml\")"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#example-as_tbl_graph",
+    "href": "2024/03-extensions/slides.html#example-as_tbl_graph",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Example: as_tbl_graph",
+    "text": "Example: as_tbl_graph\ntidygraph::as_tbl_graph standardizes different graph storage formats.\n\nmouse_graph &lt;- mouse_sniffing |&gt;\nas_tbl_graph()"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#plotting-mouse-sniffing-data",
+    "href": "2024/03-extensions/slides.html#plotting-mouse-sniffing-data",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Plotting mouse sniffing data",
+    "text": "Plotting mouse sniffing data\n\nggraph(mouse_graph, layout = 'kk') + \n    geom_edge_fan() + \n    geom_node_point() +\n    theme_minimal() +\n    ggtitle(\"Mouse sniffs\")"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#alternate-layouts",
+    "href": "2024/03-extensions/slides.html#alternate-layouts",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Alternate layouts",
+    "text": "Alternate layouts\n\nggraph(mouse_graph, layout = 'eigen') + \n    geom_edge_fan() + \n    geom_node_point() +\n    theme_minimal() +\n    ggtitle(\"Mouse sniffs\")"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#alternate-layouts-1",
+    "href": "2024/03-extensions/slides.html#alternate-layouts-1",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Alternate layouts",
+    "text": "Alternate layouts\n\nggraph(mouse_graph, layout = 'linear', circular = TRUE) + \n    geom_edge_fan() + \n    geom_node_point() +\n    theme_minimal() +\n    ggtitle(\"Mouse sniffs\")"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#example-phylogenies",
+    "href": "2024/03-extensions/slides.html#example-phylogenies",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Example: phylogenies",
+    "text": "Example: phylogenies\n\nggraph can plot phylogenetic trees.\nWe’ll get a phylogeny using the R Open Tree of Life (rotl) and plot it."
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#getting-a-phylogeny",
+    "href": "2024/03-extensions/slides.html#getting-a-phylogeny",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Getting a phylogeny",
+    "text": "Getting a phylogeny"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#getting-a-phylogeny-1",
+    "href": "2024/03-extensions/slides.html#getting-a-phylogeny-1",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Getting a phylogeny",
+    "text": "Getting a phylogeny\n\nlibrary(rotl)\nrodent_id &lt;- tnrs_match_names(\"Heteromyidae\")\nrodent_tree &lt;- tol_subtree(ott_id = ott_id(rodent_id))\n\n\nProgress [----------------------------------] 0/11 (  0) ?s\nProgress [================================] 11/11 (100)  0s\n                                                            \n\nrodent_tree$node.label &lt;- c(1:64)\nclass(rodent_tree)\n\n[1] \"phylo\""
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#convert-the-phylogeny-to-a-graph",
+    "href": "2024/03-extensions/slides.html#convert-the-phylogeny-to-a-graph",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Convert the phylogeny to a graph",
+    "text": "Convert the phylogeny to a graph\n\nrodent_graph &lt;- as_tbl_graph(rodent_tree)"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#dendrogram",
+    "href": "2024/03-extensions/slides.html#dendrogram",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Dendrogram",
+    "text": "Dendrogram\n\nggraph(rodent_graph, \"dendrogram\") +\ngeom_edge_link()"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#unrooted-tree",
+    "href": "2024/03-extensions/slides.html#unrooted-tree",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Unrooted tree",
+    "text": "Unrooted tree\n\nggraph(rodent_graph, \"unrooted\") +\ngeom_edge_link()"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#takeaways-1",
+    "href": "2024/03-extensions/slides.html#takeaways-1",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nggraph can plot many different types of network objects.\nUse as_tbl_graph to convert graphs to ggraph-compatible objects.\nLayouts strongly determine the appearance and interpretability of a graph."
+  },
+  {
     "objectID": "2024/03-extensions/slides.html#extensions-resources",
     "href": "2024/03-extensions/slides.html#extensions-resources",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Extensions Resources",
-    "text": "Extensions Resources\npatchwork\n\nPackage website\n\ngganimate\n\nCheat sheet\nWebsite"
+    "text": "Extensions Resources\npatchwork\n\nPackage website\n\ngganimate\n\nCheat sheet\nWebsite\n\nggdist\n\nDocumentation\nMore about tidybayes"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#extensions-resources-1",
+    "href": "2024/03-extensions/slides.html#extensions-resources-1",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Extensions Resources",
+    "text": "Extensions Resources\nggraph\n\nggraph documentation\ntidygraph documentation\nigraph R package documentation\nrotl documentation"
   },
   {
     "objectID": "2024/03-extensions/slides.html#getting-help",
@@ -1523,5 +1754,12 @@
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Getting Help",
     "text": "Getting Help\n\nOur drop-in hours\nUA Data Science Slack"
+  },
+  {
+    "objectID": "2024/03-extensions/slides.html#data-sources",
+    "href": "2024/03-extensions/slides.html#data-sources",
+    "title": "Exploring the Wide World of ggplot2 Extensions",
+    "section": "Data sources",
+    "text": "Data sources\nPratha Sah, José David Mendez, Shweta Bansal. A multi-species repository of social networks. Scientific Data, 6:44 (2019)\nSo, N., Franks, B., Lim, S., and Curley, J.P. 2015. A social network approach reveals associations between mouse social dominance and brain gene expression. PlosOne 10(7):e0134509\n\n\n\n\nIntermediate ggplot2 workshop series"
   }
 ]
