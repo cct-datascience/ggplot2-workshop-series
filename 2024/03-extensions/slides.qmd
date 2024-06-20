@@ -24,6 +24,12 @@ editor: visual
 ## Packages
 
 ```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(fig.align = "center")
+```
+
+```{r}
 library(ggplot2)
 library(palmerpenguins) #for example dataset
 library(patchwork) #for multi-panel figures
