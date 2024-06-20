@@ -15,7 +15,7 @@ editor: visual
 ## Learning Objectives
 
 -   Understand where to find packages that extend `ggplot2`
-- Demonstrate some extension packages
+-   Demonstrate some extension packages
     -   Assemble multi-panel figures with `patchwork`
     -   Make animated plots with `gganimate`
     -   Visualize distributions with `ggdist`
@@ -145,15 +145,16 @@ p3 <-
 ## Combine plots
 
 ```{r}
+#| fig-align: center
 (p1 | p2) / p3
 ```
-
 
 ## Combine guides
 
 If plots have *identical* guides, you can combine them with `plot_layout(guides = "collect")`
 
 ```{r}
+#| fig-align: center
 p1 + p2 + plot_layout(guides = "collect")
 ```
 
@@ -166,6 +167,7 @@ identical means same scale, same title, same glyph
 As of the most recent version of `patchwork` (v1.2.0) you can also combine identical axes.
 
 ```{r}
+#| fig-align: center
 p1 + p2 + plot_layout(guides = "collect", axes = "collect")
 ```
 
@@ -182,6 +184,7 @@ For more options for controlling layout, see the related vignette on the package
 You can add "tags" to each panel with `plot_annotation()`
 
 ```{r}
+#| fig-align: center
 p1 + p2 + plot_annotation(tag_levels = "A", tag_suffix = ")")
 ```
 
@@ -190,6 +193,7 @@ p1 + p2 + plot_annotation(tag_levels = "A", tag_suffix = ")")
 You can use the `&` operator instead of `+` to modify **all** elements of a multi-panel figure.
 
 ```{r}
+#| fig-align: center
 p1 + p2 & theme_bw() & scale_color_viridis_d()
 ```
 
@@ -198,6 +202,7 @@ p1 + p2 & theme_bw() & scale_color_viridis_d()
 You can even combine `ggplot2` plots with base R plots with a special syntax
 
 ```{r}
+#| fig-align: center
 p1 + ~hist(penguins$bill_depth_mm, main = "")
 ```
 
@@ -218,6 +223,7 @@ Useful for showing trends in time series & spatial data
 Body size distribution of penguins changing over the years
 
 ```{r}
+#| fig-align: center
 ggplot(penguins, aes(x = body_mass_g, col = species)) +
   geom_density() +
   facet_wrap(~year)
@@ -226,6 +232,7 @@ ggplot(penguins, aes(x = body_mass_g, col = species)) +
 ## Show annual transition
 
 ```{r}
+#| fig-align: center
 library(gganimate)
 
 ggplot(penguins, aes(x = body_mass_g, col = species)) +
@@ -237,6 +244,7 @@ ggplot(penguins, aes(x = body_mass_g, col = species)) +
 ## Add history
 
 ```{r}
+#| fig-align: center
 ggplot(penguins, aes(x = body_mass_g, col = species)) +
   geom_density() +
   transition_time(year) +
@@ -247,6 +255,7 @@ ggplot(penguins, aes(x = body_mass_g, col = species)) +
 ## Modify transition speed
 
 ```{r}
+#| fig-align: center
 ggplot(penguins, aes(x = body_mass_g, col = species)) +
   geom_density() +
   transition_time(year) +
@@ -257,6 +266,7 @@ ggplot(penguins, aes(x = body_mass_g, col = species)) +
 ## Have axes follow data
 
 ```{r}
+#| fig-align: center
 ggplot(penguins, aes(x = body_mass_g, col = species)) +
   geom_density() +
   transition_time(year) +
@@ -274,7 +284,7 @@ anim_save("~/Desktop/test_anim.gif")
 
 `patchwork`
 
-- [Package website](https://patchwork.data-imaginist.com/index.html)
+-   [Package website](https://patchwork.data-imaginist.com/index.html)
 
 `gganimate`
 
