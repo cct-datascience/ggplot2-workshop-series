@@ -20,3 +20,5 @@ There are over 100 packages that extend the functionality of ggplot2 to allow yo
 **Materials:**
 
 - {{< revealjs slides.html >}}
+- Recording:
+    {{< video https://youtu.be/rDXfFSIYrnY >}}
