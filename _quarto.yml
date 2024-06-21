@@ -16,7 +16,7 @@ website:
     logo: logo.png
     title: "Data Science Team"
     contents:
-      - section: "Upcoming series"
+      - section: "2024"
         href: "2024/index.qmd"
         contents:
           - text: "Session 1 - Foundations"
