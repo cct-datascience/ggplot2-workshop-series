@@ -14,7 +14,7 @@
     "href": "2024/03-extensions/index.html",
     "title": "Exploring The Wide World of ggplot2 Extensions",
     "section": "",
-    "text": "Date & time: Thursday June 20, 2024, 11am - 1pm AZ\nInstructor: Eric Scott, Renata Diaz, Kristina Riemer\nThere are over 100 packages that extend the functionality of ggplot2 to allow you to make just about any data visualization you can think of! In this workshop we’ll cover a few of our favorite extensions, such as for multi-panel figures and animating visualizations, and show you how to find the ggplot2 extension that meets your data visualization needs.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2\n\nMaterials:\n\n    View slides in full screen",
+    "text": "Date & time: Thursday June 20, 2024, 11am - 1pm AZ\nInstructor: Eric Scott, Renata Diaz, Kristina Riemer\nThere are over 100 packages that extend the functionality of ggplot2 to allow you to make just about any data visualization you can think of! In this workshop we’ll cover a few of our favorite extensions, such as for multi-panel figures and animating visualizations, and show you how to find the ggplot2 extension that meets your data visualization needs.\nRegistration\nPrerequisites:\n\nInstall R, RStudio, and ggplot2\nSome previous usage of ggplot2\n\nMaterials:\n\n    View slides in full screen\n       \n      \n    \n  \nRecording:",
     "crumbs": [
       "Upcoming series",
       "Session 3 - Extensions"
