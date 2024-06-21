@@ -7,3 +7,10 @@
 /_site/
 
 2024/02-data-comm/measles.csv
+# never ignore _freeze/
+!_freeze/*
+
+# render products that should get copied to _freeze/
+*_files/
+*_cache/
+/site_libs/
