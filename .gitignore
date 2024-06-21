@@ -6,11 +6,11 @@
 /.quarto/
 /_site/
 
-2024/02-data-comm/measles.csv
 # never ignore _freeze/
 !_freeze/*
 
 # render products that should get copied to _freeze/
+# it seems like when caching is turned on, the *_files/ dir isn't removed consistently with quarto render
 *_files/
 *_cache/
 /site_libs/
