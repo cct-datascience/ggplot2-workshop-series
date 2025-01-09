@@ -183,7 +183,7 @@
     "href": "2023/03-extensions/slides.html#ggrepel",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "ggrepel",
-    "text": "ggrepel\nThe ggrepel package is helpful for directly labeling plots, especially when labels would otherwise overlap.\n\n\n\n\n\n\ngeom_text()\n\n\n\n\n\n\n\ngeom_text_repel()"
+    "text": "ggrepel\nThe ggrepel package is helpful for directly labeling plots, especially when labels would otherwise overlap.\n\n\n\n\n\n\n\n\n\ngeom_text()\n\n\n\n\n\n\n\ngeom_text_repel()"
   },
   {
     "objectID": "2023/03-extensions/slides.html#getting-help",
@@ -383,7 +383,7 @@
     "href": "2023/01-foundations/slides.html#under-the-hood-with-layer",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Under the hood with layer()",
-    "text": "Under the hood with layer()\n\n\nA layer contains:\n\nData with aesthetic mapping\nA statistical transformation, or stat\nA geometric object, or geom\nA position adjustment\n\n\n\nggplot() +\n  geom_point()\n\n\nggplot() +\n  layer(mapping = NULL,\n        data = NULL,\n        geom = \"point\",\n        stat = \"identity\",\n        position = \"identity\")\n\n\n\n\n\n\n\n\n\nNote\n\n\nAll geom_*() or stat_*() calls are customized shortcuts for the layer() function."
+    "text": "Under the hood with layer()\n\n\nA layer contains:\n\nData with aesthetic mapping\nA statistical transformation, or stat\nA geometric object, or geom\nA position adjustment\n\n\n\nggplot() +\n  geom_point()\n\n\nggplot() +\n  layer(mapping = NULL,\n        data = NULL,\n        geom = \"point\",\n        stat = \"identity\",\n        position = \"identity\")\n\n\n\n\n\n\n\n\nNote\n\n\nAll geom_*() or stat_*() calls are customized shortcuts for the layer() function."
   },
   {
     "objectID": "2023/01-foundations/slides.html#the-expediency-of-defaults",
@@ -432,7 +432,7 @@
     "href": "2023/01-foundations/slides.html#when-to-use-which",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "When to use which?",
-    "text": "When to use which?\nIn general, use geom_*() unless you are trying to:\n\nOverrideCustomizeSummarize\n\n\n\n\n\npenguins %&gt;%\n  count(species) %&gt;%\n  ggplot(aes(x = species, y = n)) +\n  geom_bar(stat = \"identity\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = species, \n                     y = after_stat(prop),\n                     group = 1)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins) +\n  stat_summary(aes(x = species,\n                   y = body_mass_g),\n               fun.min = min,\n               fun.max = max,\n               fun = mean)"
+    "text": "When to use which?\nIn general, use geom_*() unless you are trying to:\n\nOverrideCustomizeSummarize\n\n\n\n\n\npenguins %&gt;%\n  count(species) %&gt;%\n  ggplot(aes(x = species, y = n)) +\n  geom_bar(stat = \"identity\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = species, \n                     y = after_stat(prop),\n                     group = 1)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins) +\n  stat_summary(aes(x = species,\n                   y = body_mass_g),\n               fun.min = min,\n               fun.max = max,\n               fun = mean)"
   },
   {
     "objectID": "2023/01-foundations/slides.html#a-panopoly-of-layer-options",
@@ -488,7 +488,7 @@
     "href": "2023/01-foundations/slides.html#scale-specification",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Scale specification",
-    "text": "Scale specification\nEvery aesthetic in a plot is associated with exactly one scale.\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species))\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  scale_x_continuous() + \n  scale_y_continuous() + \n  scale_colour_discrete()\n\n\n\nScale functions names are made of 3 pieces separated by “_”:\n\n\nscale\nthe name of the primary aesthetic (color, shape, x)\nthe name of the scale (discrete, continuous, brewer)"
+    "text": "Scale specification\nEvery aesthetic in a plot is associated with exactly one scale.\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species))\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  scale_x_continuous() + \n  scale_y_continuous() + \n  scale_colour_discrete()\n\n\nScale functions names are made of 3 pieces separated by “_”:\n\n\nscale\nthe name of the primary aesthetic (color, shape, x)\nthe name of the scale (discrete, continuous, brewer)"
   },
   {
     "objectID": "2023/01-foundations/slides.html#what-does-a-coordinate-system-do",
@@ -530,14 +530,14 @@
     "href": "2023/01-foundations/slides.html#complete-themes",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Complete themes",
-    "text": "Complete themes\n\ntheme_bw()theme_minimal()theme_classic()\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_classic()"
+    "text": "Complete themes\n\ntheme_bw()theme_minimal()theme_classic()\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, \n       aes(x = body_mass_g,\n           y = flipper_length_mm)) +\n  geom_point(aes(color = species)) +\n  theme_classic()"
   },
   {
     "objectID": "2023/01-foundations/slides.html#further-resources",
     "href": "2023/01-foundations/slides.html#further-resources",
     "title": "Understanding the foundations of ‘ggplot2’",
     "section": "Further resources",
-    "text": "Further resources\n\n\nPenguin artwork by @allison_horst\nHadley Wickham’s “A layered grammar of graphics” (2010)\nHadley Wickham’s “ggplot2: Elegant Graphics for Data Analysis, 3rd edition”, now available online\n“R for Data Science”, by Hadley Wickham, Mine Cetinkaya-Rundel, & Garret Grolemund, especially chapters 2, 10, and 12\nSee us at drop-in hours\n\n\n\n\n\n\nIntermediate ggplot2 workshop series"
+    "text": "Further resources\n\n\nPenguin artwork by @allison_horst\nHadley Wickham’s “A layered grammar of graphics” (2010)\nHadley Wickham’s “ggplot2: Elegant Graphics for Data Analysis, 3rd edition”, now available online\n“R for Data Science”, by Hadley Wickham, Mine Cetinkaya-Rundel, & Garret Grolemund, especially chapters 2, 10, and 12\nSee us at drop-in hours"
   },
   {
     "objectID": "2023/01-foundations/index.html",
@@ -846,14 +846,14 @@
     "href": "2023/02-publication-quality-figs/slides.html#saving-plots-1",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Saving plots",
-    "text": "Saving plots\nIf you know the dimensions, it’s good to save plots early on and adjust theme to fit.\n\n\n\nggsave(\n  filename = \"penguins.png\",\n  plot = p_combined,\n  width = 7, \n  height = 5, \n  units = \"in\", \n  dpi = \"print\",\n  bg = \"white\"\n)\n\n\n\n\n\n\nThe file type is figured out based on the extension in filename.\nBy default, the last plot is the one saved, but it’s good practice to specify plot anyways\nDimensions can be specified in pixels, inches, mm, etc.\ndpi is resolution and only applies to raster images.\nbg sets background color. If you don’t set this, the background of your plot is often transparent, which might not be the best for adding to presentations.\nNotice how the legends and points look too large with these dimensions. It might be good to fix that."
+    "text": "Saving plots\nIf you know the dimensions, it’s good to save plots early on and adjust theme to fit.\n\n\n\nggsave(\n  filename = \"penguins.png\",\n  plot = p_combined,\n  width = 7, \n  height = 5, \n  units = \"in\", \n  dpi = \"print\",\n  bg = \"white\"\n)\n\n\n\n\n\nThe file type is figured out based on the extension in filename.\nBy default, the last plot is the one saved, but it’s good practice to specify plot anyways\nDimensions can be specified in pixels, inches, mm, etc.\ndpi is resolution and only applies to raster images.\nbg sets background color. If you don’t set this, the background of your plot is often transparent, which might not be the best for adding to presentations.\nNotice how the legends and points look too large with these dimensions. It might be good to fix that."
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#raster-vs.-vector",
     "href": "2023/02-publication-quality-figs/slides.html#raster-vs.-vector",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Raster vs. Vector",
-    "text": "Raster vs. Vector\n\n\nRaster images (e.g. .jpg, .png, .tiff) are made of pixels and the resolution can vary.\nVector images (e.g. .svg, .eps) are not made of pixels and don’t have a resolution.\nVector formats should be used whenever possible\n\n\n\n\n\n\n\n\nRaster (72 dpi .png file)\n\n\n\n\n\n\n\nVector (.svg file)\n\n\n\n\n\n\nOpen images in a new tab and zoom in on browser to demo the difference.\nVector formats are not only resolution-less, they are more compatible with screen readers and therefore more accessible."
+    "text": "Raster vs. Vector\n\n\nRaster images (e.g. .jpg, .png, .tiff) are made of pixels and the resolution can vary.\nVector images (e.g. .svg, .eps) are not made of pixels and don’t have a resolution.\nVector formats should be used whenever possible\n\n\n\n\n\n\n\n\n\n\n\nRaster (72 dpi .png file)\n\n\n\n\n\n\n\nVector (.svg file)\n\n\n\n\n\n\nOpen images in a new tab and zoom in on browser to demo the difference.\nVector formats are not only resolution-less, they are more compatible with screen readers and therefore more accessible."
   },
   {
     "objectID": "2023/02-publication-quality-figs/slides.html#finished-product",
@@ -881,7 +881,7 @@
     "href": "2023/02-publication-quality-figs/slides.html#part-3-in-two-weeks",
     "title": "Crafting Publication Quality Data Visualizations with ggplot2",
     "section": "Part 3 in two weeks!",
-    "text": "Part 3 in two weeks!\n“Exploring the wide world of ggplot2 extensions”\n🗓️ June 26\n⌚️ 11:00am–1:00pm\nRegistration\n\n\n\n\nIntermediate ggplot2 workshop series"
+    "text": "Part 3 in two weeks!\n“Exploring the wide world of ggplot2 extensions”\n🗓️ June 26\n⌚️ 11:00am–1:00pm\nRegistration"
   },
   {
     "objectID": "2023/03-extensions/notes.html",
@@ -948,7 +948,7 @@
     "href": "2024/01-foundations/slides.html#grammar-of-graphics-components",
     "title": "Foundations of {ggplot2}",
     "section": "Grammar of Graphics Components",
-    "text": "Grammar of Graphics Components\n\n\n\n\nData\nAesthetics\nScales (and guides)\nGeometric objects\nStatistics\nFacets\nCoordinate system\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe’re going to go through each of these and examine how they appear in this example plot"
+    "text": "Grammar of Graphics Components\n\n\n\n\nData\nAesthetics\nScales (and guides)\nGeometric objects\nStatistics\nFacets\nCoordinate system\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe’re going to go through each of these and examine how they appear in this example plot"
   },
   {
     "objectID": "2024/01-foundations/slides.html#data",
@@ -969,35 +969,35 @@
     "href": "2024/01-foundations/slides.html#scales-and-guides",
     "title": "Foundations of {ggplot2}",
     "section": "Scales (and guides)",
-    "text": "Scales (and guides)\n\n\nScales translate data units into visual units, guides translate visual units back to data units.\nWhat scales are used?\n\nContinuous and linear x and y axes (scales)\n\n\n\nDiscrete (categorical) color scale\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScale translates data units (e.g. grams) into visual units (pixels). Guides translate visual units (e.g. color hue) back to data units (species category). Walk through this with annotations."
+    "text": "Scales (and guides)\n\n\nScales translate data units into visual units, guides translate visual units back to data units.\nWhat scales are used?\n\nContinuous and linear x and y axes (scales)\n\n\n\nDiscrete (categorical) color scale\n\n\n\n\n\n\n\n\n\n\n\n\n\nScale translates data units (e.g. grams) into visual units (pixels). Guides translate visual units (e.g. color hue) back to data units (species category). Walk through this with annotations."
   },
   {
     "objectID": "2024/01-foundations/slides.html#geometric-objects-geoms",
     "href": "2024/01-foundations/slides.html#geometric-objects-geoms",
     "title": "Foundations of {ggplot2}",
     "section": "Geometric Objects (“geoms”)",
-    "text": "Geometric Objects (“geoms”)\n\n\nObjects, often having multiple aesthetics, that represent data visually.\nWhat geometric objects are used?\n\nData is represented using circles/points\nTrend is represented as a line\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBoth aesthetics and geoms are related to the visual representation of data. To distinguish aesthetics and geoms, think about how geoms can have many aesthetics. E.g. points have position, shape, size, color, and transparency and different data could be mapped to each of those aesthetics."
+    "text": "Geometric Objects (“geoms”)\n\n\nObjects, often having multiple aesthetics, that represent data visually.\nWhat geometric objects are used?\n\nData is represented using circles/points\nTrend is represented as a line\n\n\n\n\n\n\n\n\n\n\n\n\n\nBoth aesthetics and geoms are related to the visual representation of data. To distinguish aesthetics and geoms, think about how geoms can have many aesthetics. E.g. points have position, shape, size, color, and transparency and different data could be mapped to each of those aesthetics."
   },
   {
     "objectID": "2024/01-foundations/slides.html#statistics-stats",
     "href": "2024/01-foundations/slides.html#statistics-stats",
     "title": "Foundations of {ggplot2}",
     "section": "Statistics (“stats”)",
-    "text": "Statistics (“stats”)\n\n\nAny calculations or transformations applied to the data in order to plot it.\nWhat “stats” are used?\n\nFor points, none (stat = “identity”)\nFor trend lines, linear regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIf the data are 344 observations, are any transformations needed to draw one of the two “geoms” in the plot?"
+    "text": "Statistics (“stats”)\n\n\nAny calculations or transformations applied to the data in order to plot it.\nWhat “stats” are used?\n\nFor points, none (stat = “identity”)\nFor trend lines, linear regression\n\n\n\n\n\n\n\n\n\n\n\n\n\nIf the data are 344 observations, are any transformations needed to draw one of the two “geoms” in the plot?"
   },
   {
     "objectID": "2024/01-foundations/slides.html#facets",
     "href": "2024/01-foundations/slides.html#facets",
     "title": "Foundations of {ggplot2}",
     "section": "Facets",
-    "text": "Facets\n\n\nPlots can be split into small multiples or “facets” by a variable.\nWhat is the faceting variable?\n\nFaceted by island\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNot every plot has facets. Plots can be faceted by multiple (2) variables in a grid"
+    "text": "Facets\n\n\nPlots can be split into small multiples or “facets” by a variable.\nWhat is the faceting variable?\n\nFaceted by island\n\n\n\n\n\n\n\n\n\n\n\n\n\nNot every plot has facets. Plots can be faceted by multiple (2) variables in a grid"
   },
   {
     "objectID": "2024/01-foundations/slides.html#coordinate-system",
     "href": "2024/01-foundations/slides.html#coordinate-system",
     "title": "Foundations of {ggplot2}",
     "section": "Coordinate System",
-    "text": "Coordinate System\n\n\nHow spatial positions are represented on paper (or screen)—e.g. map projections.\nWhat coordinate system is used?\n\nCartesian coordinates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOther options include polar coordinates or the many possible coordinate systems used in maps."
+    "text": "Coordinate System\n\n\nHow spatial positions are represented on paper (or screen)—e.g. map projections.\nWhat coordinate system is used?\n\nCartesian coordinates\n\n\n\n\n\n\n\n\n\n\n\n\n\nOther options include polar coordinates or the many possible coordinate systems used in maps."
   },
   {
     "objectID": "2024/01-foundations/slides.html#practice",
@@ -1025,7 +1025,7 @@
     "href": "2024/01-foundations/slides.html#section",
     "title": "Foundations of {ggplot2}",
     "section": "",
-    "text": "library(tidyverse)\nlibrary(palmerpenguins)\n\n#summarize dataset\npeng_summary &lt;- \n  penguins |&gt; \n  group_by(island) |&gt; \n  summarize(\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),\n    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)\n  )\n\nggplot(peng_summary, aes(x = island, y = mean_mass)) +\n  #mean\n  geom_point(shape = \"square\", color = \"blue\", size = 2.5) +\n  #sd\n  geom_errorbar(\n    data = peng_summary,\n    aes(y = mean_mass, ymin = lower_sd, ymax = upper_sd),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins,\n    aes(y = body_mass_g),\n    alpha = 0.4,\n    height = 0\n  )\n\n\n\n\n\n\n\n\n\n\n\nStart by summarizing the penguins dataset to get some summary statistics for the error bars. Notice that ggplot() uses the raw data though.\n\n\nThen add the raw data points, in this case with geom_jitter()\n\nThen add the geom_pointrange(). Notice that we override the inherited data with data = peng_summary . The x mapping is inherited, but we need to supply new aesthetic mappings for y, ymin, and ymax"
+    "text": "library(tidyverse)\nlibrary(palmerpenguins)\n\n#summarize dataset\npeng_summary &lt;- \n  penguins |&gt; \n  group_by(island) |&gt; \n  summarize(\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    lower_sd = mean_mass - sd(body_mass_g, na.rm = TRUE),\n    upper_sd = mean_mass + sd(body_mass_g, na.rm = TRUE)\n  )\n\nggplot(peng_summary, aes(x = island, y = mean_mass)) +\n  #mean\n  geom_point(shape = \"square\", color = \"blue\", size = 2.5) +\n  #sd\n  geom_errorbar(\n    data = peng_summary,\n    aes(y = mean_mass, ymin = lower_sd, ymax = upper_sd),\n    width = 0.1,\n    color = \"blue\"\n  ) +\n  #add raw data:\n  geom_jitter(\n    data = penguins,\n    aes(y = body_mass_g),\n    alpha = 0.4,\n    height = 0\n  )\n\n\n\n\n\n\n\n\n\n\nStart by summarizing the penguins dataset to get some summary statistics for the error bars. Notice that ggplot() uses the raw data though.\n\n\nThen add the raw data points, in this case with geom_jitter()\n\nThen add the geom_pointrange(). Notice that we override the inherited data with data = peng_summary . The x mapping is inherited, but we need to supply new aesthetic mappings for y, ymin, and ymax"
   },
   {
     "objectID": "2024/01-foundations/slides.html#aesthetics-1",
@@ -1130,7 +1130,7 @@
     "href": "2024/01-foundations/slides.html#references",
     "title": "Foundations of {ggplot2}",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\n\nIntermediate ggplot2 workshop series\n\n\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.” Journal of Computational and Graphical Statistics 19 (1): 3–28. https://doi.org/10.1198/jcgs.2009.07098.\n\n\nWilkinson, Leland. 2005. The Grammar of Graphics. 2nd ed. Statistics and Computing. New York: Springer-Verlag. https://doi.org/10.1007/0-387-28695-0."
+    "text": "References\n\n\n\n\n\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.” Journal of Computational and Graphical Statistics 19 (1): 3–28. https://doi.org/10.1198/jcgs.2009.07098.\n\n\nWilkinson, Leland. 2005. The Grammar of Graphics. 2nd ed. Statistics and Computing. New York: Springer-Verlag. https://doi.org/10.1007/0-387-28695-0."
   },
   {
     "objectID": "2024/02-data-comm/slides.html#code-along-script",
@@ -1347,7 +1347,7 @@
     "href": "2024/02-data-comm/slides.html#next-up-ggplot2-extensions",
     "title": "Effective Data Communication With {ggplot2}",
     "section": "Next up: ggplot2 extensions!",
-    "text": "Next up: ggplot2 extensions!\nMore information and register here.\n\n\n\n\nIntermediate ggplot2 workshop series"
+    "text": "Next up: ggplot2 extensions!\nMore information and register here."
   },
   {
     "objectID": "2024/03-extensions/slides.html#learning-objectives",
@@ -1382,7 +1382,7 @@
     "href": "2024/03-extensions/slides.html#transformative-field-specific",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Transformative & field-specific",
-    "text": "Transformative & field-specific\n\n\n\n\n\n\nggspectra\n\n\n\n\n\n\n\ngggenes"
+    "text": "Transformative & field-specific\n\n\n\n\n\n\n\n\n\nggspectra\n\n\n\n\n\n\n\ngggenes"
   },
   {
     "objectID": "2024/03-extensions/slides.html#finding-extensions",
@@ -1760,6 +1760,6 @@
     "href": "2024/03-extensions/slides.html#data-sources",
     "title": "Exploring the Wide World of ggplot2 Extensions",
     "section": "Data sources",
-    "text": "Data sources\nPratha Sah, José David Mendez, Shweta Bansal. A multi-species repository of social networks. Scientific Data, 6:44 (2019)\nSo, N., Franks, B., Lim, S., and Curley, J.P. 2015. A social network approach reveals associations between mouse social dominance and brain gene expression. PlosOne 10(7):e0134509\n\n\n\n\nIntermediate ggplot2 workshop series"
+    "text": "Data sources\nPratha Sah, José David Mendez, Shweta Bansal. A multi-species repository of social networks. Scientific Data, 6:44 (2019)\nSo, N., Franks, B., Lim, S., and Curley, J.P. 2015. A social network approach reveals associations between mouse social dominance and brain gene expression. PlosOne 10(7):e0134509"
   }
 ]
