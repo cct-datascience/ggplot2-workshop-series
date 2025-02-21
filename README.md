@@ -10,5 +10,5 @@ Source code for materials for a data visualization workshop series.
 
 If you use or adapt these materials, please cite them as follows:
 
-> Scott E, Diaz R, Riemer K (2025).
+> Scott E, Guo J, Diaz R, Riemer K (2025).
 > “Leveling up your data visualization skills with ggplot2.” <https://cct-datascience.github.io/ggplot2-workshop-series/>.
