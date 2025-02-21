@@ -10,6 +10,10 @@ website:
   title: "Intermediate ggplot2 workshop series"
   repo-url: "https://github.com/cct-datascience/ggplot2-workshop-series"
   repo-actions: ["source", "issue"]
+  page-footer:
+    border: false
+    center: |
+      [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) | [![](https://zenodo.org/badge/795621206.svg)](https://doi.org/10.5281/zenodo.14907482)
   sidebar: 
     style: "docked"
     search: true
