@@ -1,0 +1,44 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: ' Leveling up your data visualization skills with ggplot2'
+message: >-
+  If you use this curriculum, please cite it using the
+  metadata from this file
+type: software
+authors:
+  - given-names: Eric R.
+    family-names: Scott
+    affiliation: >-
+      University of Arizona, Communications & Cyber
+      Technologies
+    orcid: 'https://orcid.org/0000-0002-7430-7879'
+  - given-names: Jessica
+    family-names: Guo
+    affiliation: >-
+      University of Arizona, Communications & Cyber
+      Technologies
+    orcid: 'https://orcid.org/0000-0002-9566-9182'
+  - given-names: Renata
+    family-names: Diaz
+    orcid: 'https://orcid.org/0000-0003-0803-4734'
+    affiliation: >-
+      University of Arizona, Communications & Cyber
+      Technologies
+  - given-names: Kristina
+    family-names: Riemer
+    affiliation: >-
+      University of Arizona, Communications & Cyber
+      Technologies
+    email: cct-datascience@arizona.edu
+    orcid: 'https://orcid.org/0000-0003-3802-3331'
+repository-code: 'https://github.com/cct-datascience/ggplot2-workshop-series'
+url: 'https://cct-datascience.github.io/ggplot2-workshop-series/'
+keywords:
+  - ggplot2
+  - data visualization
+  - grammar of graphics
+  - quarto
+license: CC-BY-4.0
+date-released: '2025-02-21'
